@@ -27,7 +27,16 @@ try {
     JSON.stringify(packageJson, null, 2),
   );
 
-  // Step 5: Print done
+  // Step 5: Build docs
+  console.log('Building docs...');
+  await $`bun run docs:build`;
+
+  // Step 6: Copy docs output to dist/public
+  console.log('Copying docs output to dist/public...');
+  await $`cp -r docs/out/_next dist/public/_next`;
+  await $`cp -r docs/out/docs dist/public/docs`;
+
+  // Step 7: Print done
   console.log('✅ Build completed successfully!');
   console.log('Done');
 } catch (error) {

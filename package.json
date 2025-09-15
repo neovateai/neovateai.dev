@@ -8,7 +8,10 @@
     "dev": "bun src/index.ts",
     "deploy": "bun run scripts/deploy.ts",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "pnpm --filter @neovateai/docs dev",
+    "docs:build": "pnpm --filter @neovateai/docs build",
+    "docs:start": "pnpm --filter @neovateai/docs start"
   },
   "keywords": [],
   "author": "",
