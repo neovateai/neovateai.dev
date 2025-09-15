@@ -17,6 +17,7 @@
   "author": "",
   "license": "MIT",
   "description": "",
+  "packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/bun": "^1.2.21",
