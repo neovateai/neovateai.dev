@@ -13,7 +13,7 @@ importers:
         version: 5.2.2(prettier@3.6.2)
       '@types/bun':
         specifier: ^1.2.21
-        version: 1.2.21(@types/react@19.1.12)
+        version: 1.2.21(@types/react@19.1.13)
       '@types/express':
         specifier: ^5.0.3
         version: 5.0.3
@@ -33,13 +33,13 @@ importers:
   docs:
     dependencies:
       next:
-        specifier: ^14.2.5
+        specifier: ^14.2.32
         version: 14.2.32(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nextra:
-        specifier: ^3.2.7
+        specifier: ^3.3.1
         version: 3.3.1(@types/react@18.3.24)(next@14.2.32(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
       nextra-theme-docs:
-        specifier: ^3.2.7
+        specifier: ^3.3.1
         version: 3.3.1(next@14.2.32(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@3.3.1(@types/react@18.3.24)(next@14.2.32(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -49,16 +49,16 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@types/node':
-        specifier: ^20.14.10
-        version: 20.19.14
+        specifier: ^22.11.1
+        version: 22.18.3
       '@types/react':
-        specifier: ^18.3.3
+        specifier: ^18.3.24
         version: 18.3.24
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.24)
       typescript:
-        specifier: ^5.5.3
+        specifier: ^5.7.3
         version: 5.9.2
 
 packages:
@@ -584,11 +584,14 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
-  '@types/node@20.19.14':
-    resolution: {integrity: sha512-gqiKWld3YIkmtrrg9zDvg9jfksZCcPywXVN7IauUGhilwGV/yOyeUsvpR796m/Jye0zUzMXPKe8Ct1B79A7N5Q==}
+  '@types/node@22.18.3':
+    resolution: {integrity: sha512-gTVM8js2twdtqM+AE2PdGEe9zGQY4UvmFjan9rZcVb6FGdStfjWoWejdmy4CfWVO9rh5MiYQGZloKAGkJt8lMw==}
 
   '@types/node@24.3.1':
     resolution: {integrity: sha512-3vXmQDXy+woz+gnrTvuvNrPzekOi+Ds0ReMxw0LzBiK3a+1k0kQn9f2NWk+lgD4rJehFUmYy2gMhJ2ZI+7YP9g==}
+
+  '@types/node@24.4.0':
+    resolution: {integrity: sha512-gUuVEAK4/u6F9wRLznPUU4WGUacSEBDPoC2TrBkw3GAnOLHBL45QdfHOXp1kJ4ypBGLxTOB+t7NJLpKoC3gznQ==}
 
   '@types/prop-types@15.7.15':
     resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
@@ -607,8 +610,8 @@ packages:
   '@types/react@18.3.24':
     resolution: {integrity: sha512-0dLEBsA1kI3OezMBF8nSsb7Nk19ZnsyE1LLhB8r27KbgU5H4pvuqZLdtE+aUkJVoXgTVuA+iLIwmZ0TuK4tx6A==}
 
-  '@types/react@19.1.12':
-    resolution: {integrity: sha512-cMoR+FoAf/Jyq6+Df2/Z41jISvGZZ2eTlnsaJRptmZ76Caldwy1odD4xTr/gNV9VLj0AWgg/nmkevIyUfIIq5w==}
+  '@types/react@19.1.13':
+    resolution: {integrity: sha512-hHkbU/eoO3EG5/MZkuFSKmYqPbSVk5byPFa3e7y/8TybHiLMACgI8seVYlicwk7H5K/rI2px9xrQp/C+AUDTiQ==}
 
   '@types/send@0.17.5':
     resolution: {integrity: sha512-z6F2D3cOStZvuk2SaP6YrwkNO65iTZcwA2ZkSABegdkAh/lf+Aa/YQndZVfmEXT5vgAp6zv06VQ3ejSVjAny4w==}
@@ -2017,6 +2020,9 @@ packages:
   undici-types@7.10.0:
     resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
 
+  undici-types@7.11.0:
+    resolution: {integrity: sha512-kt1ZriHTi7MU+Z/r9DOdAI3ONdaR3M3csEaRc6ewa4f4dTvX4cQCbJ4NkEn0ohE4hHtq85+PhPSTY+pO/1PwgA==}
+
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
 
@@ -2558,17 +2564,17 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 24.3.1
+      '@types/node': 24.4.0
 
-  '@types/bun@1.2.21(@types/react@19.1.12)':
+  '@types/bun@1.2.21(@types/react@19.1.13)':
     dependencies:
-      bun-types: 1.2.21(@types/react@19.1.12)
+      bun-types: 1.2.21(@types/react@19.1.13)
     transitivePeerDependencies:
       - '@types/react'
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 24.3.1
+      '@types/node': 24.4.0
 
   '@types/d3-array@3.2.2': {}
 
@@ -2699,7 +2705,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.0.7':
     dependencies:
-      '@types/node': 24.3.1
+      '@types/node': 24.4.0
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.5
@@ -2734,13 +2740,17 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/node@20.19.14':
+  '@types/node@22.18.3':
     dependencies:
       undici-types: 6.21.0
 
   '@types/node@24.3.1':
     dependencies:
       undici-types: 7.10.0
+
+  '@types/node@24.4.0':
+    dependencies:
+      undici-types: 7.11.0
 
   '@types/prop-types@15.7.15': {}
 
@@ -2757,19 +2767,19 @@ snapshots:
       '@types/prop-types': 15.7.15
       csstype: 3.1.3
 
-  '@types/react@19.1.12':
+  '@types/react@19.1.13':
     dependencies:
       csstype: 3.1.3
 
   '@types/send@0.17.5':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 24.3.1
+      '@types/node': 24.4.0
 
   '@types/serve-static@1.15.8':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 24.3.1
+      '@types/node': 24.4.0
       '@types/send': 0.17.5
 
   '@types/trusted-types@2.0.7':
@@ -2832,10 +2842,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  bun-types@1.2.21(@types/react@19.1.12):
+  bun-types@1.2.21(@types/react@19.1.13):
     dependencies:
-      '@types/node': 24.3.1
-      '@types/react': 19.1.12
+      '@types/node': 24.4.0
+      '@types/react': 19.1.13
 
   busboy@1.6.0:
     dependencies:
@@ -4762,6 +4772,8 @@ snapshots:
   undici-types@6.21.0: {}
 
   undici-types@7.10.0: {}
+
+  undici-types@7.11.0: {}
 
   unified@11.0.5:
     dependencies:
