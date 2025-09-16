@@ -27,31 +27,7 @@ function Navbar() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div
-            style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 'bold',
-              fontSize: '18px',
-              color: '#000',
-            }}
-          >
-            N
-          </div>
-          <span
-            style={{
-              color: '#fff',
-              fontSize: '20px',
-              fontWeight: '600',
-              letterSpacing: '0.05em',
-            }}
-          >
-            NEOVATE
-          </span>
+          <img src="/logo.svg" alt="NEOVATE LOGO" />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
@@ -70,11 +46,12 @@ function Navbar() {
             onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
             onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
           >
-            Documentation
+            文档
           </a>
 
           <a
-            href="#"
+            href="https://github.com/neovateai/neovate-code/blob/master/CHANGELOG.md"
+            target="_blank"
             style={{
               color: '#fff',
               fontSize: '14px',
@@ -84,7 +61,21 @@ function Navbar() {
             onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
             onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
           >
-            Changelog
+            更新日志
+          </a>
+          <a
+            href="https://github.com/neovateai/neovate-code"
+            target="_blank"
+            style={{
+              color: '#fff',
+              fontSize: '14px',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+            onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
+          >
+            <img src="/github.svg" alt="github logo" />
           </a>
         </div>
       </nav>
@@ -107,8 +98,8 @@ function Hero() {
         radial-gradient(ellipse at 20% 50%, rgba(222, 32, 91, 0.3) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 100%, rgba(222, 32, 91, 0.4) 0%, transparent 40%),
-        linear-gradient(180deg, 
-          #0a0a0a 0%, 
+        linear-gradient(180deg,
+          #0a0a0a 0%,
           #1a0e1a 15%,
           #2d1028 30%,
           #4a1845 50%,
