@@ -27,7 +27,7 @@ function Navbar() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.svg" alt="NEOVATE LOGO" />
+          <img src="/logotext.svg" alt="NEOVATE LOGO" />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
@@ -451,16 +451,12 @@ function Footer() {
                 style={{
                   width: '32px',
                   height: '32px',
-                  backgroundColor: '#fff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontWeight: 'bold',
-                  fontSize: '18px',
-                  color: '#000',
                 }}
               >
-                N
+                <img src="/logo.svg" alt="Neovate Logo" />
               </div>
             </div>
             <p
