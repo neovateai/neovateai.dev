@@ -8,8 +8,9 @@ function Navbar() {
       style={{
         display: 'flex',
         justifyContent: 'center',
-        backgroundColor: '#0a0a0a',
         padding: '8px 0 0',
+        position: 'relative',
+        zIndex: 1
       }}
     >
       <nav
@@ -20,8 +21,6 @@ function Navbar() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 24px',
-          backgroundColor: '#0a0a0a',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
           borderTop: 'none',
           borderRadius: '6px',
         }}
@@ -89,118 +88,94 @@ function Hero() {
   return (
     <div
       style={{
-        height: '620px',
-        marginTop: '24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: `
-        radial-gradient(ellipse at 20% 50%, rgba(222, 32, 91, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 100%, rgba(222, 32, 91, 0.4) 0%, transparent 40%),
-        linear-gradient(180deg,
-          #0a0a0a 0%,
-          #1a0e1a 15%,
-          #2d1028 30%,
-          #4a1845 50%,
-          #6b2157 70%,
-          #3d0d20 90%,
-          #1a0a10 100%)
-      `,
+        height: '931px',
         position: 'relative',
         overflow: 'hidden',
+        backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*ZV4OTrrh120AAAAATtAAAAgAeobkAQ/original)',
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'center',
       }}
     >
+      <img style={{
+        position: 'absolute',
+        inset: 0,
+      }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original" />
+      <Navbar />
       <div
         style={{
-          textAlign: 'center',
-          zIndex: 10,
-          padding: '0 20px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: '207px',
+          position: 'relative',
+          zIndex: 1
         }}
       >
-        <h1
-          style={{
-            fontSize: '64px',
-            fontWeight: '700',
-            color: '#fff',
-            marginBottom: '0',
-            lineHeight: '1.2',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Code with Agent
-          <span
-            style={{
-              position: 'relative',
-              display: 'inline-block',
-            }}
-          >
-            s
-            <span
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-24px',
-                width: '20px',
-                height: '20px',
-                backgroundColor: '#DE205B',
-                borderRadius: '50%',
-                boxShadow: '0 0 20px rgba(222, 32, 91, 0.5)',
-              }}
-            ></span>
-          </span>
-        </h1>
-        <h2
-          style={{
-            fontSize: '64px',
-            fontWeight: '700',
-            color: '#fff',
-            margin: '0 0 40px 0',
-            lineHeight: '1.2',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Build with Neovate
-        </h2>
+        <img style={{
+          width: '880px',
+          height: '52px'
+        }} src="/slogant.svg" />
+        <img style={{
+          width: '948px',
+          height: '52px',
+          marginTop: '19px'
+        }} src="/sloganb.svg" />
         <p
           style={{
-            fontSize: '32px',
-            color: 'rgba(255, 255, 255, 0.9)',
-            margin: '0',
-            fontWeight: '400',
-            letterSpacing: '0.1em',
+            color: 'rgba(166, 170, 181, 0.85)',
+            fontSize: '48px',
+            fontWeight: 600,
+            lineHeight: '67px',
+            marginTop: '32px'
           }}
         >
           智能协同，创予新生
         </p>
-        <button
-          onClick={() => router.push('/en/docs/overview')}
-          style={{
-            marginTop: '48px',
-            background: 'linear-gradient(90deg, #DE205B 0%, #E94560 100%)',
-            border: 'none',
-            padding: '16px 48px',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '18px',
-            fontWeight: '600',
-            color: '#fff',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(222, 32, 91, 0.3)',
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow =
-              '0 6px 20px rgba(222, 32, 91, 0.4)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow =
-              '0 4px 15px rgba(222, 32, 91, 0.3)';
-          }}
-        >
-          Getting Started
-        </button>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '294px',
+          height: '96px',
+          marginTop: '208px'
+        }}>
+          <button
+            onClick={() => router.push('/en/docs/overview')}
+            style={{
+              marginTop: '48px',
+              background: 'rgba(254, 48, 112, 0.8)',
+              border: 'none',
+              padding: '16px 48px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '18px',
+              fontWeight: '500',
+              color: '#000',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(254, 48, 112, 0.3)',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow =
+                '0 6px 20px rgba(254, 48, 112, 0.4)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow =
+                '0 4px 15px rgba(254, 48, 112, 0.3)';
+            }}
+          >
+            开始体验
+          </button>
+          <p style={{
+            fontSize: '16px',
+            lineHeight: '22px',
+            textAlign: 'center',
+            marginTop: '24px',
+            color: 'rgba(255, 255, 255, 0.65)'
+          }}>
+            前端智能协同研发工具链
+          </p>
+        </div>
       </div>
 
       {/* Particle effects */}
@@ -275,6 +250,120 @@ function Hero() {
   );
 }
 
+function Introducing() {
+  return (
+    <div style={{
+      height: 932,
+      background: '#000000'
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '85px',
+        paddingBottom: '40px'
+      }}>
+        <p style={{
+          fontWeight: 500,
+          fontSize: '20px',
+          color: '#FF3070',
+          lineHeight: '28px'
+        }}>INTRODUCING</p>
+        <p style={{
+          fontSize: '48px',
+          lineHeight: '67px',
+          color: '#FFFFFF',
+          fontWeight: "600",
+          marginTop: '7px'
+        }}>选择高度智能的开发体验</p>
+      </div>
+      <div style={{
+        width: '1122px',
+        height: '623px',
+        margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '8px',
+        //边框渐变
+        background: `linear-gradient(0deg, #FF3070 0%, #000000 100%)`
+      }}>
+        <div style={{
+          width: '1118px',
+          height: '619px',
+          borderRadius: '8px',
+          background: '#000000',
+          position: 'relative'
+        }}>
+          <div style={{
+            width: '1072px',
+            height: '499px',
+            backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*LzReQZ4fOIwAAAAASdAAAAgAeobkAQ/original)',
+            backgroundSize: '100% 100%',
+            backgroundRepeat: 'no-repeat',
+            position: 'absolute',
+            bottom: '25px',
+            left: '21px'
+          }}>
+          </div>
+          <div style={{
+            width: '1072px',
+            height: '509px',
+            background: 'radial-gradient(ellipse 86% 83% at 50% 62%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%)',
+            position: 'absolute',
+            bottom: '14px',
+            left: '7px'
+          }}></div>
+          <div style={{
+            position: 'absolute',
+            width: '1072px',
+            height: '499px',
+            bottom: '25px',
+            left: '21px',
+          }}>
+            <video controls style={{
+              width: '1072px',
+              height: '499px',
+            }} src="https://mass-office.alipay.com/huamei_koqzbu/afts/file/oxcASo4TNjAAAAAAgCAAABgAenV5AQBr"></video>
+            <div id="playBtn" style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              cursor: 'pointer'
+            }}
+              onClick={(e) => {
+                const video = document.querySelector('video')
+                const currentTarget = e.currentTarget
+                if (video) {
+                  video.onpause = () => {
+                    currentTarget.style.display = 'block'
+                  }
+                  video.onended = () => {
+                    currentTarget.style.display = 'block'
+                  }
+                  video.play()
+                  currentTarget.style.display = 'none'
+                }
+              }}
+            >
+              <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                <title>三角形</title>
+                <g id="官网" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.99">
+                  <g id="NEOVATE-首页" fill-rule="nonzero" transform="translate(-922, -1483)" fill="#FFFFFF">
+                    <polygon id="三角形" fill-rule="evenodd" opacity="0.172363281" transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)" points="944.5 1483 967 1528 922 1528"></polygon>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div >
+  )
+}
+
 function GettingStarted() {
   const router = useRouter();
 
@@ -283,7 +372,6 @@ function GettingStarted() {
       style={{
         width: '100%',
         backgroundColor: '#0a0a0a',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         padding: '80px 0',
         position: 'relative',
         overflow: 'hidden',
@@ -297,9 +385,7 @@ function GettingStarted() {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-          backgroundPosition: '0 0, 20px 20px',
+          background: `radial-gradient(ellipse 39% 69% at 21% 100%, rgba(215, 40, 94, 0.56) 0%, rgba(21, 20, 29, 0.05) 53%, rgba(0, 0, 0, 0) 100%)`,
           pointerEvents: 'none',
         }}
       ></div>
@@ -344,7 +430,7 @@ function GettingStarted() {
         <button
           onClick={() => router.push('/en/docs/overview')}
           style={{
-            background: 'linear-gradient(90deg, #DE205B 0%, #E94560 100%)',
+            background: 'rgba(255, 48, 112, 1)',
             border: 'none',
             padding: '20px 30px',
             borderRadius: '4px',
@@ -354,17 +440,17 @@ function GettingStarted() {
             width: '380px',
             position: 'relative',
             transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(222, 32, 91, 0.3)',
+            boxShadow: '0 4px 15px rgba(255, 48, 112, 0.4)',
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
             e.currentTarget.style.boxShadow =
-              '0 6px 20px rgba(222, 32, 91, 0.4)';
+              '0 6px 20px rgba(255, 48, 112, 0.6)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow =
-              '0 4px 15px rgba(222, 32, 91, 0.3)';
+              '0 4px 15px rgba(255, 48, 112, 0.4)';
           }}
         >
           <div
@@ -382,7 +468,7 @@ function GettingStarted() {
                 color: '#000',
               }}
             >
-              免费开始使用
+              开始体验
             </span>
             <span
               style={{
@@ -391,7 +477,7 @@ function GettingStarted() {
                 color: '#000',
               }}
             >
-              NEW EXPERIENCE
+              new experience
             </span>
           </div>
           <span
@@ -432,7 +518,7 @@ function Footer() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '2fr 1fr 1fr 1fr',
+            gridTemplateColumns: '1fr 1fr',
             gap: '60px',
             marginBottom: '60px',
           }}
@@ -449,8 +535,8 @@ function Footer() {
             >
               <div
                 style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '38px',
+                  height: '38px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -459,254 +545,267 @@ function Footer() {
                 <img src="/logo.svg" alt="Neovate Logo" />
               </div>
             </div>
-            <p
+            <div style={{
+              height: 50,
+              marginTop: 98
+            }}>
+
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: '#5B606C',
+                  lineHeight: '20px',
+                }}
+              >
+                建立前端智能协同研发新范式，Neovate 集成先进
+                <br />
+                的大型语言模型 (LLM) 来提速开发工作流。
+              </p>
+            </div>
+            {/* Copyright */}
+            <div
               style={{
-                fontSize: '14px',
-                color: 'rgba(255, 255, 255, 0.6)',
-                lineHeight: '1.6',
-                margin: 0,
+                marginTop: '7px',
+                height: 28
               }}
             >
-              建立前端智能协同研发新范式，Neovate 集成先进
-              <br />
-              的大型语言模型 (LLM) 来提速开发工作流。
-            </p>
+              <p style={{
+                fontSize: '14px',
+                color: '#5B606C',
+                lineHeight: '20px',
+              }}>
+                © 2025 Neovate. 保留所有权利。
+              </p>
+            </div>
           </div>
 
           {/* Products */}
-          <div>
-            <h3
-              style={{
-                fontSize: '16px',
-                fontWeight: '500',
-                marginBottom: '24px',
-                color: 'rgba(255, 255, 255, 0.8)',
-              }}
-            >
-              产品
-            </h3>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  定价方案
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  使用文档
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  更新日志
-                </a>
-              </li>
-            </ul>
-          </div>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+          }}>
+            <div>
+              <h3
+                style={{
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  marginBottom: '24px',
+                  color: 'rgba(255, 255, 255, 0.45)',
+                }}
+              >
+                产品
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    使用文档
+                  </a>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    更新日志
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Company */}
-          <div>
-            <h3
-              style={{
-                fontSize: '16px',
-                fontWeight: '500',
-                marginBottom: '24px',
-                color: 'rgba(255, 255, 255, 0.8)',
-              }}
-            >
-              公司
-            </h3>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  联系我们
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  服务条款
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  隐私政策
-                </a>
-              </li>
-            </ul>
-          </div>
+            {/* Company */}
+            <div>
+              <h3
+                style={{
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  marginBottom: '24px',
+                  color: 'rgba(255, 255, 255, 0.45)',
+                }}
+              >
+                公司
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    联系我们
+                  </a>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    服务条款
+                  </a>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    隐私政策
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Resources */}
-          <div>
-            <h3
-              style={{
-                fontSize: '16px',
-                fontWeight: '500',
-                marginBottom: '24px',
-                color: 'rgba(255, 255, 255, 0.8)',
-              }}
-            >
-              资源
-            </h3>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-              }}
-            >
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  技术博客
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  最佳实践
-                </a>
-              </li>
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="#"
-                  style={{
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')
-                  }
-                >
-                  API 文档
-                </a>
-              </li>
-            </ul>
+            {/* Resources */}
+            <div>
+              <h3
+                style={{
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  marginBottom: '24px',
+                  color: 'rgba(255, 255, 255, 0.45)',
+                }}
+              >
+                资源
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}
+              >
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    技术博客
+                  </a>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    最佳实践
+                  </a>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
+                  >
+                    API 文档
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-        {/* Copyright */}
-        <div
-          style={{
-            paddingTop: '30px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-            color: 'rgba(255, 255, 255, 0.4)',
-            fontSize: '14px',
-          }}
-        >
-          © 2025 Neovate. 保留所有权利。
         </div>
       </div>
     </div>
   );
+}
+
+function PandorasBox() {
+  return (
+    <div style={{
+      height: '334px',
+      background: '#ff3070',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*PcdwTJkQhI0AAAAAX5AAAAgAeobkAQ/original)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}>
+      <img src="/NEOVATE.svg" alt="NEOVATE" />
+    </div>
+  )
 }
 
 export default function HomePage() {
@@ -719,10 +818,11 @@ export default function HomePage() {
         padding: 0,
       }}
     >
-      <Navbar />
       <Hero />
+      <Introducing />
       <GettingStarted />
       <Footer />
+      <PandorasBox />
     </div>
   );
 }
