@@ -1,3 +1,199 @@
 # Plugins
 
-Extend Neovate CLI functionality with plugins and integrations for enhanced development workflows.
+Extend Neovate Code functionality with plugins for enhanced development workflows. Plugins are a way to extend the functionality with plenty of hooks. You can create your own plugins to add your own features, tools, models, providers, system prompt, output style, slash commands and other integrations.
+
+## Create a plugin
+
+A plugin is a JavaScript Object that follows the `Plugin` interface.
+
+```ts
+import type { Plugin } from '@neovate/code';
+export default const plugin: Plugin = {
+  name: 'my-plugin',
+  context: () => {
+    // Add more context
+    return {
+      'Who am I': 'chencheng',
+    };
+  },
+}
+```
+
+## Plugin hooks
+
+Plugin hooks are the main way to extend the functionality of Neovate Code. There are many hooks available.
+
+### config
+
+Return a partial config to merge with the config. This hook is called when the config is initialized.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - config: `Config`
+    - argvConfig: `Record<string, any>`
+- return: `Partial<Config>`
+
+### slashCommand
+
+Return the slash commands to be registered.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `SlashCommand[]`
+
+### outputStyle
+
+Return the output styles to be registered.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `OutputStyle[]`
+
+### provider
+
+Modify the providers map.
+
+- type: `SeriesLast`
+- parameters:
+  - providers: `ProvidersMap`
+  - opts:
+    - models: `ModelMap`
+    - defaultModelCreator: `(name: string, provider: Provider) => LanguageModelV1`
+    - createOpenAI: `(options: any) => OpenAIProvider`
+- return: `ProvidersMap`
+
+### modelAlias
+
+Modify the model aliases.
+
+- type: `SeriesLast`
+- parameters:
+  - modelAlias: `ModelAlias`
+- return: `ModelAlias`
+
+### initialized
+
+Initialize the plugin.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - cwd: `string`
+    - quiet: `boolean`
+- return: `void`
+
+### context
+
+Return the context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### env
+
+Return the environment context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### userPrompt
+
+Modify the user prompt.
+
+- type: `SeriesLast`
+- parameters:
+  - userPrompt: `string`
+  - opts:
+    - sessionId: `string`
+- return: `string`
+
+### systemPrompt
+
+Modify the system prompt.
+
+- type: `SeriesLast`
+- parameters:
+  - systemPrompt: `string`
+  - opts:
+    - isPlan: `boolean`
+    - sessionId: `string`
+- return: `string`
+
+### tool
+
+Return the extra tools to be used. This is useful for adding your own tools to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - isPlan: `boolean`
+    - sessionId: `string`
+- return: `Tool[]`
+
+### toolUse
+
+Modify the tool use.
+
+- type: `SeriesLast`
+- parameters:
+  - toolUse: `ToolUse`
+  - opts:
+    - sessionId: `string`
+- return: `ToolUse`
+
+### toolResult
+
+Modify the tool result.
+
+- type: `SeriesLast`
+- parameters:
+  - toolResult: `ToolResult`
+  - opts:
+    - toolUse: `ToolUse`
+    - approved: `boolean`
+    - sessionId: `string`
+- return: `ToolResult`
+
+### query
+
+Notify the plugin that a query has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - usage: `Usage`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
+### conversation
+
+Notify the plugin that a conversation has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - result: `LoopResult`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
+### status
+
+Return the extra status to be displayed.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `Status`

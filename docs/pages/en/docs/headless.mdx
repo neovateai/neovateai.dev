@@ -1,3 +1,45 @@
 # Headless
 
-Configure and use Neovate CLI in headless mode for automated workflows and CI/CD integration.
+Configure and use Neovate Code in headless mode for automated workflows, CI/CD integration and scripts.
+
+## Basic Usage
+
+```bash
+neovate -q "Review the changes"
+```
+
+## Options
+
+| parameter | description |
+| --- | --- |
+| `-q, --quiet` | Quiet mode, only output the result |
+| `--output-format <output_format>` | Specify an output format, Options: `stream-json`, `json`, `text`, must be used together with `--quiet` |
+
+Use `--output-format` combined with `--quiet` to use the headless mode for different purposes. Checkout [CLI](./cli) for more options.
+
+## Output Format
+
+### Text (Default)
+
+It will output the result in text format.
+
+```bash
+neovate -q "ping"
+# Output: pong
+```
+
+### Stream JSON
+
+It will output the result in stream JSON format. Each line is a JSON object representing the event during the command execution.
+
+```bash
+neovate -q --output-format stream-json  "ping"
+```
+
+### JSON
+
+It will output the result in a single JSON format when the command is completely finished.
+
+```bash
+neovate -q --output-format json "ping"
+```

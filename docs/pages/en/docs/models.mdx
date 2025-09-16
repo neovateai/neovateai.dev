@@ -1,3 +1,72 @@
 # Models
 
-Configure and manage AI models available in Neovate CLI, including model selection and parameters.
+## Providers
+
+Neovate Code supports most popular providers and models by default. And you can also add any OpenAI compatible provider. Check out the [Providers](./providers) page to learn more.
+
+## Select a model
+
+Once you have configured the providers, you can run `/model` to select a model. The selected model will be saved in the global settings in the `~/.neovate/config.json` file.
+
+```bash
+/model
+```
+
+Also, you can use `neovate config` to select a model.
+
+```bash
+# Set global model
+neovate config set model openai/gpt-4o -g
+
+# Set project model
+neovate config set model openai/gpt-4o
+
+# Get global model
+neovate config get model -g
+```
+
+## Recommended models
+
+Here are so many models, and we can't test all of them. Here are some recommended models which have been tested and are working well.
+
+- Claude Sonnet 4
+- Claude Opus 4
+- Qwen3 Coder
+- Qwen3 Max
+- GPT 4.1
+- Gemini 2.5 Pro
+
+## Specify a model temporarily
+
+You can specify a model temporarily by adding `-m, --model` to your command. The format is `provider_id/model_id`. It's priority is higher than the model configured in the settings.
+
+```bash
+neovate -m openai/gpt-4o "Create a testcase for @src/components/Button.tsx"
+```
+
+## Model Aliases
+
+Model aliases are shortcuts for models. You can use them to quickly select a model.
+
+```bash
+neovate -m 4o
+```
+
+Here are some built-in aliases for convenience:
+
+- `deepseek`: deepseek/deepseek-chat
+- `r1`: deepseek/deepseek-reasoner
+- `41`: openai/gpt-4.1
+- `4`: openai/gpt-4
+- `4o`: openai/gpt-4o
+- `flash-lite`: google/gemini-2.5-flash-lite
+- `flash`: google/gemini-2.5-flash
+- `gemini`: google/gemini-2.5-pro
+- `grok`: xai/grok-4
+- `grok-code`: xai/grok-code-fast-1
+- `sonnet`: anthropic/claude-sonnet-4-20250514
+- `sonnet-3.5`: anthropic/claude-3-5-sonnet-20241022
+- `sonnet-3.7`: anthropic/claude-3-7-sonnet-20250219
+- `sonnet-3.7-thinking`: anthropic/claude-3-7-sonnet-20250219-thinking
+- `k2`: moonshotai-cn/kimi-k2-0711-preview
+- `k2-turbo`: moonshotai-cn/kimi-k2-turbo-preview

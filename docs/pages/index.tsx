@@ -732,6 +732,36 @@ export default function HomePage() {
         padding: 0,
       }}
     >
+      {/* WIP Banner */}
+      <div
+        style={{
+          background: 'linear-gradient(90deg, #DE205B 0%, #E94560 50%, #DE205B 100%)',
+          backgroundSize: '200% 100%',
+          animation: 'gradient 3s ease infinite',
+          padding: '12px 0',
+          textAlign: 'center',
+          fontSize: '14px',
+          fontWeight: '600',
+          color: '#fff',
+          letterSpacing: '0.05em',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+        }}
+      >
+        🚧 WIP - This site is under construction 🚧
+      </div>
+      <style jsx>{`
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
       <Navbar />
       <Hero />
       <GettingStarted />

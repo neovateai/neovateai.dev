@@ -1,3 +1,44 @@
 # Output Style
 
-Configure the styling and presentation of AI-generated code and documentation.
+Output style is used to customize the system prompt. So Neovate Code can do things beyond the code generation.
+
+## Built-in output styles
+
+|Output Style|Description|
+|---|---|
+|`Default`|The default output style|
+|`Explanatory`|Explains its implementation choices and codebase patterns|
+
+## Custom output styles
+
+You can create your own output styles in both project and global scope.
+
+### Project scope
+
+Located under the `.neovate/output-styles` directory.
+
+### Global scope
+
+Located under the `~/.neovate/output-styles` directory.
+
+### Frontmatter
+
+Output style files support frontmatter.
+
+|Key|Description|
+|---|---|
+|`name`|The name of the output style|
+|`description`|The description of the output style|
+|`isCodeRelated`|Whether the output style is code related|
+
+e.g.
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+isCodeRelated: false
+---
+
+You should add "miao~~~" after every sentence.
+```

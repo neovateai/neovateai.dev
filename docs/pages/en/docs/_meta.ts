@@ -12,6 +12,7 @@ export default {
   },
   overview: 'Overview',
   installation: 'Installation',
+  quickstart: 'Quickstart',
   headless: 'Headless',
   
   '-- context': {
@@ -29,15 +30,17 @@ export default {
   },
   settings: 'Settings',
   models: 'Models',
+  providers: 'Providers',
   
   '-- reference': {
     type: 'separator',
     title: 'Reference'
   },
-  parameters: 'Parameters',
+  cli: 'CLI',
+
   'slash-commands': 'Slash Commands',
-  commands: 'Commands',
-  'output-format': 'Output Format',
+
+
   'output-style': 'Output Style',
   plugins: 'Plugins',
   
