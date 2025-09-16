@@ -1,3 +1,119 @@
 # Settings
 
-Configure Neovate CLI settings to customize behavior, preferences, and integration options.
+Configure Neovate Code settings using JSON file to customize behavior, preferences, and integration options.
+
+## File Location
+
+Neovate Code supports both project and global settings files.
+
+- **Project scope** settings file is located under the `.neovate/config.json` file.
+- **Global scope** settings file is located under the `~/.neovate/config.json` file.
+
+## Schema
+
+The settings file has a schema that is defined in https://neovateai.dev/config.json . Based on the schema, your editor should be able to validate and auto-complete the settings file.
+
+## `neovate config`
+
+You can use `neovate config` to manage the settings file.
+
+```bash
+# List all settings
+neovate config ls
+
+# Get a setting
+neovate config get <key>
+
+# Set a setting
+neovate config set <key> <value>
+
+# Set a setting globally
+neovate config set <key> <value>
+
+# Add a setting
+neovate config add <key> <value>
+
+# Remove a setting
+neovate config rm <key>
+```
+
+By default, `neovate config` will use the project settings file. You can use `-g` to use the global settings file.
+
+## Available Settings
+
+### approvalMode
+
+The approval mode to use.
+
+- Type: `"autoEdit" | "yolo" | "default"`
+- Default: `"default"`
+
+### autoCompact
+
+Specify whether to enable the auto compact feature.
+
+- Type: `boolean`
+- Default: `true`
+
+### commit
+
+Specify the commit configuration.
+
+- Type: `CommitConfig`
+- Default: `{ language: "en" }`
+
+### language
+
+The language to use.
+
+- Type: `string`
+- Default: `"en"`
+
+### mcpServers
+
+The MCP servers to use. Checkout [MCP](./mcp) for more details.
+
+- Type: `Record<string, McpServerConfig>`
+- Default: `{}`
+
+### model
+
+The model to use. Format: `provider_id/model_id`. Checkout [Models](./models) for more details.
+
+- Type: `string`
+- Default: null
+
+### outputStyle
+
+The output style to use. Checkout [Output Style](./output-style) for more details.
+
+- Type: `string`
+- Default: `"Default"`
+
+### planModel
+
+The plan model to use. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`
+
+### plugins
+
+The plugins to use. Checkout [Plugins](./plugins) for more details.
+
+- Type: `string[]`
+- Default: `[]`
+
+### systemPrompt
+
+Specify the system prompt to use.
+
+- Type: `string`
+- Default: null
+
+### todo
+
+Specify whether to enable the todo feature.
+
+- Type: `boolean`
+- Default: `false`
