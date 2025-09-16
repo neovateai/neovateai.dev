@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components';
+
 # Plugins
 
 Extend Neovate Code functionality with plugins for enhanced development workflows. Plugins are a way to extend the functionality with plenty of hooks. You can create your own plugins to add your own features, tools, models, providers, system prompt, output style, slash commands and other integrations.
@@ -20,6 +22,10 @@ export default const plugin: Plugin = {
 ```
 
 ## Plugin hooks
+
+<Callout type="info">
+  You can use `this` to access the context instance in the plugin hooks.
+</Callout>
 
 Plugin hooks are the main way to extend the functionality of Neovate Code. There are many hooks available.
 

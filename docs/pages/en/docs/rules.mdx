@@ -1,3 +1,29 @@
+import { Callout } from 'nextra/components';
+
 # Rules
 
-Define and manage custom rules to guide AI behavior and ensure consistent code generation across your projects.
+Neovate Code supports [AGENTS.md](https://agents.md/) file to provide custom instructions. You can use it to manage custom rules to guide AI behavior and ensure consistent code generation across your projects.
+
+## File Location
+
+Neovate Code supports both project and global scope. And both of them will work, they will be merged together to send to the LLMs.
+
+### Project scope
+
+Project scope `AGENTS.md` is located under your project root. This file will be used by the project and it's sub-directories.
+
+### Global scope
+
+You can also create a global AGENTS.md file in the `~/.neovate/AGENTS.md`. This file will be used by all projects.
+
+## Set up project AGENTS.md
+
+You can use `/init` slash command to set up a project `AGENTS.md` file quickly. This will scan the project and generate the `AGENTS.md` file, ncluding dev commands, code architecture, patterns, technology stack, dependencies, etc. If the `AGENTS.md` file already exists, it will be updated.
+
+```bash
+/init
+```
+
+<Callout type="info">
+  You should commit the `AGENTS.md` file of your project to the git repository.
+</Callout>

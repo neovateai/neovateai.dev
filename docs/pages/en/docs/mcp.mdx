@@ -1,3 +1,91 @@
 # MCP
 
-Model Context Protocol (MCP) integration for enhanced AI capabilities and external tool connections.
+You can use [MCP (Model Context Protocol)](https://modelcontextprotocol.io/introduction) servers to add external tools and connect data sources to Neovate Code.
+
+## Install MCP servers
+
+You can use `neovate mcp add` to install MCP servers. Neovate Code supports local stdio server, remote SSE server and remote HTTP server.
+
+### Local stdio server
+
+```bash
+neovate mcp add <name> -- <command> [args...]
+```
+
+e.g.
+
+```bash
+neovate mcp add myserver -- npx -y foo
+neovate mcp add myserver --env FOO=bar -- npx -y foo
+```
+
+Real world example:
+
+```bash
+neovate mcp add playwright -- npx -y @executeautomation/playwright-mcp-server
+```
+
+### Remote SSE server
+
+```bash
+neovate mcp add --sse <name> <url>
+```
+
+e.g.
+
+```bash
+neovate mcp add --sse myserver https://a.com/mcp
+neovate mcp add --sse myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+### Remote HTTP server
+
+```bash
+neovate mcp add <mcp_server_name> <url>
+```
+
+e.g.
+
+```bash
+neovate mcp add myserver https://a.com/mcp
+neovate mcp add myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+Real world example:
+
+```bash
+neovate mcp add context7 https://mcp.context7.com/mcp
+```
+
+## Manage MCP servers
+
+### `neovate mcp` command
+
+You can use `neovate mcp` to manage the MCP servers.
+
+```bash
+# List all MCP servers
+neovate mcp ls
+
+# Get a MCP server
+neovate mcp get <name>
+
+# Remove a MCP server
+neovate mcp rm <name>
+
+# Enable a MCP server
+neovate mcp enable <name>
+
+# Disable a MCP server
+neovate mcp disable <name>
+```
+
+By default, all MCP servers operations are for the project scope. You can use `-g` to use the global scope.
+
+### `/mcp` slash command
+
+Beside these commands, you can also use `/mcp` slash command to manage the MCP servers.
+
+```bash
+/mcp
+```

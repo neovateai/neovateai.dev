@@ -13,15 +13,15 @@ export default {
   overview: 'Overview',
   installation: 'Installation',
   quickstart: 'Quickstart',
-  headless: 'Headless',
   
-  '-- context': {
+  '-- user-guide': {
     type: 'separator',
-    title: 'Context'
+    title: 'User Guide'
   },
   rules: 'Rules',
-  'at-symbols': '@ Symbols',
-  'ignore-files': 'Ignore Files',
+  // 'at-symbols': '@ Symbols',
+  // 'ignore-files': 'Ignore Files',
+  headless: 'Headless',
   mcp: 'MCP',
   
   '-- configuration': {
