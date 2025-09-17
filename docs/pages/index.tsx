@@ -1119,6 +1119,25 @@ function PandorasBox() {
 }
 
 export default function HomePage() {
+  const [showPandorasBox, setShowPandorasBox] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingUp = currentScrollY < lastScrollY + 100;
+      const isNearBottom = window.innerHeight + currentScrollY >= document.body.offsetHeight - 100;
+      if (isScrollingUp && isNearBottom) {
+        setShowPandorasBox(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div
       style={{
@@ -1133,7 +1152,7 @@ export default function HomePage() {
       <Module />
       <GettingStarted />
       <Footer />
-      <PandorasBox />
+      {showPandorasBox && <PandorasBox />}
     </div>
   );
 }
