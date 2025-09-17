@@ -637,6 +637,7 @@ function GettingStarted() {
 
   return (
     <div
+      className="getting-started"
       style={{
         width: '100%',
         backgroundColor: '#0a0a0a',
@@ -645,8 +646,19 @@ function GettingStarted() {
         overflow: 'hidden',
       }}
     >
+      <style jsx>
+        {`
+          .dot-background{
+            display: none
+          }
+          .getting-started:hover .dot-background {
+            display: block;
+          }
+        `}
+      </style>
       {/* Simple dot background pattern */}
       <div
+        className="dot-background"
         style={{
           position: 'absolute',
           top: 0,
