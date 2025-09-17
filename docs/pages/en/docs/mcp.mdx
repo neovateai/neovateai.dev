@@ -28,33 +28,33 @@ neovate mcp add playwright -- npx -y @executeautomation/playwright-mcp-server
 ### Remote SSE server
 
 ```bash
-neovate mcp add --sse <name> <url>
+neovate mcp add --transport sse <name> <url>
 ```
 
 e.g.
 
 ```bash
-neovate mcp add --sse myserver https://a.com/mcp
-neovate mcp add --sse myserver https://a.com/mcp --header "Authorization: Bearer 123"
+neovate mcp add --transport sse myserver https://a.com/mcp
+neovate mcp add --transport sse myserver https://a.com/mcp --header "Authorization: Bearer 123"
 ```
 
 ### Remote HTTP server
 
 ```bash
-neovate mcp add <mcp_server_name> <url>
+neovate mcp add --transport http <name> <url>
 ```
 
 e.g.
 
 ```bash
-neovate mcp add myserver https://a.com/mcp
-neovate mcp add myserver https://a.com/mcp --header "Authorization: Bearer 123"
+neovate mcp add --transport http myserver https://a.com/mcp
+neovate mcp add --transport http myserver https://a.com/mcp --header "Authorization: Bearer 123"
 ```
 
 Real world example:
 
 ```bash
-neovate mcp add context7 https://mcp.context7.com/mcp
+neovate mcp add --transport http context7 https://mcp.context7.com/mcp
 ```
 
 ## Manage MCP servers
