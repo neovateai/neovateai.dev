@@ -198,7 +198,7 @@ function Hero() {
             key={i}
             style={{
               position: 'absolute',
-              zIndex:2,
+              zIndex: 2,
               width: `${Math.random() * 4 + 1}px`,
               height: `${Math.random() * 4 + 1}px`,
               backgroundColor:
@@ -640,7 +640,7 @@ function GettingStarted() {
       style={{
         width: '100%',
         backgroundColor: '#0a0a0a',
-        padding: '80px 0',
+        height: '282px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -660,24 +660,23 @@ function GettingStarted() {
 
       <div
         style={{
-          width: '1160px',
+          width: '1123px',
           margin: '0 auto',
-          padding: '0 20px',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: 'flex-end',
           position: 'relative',
           zIndex: 1,
+          paddingTop: '85px'
         }}
       >
         <div>
           <h2
             style={{
-              fontSize: '56px',
+              fontSize: '58px',
               fontWeight: '700',
-              color: '#fff',
-              margin: '0 0 16px 0',
-              letterSpacing: '-0.02em',
+              lineHeight: '81px',
+              color: '#fff'
             }}
           >
             Neovate
@@ -760,6 +759,21 @@ function GettingStarted() {
             →
           </span>
         </button>
+      </div>
+      <div
+        style={{
+          width: '1123px',
+          margin: '0 auto',
+          textAlign: 'right',
+          marginTop: '18px'
+        }}
+      >
+        <span style={{
+          fontWeight: 300,
+          fontSize: '14px',
+          color: '#4C505A',
+          lineHeight: '20px'
+        }}>当前仅对外开源 CLI 能力，更多能力模块敬请期待</span>
       </div>
     </div>
   );
