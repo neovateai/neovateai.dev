@@ -33,8 +33,7 @@ try {
 
   // Step 6: Copy docs output to dist/public
   console.log('Copying docs output to dist/public...');
-  await $`cp -r docs/out/_next dist/public/_next`;
-  await $`cp -r docs/out/docs dist/public/docs`;
+  await $`cp -r docs/out/* dist/public/`;
 
   // Step 7: Print done
   console.log('✅ Build completed successfully!');

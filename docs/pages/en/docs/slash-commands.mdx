@@ -1,3 +1,101 @@
+import { Callout } from 'nextra/components';
+
 # Slash Commands
 
 Use slash commands to trigger specific actions and workflows in your AI conversations.
+
+## Built-in slash commands
+
+|Command|Description|
+|---|---|
+|`/clear`|Start a new session|
+|`/compact`|Clear conversation history but keep a summary in context|
+|`/exit`|Exit the application|
+|`/help`|Show help|
+|`/init`|Create or improve the AGENTS.md file|
+|`/mcp`|MCP servers management|
+|`/model <model>`|Select a model|
+|`/output-style <output_style>`|Select an output style|
+|`/resume <session_id>`|Resume from a specific session|
+|`/review [pull_request_id]`|Review a github pull request or staged changes|
+|`/status`|Show status|
+
+## Custom slash commands
+
+<Callout type="info">
+  Custom slash commands can override the built-in slash commands. If you define a custom slash command with the same name as a built-in slash command, the custom slash command will be used instead.
+</Callout>
+
+If you write a prompt more than three times, you should consider adding a slash command for it. Customized slash commands have both project and global scope.
+
+### Project scope
+
+Located under the `.neovate/commands` directory.
+
+```bash
+mkdir -p .neovate/commands
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+```
+
+### Global scope
+
+Located under the `~/.neovate/commands` directory.
+
+```bash
+mkdir -p ~/.neovate/commands
+echo "Explain the project dependencies" > ~/.neovate/commands/explain-dependencies.md
+```
+
+### Usage
+
+```bash
+/<command> [arguments]
+```
+
+### Arguments
+
+The `$ARGUMENTS` string in your slash command file will be replaced with **all** the arguments passed to the command.
+
+e.g.
+
+```bash
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+
+# Usage
+/add-testcase @src/Button.tsx
+# Actual prompt will be used
+Add test case for @src/Button.tsx
+```
+
+And if you want to replace individual arguments, you can use the `$1`, `$2`, `$3`, etc. Similarly as the bash script.
+
+```bash
+echo "Install dependency $1 with $2" > .neovate/commands/add-dependency.md
+
+# Usage
+/add-dependency react pnpm
+# Actual prompt will be used
+Install dependency react with pnpm
+```
+
+### Frontmatter
+
+Slash command files support frontmatter.
+
+|Key|Description|
+|---|---|
+|`name (optional)`|The name of the slash command|
+|`description (optional)`|The description of the slash command|
+|`model (optional)`|The model to use for the slash command|
+
+e.g.
+
+```bash
+---
+name: Add test case
+description: Add a test case for the given file
+model: openai/gpt-5
+---
+
+Add test case for $ARGUMENTS
+```

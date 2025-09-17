@@ -12,15 +12,16 @@ export default {
   },
   overview: 'Overview',
   installation: 'Installation',
-  headless: 'Headless',
+  quickstart: 'Quickstart',
   
-  '-- context': {
+  '-- user-guide': {
     type: 'separator',
-    title: 'Context'
+    title: 'User Guide'
   },
   rules: 'Rules',
-  'at-symbols': '@ Symbols',
-  'ignore-files': 'Ignore Files',
+  // 'at-symbols': '@ Symbols',
+  // 'ignore-files': 'Ignore Files',
+  headless: 'Headless',
   mcp: 'MCP',
   
   '-- configuration': {
@@ -29,15 +30,17 @@ export default {
   },
   settings: 'Settings',
   models: 'Models',
+  providers: 'Providers',
   
   '-- reference': {
     type: 'separator',
     title: 'Reference'
   },
-  parameters: 'Parameters',
+  cli: 'CLI',
+
   'slash-commands': 'Slash Commands',
-  commands: 'Commands',
-  'output-format': 'Output Format',
+
+
   'output-style': 'Output Style',
   plugins: 'Plugins',
   
