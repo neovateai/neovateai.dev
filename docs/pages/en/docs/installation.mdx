@@ -10,11 +10,21 @@ import { Callout } from 'nextra/components';
 
 ### macOS, Linux
 
-Install Neovate Code using the following command:
+The easiest way to install Neovate Code is using the installation script.
+
+```bash
+curl -fsSL https://neovateai.dev/install | bash
+```
+
+Or if you already have Node.js installed, you can install Neovate Code with npm.
 
 ```bash
 npm i @neovate/code -g
 ```
+
+<Callout type="warning">
+  Don't use `sudo` to install Neovate Code, it will cause some issues.
+</Callout>
 
 ### Windows
 
