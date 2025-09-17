@@ -198,6 +198,7 @@ function Hero() {
             key={i}
             style={{
               position: 'absolute',
+              zIndex:2,
               width: `${Math.random() * 4 + 1}px`,
               height: `${Math.random() * 4 + 1}px`,
               backgroundColor:
@@ -213,24 +214,6 @@ function Hero() {
           />
         ))}
       </div>
-
-      {/* Gradient overlay for depth */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `
-          radial-gradient(circle at 30% 30%, rgba(222, 32, 91, 0.15) 0%, transparent 40%),
-          radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
-          radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.3) 100%)
-        `,
-          pointerEvents: 'none',
-        }}
-      ></div>
-
       <style jsx>{`
         @keyframes float {
           0%,
@@ -280,88 +263,95 @@ function Introducing() {
           marginTop: '7px'
         }}>选择高度智能的开发体验</p>
       </div>
-      <div style={{
-        width: '1122px',
-        height: '623px',
-        margin: '0 auto',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '8px',
-        //边框渐变
-        background: `linear-gradient(0deg, #FF3070 0%, #000000 100%)`
-      }}>
-        <div style={{
-          width: '1118px',
-          height: '619px',
-          borderRadius: '8px',
-          background: '#000000',
-          position: 'relative'
-        }}>
+      <SuperCard
+        startColor="#FF3070"
+        endColor="#FF3070"
+        opacity={1}
+        dataSources={[1]}
+        renderItem={() => (
           <div style={{
-            width: '1072px',
-            height: '499px',
-            backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*LzReQZ4fOIwAAAAASdAAAAgAeobkAQ/original)',
-            backgroundSize: '100% 100%',
-            backgroundRepeat: 'no-repeat',
-            position: 'absolute',
-            bottom: '25px',
-            left: '21px'
+            width: '1122px',
+            height: '623px',
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '8px',
+            //边框渐变
+            background: `linear-gradient(0deg, #FF3070 0%, #000000 100%)`
           }}>
-          </div>
-          <div style={{
-            width: '1072px',
-            height: '509px',
-            background: 'radial-gradient(ellipse 86% 83% at 50% 62%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%)',
-            position: 'absolute',
-            bottom: '14px',
-            left: '7px'
-          }}></div>
-          <div style={{
-            position: 'absolute',
-            width: '1072px',
-            height: '499px',
-            bottom: '25px',
-            left: '21px',
-          }}>
-            <video style={{
-              width: '1072px',
-              height: '499px',
-            }} src=""></video>
-            <div id="playBtn" style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              cursor: 'pointer'
-            }}
-              onClick={(e) => {
-                const video = document.querySelector('video')
-                const currentTarget = e.currentTarget
-                if (video) {
-                  video.onpause = () => {
-                    currentTarget.style.display = 'block'
-                  }
-                  video.onended = () => {
-                    currentTarget.style.display = 'block'
-                  }
-                  video.play()
-                  currentTarget.style.display = 'none'
-                }
-              }}
-            >
-              <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                <title>三角形</title>
-                <g id="官网" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" opacity="0.99">
-                  <g id="NEOVATE-首页" fill-rule="nonzero" transform="translate(-922, -1483)" fill="#FFFFFF">
-                    <polygon id="三角形" fill-rule="evenodd" opacity="0.172363281" transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)" points="944.5 1483 967 1528 922 1528"></polygon>
-                  </g>
-                </g>
-              </svg>
+            <div style={{
+              width: '1118px',
+              height: '619px',
+              borderRadius: '8px',
+              background: '#000000',
+              position: 'relative'
+            }}>
+              <div style={{
+                width: '1072px',
+                height: '499px',
+                backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*LzReQZ4fOIwAAAAASdAAAAgAeobkAQ/original)',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                position: 'absolute',
+                bottom: '25px',
+                left: '21px'
+              }}>
+              </div>
+              <div style={{
+                width: '1072px',
+                height: '509px',
+                background: 'radial-gradient(ellipse 86% 83% at 50% 62%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%)',
+                position: 'absolute',
+                bottom: '14px',
+                left: '7px'
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                width: '1072px',
+                height: '499px',
+                bottom: '25px',
+                left: '21px',
+              }}>
+                <video style={{
+                  width: '1072px',
+                  height: '499px',
+                }} src=""></video>
+                <div id="playBtn" style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  cursor: 'pointer'
+                }}
+                  onClick={(e) => {
+                    const video = document.querySelector('video')
+                    const currentTarget = e.currentTarget
+                    if (video) {
+                      video.onpause = () => {
+                        currentTarget.style.display = 'block'
+                      }
+                      video.onended = () => {
+                        currentTarget.style.display = 'block'
+                      }
+                      video.play()
+                      currentTarget.style.display = 'none'
+                    }
+                  }}
+                >
+                  <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                    <title>三角形</title>
+                    <g id="官网" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.99">
+                      <g id="NEOVATE-首页" fillRule="nonzero" transform="translate(-922, -1483)" fill="#FFFFFF">
+                        <polygon id="三角形" fillRule="evenodd" opacity="0.172363281" transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)" points="944.5 1483 967 1528 922 1528"></polygon>
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )} />
     </div >
   )
 }
@@ -404,7 +394,8 @@ function Module() {
         }}>
           <SuperCard
             startColor="#FF3070"
-            endColor="#000000"
+            endColor="#FF3070"
+            opacity={1}
             dataSources={[1]}
             renderItem={() => (
               <div style={{
@@ -415,7 +406,7 @@ function Module() {
                   width: '1039px',
                   height: '524px',
                   margin: '40px auto 0',
-                }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*XGbfQ5EstcEAAAAAQyAAAAgAeobkAQ/original" />
+                }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*4DVgRosdwXkAAAAAU5AAAAgAevnUAQ/original" />
                 <div style={{
                   display: 'flex',
                   overflow: 'hidden',
@@ -461,7 +452,8 @@ function Module() {
           }}>
             <SuperCard
               startColor="#FF3070"
-              endColor="#000000"
+              endColor="#FF3070"
+              opacity={1}
               dataSources={[1]}
               renderItem={() => (
                 <div style={{
@@ -511,7 +503,8 @@ function Module() {
           }}>
             <SuperCard
               startColor="#FF3070"
-              endColor="#000000"
+              endColor="#FF3070"
+              opacity={1}
               dataSources={[1]}
               renderItem={() => (
                 <div style={{
@@ -558,7 +551,7 @@ function Module() {
           </div>
         </div>
         <div style={{
-          width: '1118px',
+          width: '1122px',
           margin: 'auto',
         }}>
           <div style={{
@@ -566,13 +559,17 @@ function Module() {
           }}>
             <SuperCard
               startColor="#FF3070"
-              endColor="#000000"
+              endColor="#FF3070"
+              opacity={1}
               dataSources={[1]}
               renderItem={() => (
                 <div style={{
-                  width: '1118px',
-                  height: '496px',
+                  width: '1122px',
+                  height: '498px',
                   display: 'flex',
+                  backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*7N13S6_lkqwAAAAAYTAAAAgAevnUAQ/original)',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat'
                 }}>
                   <img style={{
                     width: '646px',
@@ -608,7 +605,7 @@ function Module() {
                     </div>
                     <div style={{
                       display: 'flex',
-                      marginTop: '153px'
+                      marginTop: '1px'
                     }}>
                       <span style={{
                         fontSize: '26px',
@@ -618,13 +615,12 @@ function Module() {
                       }}>Slash Commands（指令）</span>
                     </div>
                     <div style={{
-                      width: '605px',
+                      width: '350px',
                       fontSize: '16px',
                       lineHeight: '22px',
                       color: '#A6AAB5',
-                      textAlign: 'center',
                       marginTop: '28px'
-                    }}>简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式, 确认后在让 AI 执行, 可提升效率和效果。</div>
+                    }}>指令的自定义，是在 ./.neocoder/commands 或 ~/.neocoder/commands 下定义的 markdown 文件即自定义子任务，可以用自然语言编写（即 prompt），支持 $ARGUMENTS 传参。</div>
                   </div>
                 </div>
               )}

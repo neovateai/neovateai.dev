@@ -52,7 +52,7 @@ const SuperCard = ({
           (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) *
             180) /
           Math.PI;
-        ANGLE = ANGLE < 0 ? ANGLE + 360 : ANGLE;
+        ANGLE = isNaN(ANGLE) ? 90 : ANGLE < 0 ? ANGLE + 360 : ANGLE;
         CARD.style.setProperty('--start', (ANGLE + 90) as any);
       }
     };
