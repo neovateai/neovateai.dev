@@ -40,6 +40,14 @@ Return a partial config to merge with the config. This hook is called when the c
     - argvConfig: `Record<string, any>`
 - return: `Partial<Config>`
 
+### destroy
+
+This hook is called when the context is destroyed.
+
+- type: `Parallel`
+- parameters:
+- return: `void`
+
 ### slashCommand
 
 Return the slash commands to be registered.
