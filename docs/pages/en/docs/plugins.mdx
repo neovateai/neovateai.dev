@@ -204,6 +204,17 @@ Notify the plugin that a conversation has been made.
     - sessionId: `string`
 - return: `void`
 
+### telemetry
+
+Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - name: `string` - The name of the telemetry event
+    - payload: `Record<string, any>` - The telemetry data payload
+- return: `Promise<void> | void`
+
 ### status
 
 Return the extra status to be displayed.
