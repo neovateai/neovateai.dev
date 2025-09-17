@@ -1,8 +1,19 @@
 import SuperCard from "@/components/SuperCard";
 import { useRouter } from 'next/router';
+import React from 'react';
 
 function Navbar() {
   const router = useRouter();
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div
@@ -10,8 +21,13 @@ function Navbar() {
         display: 'flex',
         justifyContent: 'center',
         padding: '8px 0 0',
-        position: 'relative',
-        zIndex: 1
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        transition: 'background-color 0.3s ease',
+        backgroundColor: isScrolled ? '#000' : 'transparent',
       }}
     >
       <nav
