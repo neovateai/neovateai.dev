@@ -2,3 +2,4 @@
 /dist
 /deploy.zip
 /scripts/deploy.ts
+.DS_Store

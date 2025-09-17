@@ -1,3 +1,4 @@
+import SuperCard from "@/components/SuperCard";
 import { useRouter } from 'next/router';
 
 function Navbar() {
@@ -99,6 +100,7 @@ function Hero() {
       <img style={{
         position: 'absolute',
         inset: 0,
+        zIndex: 1,
       }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original" />
       <Navbar />
       <div
@@ -322,10 +324,10 @@ function Introducing() {
             bottom: '25px',
             left: '21px',
           }}>
-            <video controls style={{
+            <video style={{
               width: '1072px',
               height: '499px',
-            }} src="https://mass-office.alipay.com/huamei_koqzbu/afts/file/oxcASo4TNjAAAAAAgCAAABgAenV5AQBr"></video>
+            }} src=""></video>
             <div id="playBtn" style={{
               position: 'absolute',
               top: '50%',
@@ -350,7 +352,7 @@ function Introducing() {
             >
               <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <title>三角形</title>
-                <g id="官网" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.99">
+                <g id="官网" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" opacity="0.99">
                   <g id="NEOVATE-首页" fill-rule="nonzero" transform="translate(-922, -1483)" fill="#FFFFFF">
                     <polygon id="三角形" fill-rule="evenodd" opacity="0.172363281" transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)" points="944.5 1483 967 1528 922 1528"></polygon>
                   </g>
@@ -361,6 +363,276 @@ function Introducing() {
         </div>
       </div>
     </div >
+  )
+}
+
+function Module() {
+  return (
+    <div style={{
+      background: '#000000',
+      paddingBottom: '51px'
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '85px',
+        paddingBottom: '40px',
+        background: 'radial-gradient(ellipse 50% 82% at 49% 100%, rgba(215, 40, 94, 0.56) 0%, rgba(21, 20, 29, 0.05) 53%, rgba(0, 0, 0, 0) 100%)'
+      }}>
+        <p style={{
+          fontWeight: 500,
+          fontSize: '20px',
+          color: '#FF3070',
+          lineHeight: '28px'
+        }}>MODULE</p>
+        <p style={{
+          fontSize: '48px',
+          lineHeight: '67px',
+          color: '#FFFFFF',
+          fontWeight: "600",
+          marginTop: '7px'
+        }}>为你解锁全新可能</p>
+      </div>
+      <div style={{
+        width: '1122px',
+        margin: 'auto',
+      }}>
+        <div style={{
+          marginTop: '40px'
+        }}>
+          <SuperCard
+            startColor="#FF3070"
+            endColor="#000000"
+            dataSources={[1]}
+            renderItem={() => (
+              <div style={{
+                width: '1122px',
+                height: '824px',
+              }}>
+                <img style={{
+                  width: '1039px',
+                  height: '524px',
+                  margin: '40px auto 0',
+                }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*XGbfQ5EstcEAAAAAQyAAAAgAeobkAQ/original" />
+                <div style={{
+                  display: 'flex',
+                  overflow: 'hidden',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  width: '1039px',
+                  height: '229px'
+                }}>
+                  <span style={{
+                    marginTop: '13px',
+                    fontFamily: 'BM Dohyeon',
+                    fontSize: '14px',
+                    color: '#FF3070',
+                    lineHeight: '17px',
+                  }}>「 01 」</span>
+                  <span style={{
+                    marginTop: '10px',
+                    fontSize: '24px',
+                    fontWeight: '600',
+                    color: '#FFFFFF',
+                    lineHeight: '37px',
+                  }}>插件系统</span>
+                  <div style={{
+                    width: '605px',
+                    fontSize: '16px',
+                    lineHeight: '22px',
+                    color: '#A6AAB5',
+                    textAlign: 'center',
+                    marginTop: '28px'
+                  }}>简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式, 确认后在让 AI 执行, 可提升效率和效果。</div>
+                </div>
+              </div>
+            )}
+          />
+        </div>
+        <div style={{
+          marginTop: '20px',
+          display: 'flex',
+          gap: '20px'
+        }}>
+          <div style={{
+            flex: '1',
+          }}>
+            <SuperCard
+              startColor="#FF3070"
+              endColor="#000000"
+              dataSources={[1]}
+              renderItem={() => (
+                <div style={{
+                  width: '551px',
+                  height: '498px',
+                }}>
+                  <div style={{
+                    width: '479px',
+                    margin: '32px auto 0'
+                  }}>
+                    <div style={{
+                      display: 'flex'
+                    }}>
+                      <span style={{
+                        fontSize: '26px',
+                        lineHeight: '37px',
+                        fontWeight: '600',
+                        color: '#ffffff'
+                      }}>计划模式</span>
+                      <span style={{
+                        marginLeft: '14px',
+                        fontSize: '14px',
+                        lineHeight: '17px',
+                        color: '#FF3070',
+                        fontFamily: 'BM Dohyeon',
+                        marginTop: '20px'
+                      }}>「 02 」</span>
+                    </div>
+                    <span style={{
+                      width: '422px',
+                      display: 'block',
+                      color: '#A6AAB5',
+                      fontSize: '16px',
+                      lineHeight: '22px',
+                      marginTop: '33px'
+                    }}>推荐你在 VS Code 或 Cursor 里执行 NeoCoder。此时，它会自动安装一个 VS Code 的 Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。</span>
+                    <img style={{
+                      marginTop: '57px'
+                    }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*LMaiQa7Bg58AAAAAQRAAAAgAevnUAQ/original" />
+                  </div>
+                </div>
+              )}
+            />
+          </div>
+          <div style={{
+            flex: '1',
+          }}>
+            <SuperCard
+              startColor="#FF3070"
+              endColor="#000000"
+              dataSources={[1]}
+              renderItem={() => (
+                <div style={{
+                  width: '551px',
+                  height: '498px',
+                }}>
+                  <div style={{
+                    width: '479px',
+                    margin: '32px auto 0'
+                  }}>
+                    <div style={{
+                      display: 'flex'
+                    }}>
+                      <span style={{
+                        fontSize: '26px',
+                        lineHeight: '37px',
+                        fontWeight: '600',
+                        color: '#ffffff'
+                      }}>Todos</span>
+                      <span style={{
+                        marginLeft: '14px',
+                        fontSize: '14px',
+                        lineHeight: '17px',
+                        color: '#FF3070',
+                        fontFamily: 'BM Dohyeon',
+                        marginTop: '20px'
+                      }}>「 03 」</span>
+                    </div>
+                    <span style={{
+                      width: '422px',
+                      display: 'block',
+                      color: '#A6AAB5',
+                      fontSize: '16px',
+                      lineHeight: '22px',
+                      marginTop: '33px'
+                    }}>推荐你在 VS Code 或 Cursor 里执行 NeoCoder。此时，它会自动安装一个 VS Code 的 Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。</span>
+                    <img style={{
+                      marginTop: '57px'
+                    }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*uC1BTKncUMcAAAAARQAAAAgAevnUAQ/original" />
+                  </div>
+                </div>
+              )}
+            />
+          </div>
+        </div>
+        <div style={{
+          width: '1118px',
+          margin: 'auto',
+        }}>
+          <div style={{
+            marginTop: '20px'
+          }}>
+            <SuperCard
+              startColor="#FF3070"
+              endColor="#000000"
+              dataSources={[1]}
+              renderItem={() => (
+                <div style={{
+                  width: '1118px',
+                  height: '496px',
+                  display: 'flex',
+                }}>
+                  <img style={{
+                    width: '646px',
+                    height: '444px',
+                    marginTop: '22px',
+                    marginLeft: '34px'
+                  }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*OJwaR5cLrmMAAAAAQvAAAAgAevnUAQ/original" />
+                  <div style={{
+                    display: 'flex',
+                    overflow: 'hidden',
+                    flexDirection: 'column',
+                    width: '350px',
+                    marginLeft: '51px'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      marginTop: '153px'
+                    }}>
+                      <span style={{
+                        fontSize: '26px',
+                        lineHeight: '37px',
+                        fontWeight: '600',
+                        color: '#ffffff'
+                      }}>定制</span>
+                      <span style={{
+                        marginLeft: '8px',
+                        fontSize: '14px',
+                        lineHeight: '17px',
+                        color: '#FF3070',
+                        fontFamily: 'BM Dohyeon',
+                        marginTop: '18px'
+                      }}>「 04 」</span>
+                    </div>
+                    <div style={{
+                      display: 'flex',
+                      marginTop: '153px'
+                    }}>
+                      <span style={{
+                        fontSize: '26px',
+                        lineHeight: '37px',
+                        fontWeight: '600',
+                        color: '#ffffff'
+                      }}>Slash Commands（指令）</span>
+                    </div>
+                    <div style={{
+                      width: '605px',
+                      fontSize: '16px',
+                      lineHeight: '22px',
+                      color: '#A6AAB5',
+                      textAlign: 'center',
+                      marginTop: '28px'
+                    }}>简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式, 确认后在让 AI 执行, 可提升效率和效果。</div>
+                  </div>
+                </div>
+              )}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -820,6 +1092,7 @@ export default function HomePage() {
     >
       <Hero />
       <Introducing />
+      <Module />
       <GettingStarted />
       <Footer />
       <PandorasBox />

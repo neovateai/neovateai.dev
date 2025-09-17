@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="1130px" height="216px" viewBox="0 0 1130 216" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>NEOVATE</title>
-    <g id="官网" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.99">
+    <g id="官网" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" opacity="0.99">
         <g id="NEOVATE-首页" fill-rule="nonzero" transform="translate(-375, -4738)" fill="#000000">
             <g id="NEOVATE" fill-rule="evenodd" transform="translate(375, 4738)">
                 <polygon id="路径" fill-rule="nonzero" points="0 213 49.6086957 213 49.6086957 72.5965418 51.1273292 72.5965418 92.8897516 213 163 213 163 3 113.897516 3 113.897516 134.628242 112.378882 134.628242 75.931677 3 0 3"></polygon>
