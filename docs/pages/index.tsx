@@ -1,12 +1,12 @@
 import SuperCard from "@/components/SuperCard";
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 function Navbar() {
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
