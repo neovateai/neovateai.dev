@@ -233,8 +233,8 @@ check_existing_neovate() {
     return 1
 }
 
-# Install Neovate CLI
-install_neovate_cli() {
+# Install Neovate Code
+install_neovate_code() {
     print_step "Checking for existing Neovate installation..."
     
     if check_existing_neovate; then
@@ -260,13 +260,13 @@ install_neovate_cli() {
 
 # Test installation
 test_installation() {
-    print_step "Testing Neovate CLI installation..."
+    print_step "Testing Neovate Code installation..."
     
     if command_exists neovate; then
         local version=$(neovate -v 2>/dev/null || echo "version check failed")
-        print_success "Neovate CLI is working: ${version}"
+        print_success "Neovate Code is working: ${version}"
     else
-        print_error "Neovate CLI command not found"
+        print_error "Neovate Code command not found"
         print_info "You may need to reload your shell or add npm global bin to PATH"
         exit 1
     fi
@@ -283,8 +283,8 @@ main() {
         exit 1
     fi
     
-    # Install Neovate CLI
-    install_neovate_cli
+    # Install Neovate Code
+    install_neovate_code
     
     # Test installation
     test_installation
