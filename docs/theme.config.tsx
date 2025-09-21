@@ -20,6 +20,7 @@ const config: DocsThemeConfig = {
   ),
   i18n: [
     { locale: 'en', name: 'English' },
+    { locale: 'zh-CN', name: '中文' },
   ],
 };
 

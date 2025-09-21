@@ -1,0 +1,91 @@
+# MCP
+
+您可以使用 [MCP (Model Context Protocol)](https://modelcontextprotocol.io/introduction) 服务器来向 Neovate Code 添加外部工具和连接数据源。
+
+## 安装 MCP 服务器
+
+您可以使用 `neovate mcp add` 来安装 MCP 服务器。Neovate Code 支持本地 stdio 服务器、远程 SSE 服务器和远程 HTTP 服务器。
+
+### 本地 stdio 服务器
+
+```bash
+neovate mcp add <name> -- <command> [args...]
+```
+
+例如：
+
+```bash
+neovate mcp add myserver -- npx -y foo
+neovate mcp add myserver --env FOO=bar -- npx -y foo
+```
+
+实际示例：
+
+```bash
+neovate mcp add playwright -- npx -y @executeautomation/playwright-mcp-server
+```
+
+### 远程 SSE 服务器
+
+```bash
+neovate mcp add --transport sse <name> <url>
+```
+
+例如：
+
+```bash
+neovate mcp add --transport sse myserver https://a.com/mcp
+neovate mcp add --transport sse myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+### 远程 HTTP 服务器
+
+```bash
+neovate mcp add --transport http <name> <url>
+```
+
+例如：
+
+```bash
+neovate mcp add --transport http myserver https://a.com/mcp
+neovate mcp add --transport http myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+实际示例：
+
+```bash
+neovate mcp add --transport http context7 https://mcp.context7.com/mcp
+```
+
+## 管理 MCP 服务器
+
+### `neovate mcp` 命令
+
+您可以使用 `neovate mcp` 来管理 MCP 服务器。
+
+```bash
+# 列出所有 MCP 服务器
+neovate mcp ls
+
+# 获取 MCP 服务器
+neovate mcp get <name>
+
+# 删除 MCP 服务器
+neovate mcp rm <name>
+
+# 启用 MCP 服务器
+neovate mcp enable <name>
+
+# 禁用 MCP 服务器
+neovate mcp disable <name>
+```
+
+默认情况下，所有 MCP 服务器操作都针对项目范围。您可以使用 `-g` 来使用全局范围。
+
+### `/mcp` 斜杠命令
+
+除了这些命令，您也可以使用 `/mcp` 斜杠命令来管理 MCP 服务器。
+
+```bash
+/mcp
+```

@@ -1,0 +1,72 @@
+# 模型
+
+## 提供商
+
+Neovate Code 默认支持大多数流行的提供商和模型。您也可以添加任何兼容 OpenAI 的提供商。查看 [提供商](./providers) 页面了解更多。
+
+## 选择模型
+
+一旦您配置了提供商，您可以运行 `/model` 来选择模型。所选模型将保存在 `~/.neovate/config.json` 文件的全局设置中。
+
+```bash
+/model
+```
+
+另外，您可以使用 `neovate config` 来选择模型。
+
+```bash
+# 设置全局模型
+neovate config set model openai/gpt-4o -g
+
+# 设置项目模型
+neovate config set model openai/gpt-4o
+
+# 获取全局模型
+neovate config get model -g
+```
+
+## 推荐模型
+
+有很多模型，我们无法测试所有模型。以下是一些已经过测试并运行良好的推荐模型。
+
+- Claude Sonnet 4
+- Claude Opus 4
+- Qwen3 Coder
+- Qwen3 Max
+- GPT 4.1
+- Gemini 2.5 Pro
+
+## 临时指定模型
+
+您可以通过在命令中添加 `-m, --model` 来临时指定模型。格式为 `provider_id/model_id`。它的优先级高于设置中配置的模型。
+
+```bash
+neovate -m openai/gpt-4o "Create a testcase for @src/components/Button.tsx"
+```
+
+## 模型别名
+
+模型别名是模型的快捷方式。您可以使用它们快速选择模型。
+
+```bash
+neovate -m 4o
+```
+
+以下是一些内置的别名以便使用：
+
+- `deepseek`: deepseek/deepseek-chat
+- `r1`: deepseek/deepseek-reasoner
+- `41`: openai/gpt-4.1
+- `4`: openai/gpt-4
+- `4o`: openai/gpt-4o
+- `flash-lite`: google/gemini-2.5-flash-lite
+- `flash`: google/gemini-2.5-flash
+- `gemini`: google/gemini-2.5-pro
+- `grok`: xai/grok-4
+- `grok-code`: xai/grok-code-fast-1
+- `sonnet`: anthropic/claude-sonnet-4-20250514
+- `sonnet-3.5`: anthropic/claude-3-5-sonnet-20241022
+- `sonnet-3.7`: anthropic/claude-3-7-sonnet-20250219
+- `sonnet-3.7-thinking`: anthropic/claude-3-7-sonnet-20250219-thinking
+- `k2`: moonshotai-cn/kimi-k2-0711-preview
+- `k2-turbo`: moonshotai-cn/kimi-k2-turbo-preview

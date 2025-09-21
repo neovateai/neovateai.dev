@@ -1,0 +1,65 @@
+# 概述
+
+Neovate `['niːəʊveɪt]` Code 是一个增强开发体验的代码智能体。您可以使用它来生成代码、修复bug、代码审查、添加测试等等。您可以在交互模式或无头模式下运行它。
+
+```bash
+# 安装
+npm i @neovate/code -g
+
+# 进入您的项目
+cd your-project
+
+# 运行交互模式
+neovate
+```
+
+![](https://pic.sorrycc.com/proxy/1757930385492-174713366.png)
+
+## 为什么选择 Neovate Code？
+
+市面上有很多代码智能体。以下是一些让 Neovate Code 与其他代码智能体不同的特性：
+
+- 开放的 Claude Code
+- 易于扩展
+- 多客户端支持
+
+Claude Code 是一个很棒的代码智能体，但它不是开源的，默认情况下也不能与其他模型一起使用。Neovate Code 从 Claude Code 中学到了很多，包括功能、配置等等。在此基础上，我们添加了对所有主流模型和提供商的支持。所以如果您两者都想要，这是一个很好的选择。
+
+Neovate Code 易于扩展。它有一个内置的插件系统和丰富的钩子。您可以快速创建自己的代码智能体，包含自己的模型、功能、工具和其他集成。蚂蚁集团和快手等公司已经在使用它来构建自己的代码智能体。
+
+Neovate Code 目前只有 CLI 客户端，但我们已经让架构足够灵活以支持多个客户端。因此很容易扩展以支持其他客户端，如 IDE 扩展、Web 应用、原生应用和远程智能体。我们正在努力开发这些。
+
+## 交互模式
+
+通过在终端中运行 `neovate` 来启动 Neovate Code 的交互模式。在命令行中描述您想要做什么，审查建议的更改并批准工具调用。
+
+```bash
+# 启动交互模式
+neovate
+
+# 带有初始提示
+neovate "Create testcase for @src/components/Button.tsx"
+```
+
+## 无头模式
+
+无头模式对于自动化工作流程、CI/CD 集成和脚本很有用。
+
+```bash
+neovate -q "Review the changes"
+
+# 流式 JSON 输出
+neovate -q --output-format stream-json "Review the changes"
+```
+
+## 会话
+
+会话可以从上次状态恢复。
+
+```bash
+# 从上次会话恢复
+neovate -c
+
+# 交互式地从特定会话恢复
+neovate /resume
+```

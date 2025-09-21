@@ -14,7 +14,7 @@ export default withNextra({
   basePath: '',
   trailingSlash: true,
   i18n: {
-    locales: ['en'],
+    locales: ['en', 'zh-CN'],
     defaultLocale: 'en'
   }
 });
