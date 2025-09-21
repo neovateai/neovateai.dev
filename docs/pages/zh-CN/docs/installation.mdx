@@ -1,0 +1,59 @@
+import { Callout } from 'nextra/components';
+
+# 安装
+
+## 前置条件
+
+- [Node.js 18 或更新版本](https://nodejs.org/en/download/)
+
+## 安装
+
+### macOS, Linux
+
+安装 Neovate Code 最简单的方法是使用安装脚本。
+
+```bash
+curl -fsSL https://neovateai.dev/install | bash
+```
+
+或者如果您已经安装了 Node.js，可以使用 npm 安装 Neovate Code。
+
+```bash
+npm i @neovate/code -g
+```
+
+<Callout type="warning">
+  不要使用 `sudo` 来安装 Neovate Code，这会引起一些问题。
+</Callout>
+
+### Windows
+
+<Callout type="warning">
+  尚不支持 Windows，我们正在努力开发中。
+</Callout>
+
+### 验证安装
+
+安装后，您可以通过运行以下命令来验证安装：
+
+```bash
+neovate --version
+```
+
+## 更新
+
+Neovate Code 会尝试自动更新以确保您始终使用最新版本。
+
+TODO: GIF
+
+如果您想禁用自动更新，可以将 `autoUpdate` 配置设置为 `false`。
+
+```bash
+neovate config set autoUpdate false -g
+```
+
+另外，您也可以通过运行以下命令手动更新 Neovate Code：
+
+```bash
+neovate update
+```

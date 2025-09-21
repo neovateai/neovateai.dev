@@ -1,0 +1,45 @@
+# 无头模式
+
+配置并在无头模式下使用 Neovate Code，用于自动化工作流、CI/CD 集成和脚本。
+
+## 基本用法
+
+```bash
+neovate -q "Review the changes"
+```
+
+## 选项
+
+| 参数 | 描述 |
+| --- | --- |
+| `-q, --quiet` | 静默模式，仅输出结果 |
+| `--output-format <output_format>` | 指定输出格式，选项：`stream-json`、`json`、`text`，必须与 `--quiet` 一起使用 |
+
+使用 `--output-format` 结合 `--quiet` 为不同目的使用无头模式。查看 [CLI](./cli) 了解更多选项。
+
+## 输出格式
+
+### 文本（默认）
+
+将以文本格式输出结果。
+
+```bash
+neovate -q "ping"
+# 输出：pong
+```
+
+### 流式 JSON
+
+将以流式 JSON 格式输出结果。每一行都是一个 JSON 对象，代表命令执行过程中的事件。
+
+```bash
+neovate -q --output-format stream-json  "ping"
+```
+
+### JSON
+
+当命令完全完成时，将以单一 JSON 格式输出结果。
+
+```bash
+neovate -q --output-format json "ping"
+```

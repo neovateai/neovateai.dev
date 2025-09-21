@@ -1,0 +1,139 @@
+import { Callout } from 'nextra/components';
+
+# 提供商
+
+Neovate Code 支持多个提供商和模型。您可以使用自己的模型和提供商，或使用内置的模型和提供商。
+
+## 内置提供商
+
+<Callout type="info">
+  没有找到您的提供商？提交问题或拉取请求来添加它。
+</Callout>
+
+### Anthropic
+
+1. 打开 [Anthropic Platform Console](https://console.anthropic.com/settings/keys)，点击 **Create Key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `ANTHROPIC_API_KEY` 中设置 API 密钥。
+
+```bash
+export ANTHROPIC_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### DeepSeek
+
+1. 打开 [DeepSeek Console](https://platform.deepseek.com/)，点击 **Create new API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `DEEPSEEK_API_KEY` 中设置 API 密钥。
+
+```bash
+export DEEPSEEK_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Google
+
+1. 打开 [Google AI Studio](https://aistudio.google.com/apikey)，点击 **Create API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `GOOGLE_API_KEY` 中设置 API 密钥。
+```bash
+export GOOGLE_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Groq
+
+1. 打开 [Groq Console](https://console.groq.com/)，点击 **Create API Key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `GROQ_API_KEY` 中设置 API 密钥。
+```bash
+export GROQ_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Moonshot AI
+
+1. 打开 [Moonshot AI Console](https://platform.moonshot.ai/console)，点击 **Create API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `MOONSHOT_API_KEY` 中设置 API 密钥。
+
+```bash
+export MOONSHOT_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Moonshot AI CN
+
+1. 打开 [Moonshot AI CN Console](https://platform.moonshot.cn/console)，点击 **Create API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `MOONSHOT_API_KEY` 中设置 API 密钥。
+
+```bash
+export MOONSHOT_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### IFlow
+
+<Callout>
+  免费使用。
+</Callout>
+
+1. 打开 [IFlow](https://iflow.cn/)，注册，点击右上角头像，然后点击 **我的账户** 获取 API 密钥，复制它。
+
+2. 在您的环境变量 `IFLOW_API_KEY` 中设置 API 密钥。
+
+```bash
+export IFLOW_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### OpenAI
+
+1. 打开 [OpenAI Platform Console](https://platform.openai.com/api-keys)，点击 **Create new secret key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `OPENAI_API_KEY` 中设置 API 密钥。
+
+```bash
+export OPENAI_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### OpenRouter
+
+1. 打开 [OpenRouter Dashboard](https://openrouter.ai/settings/keys)，点击 **Create API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `OPENROUTER_API_KEY` 中设置 API 密钥。
+
+```bash
+export OPENROUTER_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### xAI
+
+1. 打开 [xAI Console](https://console.x.ai/)，点击 **Create API key** 创建新的 API 密钥并复制它。
+
+2. 在您的环境变量 `XAI_API_KEY` 中设置 API 密钥。
+
+```bash
+export XAI_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+## 自定义提供商
+
+您可以添加任何未内置的兼容 OpenAI 的提供商。
+
+> TODO

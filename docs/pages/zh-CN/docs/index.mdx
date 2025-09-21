@@ -1,0 +1,12 @@
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+
+export default function DocsIndex() {
+  const router = useRouter()
+  
+  useEffect(() => {
+    router.push('/en/docs/overview')
+  }, [router])
+  
+  return null
+}

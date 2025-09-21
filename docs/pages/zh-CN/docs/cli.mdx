@@ -1,0 +1,91 @@
+import { Callout } from 'nextra/components';
+
+# CLI
+
+可用命令和参数的完整列表。
+
+## 命令
+
+| 命令 | 描述 | 用法 |
+| --- | --- | --- |
+| `neovate` | 交互模式 | `neovate` |
+| `neovate "prompt"` | 带有初始提示的交互模式 | `neovate "explain this project"` |
+| `neovate -q "prompt"` | 静默模式，仅输出结果 | `neovate -q "explain this project"` |
+| `cat file \| neovate -q "prompt"` | 处理管道内容 | `cat file \| neovate -q "explain"` |
+| `neovate -c` | 从上次会话恢复 | `neovate -c` |
+| `neovate -r <session_id>` | 从特定会话恢复 | `neovate -r foo123` |
+| `neovate config` | 配置管理 | 查看 [设置](./settings) |
+| `neovate mcp` | MCP 服务器管理 | 查看 [MCP](./mcp) |
+| `neovate commit` | 提交更改 | `neovate commit` |
+| `neovate update` | 更新 Neovate Code | `neovate update` |
+
+## 选项
+
+| 参数 | 描述 |
+| --- | --- |
+| `--append-system-prompt <append_system_prompt>` | 追加系统提示 |
+| `--approval-mode <approval_mode>` | 指定批准模式，选项：`yolo`、`autoEdit`、`default` |
+| `-c, --continue` | 从上次会话恢复 |
+| `--cwd <cwd>` | 指定工作目录 |
+| `-h, --help` | 显示帮助 |
+| `--language <language>` | 指定语言，选项：`en`、`zh` 等 |
+| `-m, --model <model_id>` | 指定模型，格式：`provider_id/model_id` |
+| `--mcp-config <mcp_config>` | 指定 MCP 服务器配置（包含"mcpServers"对象的 JSON 字符串或文件路径） |
+| `--output-format <output_format>` | 指定输出格式，选项：`stream-json`、`json`、`text`，必须与 `--quiet` 一起使用 |
+| `--output-style <output_style>` | 指定输出样式（名称或路径） |
+| `--plan-model <plan_model>` | 指定规划模型 |
+| `--plugin <plugin>` | 指定插件 |
+| `-q, --quiet` | 静默模式，仅输出结果 |
+| `-r, --resume <resume>` | 指定恢复，格式：`session_id` |
+| `--system-prompt <system_prompt>` | 指定系统提示 |
+| `-v, --version` | 显示版本 |
+
+## 指定 MCP 服务器
+
+您可以使用 `--mcp-config` 来指定要使用的 MCP 服务器。此配置支持 JSON 字符串和文件路径两种方式。
+
+```bash
+# 使用 JSON 字符串
+neovate -q --output-format stream-json "hello" --mcp-config '{"mcpServers": {"my-mcp-server": {"type": "stdio", "command": "my-mcp-server", "args": ["--port", "8080"]}}}'
+
+# 使用文件路径
+neovate -q --output-format stream-json "hello" --mcp-config ~/.neovate/mcp-config.json
+```
+
+## 指定系统提示
+
+系统提示可以定义智能体的行为和偏好。如果您想使用自定义系统提示，有几种方法可以做到。
+
+### 使用 `--output-style`
+
+您可以使用 `--output-style` 来指定自定义输出样式。它支持内置输出样式的名称和输出样式文件的路径。
+
+因此您可以创建一个输出样式 Markdown 文件，然后与 `--output-style` 一起使用。
+
+首先，创建 `miao.md` 文件。
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+---
+
+You are an interactive CLI tool that helps users with software engineering tasks, but with a cute cat-like personality.
+
+# Miao Style Active
+
+You should add "miao~~~" after every sentence. A sentence is typically defined as text ending with a period (.), exclamation mark (!), or question mark (?). Apply this consistently throughout your responses.
+
+Examples:
+- "I'll help you with that miao~~~"
+- "Let me check the file first miao~~~"
+- "The function works correctly miao~~~"
+
+Keep your technical accuracy and helpfulness while adding this cute touch to make interactions more fun and engaging.
+```
+
+然后您可以将其与 `--output-style` 一起使用。
+
+```bash
+neovate -q --output-style "./miao.md" "hello"
+```

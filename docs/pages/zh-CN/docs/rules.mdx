@@ -1,0 +1,29 @@
+import { Callout } from 'nextra/components';
+
+# 规则
+
+Neovate Code 支持 [AGENTS.md](https://agents.md/) 文件来提供自定义指令。您可以使用它来管理自定义规则，以指导 AI 行为并确保在您的项目中一致地生成代码。
+
+## 文件位置
+
+Neovate Code 支持项目和全局范围。它们都会起作用，并将被合并后发送给 LLM。
+
+### 项目范围
+
+项目范围的 `AGENTS.md` 位于您的项目根目录下。此文件将被项目及其子目录使用。
+
+### 全局范围
+
+您也可以在 `~/.neovate/AGENTS.md` 中创建全局 AGENTS.md 文件。此文件将被所有项目使用。
+
+## 设置项目 AGENTS.md
+
+您可以使用 `/init` 斜杠命令快速设置项目 `AGENTS.md` 文件。这将扫描项目并生成 `AGENTS.md` 文件，包括开发命令、代码架构、模式、技术栈、依赖等。如果 `AGENTS.md` 文件已经存在，它将被更新。
+
+```bash
+/init
+```
+
+<Callout type="info">
+  您应该将您项目的 `AGENTS.md` 文件提交到 git 仓库。
+</Callout>
