@@ -1,0 +1,59 @@
+import { Callout } from 'nextra/components';
+
+# Interactive Mode
+
+Neovate Code supports both interactive mode and headless mode. And interactive mode is the default mode.
+
+Running `neovate` in the terminal will start the interactive mode for the current working directory.
+
+```bash
+neovate
+```
+
+Or you can start it with a specific working directory.
+
+```bash
+neovate --cwd /path/to/your/project
+```
+
+## Keyboard shortcuts
+
+| Shortcut | Description |
+| --- | --- |
+| `Shift + Tab` | Switch to the plan mode |
+| `Up/Down Arrows` | Navigate the conversation history |
+| `/` | Start slash commands |
+| `Ctrl + C` twice | Quit |
+| `Shift + Enter` or `Option + Enter` | Multi-line input |
+| `Ctrl + L` twice | Open the debug mode and open the log file |
+
+## File references
+
+You can use `@` to refer to the files and directories in the current working directory. It will do a fuzzy search and suggest the file or directory name of the best match. Then you can hit `Tab` or `Enter` to select.
+
+```bash
+neovate "version of @package.json"
+```
+
+<Callout type="info">
+  Refered files and directories using `@` will be added to the context. If you just want to refer to the file content, just hit `Tab` and it will also do the fuzzy search auto suggestion.
+</Callout>
+
+## Conversation history
+
+Some tips about the conversation history:
+
+- History is stored per working directory in the `~/.neovate/projects/<project_name>/` directory and named as `<session_id>.jsonl`.
+- Use `-r, --resume` to resume from a specific session.
+- Use `-c, --continue` to resume from the last session.
+- Use `Up/Down Arrows` to navigate the conversation history.
+- Use `/clear` to clear the conversation history and start a new session (Notice: original conversation session is kept).
+
+## Multimodal input
+
+You can add images to the conversation, such as screenshots, diagrams, etc.
+
+There are several ways to add:
+
+- Drag and drop images to the input area.
+- Copy and paste images to the input area.
