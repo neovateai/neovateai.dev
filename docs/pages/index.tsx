@@ -690,10 +690,11 @@ function GettingStarted() {
       <style jsx>
         {`
           .dot-background{
-            display: none
+            opacity: 0;
+            transition: all 1s ease;
           }
           .getting-started:hover .dot-background {
-            display: block;
+            opacity: 1;
           }
         `}
       </style>
