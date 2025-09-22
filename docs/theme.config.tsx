@@ -1,4 +1,5 @@
 import { DocsThemeConfig } from 'nextra-theme-docs';
+import { useConfig } from 'nextra-theme-docs';
 import React from 'react';
 
 const config: DocsThemeConfig = {
@@ -19,14 +20,22 @@ const config: DocsThemeConfig = {
   footer: {
     content: 'Neovate Documentation',
   },
-  head: (
-    <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="NeovateAI Documentation" />
-      <meta property="og:description" content="Documentation for NeovateAI" />
-      <link rel="icon" href="https://mdn.alipayobjects.com/huamei_9rin5s/afts/img/0uIJQaelzccAAAAAQCAAAAgADiB8AQFr/original" />
-    </>
-  ),
+  head() {
+    const { frontMatter, title } = useConfig();
+    console.log('frontMatter', frontMatter, title);
+    return (
+      <>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content={`${title} - Neovate`} />
+        <meta property="og:description" content="Documentation for NeovateAI" />
+        <link
+          rel="icon"
+          href="https://mdn.alipayobjects.com/huamei_9rin5s/afts/img/0uIJQaelzccAAAAAQCAAAAgADiB8AQFr/original"
+        />
+        <title>{title} - Neovate</title>
+      </>
+    );
+  },
   i18n: [
     { locale: 'en', name: 'English' },
     { locale: 'zh-CN', name: '中文' },
