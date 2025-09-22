@@ -1024,40 +1024,6 @@ function Footer() {
                     联系我们
                   </a>
                 </li>
-                <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
-                    style={{
-                      color: 'rgba(255, 255, 255, 1)',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
-                  >
-                    服务条款
-                  </a>
-                </li>
-                <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
-                    style={{
-                      color: 'rgba(255, 255, 255, 1)',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
-                  >
-                    隐私政策
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -1099,7 +1065,7 @@ function Footer() {
                 </li>
                 <li style={{ marginBottom: '16px' }}>
                   <a
-                    href="#"
+                    href="https://neovateai.dev/en/docs/quickstart/"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
@@ -1112,23 +1078,6 @@ function Footer() {
                     }
                   >
                     最佳实践
-                  </a>
-                </li>
-                <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
-                    style={{
-                      color: 'rgba(255, 255, 255, 1)',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
-                  >
-                    API 文档
                   </a>
                 </li>
               </ul>
