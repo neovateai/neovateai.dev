@@ -696,6 +696,31 @@ function GettingStarted() {
           .getting-started:hover .dot-background {
             opacity: 1;
           }
+          .exp-btn div{
+            padding-right:0;
+            transition: 0.5s;
+            width: 100%;
+          }
+          .exp-btn div::after{
+            content: '→';
+            position: absolute;
+            opacity: 0;
+            top: 14px;
+            right: -15px;
+            transition: 0.5s;
+            font-size: 24px;
+            color: #000;
+            font-weight: 700;
+            position: absolute;
+            right: 0;
+          }
+          .exp-btn:hover div{
+            padding-right: 30px;
+          }
+          .exp-btn:hover div::after{
+            opacity: 1;
+            right: 30px;
+          }
         `}
       </style>
       {/* Simple dot background pattern */}
@@ -749,6 +774,7 @@ function GettingStarted() {
         </div>
 
         <button
+          className="exp-btn"
           onClick={() => router.push('/en/docs/overview')}
           style={{
             background: 'rgba(255, 48, 112, 1)',
@@ -776,10 +802,7 @@ function GettingStarted() {
         >
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              flex: 1,
+              textAlign: 'center'
             }}
           >
             <span
@@ -796,22 +819,12 @@ function GettingStarted() {
                 fontSize: '16px',
                 fontWeight: '700',
                 color: '#000',
+                marginLeft: '12px'
               }}
             >
               new experience
             </span>
           </div>
-          <span
-            style={{
-              fontSize: '24px',
-              color: '#000',
-              fontWeight: '700',
-              position: 'absolute',
-              right: '30px',
-            }}
-          >
-            →
-          </span>
         </button>
       </div>
       <div
