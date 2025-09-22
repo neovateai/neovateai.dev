@@ -30,6 +30,22 @@ function Navbar() {
         backgroundColor: 'transparent',
       }}
     >
+      <style jsx>
+        {`
+          nav::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            bottom: -1px;
+            width: 1146px;
+            height: 70px;
+            display: ${isScrolled ? 'block' : 'none'};
+            border-radius: 6px;
+            background-image: linear-gradient(to bottom, transparent, #737373);
+            z-index: -1;
+          }
+        `}
+      </style>
       <nav
         style={{
           width: '1144px',
@@ -41,6 +57,7 @@ function Navbar() {
           transition: 'all 0.3s ease',
           backgroundColor: isScrolled ? '#000' : 'transparent',
           padding: isScrolled ? '0 12px' : '0',
+          position: 'relative'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -210,7 +227,7 @@ function Hero() {
             onClick={() => router.push('/en/docs/overview')}
             style={{
               marginTop: '48px',
-              background: 'rgba(254, 48, 112, 0.8)',
+              background: 'rgba(254, 48, 112, 1)',
               border: 'none',
               padding: '16px 48px',
               borderRadius: '8px',
@@ -232,7 +249,7 @@ function Hero() {
                 '0 4px 15px rgba(254, 48, 112, 0.3)';
             }}
           >
-            开始体验
+            开始体验 Experience
           </button>
           <p
             style={{
