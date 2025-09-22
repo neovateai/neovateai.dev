@@ -21,8 +21,7 @@ const config: DocsThemeConfig = {
     content: 'Neovate Documentation',
   },
   head() {
-    const { frontMatter, title } = useConfig();
-    console.log('frontMatter', frontMatter, title);
+    const { title } = useConfig();
     return (
       <>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
