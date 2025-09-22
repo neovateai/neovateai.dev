@@ -8,7 +8,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > (innerHeight - 50));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -27,7 +27,7 @@ function Navbar() {
         right: 0,
         zIndex: 1000,
         transition: 'background-color 0.3s ease',
-        backgroundColor: isScrolled ? '#000' : 'transparent',
+        backgroundColor: 'transparent',
       }}
     >
       <nav
@@ -37,8 +37,10 @@ function Navbar() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderTop: 'none',
           borderRadius: '6px',
+          transition: 'all 0.3s ease',
+          backgroundColor: isScrolled ? '#000' : 'transparent',
+          padding: isScrolled ? '0 12px' : '0',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1331,22 +1333,29 @@ export default function HomePage() {
   const [showPandorasBox, setShowPandorasBox] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollY = 0; // 上一次滚动位置
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isScrollingUp = currentScrollY < lastScrollY + 100;
-      const isNearBottom =
-        window.innerHeight + currentScrollY >= document.body.offsetHeight - 100;
-      if (isScrollingUp && isNearBottom) {
+      const { scrollY, innerHeight } = window;
+      const scrollHeight = document.documentElement.scrollHeight;
+
+      // 已经到底部
+      const isBottom =
+        scrollY + innerHeight >= scrollHeight - 4; // 4px 容错
+
+      // 向下继续滚动的趋势
+      const isScrollingDown = scrollY > lastScrollY + 2;
+
+      if (isBottom && isScrollingDown && !showPandorasBox) {
         setShowPandorasBox(true);
       }
 
-      lastScrollY = currentScrollY;
+      lastScrollY = scrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [showPandorasBox]); // 依赖 showPandorasBox，保证只触发一次
 
   return (
     <div
