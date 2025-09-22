@@ -575,11 +575,10 @@ function Module() {
               >
                 <img
                   style={{
-                    width: '1039px',
-                    height: '524px',
+                    height: '584px',
                     margin: '40px auto 0',
                   }}
-                  src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*4DVgRosdwXkAAAAAU5AAAAgAevnUAQ/original"
+                  src="https://pic.sorrycc.com/proxy/1758553056543-188660549.png"
                 />
                 <div
                   style={{
@@ -611,7 +610,7 @@ function Module() {
                       lineHeight: '37px',
                     }}
                   >
-                    插件系统
+                    内置支持流行的 Provider 和模型
                   </span>
                   <div
                     style={{
@@ -623,8 +622,7 @@ function Module() {
                       marginTop: '28px',
                     }}
                   >
-                    简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式,
-                    确认后在让 AI 执行, 可提升效率和效果。
+                    包含 OpenAI、Anthropic、Google、XAI、DeepSeek、MoonshotAI 等，通过 /login 登录 Provider，通过 /model 选择模型。
                   </div>
                 </div>
               </div>
@@ -699,15 +697,13 @@ function Module() {
                         marginTop: '33px',
                       }}
                     >
-                      推荐你在 VS Code 或 Cursor 里执行
-                      NeoCoder。此时，它会自动安装一个 VS Code 的
-                      Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。
+                      简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式，确认后在让 AI 执行，可提升效率和效果。
                     </span>
                     <img
                       style={{
-                        marginTop: '57px',
+                        marginTop: '34px',
                       }}
-                      src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*LMaiQa7Bg58AAAAAQRAAAAgAevnUAQ/original"
+                      src="https://pic.sorrycc.com/proxy/1758551036741-968010203.png"
                     />
                   </div>
                 </div>
@@ -750,7 +746,7 @@ function Module() {
                           color: '#ffffff',
                         }}
                       >
-                        Todos
+                        插件体系
                       </span>
                       <span
                         style={{
@@ -775,15 +771,13 @@ function Module() {
                         marginTop: '33px',
                       }}
                     >
-                      推荐你在 VS Code 或 Cursor 里执行
-                      NeoCoder。此时，它会自动安装一个 VS Code 的
-                      Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。
+                      Neovate Code 内置插件系统，你可以快速创建你自己的代码智能体，使用你自己的模型、功能、工具和其他集成。
                     </span>
                     <img
                       style={{
-                        marginTop: '57px',
+                        marginTop: '34px',
                       }}
-                      src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*uC1BTKncUMcAAAAARQAAAAgAevnUAQ/original"
+                      src="https://pic.sorrycc.com/proxy/1758552844217-962734929.png"
                     />
                   </div>
                 </div>
@@ -880,7 +874,7 @@ function Module() {
                           color: '#ffffff',
                         }}
                       >
-                        Slash Commands（指令）
+                        Slash Commands（指令）和 Output Styles
                       </span>
                     </div>
                     <div
@@ -892,10 +886,7 @@ function Module() {
                         marginTop: '28px',
                       }}
                     >
-                      指令的自定义，是在 ./.neocoder/commands 或
-                      ~/.neocoder/commands 下定义的 markdown
-                      文件即自定义子任务，可以用自然语言编写（即 prompt），支持
-                      $ARGUMENTS 传参。
+                      Slash Commands 用于定制 Prompt，而 Output Styles 用于定制 System Prompt。前者让你可以把任务 Prompt 模版化，后者可以让 Neovate Code 不仅限于 Code 场景。
                     </div>
                   </div>
                 </div>
