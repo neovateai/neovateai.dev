@@ -1,6 +1,6 @@
-import SuperCard from "@/components/SuperCard";
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import SuperCard from '@/components/SuperCard';
 
 function Navbar() {
   const router = useRouter();
@@ -42,7 +42,10 @@ function Navbar() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logotext.svg" alt="NEOVATE LOGO" />
+          <img
+            src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/wl_2TI2eQHoAAAAAQXAAAAgADhqBAQFr/original"
+            alt="NEOVATE LOGO"
+          />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
@@ -90,7 +93,10 @@ function Navbar() {
             onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
             onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
           >
-            <img src="/github.svg" alt="github logo" />
+            <img
+              src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/jVAQQ5SC_BwAAAAAQCAAAAgADhqBAQFr/original"
+              alt="github logo"
+            />
           </a>
         </div>
       </nav>
@@ -107,37 +113,43 @@ function Hero() {
         height: '100vh',
         position: 'relative',
         overflow: 'hidden',
-        backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*ZV4OTrrh120AAAAATtAAAAgAeobkAQ/original)',
+        backgroundImage:
+          'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*ZV4OTrrh120AAAAATtAAAAgAeobkAQ/original)',
         backgroundSize: '100% 100%',
         backgroundPosition: 'center',
       }}
     >
-
       <style jsx>
-        {
-          ` .slogant {
-              position: relative;
-            }
-            .slogant::after {
-              content: '';
-              width: 68px;
-              height: 68px;
-              border-radius: 34px;
-              background: linear-gradient(180deg, #FF3070 0%, rgba(255, 48, 112, 0) 100%);
-              position: absolute;
-              right:-34px;
-              top: -34px;
-              z-index: -1;
-            }
-            `
-        }
+        {`
+          .slogant {
+            position: relative;
+          }
+          .slogant::after {
+            content: '';
+            width: 68px;
+            height: 68px;
+            border-radius: 34px;
+            background: linear-gradient(
+              180deg,
+              #ff3070 0%,
+              rgba(255, 48, 112, 0) 100%
+            );
+            position: absolute;
+            right: -34px;
+            top: -34px;
+            z-index: -1;
+          }
+        `}
       </style>
-      <img style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 1,
-        height: '100vh'
-      }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original" />
+      <img
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          height: '100vh',
+        }}
+        src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original"
+      />
       <Navbar />
       <div
         style={{
@@ -146,41 +158,52 @@ function Hero() {
           alignItems: 'center',
           marginTop: '22vh',
           position: 'relative',
-          zIndex: 1
+          zIndex: 1,
         }}
       >
-        <div className="slogant" style={{
-          width: '880px',
-          height: '52px'
-        }}>
-          <img style={{
-            width: '100%',
-            height: '52px'
-          }} src="/slogant.svg" />
+        <div
+          className="slogant"
+          style={{
+            width: '880px',
+            height: '52px',
+          }}
+        >
+          <img
+            style={{
+              width: '100%',
+              height: '52px',
+            }}
+            src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/vKuTRrvseVwAAAAAQOAAAAgADhqBAQFr/original"
+          />
         </div>
-        <img style={{
-          width: '948px',
-          height: '52px',
-          marginTop: '19px'
-        }} src="/sloganb.svg" />
+        <img
+          style={{
+            width: '948px',
+            height: '52px',
+            marginTop: '19px',
+          }}
+          src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/WMo2TrxUxEsAAAAAQLAAAAgADhqBAQFr/original"
+        />
         <p
           style={{
             color: 'rgba(166, 170, 181, 0.85)',
             fontSize: '48px',
             fontWeight: 600,
             lineHeight: '67px',
-            marginTop: '32px'
+            marginTop: '32px',
           }}
         >
           智能协同，创予新生
         </p>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '294px',
-          height: '96px',
-          marginTop: '22vh'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '294px',
+            height: '96px',
+            marginTop: '22vh',
+          }}
+        >
           <button
             onClick={() => router.push('/en/docs/overview')}
             style={{
@@ -209,13 +232,15 @@ function Hero() {
           >
             开始体验
           </button>
-          <p style={{
-            fontSize: '16px',
-            lineHeight: '22px',
-            textAlign: 'center',
-            marginTop: '24px',
-            color: 'rgba(255, 255, 255, 0.65)'
-          }}>
+          <p
+            style={{
+              fontSize: '16px',
+              lineHeight: '22px',
+              textAlign: 'center',
+              marginTop: '24px',
+              color: 'rgba(255, 255, 255, 0.65)',
+            }}
+          >
             前端智能协同研发工具链
           </p>
         </div>
@@ -278,31 +303,43 @@ function Hero() {
 
 function Introducing() {
   return (
-    <div style={{
-      height: 932,
-      background: '#000000'
-    }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: '85px',
-        paddingBottom: '40px'
-      }}>
-        <p style={{
-          fontWeight: 500,
-          fontSize: '20px',
-          color: '#FF3070',
-          lineHeight: '28px'
-        }}>INTRODUCING</p>
-        <p style={{
-          fontSize: '48px',
-          lineHeight: '67px',
-          color: '#FFFFFF',
-          fontWeight: "600",
-          marginTop: '7px'
-        }}>选择高度智能的开发体验</p>
+    <div
+      style={{
+        height: 932,
+        background: '#000000',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: '85px',
+          paddingBottom: '40px',
+        }}
+      >
+        <p
+          style={{
+            fontWeight: 500,
+            fontSize: '20px',
+            color: '#FF3070',
+            lineHeight: '28px',
+          }}
+        >
+          INTRODUCING
+        </p>
+        <p
+          style={{
+            fontSize: '48px',
+            lineHeight: '67px',
+            color: '#FFFFFF',
+            fontWeight: '600',
+            marginTop: '7px',
+          }}
+        >
+          选择高度智能的开发体验
+        </p>
       </div>
       <SuperCard
         startColor="#FF3070"
@@ -310,81 +347,122 @@ function Introducing() {
         opacity={1}
         dataSources={[1]}
         renderItem={() => (
-          <div style={{
-            width: '1122px',
-            height: '623px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '8px',
-            //边框渐变
-            background: `linear-gradient(0deg, #FF3070 0%, #000000 100%)`
-          }}>
-            <div style={{
-              width: '1118px',
-              height: '619px',
+          <div
+            style={{
+              width: '1122px',
+              height: '623px',
+              margin: '0 auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               borderRadius: '8px',
-              background: '#000000',
-              position: 'relative'
-            }}>
-              <div style={{
-                width: '1072px',
-                height: '499px',
-                backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*LzReQZ4fOIwAAAAASdAAAAgAeobkAQ/original)',
-                backgroundSize: '100% 100%',
-                backgroundRepeat: 'no-repeat',
-                position: 'absolute',
-                bottom: '25px',
-                left: '21px'
-              }}>
-              </div>
-              <div style={{
-                width: '1072px',
-                height: '509px',
-                background: 'radial-gradient(ellipse 86% 83% at 50% 62%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%)',
-                position: 'absolute',
-                bottom: '14px',
-                left: '7px'
-              }}></div>
-              <div style={{
-                position: 'absolute',
-                width: '1072px',
-                height: '499px',
-                bottom: '25px',
-                left: '21px',
-              }}>
-                <video style={{
+              //边框渐变
+              background: `linear-gradient(0deg, #FF3070 0%, #000000 100%)`,
+            }}
+          >
+            <div
+              style={{
+                width: '1118px',
+                height: '619px',
+                borderRadius: '8px',
+                background: '#000000',
+                position: 'relative',
+              }}
+            >
+              <div
+                style={{
                   width: '1072px',
                   height: '499px',
-                }} src=""></video>
-                <div id="playBtn" style={{
+                  backgroundImage:
+                    'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*LzReQZ4fOIwAAAAASdAAAAgAeobkAQ/original)',
+                  backgroundSize: '100% 100%',
+                  backgroundRepeat: 'no-repeat',
                   position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  cursor: 'pointer'
+                  bottom: '25px',
+                  left: '21px',
                 }}
+              ></div>
+              <div
+                style={{
+                  width: '1072px',
+                  height: '509px',
+                  background:
+                    'radial-gradient(ellipse 86% 83% at 50% 62%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%)',
+                  position: 'absolute',
+                  bottom: '14px',
+                  left: '7px',
+                }}
+              ></div>
+              <div
+                style={{
+                  position: 'absolute',
+                  width: '1072px',
+                  height: '499px',
+                  bottom: '25px',
+                  left: '21px',
+                }}
+              >
+                <video
+                  style={{
+                    width: '1072px',
+                    height: '499px',
+                  }}
+                  src=""
+                ></video>
+                <div
+                  id="playBtn"
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    cursor: 'pointer',
+                  }}
                   onClick={(e) => {
-                    const video = document.querySelector('video')
-                    const currentTarget = e.currentTarget
+                    const video = document.querySelector('video');
+                    const currentTarget = e.currentTarget;
                     if (video) {
                       video.onpause = () => {
-                        currentTarget.style.display = 'block'
-                      }
+                        currentTarget.style.display = 'block';
+                      };
                       video.onended = () => {
-                        currentTarget.style.display = 'block'
-                      }
-                      video.play()
-                      currentTarget.style.display = 'none'
+                        currentTarget.style.display = 'block';
+                      };
+                      video.play();
+                      currentTarget.style.display = 'none';
                     }
                   }}
                 >
-                  <svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <svg
+                    width="45px"
+                    height="45px"
+                    viewBox="0 0 45 45"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                  >
                     <title>三角形</title>
-                    <g id="官网" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" opacity="0.99">
-                      <g id="NEOVATE-首页" fillRule="nonzero" transform="translate(-922, -1483)" fill="#FFFFFF">
-                        <polygon id="三角形" fillRule="evenodd" opacity="0.172363281" transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)" points="944.5 1483 967 1528 922 1528"></polygon>
+                    <g
+                      id="官网"
+                      stroke="none"
+                      strokeWidth="1"
+                      fill="none"
+                      fillRule="evenodd"
+                      opacity="0.99"
+                    >
+                      <g
+                        id="NEOVATE-首页"
+                        fillRule="nonzero"
+                        transform="translate(-922, -1483)"
+                        fill="#FFFFFF"
+                      >
+                        <polygon
+                          id="三角形"
+                          fillRule="evenodd"
+                          opacity="0.172363281"
+                          transform="translate(944.5, 1505.5) rotate(-270) translate(-944.5, -1505.5)"
+                          points="944.5 1483 967 1528 922 1528"
+                        ></polygon>
                       </g>
                     </g>
                   </svg>
@@ -392,276 +470,401 @@ function Introducing() {
               </div>
             </div>
           </div>
-        )} />
-    </div >
-  )
+        )}
+      />
+    </div>
+  );
 }
 
 function Module() {
   return (
-    <div style={{
-      background: '#000000',
-      paddingBottom: '51px'
-    }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: '85px',
-        paddingBottom: '40px',
-        background: 'radial-gradient(ellipse 50% 82% at 49% 100%, rgba(215, 40, 94, 0.56) 0%, rgba(21, 20, 29, 0.05) 53%, rgba(0, 0, 0, 0) 100%)'
-      }}>
-        <p style={{
-          fontWeight: 500,
-          fontSize: '20px',
-          color: '#FF3070',
-          lineHeight: '28px'
-        }}>MODULE</p>
-        <p style={{
-          fontSize: '48px',
-          lineHeight: '67px',
-          color: '#FFFFFF',
-          fontWeight: "600",
-          marginTop: '7px'
-        }}>为你解锁全新可能</p>
+    <div
+      style={{
+        background: '#000000',
+        paddingBottom: '51px',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingTop: '85px',
+          paddingBottom: '40px',
+          background:
+            'radial-gradient(ellipse 50% 82% at 49% 100%, rgba(215, 40, 94, 0.56) 0%, rgba(21, 20, 29, 0.05) 53%, rgba(0, 0, 0, 0) 100%)',
+        }}
+      >
+        <p
+          style={{
+            fontWeight: 500,
+            fontSize: '20px',
+            color: '#FF3070',
+            lineHeight: '28px',
+          }}
+        >
+          MODULE
+        </p>
+        <p
+          style={{
+            fontSize: '48px',
+            lineHeight: '67px',
+            color: '#FFFFFF',
+            fontWeight: '600',
+            marginTop: '7px',
+          }}
+        >
+          为你解锁全新可能
+        </p>
       </div>
-      <div style={{
-        width: '1122px',
-        margin: 'auto',
-      }}>
-        <div style={{
-          marginTop: '40px'
-        }}>
+      <div
+        style={{
+          width: '1122px',
+          margin: 'auto',
+        }}
+      >
+        <div
+          style={{
+            marginTop: '40px',
+          }}
+        >
           <SuperCard
             startColor="#FF3070"
             endColor="#FF3070"
             opacity={1}
             dataSources={[1]}
             renderItem={() => (
-              <div style={{
-                width: '1122px',
-                height: '824px',
-              }}>
-                <img style={{
-                  width: '1039px',
-                  height: '524px',
-                  margin: '40px auto 0',
-                }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*4DVgRosdwXkAAAAAU5AAAAgAevnUAQ/original" />
-                <div style={{
-                  display: 'flex',
-                  overflow: 'hidden',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  width: '1039px',
-                  height: '229px'
-                }}>
-                  <span style={{
-                    marginTop: '13px',
-                    fontFamily: 'BM Dohyeon',
-                    fontSize: '14px',
-                    color: '#FF3070',
-                    lineHeight: '17px',
-                  }}>「 01 」</span>
-                  <span style={{
-                    marginTop: '10px',
-                    fontSize: '24px',
-                    fontWeight: '600',
-                    color: '#FFFFFF',
-                    lineHeight: '37px',
-                  }}>插件系统</span>
-                  <div style={{
-                    width: '605px',
-                    fontSize: '16px',
-                    lineHeight: '22px',
-                    color: '#A6AAB5',
-                    textAlign: 'center',
-                    marginTop: '28px'
-                  }}>简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式, 确认后在让 AI 执行, 可提升效率和效果。</div>
+              <div
+                style={{
+                  width: '1122px',
+                  height: '824px',
+                }}
+              >
+                <img
+                  style={{
+                    width: '1039px',
+                    height: '524px',
+                    margin: '40px auto 0',
+                  }}
+                  src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*4DVgRosdwXkAAAAAU5AAAAgAevnUAQ/original"
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    overflow: 'hidden',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '1039px',
+                    height: '229px',
+                  }}
+                >
+                  <span
+                    style={{
+                      marginTop: '13px',
+                      fontFamily: 'BM Dohyeon',
+                      fontSize: '14px',
+                      color: '#FF3070',
+                      lineHeight: '17px',
+                    }}
+                  >
+                    「 01 」
+                  </span>
+                  <span
+                    style={{
+                      marginTop: '10px',
+                      fontSize: '24px',
+                      fontWeight: '600',
+                      color: '#FFFFFF',
+                      lineHeight: '37px',
+                    }}
+                  >
+                    插件系统
+                  </span>
+                  <div
+                    style={{
+                      width: '605px',
+                      fontSize: '16px',
+                      lineHeight: '22px',
+                      color: '#A6AAB5',
+                      textAlign: 'center',
+                      marginTop: '28px',
+                    }}
+                  >
+                    简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式,
+                    确认后在让 AI 执行, 可提升效率和效果。
+                  </div>
                 </div>
               </div>
             )}
           />
         </div>
-        <div style={{
-          marginTop: '20px',
-          display: 'flex',
-          gap: '20px'
-        }}>
-          <div style={{
-            flex: '1',
-          }}>
+        <div
+          style={{
+            marginTop: '20px',
+            display: 'flex',
+            gap: '20px',
+          }}
+        >
+          <div
+            style={{
+              flex: '1',
+            }}
+          >
             <SuperCard
               startColor="#FF3070"
               endColor="#FF3070"
               opacity={1}
               dataSources={[1]}
               renderItem={() => (
-                <div style={{
-                  width: '551px',
-                  height: '498px',
-                }}>
-                  <div style={{
-                    width: '479px',
-                    margin: '32px auto 0'
-                  }}>
-                    <div style={{
-                      display: 'flex'
-                    }}>
-                      <span style={{
-                        fontSize: '26px',
-                        lineHeight: '37px',
-                        fontWeight: '600',
-                        color: '#ffffff'
-                      }}>计划模式</span>
-                      <span style={{
-                        marginLeft: '14px',
-                        fontSize: '14px',
-                        lineHeight: '17px',
-                        color: '#FF3070',
-                        fontFamily: 'BM Dohyeon',
-                        marginTop: '20px'
-                      }}>「 02 」</span>
+                <div
+                  style={{
+                    width: '551px',
+                    height: '498px',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '479px',
+                      margin: '32px auto 0',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: '26px',
+                          lineHeight: '37px',
+                          fontWeight: '600',
+                          color: '#ffffff',
+                        }}
+                      >
+                        计划模式
+                      </span>
+                      <span
+                        style={{
+                          marginLeft: '14px',
+                          fontSize: '14px',
+                          lineHeight: '17px',
+                          color: '#FF3070',
+                          fontFamily: 'BM Dohyeon',
+                          marginTop: '20px',
+                        }}
+                      >
+                        「 02 」
+                      </span>
                     </div>
-                    <span style={{
-                      width: '422px',
-                      display: 'block',
-                      color: '#A6AAB5',
-                      fontSize: '16px',
-                      lineHeight: '22px',
-                      marginTop: '33px'
-                    }}>推荐你在 VS Code 或 Cursor 里执行 NeoCoder。此时，它会自动安装一个 VS Code 的 Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。</span>
-                    <img style={{
-                      marginTop: '57px'
-                    }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*LMaiQa7Bg58AAAAAQRAAAAgAevnUAQ/original" />
+                    <span
+                      style={{
+                        width: '422px',
+                        display: 'block',
+                        color: '#A6AAB5',
+                        fontSize: '16px',
+                        lineHeight: '22px',
+                        marginTop: '33px',
+                      }}
+                    >
+                      推荐你在 VS Code 或 Cursor 里执行
+                      NeoCoder。此时，它会自动安装一个 VS Code 的
+                      Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。
+                    </span>
+                    <img
+                      style={{
+                        marginTop: '57px',
+                      }}
+                      src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*LMaiQa7Bg58AAAAAQRAAAAgAevnUAQ/original"
+                    />
                   </div>
                 </div>
               )}
             />
           </div>
-          <div style={{
-            flex: '1',
-          }}>
+          <div
+            style={{
+              flex: '1',
+            }}
+          >
             <SuperCard
               startColor="#FF3070"
               endColor="#FF3070"
               opacity={1}
               dataSources={[1]}
               renderItem={() => (
-                <div style={{
-                  width: '551px',
-                  height: '498px',
-                }}>
-                  <div style={{
-                    width: '479px',
-                    margin: '32px auto 0'
-                  }}>
-                    <div style={{
-                      display: 'flex'
-                    }}>
-                      <span style={{
-                        fontSize: '26px',
-                        lineHeight: '37px',
-                        fontWeight: '600',
-                        color: '#ffffff'
-                      }}>Todos</span>
-                      <span style={{
-                        marginLeft: '14px',
-                        fontSize: '14px',
-                        lineHeight: '17px',
-                        color: '#FF3070',
-                        fontFamily: 'BM Dohyeon',
-                        marginTop: '20px'
-                      }}>「 03 」</span>
+                <div
+                  style={{
+                    width: '551px',
+                    height: '498px',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '479px',
+                      margin: '32px auto 0',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: '26px',
+                          lineHeight: '37px',
+                          fontWeight: '600',
+                          color: '#ffffff',
+                        }}
+                      >
+                        Todos
+                      </span>
+                      <span
+                        style={{
+                          marginLeft: '14px',
+                          fontSize: '14px',
+                          lineHeight: '17px',
+                          color: '#FF3070',
+                          fontFamily: 'BM Dohyeon',
+                          marginTop: '20px',
+                        }}
+                      >
+                        「 03 」
+                      </span>
                     </div>
-                    <span style={{
-                      width: '422px',
-                      display: 'block',
-                      color: '#A6AAB5',
-                      fontSize: '16px',
-                      lineHeight: '22px',
-                      marginTop: '33px'
-                    }}>推荐你在 VS Code 或 Cursor 里执行 NeoCoder。此时，它会自动安装一个 VS Code 的 Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。</span>
-                    <img style={{
-                      marginTop: '57px'
-                    }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*uC1BTKncUMcAAAAARQAAAAgAevnUAQ/original" />
+                    <span
+                      style={{
+                        width: '422px',
+                        display: 'block',
+                        color: '#A6AAB5',
+                        fontSize: '16px',
+                        lineHeight: '22px',
+                        marginTop: '33px',
+                      }}
+                    >
+                      推荐你在 VS Code 或 Cursor 里执行
+                      NeoCoder。此时，它会自动安装一个 VS Code 的
+                      Extension，用于获取编辑器相关的信息，包含当前打开的文件、行列、错误等。
+                    </span>
+                    <img
+                      style={{
+                        marginTop: '57px',
+                      }}
+                      src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*uC1BTKncUMcAAAAARQAAAAgAevnUAQ/original"
+                    />
                   </div>
                 </div>
               )}
             />
           </div>
         </div>
-        <div style={{
-          width: '1122px',
-          margin: 'auto',
-        }}>
-          <div style={{
-            marginTop: '20px'
-          }}>
+        <div
+          style={{
+            width: '1122px',
+            margin: 'auto',
+          }}
+        >
+          <div
+            style={{
+              marginTop: '20px',
+            }}
+          >
             <SuperCard
               startColor="#FF3070"
               endColor="#FF3070"
               opacity={1}
               dataSources={[1]}
               renderItem={() => (
-                <div style={{
-                  width: '1122px',
-                  height: '498px',
-                  display: 'flex',
-                  backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*7N13S6_lkqwAAAAAYTAAAAgAevnUAQ/original)',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat'
-                }}>
-                  <img style={{
-                    width: '646px',
-                    height: '444px',
-                    marginTop: '22px',
-                    marginLeft: '34px'
-                  }} src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*OJwaR5cLrmMAAAAAQvAAAAgAevnUAQ/original" />
-                  <div style={{
+                <div
+                  style={{
+                    width: '1122px',
+                    height: '498px',
                     display: 'flex',
-                    overflow: 'hidden',
-                    flexDirection: 'column',
-                    width: '350px',
-                    marginLeft: '51px'
-                  }}>
-                    <div style={{
+                    backgroundImage:
+                      'url(https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*7N13S6_lkqwAAAAAYTAAAAgAevnUAQ/original)',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                  }}
+                >
+                  <img
+                    style={{
+                      width: '646px',
+                      height: '444px',
+                      marginTop: '22px',
+                      marginLeft: '34px',
+                    }}
+                    src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*OJwaR5cLrmMAAAAAQvAAAAgAevnUAQ/original"
+                  />
+                  <div
+                    style={{
                       display: 'flex',
-                      marginTop: '153px'
-                    }}>
-                      <span style={{
-                        fontSize: '26px',
-                        lineHeight: '37px',
-                        fontWeight: '600',
-                        color: '#ffffff'
-                      }}>定制</span>
-                      <span style={{
-                        marginLeft: '8px',
-                        fontSize: '14px',
-                        lineHeight: '17px',
-                        color: '#FF3070',
-                        fontFamily: 'BM Dohyeon',
-                        marginTop: '18px'
-                      }}>「 04 」</span>
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      marginTop: '1px'
-                    }}>
-                      <span style={{
-                        fontSize: '26px',
-                        lineHeight: '37px',
-                        fontWeight: '600',
-                        color: '#ffffff'
-                      }}>Slash Commands（指令）</span>
-                    </div>
-                    <div style={{
+                      overflow: 'hidden',
+                      flexDirection: 'column',
                       width: '350px',
-                      fontSize: '16px',
-                      lineHeight: '22px',
-                      color: '#A6AAB5',
-                      marginTop: '28px'
-                    }}>指令的自定义，是在 ./.neocoder/commands 或 ~/.neocoder/commands 下定义的 markdown 文件即自定义子任务，可以用自然语言编写（即 prompt），支持 $ARGUMENTS 传参。</div>
+                      marginLeft: '51px',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        marginTop: '153px',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: '26px',
+                          lineHeight: '37px',
+                          fontWeight: '600',
+                          color: '#ffffff',
+                        }}
+                      >
+                        定制
+                      </span>
+                      <span
+                        style={{
+                          marginLeft: '8px',
+                          fontSize: '14px',
+                          lineHeight: '17px',
+                          color: '#FF3070',
+                          fontFamily: 'BM Dohyeon',
+                          marginTop: '18px',
+                        }}
+                      >
+                        「 04 」
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        marginTop: '1px',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: '26px',
+                          lineHeight: '37px',
+                          fontWeight: '600',
+                          color: '#ffffff',
+                        }}
+                      >
+                        Slash Commands（指令）
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        width: '350px',
+                        fontSize: '16px',
+                        lineHeight: '22px',
+                        color: '#A6AAB5',
+                        marginTop: '28px',
+                      }}
+                    >
+                      指令的自定义，是在 ./.neocoder/commands 或
+                      ~/.neocoder/commands 下定义的 markdown
+                      文件即自定义子任务，可以用自然语言编写（即 prompt），支持
+                      $ARGUMENTS 传参。
+                    </div>
                   </div>
                 </div>
               )}
@@ -670,7 +873,7 @@ function Module() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function GettingStarted() {
@@ -689,19 +892,19 @@ function GettingStarted() {
     >
       <style jsx>
         {`
-          .dot-background{
+          .dot-background {
             opacity: 0;
             transition: all 1s ease;
           }
           .getting-started:hover .dot-background {
             opacity: 1;
           }
-          .exp-btn div{
-            padding-right:0;
+          .exp-btn div {
+            padding-right: 0;
             transition: 0.5s;
             width: 100%;
           }
-          .exp-btn div::after{
+          .exp-btn div::after {
             content: '→';
             position: absolute;
             opacity: 0;
@@ -714,10 +917,10 @@ function GettingStarted() {
             position: absolute;
             right: 0;
           }
-          .exp-btn:hover div{
+          .exp-btn:hover div {
             padding-right: 30px;
           }
-          .exp-btn:hover div::after{
+          .exp-btn:hover div::after {
             opacity: 1;
             right: 30px;
           }
@@ -746,7 +949,7 @@ function GettingStarted() {
           alignItems: 'flex-end',
           position: 'relative',
           zIndex: 1,
-          paddingTop: '85px'
+          paddingTop: '85px',
         }}
       >
         <div>
@@ -755,7 +958,7 @@ function GettingStarted() {
               fontSize: '58px',
               fontWeight: '700',
               lineHeight: '81px',
-              color: '#fff'
+              color: '#fff',
             }}
           >
             Neovate
@@ -802,7 +1005,7 @@ function GettingStarted() {
         >
           <div
             style={{
-              textAlign: 'center'
+              textAlign: 'center',
             }}
           >
             <span
@@ -819,7 +1022,7 @@ function GettingStarted() {
                 fontSize: '16px',
                 fontWeight: '700',
                 color: '#000',
-                marginLeft: '12px'
+                marginLeft: '12px',
               }}
             >
               new experience
@@ -832,15 +1035,19 @@ function GettingStarted() {
           width: '1123px',
           margin: '0 auto',
           textAlign: 'right',
-          marginTop: '18px'
+          marginTop: '18px',
         }}
       >
-        <span style={{
-          fontWeight: 300,
-          fontSize: '14px',
-          color: '#4C505A',
-          lineHeight: '20px'
-        }}>当前仅对外开源 CLI 能力，更多能力模块敬请期待</span>
+        <span
+          style={{
+            fontWeight: 300,
+            fontSize: '14px',
+            color: '#4C505A',
+            lineHeight: '20px',
+          }}
+        >
+          当前仅对外开源 CLI 能力，更多能力模块敬请期待
+        </span>
       </div>
     </div>
   );
@@ -891,14 +1098,18 @@ function Footer() {
                   justifyContent: 'center',
                 }}
               >
-                <img src="/logo.svg" alt="Neovate Logo" />
+                <img
+                  src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/q7dZTLOigq4AAAAAQCAAAAgADhqBAQFr/original"
+                  alt="Neovate Logo"
+                />
               </div>
             </div>
-            <div style={{
-              height: 50,
-              marginTop: 98
-            }}>
-
+            <div
+              style={{
+                height: 50,
+                marginTop: 98,
+              }}
+            >
               <p
                 style={{
                   fontSize: '14px',
@@ -915,24 +1126,28 @@ function Footer() {
             <div
               style={{
                 marginTop: '7px',
-                height: 28
+                height: 28,
               }}
             >
-              <p style={{
-                fontSize: '14px',
-                color: '#5B606C',
-                lineHeight: '20px',
-              }}>
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: '#5B606C',
+                  lineHeight: '20px',
+                }}
+              >
                 © 2025 Neovate. 保留所有权利。
               </p>
             </div>
           </div>
 
           {/* Products */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
             <div>
               <h3
                 style={{
@@ -1142,19 +1357,25 @@ function Footer() {
 
 function PandorasBox() {
   return (
-    <div style={{
-      height: '334px',
-      background: '#ff3070',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*PcdwTJkQhI0AAAAAX5AAAAgAeobkAQ/original)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}>
-      <img src="/NEOVATE.svg" alt="NEOVATE" />
+    <div
+      style={{
+        height: '334px',
+        background: '#ff3070',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage:
+          'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*PcdwTJkQhI0AAAAAX5AAAAgAeobkAQ/original)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <img
+        src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/oWysSKY4aYcAAAAAQCAAAAgADhqBAQFr/original"
+        alt="NEOVATE"
+      />
     </div>
-  )
+  );
 }
 
 export default function HomePage() {
@@ -1165,7 +1386,8 @@ export default function HomePage() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const isScrollingUp = currentScrollY < lastScrollY + 100;
-      const isNearBottom = window.innerHeight + currentScrollY >= document.body.offsetHeight - 100;
+      const isNearBottom =
+        window.innerHeight + currentScrollY >= document.body.offsetHeight - 100;
       if (isScrollingUp && isNearBottom) {
         setShowPandorasBox(true);
       }
