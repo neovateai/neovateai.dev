@@ -106,7 +106,6 @@ function Navbar() {
 
 function Hero() {
   const router = useRouter();
-
   return (
     <div
       style={{
@@ -146,6 +145,7 @@ function Hero() {
           position: 'absolute',
           inset: 0,
           zIndex: 1,
+          width: '100%',
           height: '100vh',
         }}
         src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original"
