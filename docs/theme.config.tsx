@@ -24,6 +24,7 @@ const config: DocsThemeConfig = {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="NeovateAI Documentation" />
       <meta property="og:description" content="Documentation for NeovateAI" />
+      <link rel="icon" href="https://mdn.alipayobjects.com/huamei_9rin5s/afts/img/0uIJQaelzccAAAAAQCAAAAgADiB8AQFr/original" />
     </>
   ),
   i18n: [
