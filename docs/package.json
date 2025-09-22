@@ -9,6 +9,7 @@
     "serve": "npx serve out -p 3001"
   },
   "dependencies": {
+    "antd-style": "^3.7.1",
     "next": "^14.2.32",
     "nextra": "^3.3.1",
     "nextra-theme-docs": "^3.3.1",
