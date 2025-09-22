@@ -1,57 +1,52 @@
 # 快速开始
 
-本指南将帮助您在几分钟内开始使用 Neovate Code。
+几分钟内开始使用 Neovate Code。
 
-## 开始之前
+## 前置要求
 
-- 已安装 [Node.js 18 或更新版本](https://nodejs.org/en/download/)
-- 打开终端
-- 有一个项目可以使用
+- [Node.js 18+](https://nodejs.org/en/download/)
+- 终端访问权限
+- 一个编程项目
 
-## 步骤 1：安装 Neovate Code
+## 安装
 
-使用以下命令安装 Neovate Code：
+通过 npm 全局安装：
 
 ```bash
 npm i @neovate/code -g
 ```
 
-然后运行 `neovate --version` 来验证安装。
-
-## 步骤 2：配置提供商和选择模型
-
-如果您还没有配置提供商和模型，Neovate Code 在启动时会提示您进行配置。
+验证安装：
 
 ```bash
-neovate
+neovate --version
 ```
 
-![](https://pic.sorrycc.com/proxy/1758452347948-985315267.png)
+## 初始设置
 
-输入 `/login`，选择一个提供商并输入 API Key。
-
-![](https://pic.sorrycc.com/proxy/1758452396763-810257439.png)
-
-然后输入 `/model` 来选择该提供商的一个模型。
-
-![](https://pic.sorrycc.com/proxy/1757940619232-448570948.png)
-
-## 步骤 3：启动 Neovate Code
-
-打开终端并导航到您的项目，然后运行 `neovate` 来启动 Neovate Code。
+导航到您的项目并启动 Neovate Code：
 
 ```bash
 cd /path/to/your/project
 neovate
 ```
 
-您将在交互模式下看到 Neovate Code 提示符。
+首次运行时，系统会提示您配置提供商：
 
-![](https://pic.sorrycc.com/proxy/1757940861403-266888363.png)
+![](https://pic.sorrycc.com/proxy/1758452347948-985315267.png)
 
-## 步骤 4：运行第一个任务
+1. 输入 `/login` 并选择您的 AI 提供商
+2. 输入您的 API 密钥
 
-选择一个任务来运行。
+![](https://pic.sorrycc.com/proxy/1758452396763-810257439.png)
+
+3. 输入 `/model` 选择模型
+
+![](https://pic.sorrycc.com/proxy/1757940619232-448570948.png)
+
+## 开始编程
+
+您现在处于交互模式。尝试这些命令：
 
 ```bash
 > explain this project
@@ -60,23 +55,18 @@ neovate
 > analyze the dependencies of this project
 ```
 
-## 步骤 5：审查更改
+![](https://pic.sorrycc.com/proxy/1757940861403-266888363.png)
 
-任务完成后，git 暂存更改。
+## 审查和提交
+
+进行更改后，暂存它们并获得审查：
 
 ```bash
 git add .
-```
-
-然后使用 `/review` 斜杠命令来审查更改。Neovate Code 将比较更改并向您显示建议，包括性能改进、安全问题、代码风格等。
-
-```bash
 neovate /review
 ```
 
-## 步骤 6：提交更改
-
-审查完成后，使用 `neovate commit` 来生成提交消息、提交并推送。
+使用 AI 辅助生成并提交：
 
 ```bash
 neovate commit

@@ -1,57 +1,52 @@
-# Quickstart
+# Quick Start
 
-This guide will help you get started with Neovate Code in minutes.
+Get started with Neovate Code in minutes.
 
-## Before you start
+## Prerequisites
 
-- [Node.js 18 or newer](https://nodejs.org/en/download/) installed
-- A terminal opened
-- A project to work on
+- [Node.js 18+](https://nodejs.org/en/download/)
+- Terminal access
+- A coding project
 
-## Step 1: Install Neovate Code
+## Installation
 
-Install Neovate Code using the following command:
+Install globally via npm:
 
 ```bash
 npm i @neovate/code -g
 ```
 
-Then run `neovate --version` to verify the installation.
-
-## Step 2: Configure Providers and Select Model
-
-If you don't have a provider and model configured, Neovate Code will prompt you to configure them when you start it.
+Verify installation:
 
 ```bash
-neovate
+neovate --version
 ```
 
-![](https://pic.sorrycc.com/proxy/1758452347948-985315267.png)
+## Initial Setup
 
-Enter `/login`, select a provider and enter the API Key.
-
-![](https://pic.sorrycc.com/proxy/1758452396763-810257439.png)
-
-Then enter `/model` to select a model of that provider.
-
-![](https://pic.sorrycc.com/proxy/1757940619232-448570948.png)
-
-## Step 3: Start Neovate Code
-
-Open the terminal and navigate to your project, then run `neovate` to start Neovate Code.
+Navigate to your project and start Neovate Code:
 
 ```bash
 cd /path/to/your/project
 neovate
 ```
 
-You will see the Neovate Code prompt in an interactive mode.
+On first run, you'll be prompted to configure a provider:
 
-![](https://pic.sorrycc.com/proxy/1757940861403-266888363.png)
+![](https://pic.sorrycc.com/proxy/1758452347948-985315267.png)
 
-## Step 4: Run the first task
+1. Type `/login` and select your AI provider
+2. Enter your API key
 
-Choose a task to run.
+![](https://pic.sorrycc.com/proxy/1758452396763-810257439.png)
+
+3. Type `/model` to choose a model
+
+![](https://pic.sorrycc.com/proxy/1757940619232-448570948.png)
+
+## Start Coding
+
+You're now in interactive mode. Try these commands:
 
 ```bash
 > explain this project
@@ -60,23 +55,18 @@ Choose a task to run.
 > analyze the dependencies of this project
 ```
 
-## Step 5: Review the changes
+![](https://pic.sorrycc.com/proxy/1757940861403-266888363.png)
 
-Once the task is completed, git stage the changes.
+## Review & Commit
+
+After making changes, stage them and get a review:
 
 ```bash
 git add .
-```
-
-Then use the `/review` slash command to review the changes. Neovate Code will diff the changes and show you the recommendations including performance improvements, security issues, code style, etc.
-
-```bash
 neovate /review
 ```
 
-## Step 6: Commit the changes
-
-Once the review is completed, use `neovate commit` to generate a commit message, commit and push.
+Generate and commit with AI assistance:
 
 ```bash
 neovate commit
