@@ -105,7 +105,7 @@ function Hero() {
   return (
     <div
       style={{
-        height: '931px',
+        height: '100vh',
         position: 'relative',
         overflow: 'hidden',
         backgroundImage: 'url(https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*ZV4OTrrh120AAAAATtAAAAgAeobkAQ/original)',
@@ -117,6 +117,7 @@ function Hero() {
         position: 'absolute',
         inset: 0,
         zIndex: 1,
+        height: '100vh'
       }} src="https://mdn.alipayobjects.com/huamei_39mb2c/afts/img/A*hpceRa2rOpYAAAAAWbAAAAgAeobkAQ/original" />
       <Navbar />
       <div
