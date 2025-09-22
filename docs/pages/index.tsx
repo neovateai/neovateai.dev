@@ -32,12 +32,11 @@ function Navbar() {
     >
       <nav
         style={{
-          width: '1160px',
+          width: '1144px',
           height: '68px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 24px',
           borderTop: 'none',
           borderRadius: '6px',
         }}
