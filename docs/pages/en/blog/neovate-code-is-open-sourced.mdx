@@ -1,0 +1,129 @@
+# Neovate Code is Open Sourced
+
+[TODO: Logo Image]
+
+We are excited to announce that [Neovate Code](https://github.com/neovateai/neovate-code) is now open sourced! Please give it a star and follow us on [GitHub](https://github.com/neovateai/neovate-code).
+
+## Vibe Coding is Hot
+
+The developer experience is rapidly evolving. AI-powered coding assistants are no longer a luxury—they're becoming essential tools for modern software development. From code completion to full feature implementation, AI agents are transforming how we write, debug, and maintain code.
+
+![](https://pic.sorrycc.com/proxy/1758510683119-365317942.png)
+
+I think traditional programming is like a sculptor chiseling away at raw stone to reveal a masterpiece, high quality but slowly. And vibe coding is like a conductor orchestrating a symphony, fast but a little bit low quality. They are different, but they are both beautiful.
+
+I don't know how many code you write is using vibe coding, but I know that I use it a lot. About 60% to 80% of my code is written with vibe coding, and I love it.
+
+## There are new Code Agents every day
+
+The landscape of AI coding assistants is exploding. New tools emerge constantly, each with their own strengths, limitations, and approaches. From GitHub Copilot to Cursor, from Codeium to various Claude-based solutions, developers have more choices than ever before.
+
+I have created a repo [awesome-code-agents](https://github.com/sorrycc/awesome-code-agents) to collect some of the best code agents. This curated list showcases the diverse ecosystem of AI-powered development tools, from IDE extensions to standalone applications, each bringing unique approaches to code generation, debugging, and optimization. It's fascinating to see how different teams are solving similar problems with creative solutions—some focus on speed, others on accuracy, and many are exploring novel ways to integrate AI into existing development workflows.
+
+![](https://pic.sorrycc.com/proxy/1758519081748-485895514.png)
+
+## We created Neovate Code
+
+And we created another code agent, [Neovate Code](https://github.com/neovateai/neovate-code), which is open sourced. It's currently mainly a CLI code agent, but we have made the architecture flexible enough to support multiple clients. It's used by companies like Ant Group and Kuaishou to build their own code agents.
+
+![](https://pic.sorrycc.com/proxy/1757930385492-174713366.png)
+
+## Neovate Code is a Code Agent
+
+Neovate Code is an intelligent coding assistant. It's designed to understand your codebase, follow your coding patterns, and help you implement features, fix bugs, and refactor code with precision and context awareness.
+
+Key features include:
+
+- **Chat Driven Development** - Natural conversation interface for coding tasks
+- **AGENTS.md Rule Files** - Define custom rules and behaviors for your projects
+- **Session Continue & Resume** - Pick up where you left off across sessions
+- **Support Popular Models and Providers** - OpenAI, Anthropic, Google, and more
+- **Slash Commands** - Quick commands for common operations
+- **Output Style** - Customize how code changes are presented
+- **Plan Mode** - Review implementation plans before execution
+- **Headless Mode** - Automate workflows without interactive prompts
+- **Plugin System** - Extend functionality with custom plugins
+- **MCP** - Model Context Protocol for enhanced integrations
+- **Git Workflow** - Smart commit messages and branch management
+- ...
+
+## Quick Start
+
+Ready to try Neovate Code? Getting started is simple:
+
+```bash
+npm install -g @neovate/code
+neovate
+```
+
+We respect the API KEY environment variable for all providers. If you don't have an API Key, enter `/login`, select a provider, open the website, and enter the API Key.
+
+Then enter `/model` to select a model of that provider.
+
+Then you can start to use Neovate Code, describe what you want to do in the command line, review proposed changes and approve tools calls.
+
+```bash
+# Examples of what you can do:
+"Add error handling to the user authentication function"
+"Refactor this component to use TypeScript"
+"Create unit tests for the payment service"
+"Optimize this database query"
+```
+
+Visit our [quickstart](/en/docs/quickstart) documentation for detailed installation and setup instructions.
+
+## Why Neovate Code?
+
+There are so many code agents out there. Here are some features that make Neovate Code different from other code agents:
+
+- **Open Claude Code**
+- **Easy to extend**
+- **Multiple clients**
+
+Claude Code is a great code agent, but it is not open source, and can not be used with other models by default. Neovate Code learns a lot from Claude Code, including features and configurations and others. And based on this, we added supports for all popular models and providers. So it's a good choice if you want both.
+
+Neovate Code is easy to extend. It has a built-in plugin system with much hooks. You can quickly create Your Own Code Agent with your own models, features, tools and other integrations. Companies like Ant Group and Kuaishou has already using it to build their own code agents.
+
+```ts
+import type { Plugin } from '@neovate/code';
+export default const plugin: Plugin = {
+  name: 'my-plugin',
+  context: () => {
+    // Add more context
+    return {
+      'Who am I': 'chencheng',
+    };
+  },
+}
+```
+
+Neovate Code is currently only have the CLI client, but we have make the architecture flexible enough to support multiple clients. So it's easy to extend to support other clients like IDE Extension, Web App, Native App and Remote Agent. And we're working on these.
+
+## Not only Neovate Code
+
+Neovate Code is just the beginning. The Neovate brand will expand with specialized AI tools for every aspect of development:
+
+- **Neovate Debug** - Intelligent debugging and issue resolution
+- **Neovate Lens** - Code quality analysis and review automation
+- **Neovate Vision** - test and automation
+- More to come...
+
+Stay tuned for these exciting additions to the Neovate ecosystem!
+
+## Credits
+
+Neovate Code won't exists without the lessons we learned from other code agents like [Claude Code](https://github.com/anthropics/claude-code), [OpenCode](https://github.com/sst/opencode), [Gemini CLI](https://github.com/google-gemini/gemini-cli) and [Cursor](https://www.cursor.com/). Thanks for the authors and mantainers of these great projects.
+
+## Get Involved
+
+Here's what you can do to get involved:
+
+- Use it in your projects, follow [quickstart](/en/docs/quickstart) to get started.
+- Use it in scripts, ci/cd pipelines and other automation tools, follow [headless mode](/en/docs/headless).
+- Contribute to the project, follow [contributing](https://github.com/neovateai/neovate-code/blob/master/CONTRIBUTING.md) to get started.
+- Create your own code agent with it, follow [plugin](/en/docs/plugin) to get started.
+- Give it a star on [GitHub](https://github.com/neovateai/neovate-code).
+
+---
+
+*Published on 2025.09.24*
