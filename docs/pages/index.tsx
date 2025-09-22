@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Link } from 'nextra-theme-docs';
 import { useEffect, useState } from 'react';
 import SuperCard from '@/components/SuperCard';
 
@@ -67,12 +68,9 @@ function Navbar() {
           />
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              router.push('/en/docs/overview');
-            }}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <Link
+            href="/en/blog/neovate-code-is-open-sourced/"
             style={{
               color: '#fff',
               fontSize: '14px',
@@ -83,9 +81,22 @@ function Navbar() {
             onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
             onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
           >
-            文档
-          </a>
-
+            Blog
+          </Link>
+          <Link
+            href="/en/docs/overview"
+            style={{
+              color: '#fff',
+              fontSize: '14px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'color 0.2s',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+            onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
+          >
+            Documentation
+          </Link>
           <a
             href="https://github.com/neovateai/neovate-code/blob/master/CHANGELOG.md"
             target="_blank"
@@ -98,7 +109,7 @@ function Navbar() {
             onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
             onMouseOut={(e) => (e.currentTarget.style.color = '#fff')}
           >
-            更新日志
+            Changelog
           </a>
           <a
             href="https://github.com/neovateai/neovate-code"
@@ -223,8 +234,8 @@ function Hero() {
             marginTop: '22vh',
           }}
         >
-          <button
-            onClick={() => router.push('/en/docs/overview')}
+          <Link
+            href="/en/docs/overview"
             style={{
               marginTop: '48px',
               background: 'rgba(254, 48, 112, 1)',
@@ -234,6 +245,8 @@ function Hero() {
               cursor: 'pointer',
               fontSize: '18px',
               fontWeight: '500',
+              textAlign: 'center',
+              textDecoration: 'none',
               color: '#000',
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 15px rgba(254, 48, 112, 0.3)',
@@ -250,7 +263,7 @@ function Hero() {
             }}
           >
             开始体验 Experience
-          </button>
+          </Link>
           <p
             style={{
               fontSize: '16px',
