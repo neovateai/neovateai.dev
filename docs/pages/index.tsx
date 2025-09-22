@@ -9,7 +9,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > (innerHeight - 50));
+      setIsScrolled(window.scrollY > innerHeight - 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -58,7 +58,7 @@ function Navbar() {
           transition: 'all 0.3s ease',
           backgroundColor: isScrolled ? '#000' : 'transparent',
           padding: isScrolled ? '0 12px' : '0',
-          position: 'relative'
+          position: 'relative',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1078,7 +1078,7 @@ function GettingStarted() {
             lineHeight: '20px',
           }}
         >
-          当前仅对外开源 CLI 能力，更多能力模块敬请期待
+          当前仅对外开源 Neovate Code，更多能力模块敬请期待
         </span>
       </div>
     </div>
@@ -1189,7 +1189,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.45)',
                 }}
               >
-                产品
+                Products
               </h3>
               <ul
                 style={{
@@ -1199,38 +1199,18 @@ function Footer() {
                 }}
               >
                 <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
+                  <Link
+                    href="https://github.com/neovateai/neovate-code"
+                    target="_blank"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
                   >
-                    使用文档
-                  </a>
-                </li>
-                <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
-                    style={{
-                      color: 'rgba(255, 255, 255, 1)',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
-                  >
-                    更新日志
-                  </a>
+                    Neovate Code
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -1245,7 +1225,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.45)',
                 }}
               >
-                公司
+                Help
               </h3>
               <ul
                 style={{
@@ -1254,21 +1234,31 @@ function Footer() {
                   margin: 0,
                 }}
               >
+              <li style={{ marginBottom: '16px' }}>
+                <a
+                  href="https://github.com/neovateai/neovate-code/discussions"
+                  target="_blank"
+                  style={{
+                    color: 'rgba(255, 255, 255, 1)',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    transition: 'color 0.2s',
+                  }}
+                >
+                  GitHub Discussions
+                </a>
+              </li>
                 <li style={{ marginBottom: '16px' }}>
                   <a
-                    href="#"
+                    href="mailto:sorrycc@gmail.com"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
                   >
-                    联系我们
+                    Contact
                   </a>
                 </li>
               </ul>
@@ -1284,7 +1274,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.45)',
                 }}
               >
-                资源
+                Resources
               </h3>
               <ul
                 style={{
@@ -1294,38 +1284,44 @@ function Footer() {
                 }}
               >
                 <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="#"
+                  <Link
+                    href="/en/docs/overview"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
                   >
-                    技术博客
-                  </a>
+                    Documentation
+                  </Link>
                 </li>
                 <li style={{ marginBottom: '16px' }}>
-                  <a
-                    href="https://neovateai.dev/en/docs/quickstart/"
+                  <Link
+                    href="/en/blog"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = '#fff')}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
-                    }
                   >
-                    最佳实践
-                  </a>
+                    Blog
+                  </Link>
+                </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <Link
+                    href="https://github.com/neovateai/neovate-code/blob/master/CHANGELOG.md"
+                    target="_blank"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                  >
+                    Changelog
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -1370,8 +1366,7 @@ export default function HomePage() {
       const scrollHeight = document.documentElement.scrollHeight;
 
       // 已经到底部
-      const isBottom =
-        scrollY + innerHeight >= scrollHeight - 4; // 4px 容错
+      const isBottom = scrollY + innerHeight >= scrollHeight - 4; // 4px 容错
 
       // 向下继续滚动的趋势
       const isScrollingDown = scrollY > lastScrollY + 2;
