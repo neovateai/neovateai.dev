@@ -51,7 +51,7 @@ function Navbar() {
           />
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <Link 
             href="/en/blog/neovate-code-is-open-sourced/"
             style={{
