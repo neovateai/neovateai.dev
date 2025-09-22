@@ -1,0 +1,44 @@
+# 输出样式
+
+输出样式用于自定义系统提示。因此 Neovate Code 可以做代码生成以外的事情。
+
+## 内置输出样式
+
+|输出样式|描述|
+|---|---|
+|`Default`|默认输出样式|
+|`Explanatory`|解释其实现选择和代码库模式|
+
+## 自定义输出样式
+
+您可以在项目和全局范围内创建自己的输出样式。
+
+### 项目范围
+
+位于 `.neovate/output-styles` 目录下。
+
+### 全局范围
+
+位于 `~/.neovate/output-styles` 目录下。
+
+### 前置元数据
+
+输出样式文件支持前置元数据。
+
+|键|描述|
+|---|---|
+|`name`|输出样式的名称|
+|`description`|输出样式的描述|
+|`isCodeRelated`|输出样式是否与代码相关|
+
+例如：
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+isCodeRelated: false
+---
+
+You should add "miao~~~" after every sentence.
+```

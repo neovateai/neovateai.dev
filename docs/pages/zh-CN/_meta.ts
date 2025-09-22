@@ -1,10 +1,10 @@
 export default {
   blog: {
-    title: 'Blog',
+    title: '博客',
     type: 'page'
   },
   docs: {
-    title: 'Documentation',
+    title: '文档',
     type: 'page'
   },
 }

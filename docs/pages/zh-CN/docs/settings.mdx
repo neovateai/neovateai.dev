@@ -1,0 +1,126 @@
+# 设置
+
+使用 JSON 文件配置 Neovate Code 设置，以自定义行为、偏好和集成选项。
+
+## 文件位置
+
+Neovate Code 支持项目和全局设置文件。
+
+- **项目范围** 设置文件位于 `.neovate/config.json` 文件和 `.neovate/config.local.json` 文件，`.local.json` 文件适用于个人设置，不应提交到仓库。
+- **全局范围** 设置文件位于 `~/.neovate/config.json` 文件。
+
+## 模式
+
+设置文件具有在 https://neovateai.dev/config.json 中定义的模式。基于此模式，您的编辑器应该能够验证和自动完成设置文件。
+
+## `neovate config`
+
+您可以使用 `neovate config` 来管理设置文件。
+
+```bash
+# 列出所有设置
+neovate config ls
+
+# 获取设置
+neovate config get <key>
+
+# 设置值
+neovate config set <key> <value>
+
+# 全局设置值
+neovate config set <key> <value> -g
+
+# 添加设置
+neovate config add <key> <value>
+
+# 删除设置
+neovate config rm <key>
+```
+
+默认情况下，`neovate config` 将使用项目设置文件。您可以使用 `-g` 来使用全局设置文件。
+
+## 可用设置
+
+### approvalMode
+
+使用的批准模式。
+
+- 类型：`"autoEdit" | "yolo" | "default"`
+- 默认：`"default"`
+
+### autoCompact
+
+指定是否启用自动紧凑功能。
+
+- 类型：`boolean`
+- 默认：`true`
+
+### autoUpdate
+
+指定是否启用自动更新。Neovate Code 将自动下载最新版本并更新自身。
+
+- 类型：`boolean`
+- 默认：`true`
+
+### commit
+
+指定提交配置。
+
+- 类型：`CommitConfig`
+- 默认：`{ language: "en" }`
+
+### language
+
+使用的语言。
+
+- 类型：`string`
+- 默认：`"en"`
+
+### mcpServers
+
+使用的 MCP 服务器。查看 [MCP](./mcp) 了解更多细节。
+
+- 类型：`Record<string, McpServerConfig>`
+- 默认：`{}`
+
+### model
+
+使用的模型。格式：`provider_id/model_id`。查看 [模型](./models) 了解更多细节。
+
+- 类型：`string`
+- 默认：null
+
+### outputStyle
+
+使用的输出样式。查看 [输出样式](./output-style) 了解更多细节。
+
+- 类型：`string`
+- 默认：`"Default"`
+
+### planModel
+
+使用的规划模型。格式：`provider_id/model_id`。
+
+- 类型：`string`
+- 默认：使用与 `model` 相同的模型
+
+### plugins
+
+使用的插件。查看 [插件](./plugins) 了解更多细节。
+
+- 类型：`string[]`
+- 默认：`[]`
+
+### systemPrompt
+
+指定使用的系统提示。
+
+- 类型：`string`
+- 默认：null
+
+### todo
+
+指定是否启用待办事项功能。
+
+- 类型：`boolean`
+- 默认：`false`

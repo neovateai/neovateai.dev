@@ -1,0 +1,101 @@
+import { Callout } from 'nextra/components';
+
+# 斜杠命令
+
+使用斜杠命令在 AI 对话中触发特定操作和工作流程。
+
+## 内置斜杠命令
+
+|命令|描述|
+|---|---|
+|`/clear`|开始新会话|
+|`/compact`|清除对话历史但在上下文中保留摘要|
+|`/exit`|退出应用程序|
+|`/help`|显示帮助|
+|`/init`|创建或改进 AGENTS.md 文件|
+|`/mcp`|MCP 服务器管理|
+|`/model <model>`|选择模型|
+|`/output-style <output_style>`|选择输出样式|
+|`/resume <session_id>`|从特定会话恢复|
+|`/review [pull_request_id]`|审查 GitHub 拉取请求或暂存的更改|
+|`/status`|显示状态|
+
+## 自定义斜杠命令
+
+<Callout type="info">
+  自定义斜杠命令可以覆盖内置斜杠命令。如果您定义了与内置斜杠命令同名的自定义斜杠命令，将使用自定义斜杠命令。
+</Callout>
+
+如果您写了三次以上相同的提示，您应该考虑为它添加一个斜杠命令。自定义斜杠命令具有项目和全局范围。
+
+### 项目范围
+
+位于 `.neovate/commands` 目录下。
+
+```bash
+mkdir -p .neovate/commands
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+```
+
+### 全局范围
+
+位于 `~/.neovate/commands` 目录下。
+
+```bash
+mkdir -p ~/.neovate/commands
+echo "Explain the project dependencies" > ~/.neovate/commands/explain-dependencies.md
+```
+
+### 用法
+
+```bash
+/<command> [arguments]
+```
+
+### 参数
+
+斜杠命令文件中的 `$ARGUMENTS` 字符串将被替换为传递给命令的**所有**参数。
+
+例如：
+
+```bash
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+
+# 用法
+/add-testcase @src/Button.tsx
+# 实际使用的提示
+Add test case for @src/Button.tsx
+```
+
+如果您想替换单个参数，可以使用 `$1`、`$2`、`$3` 等。与 bash 脚本类似。
+
+```bash
+echo "Install dependency $1 with $2" > .neovate/commands/add-dependency.md
+
+# 用法
+/add-dependency react pnpm
+# 实际使用的提示
+Install dependency react with pnpm
+```
+
+### 前置元数据
+
+斜杠命令文件支持前置元数据。
+
+|键|描述|
+|---|---|
+|`name (可选)`|斜杠命令的名称|
+|`description (可选)`|斜杠命令的描述|
+|`model (可选)`|用于斜杠命令的模型|
+
+例如：
+
+```bash
+---
+name: Add test case
+description: Add a test case for the given file
+model: openai/gpt-5
+---
+
+Add test case for $ARGUMENTS
+```

@@ -1,0 +1,224 @@
+import { Callout } from 'nextra/components';
+
+# 插件
+
+使用插件扩展 Neovate Code 功能，增强开发工作流程。插件是一种通过丰富的钩子来扩展功能的方式。您可以创建自己的插件来添加自己的功能、工具、模型、提供商、系统提示、输出样式、斜杠命令和其他集成。
+
+## 创建插件
+
+插件是一个遵循 `Plugin` 接口的 JavaScript 对象。
+
+```ts
+import type { Plugin } from '@neovate/code';
+export default const plugin: Plugin = {
+  name: 'my-plugin',
+  context: () => {
+    // 添加更多上下文
+    return {
+      'Who am I': 'chencheng',
+    };
+  },
+}
+```
+
+## 插件钩子
+
+<Callout type="info">
+  您可以在插件钩子中使用 `this` 来访问上下文实例。
+</Callout>
+
+插件钩子是扩展 Neovate Code 功能的主要方式。有许多可用的钩子。
+
+### config
+
+返回一个部分配置以与配置合并。此钩子在配置初始化时被调用。
+
+- 类型：`SeriesMerge`
+- 参数：
+  - opts：
+    - config：`Config`
+    - argvConfig：`Record<string, any>`
+- 返回：`Partial<Config>`
+
+### destroy
+
+此钩子在上下文被销毁时被调用。
+
+- 类型：`Parallel`
+- 参数：
+- 返回：`void`
+
+### slashCommand
+
+返回要注册的斜杠命令。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`SlashCommand[]`
+
+### outputStyle
+
+返回要注册的输出样式。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`OutputStyle[]`
+
+### provider
+
+修改提供商映射。
+
+- 类型：`SeriesLast`
+- 参数：
+  - providers：`ProvidersMap`
+  - opts：
+    - models：`ModelMap`
+    - defaultModelCreator：`(name: string, provider: Provider) => LanguageModelV1`
+    - createOpenAI：`(options: any) => OpenAIProvider`
+- 返回：`ProvidersMap`
+
+### modelAlias
+
+修改模型别名。
+
+- 类型：`SeriesLast`
+- 参数：
+  - modelAlias：`ModelAlias`
+- 返回：`ModelAlias`
+
+### initialized
+
+初始化插件。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - cwd：`string`
+    - quiet：`boolean`
+- 返回：`void`
+
+### context
+
+返回要添加到对话中的上下文。
+
+- 类型：`SeriesMerge`
+- 参数：
+  - opts：
+    - userPrompt：`string | null`
+    - sessionId：`string`
+- 返回：`Record<string, string>`
+
+### env
+
+返回要添加到对话中的环境上下文。
+
+- 类型：`SeriesMerge`
+- 参数：
+  - opts：
+    - userPrompt：`string | null`
+    - sessionId：`string`
+- 返回：`Record<string, string>`
+
+### userPrompt
+
+修改用户提示。
+
+- 类型：`SeriesLast`
+- 参数：
+  - userPrompt：`string`
+  - opts：
+    - sessionId：`string`
+- 返回：`string`
+
+### systemPrompt
+
+修改系统提示。
+
+- 类型：`SeriesLast`
+- 参数：
+  - systemPrompt：`string`
+  - opts：
+    - isPlan：`boolean`
+    - sessionId：`string`
+- 返回：`string`
+
+### tool
+
+返回要使用的额外工具。这对于向对话中添加您自己的工具很有用。
+
+- 类型：`SeriesMerge`
+- 参数：
+  - opts：
+    - isPlan：`boolean`
+    - sessionId：`string`
+- 返回：`Tool[]`
+
+### toolUse
+
+修改工具使用。
+
+- 类型：`SeriesLast`
+- 参数：
+  - toolUse：`ToolUse`
+  - opts：
+    - sessionId：`string`
+- 返回：`ToolUse`
+
+### toolResult
+
+修改工具结果。
+
+- 类型：`SeriesLast`
+- 参数：
+  - toolResult：`ToolResult`
+  - opts：
+    - toolUse：`ToolUse`
+    - approved：`boolean`
+    - sessionId：`string`
+- 返回：`ToolResult`
+
+### query
+
+通知插件已进行了查询。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - usage：`Usage`
+    - startTime：`Date`
+    - endTime：`Date`
+    - sessionId：`string`
+- 返回：`void`
+
+### conversation
+
+通知插件已进行了对话。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - userPrompt：`string | null`
+    - result：`LoopResult`
+    - startTime：`Date`
+    - endTime：`Date`
+    - sessionId：`string`
+- 返回：`void`
+
+### telemetry
+
+用于收集使用情况分析的遥测钩子。当需要报告遥测事件时调用此钩子。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - name：`string` - 遥测事件的名称
+    - payload：`Record<string, any>` - 遥测数据载荷
+- 返回：`Promise<void> | void`
+
+### status
+
+返回要显示的额外状态。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`Status`

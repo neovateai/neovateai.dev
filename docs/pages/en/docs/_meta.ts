@@ -37,10 +37,8 @@ export default {
     title: 'Reference'
   },
   cli: 'CLI',
-
+  'interactive-mode': 'Interactive Mode',
   'slash-commands': 'Slash Commands',
-
-
   'output-style': 'Output Style',
   plugins: 'Plugins',
   

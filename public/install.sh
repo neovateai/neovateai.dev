@@ -14,35 +14,35 @@ DIM='\033[2m'
 NC='\033[0m' # No Color
 
 # Fancy header
-echo ""
-echo "${BOLD}Neovate Code Installer${NC}"
-echo ""
+printf "\n"
+printf "${BOLD}Neovate Code Installer${NC}\n"
+printf "\n"
 
 # Function to print steps with style
 print_step() {
-    echo "${BLUE}▸${NC} ${1}"
+    printf "${BLUE}▸${NC} %s\n" "${1}"
 }
 
 # Function to print success
 print_success() {
     # Move cursor up one line and clear it
-    echo -ne "\033[1A\033[2K"
-    echo "${GREEN}✓${NC} ${1}"
+    printf "\033[1A\033[2K"
+    printf "${GREEN}✓${NC} %s\n" "${1}"
 }
 
 # Function to print error
 print_error() {
-    echo "${RED}✗${NC} ${1}"
+    printf "${RED}✗${NC} %s\n" "${1}"
 }
 
 # Function to print info
 print_info() {
-    echo "${CYAN}ℹ️${NC} ${1}"
+    printf "${CYAN}ℹ️${NC} %s\n" "${1}"
 }
 
 # Function to print warning
 print_warning() {
-    echo "${YELLOW}⚠️${NC} ${1}"
+    printf "${YELLOW}⚠️${NC} %s\n" "${1}"
 }
 
 # Check if command exists
@@ -110,7 +110,7 @@ install_nvm() {
     fi
     
     print_step "Downloading nvm ${NVM_VERSION}..."
-    echo "${DIM}  Download URL: ${DOWNLOAD_URL}${NC}"
+    printf "${DIM}  Download URL: %s${NC}\n" "${DOWNLOAD_URL}"
     
     # Download nvm package
     if curl -fSL --progress-bar "${DOWNLOAD_URL}" -o "${TEMP_FILE}"; then
@@ -290,32 +290,32 @@ main() {
     test_installation
     
     # Success message
-    echo ""
-    echo "${BOLD}${GREEN}✨ Installation Complete! ${NC}"
-    echo ""
-    echo "${BOLD}Next Steps${NC}"
-    echo ""
-    echo "${BOLD}1.${NC} If you installed nvm, reload your shell:"
+    printf "\n"
+    printf "${BOLD}${GREEN}✨ Installation Complete! ${NC}\n"
+    printf "\n"
+    printf "${BOLD}Next Steps${NC}\n"
+    printf "\n"
+    printf "${BOLD}1.${NC} If you installed nvm, reload your shell:\n"
     
     local CURRENT_SHELL="$(basename $SHELL)"
     case "${CURRENT_SHELL}" in
         bash)
-            echo "   ${BOLD}${BLUE}source ~/.bashrc${NC}"
+            printf "   ${BOLD}${BLUE}source ~/.bashrc${NC}\n"
             ;;
         zsh)
-            echo "   ${BOLD}${BLUE}source ~/.zshrc${NC}"
+            printf "   ${BOLD}${BLUE}source ~/.zshrc${NC}\n"
             ;;
         *)
-            echo "   ${BOLD}${BLUE}source ~/.profile${NC}"
+            printf "   ${BOLD}${BLUE}source ~/.profile${NC}\n"
             ;;
     esac
     
-    echo ""
-    echo "${BOLD}2.${NC} Start using Neovate Code:"
-    echo "   ${BOLD}neovate${NC}"
-    echo ""
-    echo "${BOLD}${CYAN}Happy coding! 🚀${NC}"
-    echo ""
+    printf "\n"
+    printf "${BOLD}2.${NC} Start using Neovate Code:\n"
+    printf "   ${BOLD}neovate${NC}\n"
+    printf "\n"
+    printf "${BOLD}${CYAN}Happy coding! 🚀${NC}\n"
+    printf "\n"
 }
 
 # Error handling

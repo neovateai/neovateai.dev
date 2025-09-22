@@ -6,35 +6,86 @@ Complete list of available commands and parameters.
 
 ## Commands
 
-|command|description|usage|
-|---|---|---|
-|`neovate`|Interactive mode|`neovate`|
-|`neovate "prompt"`|Interactive mode with initial prompt|`neovate "explain this project"`|
-|`neovate -q "prompt"`|Quiet mode, only output the result|`neovate -q "explain this project"`|
-|`cat file \| neovate -q "prompt"`|Process piped content|`cat file \| neovate -q "explain"`|
-|`neovate -c`|Resume from the last session|`neovate -c`|
-|`neovate -r <session_id>`|Resume from a specific session|`neovate -r foo123`|
-|`neovate config`|Configure management|Check out [Settings](./settings)|
-|`neovate mcp`|MCP servers management|Check out [MCP](./mcp)|
-|`neovate commit`|Commit the changes|`neovate commit`|
-|`neovate update`|Update Neovate Code|`neovate update`|
+| command | description | usage |
+| --- | --- | --- |
+| `neovate` | Interactive mode | `neovate` |
+| `neovate "prompt"` | Interactive mode with initial prompt | `neovate "explain this project"` |
+| `neovate -q "prompt"` | Quiet mode, only output the result | `neovate -q "explain this project"` |
+| `cat file \| neovate -q "prompt"` | Process piped content | `cat file \| neovate -q "explain"` |
+| `neovate -c` | Resume from the last session | `neovate -c` |
+| `neovate -r <session_id>` | Resume from a specific session | `neovate -r foo123` |
+| `neovate config` | Configure management | Check out [Settings](./settings) |
+| `neovate mcp` | MCP servers management | Check out [MCP](./mcp) |
+| `neovate commit` | Commit the changes | `neovate commit` |
+| `neovate update` | Update Neovate Code | `neovate update` |
 
 ## Options
 
-|parameter|description|
-|---|---|
-|`--append-system-prompt <append_system_prompt>`|Append a system prompt||
-|`--approval-mode <approval_mode>`|Specify an approval mode, Options: `yolo`, `autoEdit`, `default`|
-|`-c, --continue`|Resume from the last session|
-|`--cwd <cwd>`|Specify a working directory|
-|`-h, --help`|Show the help|
-|`--language <language>`|Specify a language, Options: `en`, `zh` and others|
-|`-m, --model <model_id>`|Specify a model, format: `provider_id/model_id`|
-|`--output-format <output_format>`|Specify an output format, Options: `stream-json`, `json`, `text`, must be used together with `--quiet`|
-|`--output-style <output_style>`|Specify an output style|
-|`--plan-model <plan_model>`|Specify a plan model|
-|`--plugin <plugin>`|Specify plugins|
-|`-q, --quiet`|Quiet mode, only output the result|
-|`-r, --resume <resume>`|Specify a resume, format: `session_id`|
-|`--system-prompt <system_prompt>`|Specify a system prompt|
-|`-v, --version`|Show the version|
+| parameter | description |
+| --- | --- |
+| `--append-system-prompt <append_system_prompt>` | Append a system prompt |  |
+| `--approval-mode <approval_mode>` | Specify an approval mode, Options: `yolo`, `autoEdit`, `default` |
+| `-c, --continue` | Resume from the last session |
+| `--cwd <cwd>` | Specify a working directory |
+| `-h, --help` | Show the help |
+| `--language <language>` | Specify a language, Options: `en`, `zh` and others |
+| `-m, --model <model_id>` | Specify a model, format: `provider_id/model_id` |
+| `--mcp-config <mcp_config>` | Specify a MCP server configuration (JSON string with "mcpServers" object or file path) |
+| `--output-format <output_format>` | Specify an output format, Options: `stream-json`, `json`, `text`, must be used together with `--quiet` |
+| `--output-style <output_style>` | Specify an output style (name or path) |
+| `--plan-model <plan_model>` | Specify a plan model |
+| `--plugin <plugin>` | Specify plugins |
+| `-q, --quiet` | Quiet mode, only output the result |
+| `-r, --resume <resume>` | Specify a resume, format: `session_id` |
+| `--system-prompt <system_prompt>` | Specify a system prompt |
+| `-v, --version` | Show the version |
+
+## Specify MCP servers
+
+You can use `--mcp-config` to specify the MCP servers to use. This config supports both JSON string and file path.
+
+```bash
+# with JSON string
+neovate -q --output-format stream-json "hello" --mcp-config '{"mcpServers": {"my-mcp-server": {"type": "stdio", "command": "my-mcp-server", "args": ["--port", "8080"]}}}'
+
+# with file path
+neovate -q --output-format stream-json "hello" --mcp-config ~/.neovate/mcp-config.json
+```
+
+## Specify System Prompt
+
+System prompt can define agent's behavior and preferences. If you want to use a custom system prompt, there are some ways to do it.
+
+### With `--output-style`
+
+You can use `--output-style` to specify a custom output style. It supports both the name of built-in output styles and the path of the output style file.
+
+So you can create a Output Style Markdown file and then use it with `--output-style`.
+
+First, create `miao.md` file.
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+---
+
+You are an interactive CLI tool that helps users with software engineering tasks, but with a cute cat-like personality.
+
+# Miao Style Active
+
+You should add "miao~~~" after every sentence. A sentence is typically defined as text ending with a period (.), exclamation mark (!), or question mark (?). Apply this consistently throughout your responses.
+
+Examples:
+- "I'll help you with that miao~~~"
+- "Let me check the file first miao~~~"
+- "The function works correctly miao~~~"
+
+Keep your technical accuracy and helpfulness while adding this cute touch to make interactions more fun and engaging.
+```
+
+And then you can use it with `--output-style`.
+
+```bash
+neovate -q --output-style "./miao.md" "hello"
+```
