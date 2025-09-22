@@ -42,12 +42,12 @@ export const useStyles = createStyles(({ css }) => ({
 
     --gradient: conic-gradient(
       from 180deg at 50% 70%,
-      hsla(0deg, 0%, 98%, 1) 0deg,
+      var(--start-color) 0deg,
       var(--start-color) 72deg,
       var(--end-color) 144deg,
       var(--end-color) 216deg,
       var(--start-color) 288deg,
-      hsla(0deg, 0%, 98%, 1) 1turn
+      var(--start-color) 1turn
     );
 
     @property --start {
@@ -101,16 +101,16 @@ export const useStyles = createStyles(({ css }) => ({
       background: var(--border);
       background-attachment: fixed;
       mask: linear-gradient(#0000, #0000),
-        conic-gradient(
-          from
-            calc(
-              ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) *
-                1deg
-            ),
-          hsl(0deg 0% 100% / 0.15) 0deg,
-          white,
-          hsl(0deg 0% 100% / 0.15) calc(var(--spread) * 2.5deg)
-        );
+      conic-gradient(
+        from
+          calc(
+            ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) *
+              1deg
+          ),
+        hsl(0deg 0% 100% / 0.15) 0deg,
+        var(--start-color),
+        hsl(0deg 0% 100% / 0.15) calc(var(--spread) * 2.5deg)
+      );
       mask-clip: padding-box, border-box;
       mask-composite: intersect;
       opacity: var(--active);
@@ -136,16 +136,16 @@ export const useStyles = createStyles(({ css }) => ({
       inset: 0;
       border: var(--border-width) solid transparent;
       mask: linear-gradient(#0000, #0000),
-        conic-gradient(
-          from
-            calc(
-              ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) *
-                1deg
-            ),
-          #0000 0deg,
-          #fff,
-          #0000 calc(var(--spread) * 0.5deg)
-        );
+      conic-gradient(
+        from
+          calc(
+            ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) *
+              1deg
+          ),
+        #0000 0deg,
+        var(--start-color),
+        #0000 calc(var(--spread) * 0.5deg)
+      );
       filter: brightness(1.5);
       mask-clip: padding-box, border-box;
       mask-composite: intersect;
@@ -184,12 +184,12 @@ export const useStyles = createStyles(({ css }) => ({
       border: 10px solid transparent;
       border-radius: var(--border-radius);
       mask: linear-gradient(#0000, #0000),
-        conic-gradient(
-          from calc((var(--start) - (var(--spread) * 0.5)) * 1deg),
-          #000 0deg,
-          #fff,
-          #0000 calc(var(--spread) * 1deg)
-        );
+      conic-gradient(
+        from calc((var(--start) - (var(--spread) * 0.5)) * 1deg),
+        #000 0deg,
+        var(--start-color),   /* ← 改成开始色 */
+        #0000 calc(var(--spread) * 1deg)
+      );
       mask-composite: intersect;
       mask-clip: padding-box, border-box;
       opacity: var(--active);
