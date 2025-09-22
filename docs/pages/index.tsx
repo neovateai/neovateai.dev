@@ -112,6 +112,26 @@ function Hero() {
         backgroundPosition: 'center',
       }}
     >
+
+      <style jsx>
+        {
+          ` .slogant {
+              position: relative;
+            }
+            .slogant::after {
+              content: '';
+              width: 68px;
+              height: 68px;
+              border-radius: 34px;
+              background: linear-gradient(180deg, #FF3070 0%, rgba(255, 48, 112, 0) 100%);
+              position: absolute;
+              right:-34px;
+              top: -34px;
+              z-index: -1;
+            }
+            `
+        }
+      </style>
       <img style={{
         position: 'absolute',
         inset: 0,
@@ -124,15 +144,20 @@ function Hero() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '207px',
+          marginTop: '22vh',
           position: 'relative',
           zIndex: 1
         }}
       >
-        <img style={{
+        <div className="slogant" style={{
           width: '880px',
           height: '52px'
-        }} src="/slogant.svg" />
+        }}>
+          <img style={{
+            width: '100%',
+            height: '52px'
+          }} src="/slogant.svg" />
+        </div>
         <img style={{
           width: '948px',
           height: '52px',
@@ -154,7 +179,7 @@ function Hero() {
           flexDirection: 'column',
           width: '294px',
           height: '96px',
-          marginTop: '208px'
+          marginTop: '22vh'
         }}>
           <button
             onClick={() => router.push('/en/docs/overview')}
