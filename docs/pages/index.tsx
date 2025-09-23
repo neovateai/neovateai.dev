@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import { Link } from 'nextra-theme-docs';
 import { useEffect, useState } from 'react';
 import SuperCard from '@/components/SuperCard';
+import { useLocale } from '../hooks/useLocale';
 
 function Navbar() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { getLocalizedUrl } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +73,7 @@ function Navbar() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <Link
-            href="/en/blog/neovate-code-is-open-sourced/"
+            href={getLocalizedUrl('/en/blog/neovate-code-is-open-sourced/')}
             style={{
               color: '#fff',
               fontSize: '14px',
@@ -85,7 +87,7 @@ function Navbar() {
             Blog
           </Link>
           <Link
-            href="/en/docs/overview"
+            href={getLocalizedUrl('/en/docs/overview')}
             style={{
               color: '#fff',
               fontSize: '14px',
@@ -137,6 +139,7 @@ function Navbar() {
 
 function Hero() {
   const router = useRouter();
+  const { getLocalizedUrl } = useLocale();
   return (
     <div
       style={{
@@ -236,7 +239,7 @@ function Hero() {
           }}
         >
           <Link
-            href="/en/docs/overview"
+            href={getLocalizedUrl('/en/docs/overview')}
             style={{
               marginTop: '48px',
               background: 'rgba(254, 48, 112, 1)',
@@ -925,6 +928,7 @@ function Module() {
 
 function GettingStarted() {
   const router = useRouter();
+  const { getLocalizedUrl } = useLocale();
 
   return (
     <div
@@ -1025,7 +1029,7 @@ function GettingStarted() {
 
         <button
           className="exp-btn"
-          onClick={() => router.push('/en/docs/overview')}
+          onClick={() => router.push(getLocalizedUrl('/en/docs/overview'))}
           style={{
             background: 'rgba(255, 48, 112, 1)',
             border: 'none',
@@ -1101,6 +1105,7 @@ function GettingStarted() {
 }
 
 function Footer() {
+  const { getLocalizedUrl } = useLocale();
   return (
     <div
       style={{
@@ -1306,7 +1311,7 @@ function Footer() {
               >
                 <li style={{ marginBottom: '16px' }}>
                   <Link
-                    href="/en/docs/overview"
+                    href={getLocalizedUrl('/en/docs/overview')}
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
@@ -1321,7 +1326,7 @@ function Footer() {
                 </li>
                 <li style={{ marginBottom: '16px' }}>
                   <Link
-                    href="/en/blog/neovate-code-is-open-sourced/"
+                    href={getLocalizedUrl('/en/blog/')}
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
