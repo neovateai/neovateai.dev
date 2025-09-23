@@ -1223,6 +1223,8 @@ function Footer() {
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     Neovate Code
                   </Link>
@@ -1259,6 +1261,8 @@ function Footer() {
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     GitHub Discussions
                   </a>
@@ -1272,6 +1276,8 @@ function Footer() {
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     Contact
                   </a>
@@ -1307,19 +1313,23 @@ function Footer() {
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     Documentation
                   </Link>
                 </li>
                 <li style={{ marginBottom: '16px' }}>
                   <Link
-                    href="/en/blog"
+                    href="/en/blog/neovate-code-is-open-sourced/"
                     style={{
                       color: 'rgba(255, 255, 255, 1)',
                       textDecoration: 'none',
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     Blog
                   </Link>
@@ -1334,6 +1344,8 @@ function Footer() {
                       fontSize: '14px',
                       transition: 'color 0.2s',
                     }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
+                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
                   >
                     Changelog
                   </Link>
