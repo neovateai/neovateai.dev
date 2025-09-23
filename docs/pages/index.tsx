@@ -73,7 +73,7 @@ function Navbar() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           <Link
-            href={getLocalizedUrl('/en/blog/neovate-code-is-open-sourced/')}
+            href={getLocalizedUrl('/en/blog/')}
             style={{
               color: '#fff',
               fontSize: '14px',
