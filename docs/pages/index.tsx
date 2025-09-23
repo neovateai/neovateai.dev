@@ -1122,7 +1122,8 @@ function Footer() {
     >
       <div
         style={{
-          width: '1160px',
+          width: '100%',
+          maxWidth: '1160px',
           margin: '0 auto',
           padding: '0 20px',
         }}
@@ -1130,9 +1131,9 @@ function Footer() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '60px',
-            marginBottom: '60px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '40px',
+            marginBottom: '40px',
           }}
         >
           {/* Company Info */}
@@ -1233,7 +1234,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     Neovate Code
                   </Link>
@@ -1271,7 +1274,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     GitHub Discussions
                   </a>
@@ -1286,7 +1291,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     Contact
                   </a>
@@ -1323,7 +1330,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     Documentation
                   </Link>
@@ -1338,7 +1347,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     Blog
                   </Link>
@@ -1354,7 +1365,9 @@ function Footer() {
                       transition: 'color 0.2s',
                     }}
                     onMouseOver={(e) => (e.currentTarget.style.color = '#999')}
-                    onMouseOut={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')
+                    }
                   >
                     Changelog
                   </Link>
