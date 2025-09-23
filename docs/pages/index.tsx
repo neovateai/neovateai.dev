@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Link } from 'nextra-theme-docs';
 import { useEffect, useState } from 'react';
@@ -627,7 +628,8 @@ function Module() {
                       marginTop: '28px',
                     }}
                   >
-                    包含 OpenAI、Anthropic、Google、XAI、DeepSeek、MoonshotAI 等，通过 /login 登录 Provider，通过 /model 选择模型。
+                    包含 OpenAI、Anthropic、Google、XAI、DeepSeek、MoonshotAI
+                    等，通过 /login 登录 Provider，通过 /model 选择模型。
                   </div>
                 </div>
               </div>
@@ -702,7 +704,8 @@ function Module() {
                         marginTop: '33px',
                       }}
                     >
-                      简单任务直接输入、复杂任务先按「shift + tab」进入 Plan 模式，确认后在让 AI 执行，可提升效率和效果。
+                      简单任务直接输入、复杂任务先按「shift + tab」进入 Plan
+                      模式，确认后在让 AI 执行，可提升效率和效果。
                     </span>
                     <img
                       style={{
@@ -776,7 +779,8 @@ function Module() {
                         marginTop: '33px',
                       }}
                     >
-                      Neovate Code 内置插件系统，你可以快速创建你自己的代码智能体，使用你自己的模型、功能、工具和其他集成。
+                      Neovate Code
+                      内置插件系统，你可以快速创建你自己的代码智能体，使用你自己的模型、功能、工具和其他集成。
                     </span>
                     <img
                       style={{
@@ -904,7 +908,9 @@ function Module() {
                         marginTop: '28px',
                       }}
                     >
-                      Slash Commands 用于定制 Prompt，而 Output Styles 用于定制 System Prompt。前者让你可以把任务 Prompt 模版化，后者可以让 Neovate Code 不仅限于 Code 场景。
+                      Slash Commands 用于定制 Prompt，而 Output Styles 用于定制
+                      System Prompt。前者让你可以把任务 Prompt
+                      模版化，后者可以让 Neovate Code 不仅限于 Code 场景。
                     </div>
                   </div>
                 </div>
@@ -1243,20 +1249,20 @@ function Footer() {
                   margin: 0,
                 }}
               >
-              <li style={{ marginBottom: '16px' }}>
-                <a
-                  href="https://github.com/neovateai/neovate-code/discussions"
-                  target="_blank"
-                  style={{
-                    color: 'rgba(255, 255, 255, 1)',
-                    textDecoration: 'none',
-                    fontSize: '14px',
-                    transition: 'color 0.2s',
-                  }}
-                >
-                  GitHub Discussions
-                </a>
-              </li>
+                <li style={{ marginBottom: '16px' }}>
+                  <a
+                    href="https://github.com/neovateai/neovate-code/discussions"
+                    target="_blank"
+                    style={{
+                      color: 'rgba(255, 255, 255, 1)',
+                      textDecoration: 'none',
+                      fontSize: '14px',
+                      transition: 'color 0.2s',
+                    }}
+                  >
+                    GitHub Discussions
+                  </a>
+                </li>
                 <li style={{ marginBottom: '16px' }}>
                   <a
                     href="mailto:sorrycc@gmail.com"
@@ -1400,6 +1406,13 @@ export default function HomePage() {
         padding: 0,
       }}
     >
+      <Head>
+        <title>Neovate - Code with agents, build with neovate</title>
+        <link
+          rel="icon"
+          href="https://mdn.alipayobjects.com/huamei_9rin5s/afts/img/0uIJQaelzccAAAAAQCAAAAgADiB8AQFr/original"
+        />
+      </Head>
       <Hero />
       <Introducing />
       <Module />
