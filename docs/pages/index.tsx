@@ -428,18 +428,22 @@ function Introducing() {
               <div
                 style={{
                   position: 'absolute',
-                  width: '1072px',
-                  height: '499px',
+                  width: '1073px',
+                  height: '580px',
                   bottom: '25px',
                   left: '21px',
                 }}
               >
                 <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   style={{
-                    width: '1072px',
-                    height: '499px',
+                    width: '1073px',
+                    height: '580px',
                   }}
-                  src=""
+                  src="https://gw.alipayobjects.com/v/huamei_h9478t/afts/video/QMeoTrE3hF0AAAAAgFAAAAgADhqBAQFr"
                 ></video>
                 <div
                   id="playBtn"
@@ -449,6 +453,7 @@ function Introducing() {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     cursor: 'pointer',
+                    display: 'none',
                   }}
                   onClick={(e) => {
                     const video = document.querySelector('video');
@@ -813,7 +818,20 @@ function Module() {
                     backgroundRepeat: 'no-repeat',
                   }}
                 >
-                  <img
+                  <video
+                    style={{
+                      width: '646px',
+                      height: '444px',
+                      marginTop: '22px',
+                      marginLeft: '34px',
+                    }}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    src="https://gw.alipayobjects.com/v/huamei_h9478t/afts/video/HT7DSIcnIpAAAAAAgDAAAAgADhqBAQFr"
+                  ></video>
+                  {/* <img
                     style={{
                       width: '646px',
                       height: '444px',
@@ -821,7 +839,7 @@ function Module() {
                       marginLeft: '34px',
                     }}
                     src="https://mdn.alipayobjects.com/huamei_wo6vpv/afts/img/A*OJwaR5cLrmMAAAAAQvAAAAgAevnUAQ/original"
-                  />
+                  /> */}
                   <div
                     style={{
                       display: 'flex',
