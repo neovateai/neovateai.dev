@@ -198,14 +198,18 @@ function Hero() {
         <div
           className="slogant"
           style={{
-            width: '880px',
-            height: '52px',
+            width: '100%',
+            maxWidth: '920px',
+            height: 'auto',
+            padding: '0 20px',
           }}
         >
           <img
             style={{
               width: '100%',
-              height: '52px',
+              height: 'auto',
+              maxWidth: '100%',
+              objectFit: 'contain',
             }}
             src="https://mdn.alipayobjects.com/huamei_h9478t/afts/img/vKuTRrvseVwAAAAAQOAAAAgADhqBAQFr/original"
           />
