@@ -20,6 +20,12 @@ Neovate Code 支持多个提供商和模型。您可以使用自己的模型和�
 export ANTHROPIC_API_KEY=your-api-key
 ```
 
+> 如果您想使用自定义基础 URL，可以设置环境变量 `ANTHROPIC_API_BASE`。
+
+```bash
+export ANTHROPIC_API_BASE=https://your-base-url
+```
+
 3. 运行 `/model` 来选择您想使用的模型。
 
 ### DeepSeek
@@ -32,6 +38,12 @@ export ANTHROPIC_API_KEY=your-api-key
 export DEEPSEEK_API_KEY=your-api-key
 ```
 
+> 如果您想使用自定义基础 URL，可以设置环境变量 `DEEPSEEK_API_BASE`。
+
+```bash
+export DEEPSEEK_API_BASE=https://your-base-url
+```
+
 3. 运行 `/model` 来选择您想使用的模型。
 
 ### Google
@@ -39,8 +51,15 @@ export DEEPSEEK_API_KEY=your-api-key
 1. 打开 [Google AI Studio](https://aistudio.google.com/apikey)，点击 **Create API key** 创建新的 API 密钥并复制它。
 
 2. 输入 `/login` 并选择 **Google** 然后输入 API 密钥，或在您的环境变量 `GOOGLE_API_KEY` 中设置 API 密钥。
+
 ```bash
 export GOOGLE_API_KEY=your-api-key
+```
+
+> 如果您想使用自定义基础 URL，可以设置环境变量 `GOOGLE_GENERATIVE_AI_API_BASE`。
+
+```bash
+export GOOGLE_GENERATIVE_AI_API_BASE=https://your-base-url
 ```
 
 3. 运行 `/model` 来选择您想使用的模型。
@@ -106,6 +125,12 @@ export IFLOW_API_KEY=your-api-key
 export OPENAI_API_KEY=your-api-key
 ```
 
+> 如果您想使用自定义基础 URL，可以设置环境变量 `OPENAI_API_BASE`。
+
+```bash
+export OPENAI_API_BASE=https://your-base-url
+```
+
 3. 运行 `/model` 来选择您想使用的模型。
 
 ### OpenRouter
@@ -136,4 +161,24 @@ export XAI_API_KEY=your-api-key
 
 您可以添加任何未内置的兼容 OpenAI 的提供商。
 
-> TODO
+编辑 `~/.neovate/config.json` 文件来添加提供商。
+
+```json
+{
+  "providers": {
+    "your-provider": {
+      "apiKey": "your-api-key",
+      "api": "https://your-base-url",
+      "doc": "https://your-doc", // 可选
+      "env": ["YOUR_API_KEY"], // 可选
+      "apiEnv": ["YOUR_API_BASE"], // 可选
+      "name": "your-provider", // 可选
+      "models": {
+        // 值为模型 id
+        // 完整列表可在 https://github.com/neovateai/neovate-code/blob/d1b8cc5/src/model.ts#L70 找到
+        "foo": "claude-4-sonnet"
+      }
+    }
+  }
+}
+```

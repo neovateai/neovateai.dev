@@ -20,6 +20,12 @@ Neovate Code supports multiple providers and models. You can use it with your ow
 export ANTHROPIC_API_KEY=your-api-key  
 ```
 
+> If you want to use custom base URL, you can set the environment variable `ANTHROPIC_API_BASE`.
+
+```bash
+export ANTHROPIC_API_BASE=https://your-base-url
+```
+
 3. Run `/model` to select the model you want to use.
 
 ### DeepSeek
@@ -32,6 +38,12 @@ export ANTHROPIC_API_KEY=your-api-key
 export DEEPSEEK_API_KEY=your-api-key  
 ```
 
+> If you want to use custom base URL, you can set the environment variable `DEEPSEEK_API_BASE`.
+
+```bash
+export DEEPSEEK_API_BASE=https://your-base-url
+```
+
 3. Run `/model` to select the model you want to use.
 
 ### Google
@@ -39,8 +51,15 @@ export DEEPSEEK_API_KEY=your-api-key
 1. Open [Google AI Studio](https://aistudio.google.com/apikey), click **Create API key** to create a new API key and copy it.
 
 2. Type `/login` and select **Google** and enter the API key, or set the API key in your environment variable `GOOGLE_API_KEY`.
+
 ```bash
 export GOOGLE_API_KEY=your-api-key  
+```
+
+> If you want to use custom base URL, you can set the environment variable `GOOGLE_GENERATIVE_AI_API_BASE`.
+
+```bash
+export GOOGLE_GENERATIVE_AI_API_BASE=https://your-base-url
 ```
 
 3. Run `/model` to select the model you want to use.
@@ -106,6 +125,12 @@ export IFLOW_API_KEY=your-api-key
 export OPENAI_API_KEY=your-api-key  
 ```
 
+> If you want to use custom base URL, you can set the environment variable `OPENAI_API_BASE`.
+
+```bash
+export OPENAI_API_BASE=https://your-base-url
+```
+
 3. Run `/model` to select the model you want to use.
 
 ### OpenRouter
@@ -136,4 +161,24 @@ export XAI_API_KEY=your-api-key
 
 You can add any OpenAI compatible provider that is not built-in.
 
-> TODO
+Edit the `~/.neovate/config.json` file to add the provider.
+
+```json
+{
+  "providers": {
+    "your-provider": {
+      "apiKey": "your-api-key",
+      "api": "https://your-base-url",
+      "doc": "https://your-doc", // optional
+      "env": ["YOUR_API_KEY"], // optional
+      "apiEnv": ["YOUR_API_BASE"], // optional
+      "name": "your-provider", // optional
+      "models": {
+        // the value is the model id
+        // the full list could be found in https://github.com/neovateai/neovate-code/blob/d1b8cc5/src/model.ts#L70
+        "foo": "claude-4-sonnet"
+      }
+    }
+  }
+}
+```
