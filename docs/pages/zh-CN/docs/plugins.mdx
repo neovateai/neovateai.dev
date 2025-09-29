@@ -18,8 +18,42 @@ export default const plugin: Plugin = {
       'Who am I': 'chencheng',
     };
   },
+  slashCommand() {
+    return [
+      {
+        type: "prompt",
+        name: "foo",
+        description: "foo",
+        getPromptForCommand: async () => {
+          return [
+            {
+              role: "user",
+              content: "print the version of @package.json",
+            },
+          ];
+        },
+      },
+    ];
+  },
 }
 ```
+
+## 创建您自己的代码代理
+
+您可以使用插件系统创建具有自己的模型、功能、工具和其他集成的代码代理。
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const plugin: Plugin = {};
+runNeovate({
+  productName: 'custom-code-agent',
+  version: '0.0.1',
+  plugins: [plugin],
+});
+```
+
+就是这样。现在您可以使用自己的代码代理了。
 
 ## 插件钩子
 
