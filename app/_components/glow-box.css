@@ -1,0 +1,53 @@
+.glow-box {
+  position: relative;
+  border: var(--border-width, 1px) solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius, 12px);
+  transition: border-color 0.3s ease;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+/* Dark mode border */
+:root[class~="dark"] .glow-box {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effect via pseudo-element */
+.glow-box::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--border-width, 1px));
+  border-radius: var(--border-radius, 12px);
+  padding: var(--border-width, 1px);
+  background: linear-gradient(
+    135deg,
+    rgba(254, 48, 112, var(--glow-intensity, 0)),  /* #fe3070 */
+    rgba(254, 48, 112, calc(var(--glow-intensity, 0) * 0.8))
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: var(--glow-intensity, 0);
+  transition: opacity 0.2s ease;
+}
+
+/* Fallback for browsers without IntersectionObserver - simple hover effect */
+@supports not (selector(::before)) {
+  .glow-box:hover {
+    border-color: #fe3070;
+  }
+}
+
+/* Mobile: Disable glow effects (handled by JS, but CSS fallback) */
+@media (hover: none) and (pointer: coarse) {
+  .glow-box::before {
+    display: none;
+  }
+}
+
