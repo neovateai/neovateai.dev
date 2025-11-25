@@ -1,8 +1,7 @@
 {
-  "name": "swr-site",
+  "name": "neovateai.dev",
   "type": "module",
-  "author": "Shu Ding",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "analyze": "ANALYZE=true pnpm build",
