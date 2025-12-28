@@ -53,4 +53,9 @@ export default {
     type: 'separator'
   },
   'troubleshooting': '',
+  _6: {
+    title: <Separator>Resources</Separator>,
+    type: 'separator'
+  },
+  'milestone': '',
 }
