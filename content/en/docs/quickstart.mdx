@@ -1,6 +1,6 @@
 # Quick Start
 
-Get started with Neovate Code in minutes.
+Get started with Neovate Code in minutes. By the end of this guide, you'll understand how to use AI-powered coding assistance for common development tasks.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ Get started with Neovate Code in minutes.
 - Terminal access
 - A coding project
 
-## Installation
+## Step 1: Install Neovate Code
 
 Install globally via npm:
 
@@ -22,7 +22,7 @@ Verify installation:
 neovate --version
 ```
 
-## Initial Setup
+## Step 2: Initial Setup
 
 Navigate to your project and start Neovate Code:
 
@@ -36,7 +36,7 @@ On first run, you'll be prompted to configure a provider:
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/utPsQZCitP8AAAAASDAAAAgADhqBAQFr/original)
 
 1. Type `/login` and select your AI provider
-2. Enter your API key
+2. Open the URL to complete OAuth login, or enter your API key directly
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/oZqNRp3FwEAAAAAARvAAAAgADhqBAQFr/original)
 
@@ -44,39 +44,148 @@ On first run, you'll be prompted to configure a provider:
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/meN2QalVfDMAAAAARtAAAAgADhqBAQFr/original)
 
-## Start Coding
+## Step 3: Ask Your First Question
 
-You're now in interactive mode. Try these commands:
+You're now in interactive mode. Start by understanding your codebase:
 
 ```bash
-> explain this project
-> create a testcase for @src/components/Button.tsx
-> what is the purpose of this project
+> what does this project do?
+```
+
+Neovate will analyze your files and provide a summary. Try more specific questions:
+
+```bash
+> what technologies does this project use?
+> where is the main entry point?
+> explain the folder structure
 > analyze the dependencies of this project
 ```
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/REH1Qb-ZWn8AAAAARIAAAAgADhqBAQFr/original)
 
-## Review & Commit
+Neovate reads your files as needed - you don't have to manually add context.
 
-After making changes, stage them and get a review:
+## Step 4: Make Your First Code Change
+
+Now let's make Neovate do some actual coding. Try a simple task:
+
+```bash
+> add a hello world function to the main file
+```
+
+Neovate will:
+
+1. Find the appropriate file
+2. Show you the proposed changes
+3. Ask for your approval
+4. Make the edit
+
+You can also reference specific files using `@`:
+
+```bash
+> create a testcase for @src/components/Button.tsx
+> add input validation to @src/forms/LoginForm.tsx
+```
+
+Neovate always asks for permission before modifying files. You can approve individual changes or enable auto-accept mode for a session.
+
+## Step 5: Use Git with Neovate
+
+Neovate makes Git operations conversational:
+
+```bash
+> what files have I changed?
+> show me the diff
+> create a new branch called feature/login
+```
+
+Review your changes before committing:
 
 ```bash
 git add .
 neovate /review
 ```
 
-Generate and commit with AI assistance:
+Generate a commit message and commit with AI assistance:
 
 ```bash
 neovate commit
 ```
 
-## What's next?
+Or do it conversationally:
 
-After you've completed the quickstart, you can learn more about the following topics:
+```bash
+> commit my changes with a descriptive message
+> show me the last 5 commits
+```
 
-- [CLI](./cli.mdx)
-- [Settings](./settings.mdx)
-- [Rules](./rules.mdx)
-- [Models](./models.mdx)
+## Step 6: Fix a Bug or Add a Feature
+
+Neovate excels at debugging and feature implementation. Describe what you want in natural language:
+
+```bash
+> add input validation to the user registration form
+> implement dark mode toggle in the settings page
+```
+
+Or fix existing issues:
+
+```bash
+> there's a bug where users can submit empty forms - fix it
+> the login page shows a blank screen after wrong credentials - debug it
+```
+
+Neovate will:
+
+- Locate the relevant code
+- Understand the context
+- Implement a solution
+- Run tests if available
+
+## Step 7: Other Common Workflows
+
+**Refactor code**
+
+```bash
+> refactor the authentication module to use async/await
+> extract the validation logic into a separate utility
+```
+
+**Write tests**
+
+```bash
+> write unit tests for the calculator functions
+> add integration tests for the API endpoints
+```
+
+**Update documentation**
+
+```bash
+> update the README with installation instructions
+> add JSDoc comments to the exported functions
+```
+
+**Code review**
+
+```bash
+> review my changes and suggest improvements
+> check for potential security issues
+```
+
+## Tips
+
+- Use `/logout` to switch accounts or providers
+- Use `/help` to discover all available slash commands
+- Run `/init` to create a project-level `AGENTS.md` rules file
+- Set `HTTPS_PROXY` environment variable if you're behind a firewall
+- Be specific with your requests - instead of "fix the bug", try "fix the login bug where users see a blank screen"
+- Let Neovate explore first - ask it to analyze your code before making changes
+
+## What's Next?
+
+After you've completed the quickstart, explore more features:
+
+- [CLI](./cli.mdx) - All commands and options
+- [Settings](./settings.mdx) - Customize Neovate for your workflow
+- [Rules](./rules.mdx) - Configure project-level AI behavior
+- [Models](./models.mdx) - Choose and switch between AI models

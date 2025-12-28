@@ -23,18 +23,22 @@ neovate config set model openai/gpt-4o
 
 # 获取全局模型
 neovate config get model -g
+
+# 移除全局模型
+neovate config remove model -g
 ```
 
 ## 推荐模型
 
 有很多模型，我们无法测试所有模型。以下是一些已经过测试并运行良好的推荐模型。
 
-- Claude Sonnet 4
-- Claude Opus 4
-- Qwen3 Coder
-- Qwen3 Max
-- GPT 4.1
-- Gemini 2.5 Pro
+- Claude Sonnet 4.5 / Opus 4.5
+- GPT-5.1 / GPT-5.2
+- Gemini 3 Pro
+- GLM 4.7
+- MiniMax M2.1
+- Qwen3 Coder / Qwen3 Max
+- Grok 4.1 Fast
 
 ## 临时指定模型
 
@@ -49,24 +53,16 @@ neovate -m openai/gpt-4o "Create a testcase for @src/components/Button.tsx"
 模型别名是模型的快捷方式。您可以使用它们快速选择模型。
 
 ```bash
-neovate -m 4o
+neovate -m opus
 ```
 
 以下是一些内置的别名以便使用：
 
-- `deepseek`: deepseek/deepseek-chat
-- `r1`: deepseek/deepseek-reasoner
-- `41`: openai/gpt-4.1
-- `4`: openai/gpt-4
-- `4o`: openai/gpt-4o
-- `flash-lite`: google/gemini-2.5-flash-lite
-- `flash`: google/gemini-2.5-flash
-- `gemini`: google/gemini-2.5-pro
-- `grok`: xai/grok-4
-- `grok-code`: xai/grok-code-fast-1
-- `sonnet`: anthropic/claude-sonnet-4-20250514
-- `sonnet-3.5`: anthropic/claude-3-5-sonnet-20241022
-- `sonnet-3.7`: anthropic/claude-3-7-sonnet-20250219
-- `sonnet-3.7-thinking`: anthropic/claude-3-7-sonnet-20250219-thinking
-- `k2`: moonshotai-cn/kimi-k2-0711-preview
-- `k2-turbo`: moonshotai-cn/kimi-k2-turbo-preview
+| 别名 | 模型 |
+| --- | --- |
+| `flash` | google/gemini-2.5-flash |
+| `gemini` | google/gemini-3-pro-preview |
+| `grok` | xai/grok-4-1-fast |
+| `sonnet` | anthropic/claude-sonnet-4-5-20250929 |
+| `haiku` | anthropic/claude-haiku-4-5 |
+| `opus` | anthropic/claude-opus-4-5 |

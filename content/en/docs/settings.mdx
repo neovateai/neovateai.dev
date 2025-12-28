@@ -50,7 +50,7 @@ The approval mode to use.
 
 ### autoCompact
 
-Specify whether to enable the auto compact feature.
+Specify whether to enable the auto compact feature. When disabled, conversation history will accumulate and context limit may be exceeded.
 
 - Type: `boolean`
 - Default: `true`
@@ -62,19 +62,58 @@ Specify whether to enable automatic updates. Neovate Code will automatically dow
 - Type: `boolean`
 - Default: `true`
 
+### browser
+
+Specify whether to enable browser MCP integration.
+
+- Type: `boolean`
+- Default: `false`
+
 ### commit
 
 Specify the commit configuration.
 
-- Type: `CommitConfig`
+- Type: `object`
 - Default: `{ language: "en" }`
+
+Available options:
+- `language`: `string` - The language for commit messages
+- `systemPrompt`: `string` - Custom system prompt for commit message generation
+- `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
+
+### desktop
+
+Desktop application configuration. This setting can only be set globally.
+
+- Type: `object`
+- Default: `{ theme: "light", sendMessageWith: "enter" }`
+
+Available options:
+- `theme`: `"light" | "dark" | "system"` - The color theme for the desktop app
+- `sendMessageWith`: `"enter" | "cmdEnter"` - The key combination to send messages
+- `terminalFont`: `string` - Custom font for the terminal
+- `terminalFontSize`: `number` - Font size for the terminal
+
+### extensions
+
+Extensions configuration for third-party custom agents. Allows arbitrary nested configuration without validation.
+
+- Type: `Record<string, any>`
+- Default: `{}`
+
+### httpProxy
+
+Specify the HTTP proxy to use for network requests.
+
+- Type: `string`
+- Default: null
 
 ### language
 
 The language to use.
 
 - Type: `string`
-- Default: `"en"`
+- Default: `"English"`
 
 ### mcpServers
 
@@ -83,12 +122,24 @@ The MCP servers to use. Checkout [MCP](./mcp) for more details.
 - Type: `Record<string, McpServerConfig>`
 - Default: `{}`
 
+Each server config can be one of:
+- **stdio**: `{ type: "stdio", command: string, args: string[], env?: Record<string, string>, disable?: boolean }`
+- **sse**: `{ type: "sse", url: string, headers?: Record<string, string>, disable?: boolean }`
+- **http**: `{ type: "http", url: string, headers?: Record<string, string>, disable?: boolean }`
+
 ### model
 
 The model to use. Format: `provider_id/model_id`. Checkout [Models](./models) for more details.
 
 - Type: `string`
 - Default: null
+
+### outputFormat
+
+The output format for CLI responses.
+
+- Type: `"text" | "stream-json" | "json"`
+- Default: `"text"`
 
 ### outputStyle
 
@@ -111,6 +162,41 @@ The plugins to use. Checkout [Plugins](./plugins) for more details.
 - Type: `string[]`
 - Default: `[]`
 
+### provider
+
+Custom provider configurations. Allows overriding default provider settings.
+
+- Type: `Record<string, ProviderConfig>`
+- Default: `{}`
+
+Each provider config can include:
+- `id`: `string` - Provider identifier
+- `name`: `string` - Display name for the provider
+- `env`: `string[]` - Environment variable names for API key
+- `apiEnv`: `string[]` - Environment variable names for custom API base URL
+- `api`: `string` - Default API base URL
+- `doc`: `string` - Documentation URL
+- `models`: `Record<string, string | Omit<Model, 'id' | 'cost'>>` - Map of model IDs to model names
+- `options`: `object` - Provider options
+  - `apiKey`: `string` - API key for the provider
+  - `baseURL`: `string` - Custom base URL for the provider API
+  - `headers`: `Record<string, string>` - Custom headers
+  - `httpProxy`: `string` - HTTP proxy URL for this provider
+
+### quiet
+
+Specify whether to suppress non-essential output.
+
+- Type: `boolean`
+- Default: `false`
+
+### smallModel
+
+The small model to use for lightweight tasks. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`
+
 ### systemPrompt
 
 Specify the system prompt to use.
@@ -118,9 +204,30 @@ Specify the system prompt to use.
 - Type: `string`
 - Default: null
 
+### temperature
+
+The temperature to use for model responses.
+
+- Type: `number`
+- Default: null
+
 ### todo
 
 Specify whether to enable the todo feature.
 
 - Type: `boolean`
-- Default: `false`
+- Default: `true`
+
+### tools
+
+Tools configuration for enabling/disabling specific tools. Set a tool name to `false` to disable it.
+
+- Type: `Record<string, boolean>`
+- Default: `{}`
+
+### visionModel
+
+The vision model to use for image-related tasks. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`

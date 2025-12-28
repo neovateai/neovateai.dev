@@ -10,6 +10,30 @@ Neovate Code supports multiple providers and models. You can use it with your ow
   Didn't find your provider? Submit an issue or a pull request to add it.
 </Callout>
 
+### AIHubMix
+
+1. Open [AIHubMix](https://aihubmix.com/), create an account and get your API key.
+
+2. Type `/login` and select **AIHubMix** and enter the API key, or set the API key in your environment variable `AIHUBMIX_API_KEY`.
+
+```bash
+export AIHUBMIX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Antigravity
+
+<Callout>
+  OAuth-based authentication. No API key required.
+</Callout>
+
+1. Type `/login` and select **Antigravity**.
+
+2. Follow the OAuth flow to authenticate with your Google account.
+
+3. Run `/model` to select the model you want to use.
+
 ### Anthropic
 
 1. Open [Anthropic Platform Console](https://console.anthropic.com/settings/keys), click **Create Key** to create a new API key and copy it.
@@ -24,6 +48,18 @@ export ANTHROPIC_API_KEY=your-api-key
 
 ```bash
 export ANTHROPIC_API_BASE=https://your-base-url
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Cerebras
+
+1. Open [Cerebras](https://cerebras.ai/), create an account and get your API key.
+
+2. Type `/login` and select **Cerebras** and enter the API key, or set the API key in your environment variable `CEREBRAS_API_KEY`.
+
+```bash
+export CEREBRAS_API_KEY=your-api-key
 ```
 
 3. Run `/model` to select the model you want to use.
@@ -43,6 +79,18 @@ export DEEPSEEK_API_KEY=your-api-key
 ```bash
 export DEEPSEEK_API_BASE=https://your-base-url
 ```
+
+3. Run `/model` to select the model you want to use.
+
+### GitHub Copilot
+
+<Callout>
+  OAuth-based authentication. Requires a GitHub Copilot subscription.
+</Callout>
+
+1. Type `/login` and select **GitHub Copilot**.
+
+2. Follow the OAuth flow to authenticate with your GitHub account.
 
 3. Run `/model` to select the model you want to use.
 
@@ -75,6 +123,46 @@ export GROQ_API_KEY=your-api-key
 
 3. Run `/model` to select the model you want to use.
 
+### Hugging Face
+
+1. Open [Hugging Face](https://huggingface.co/settings/tokens), create an access token with inference permissions.
+
+2. Type `/login` and select **Hugging Face** and enter the API key, or set the API key in your environment variable `HUGGINGFACE_API_KEY`.
+
+```bash
+export HUGGINGFACE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### iFlow
+
+<Callout>
+  It's free to use.
+</Callout>
+
+1. Open [iFlow](https://iflow.cn/), register, click the right top avatar, then click **我的账户** to get the API key, copy it.
+
+2. Type `/login` and select **iFlow** and enter the API key, or set the API key in your environment variable `IFLOW_API_KEY`.
+
+```bash
+export IFLOW_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Minimax
+
+1. Open [Minimax Platform](https://platform.minimaxi.com/) (or [Minimax CN](https://platform.minimaxi.io/) for China), create an account and get your API key.
+
+2. Type `/login` and select **Minimax** (or **Minimax CN**) and enter the API key, or set the API key in your environment variable `MINIMAX_API_KEY`.
+
+```bash
+export MINIMAX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
 ### ModelScope
 
 1. Open [ModelScope Console](https://console.modelscope.cn/), click **Create API Key** to create a new API key and copy it.
@@ -89,40 +177,12 @@ export MODELSCOPE_API_KEY=your-api-key
 
 ### Moonshot AI
 
-1. Open [Moonshot AI Console](https://platform.moonshot.ai/console), click **Create API key** to create a new API key and copy it.
+1. Open [Moonshot AI Console](https://platform.moonshot.ai/console) (or [Moonshot AI CN Console](https://platform.moonshot.cn/console) for China), click **Create API key** to create a new API key and copy it.
 
-2. Type `/login` and select **Moonshot AI** and enter the API key, or set the API key in your environment variable `MOONSHOT_API_KEY`.
-
-```bash
-export MOONSHOT_API_KEY=your-api-key  
-```
-
-3. Run `/model` to select the model you want to use.
-
-### Moonshot AI CN
-
-1. Open [Moonshot AI CN Console](https://platform.moonshot.cn/console), click **Create API key** to create a new API key and copy it.
-
-2. Type `/login` and select **Moonshot AI CN** and enter the API key, or set the API key in your environment variable `MOONSHOT_API_KEY`.
+2. Type `/login` and select **Moonshot AI** (or **Moonshot AI CN**) and enter the API key, or set the API key in your environment variable `MOONSHOT_API_KEY`.
 
 ```bash
 export MOONSHOT_API_KEY=your-api-key  
-```
-
-3. Run `/model` to select the model you want to use.
-
-### IFlow
-
-<Callout>
-  It's free to use.
-</Callout>
-
-1. Open [IFlow](https://iflow.cn/), register, click the right top avatar, then click **我的账户** to get the API key, copy it.
-
-2. Type `/login` and select **IFlow** and enter the API key, or set the API key in your environment variable `IFLOW_API_KEY`.
-
-```bash
-export IFLOW_API_KEY=your-api-key  
 ```
 
 3. Run `/model` to select the model you want to use.
@@ -157,6 +217,42 @@ export OPENROUTER_API_KEY=your-api-key
 
 3. Run `/model` to select the model you want to use.
 
+### Poe
+
+1. Open [Poe](https://poe.com/), go to settings and get your API key.
+
+2. Type `/login` and select **Poe** and enter the API key, or set the API key in your environment variable `POE_API_KEY`.
+
+```bash
+export POE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### SiliconFlow
+
+1. Open [SiliconFlow](https://siliconflow.com/) (or [SiliconFlow CN](https://siliconflow.cn/) for China), create an account and get your API key.
+
+2. Type `/login` and select **SiliconFlow** (or **SiliconFlow CN**) and enter the API key, or set the API key in your environment variable `SILICONFLOW_API_KEY`.
+
+```bash
+export SILICONFLOW_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### VolcEngine
+
+1. Open [VolcEngine Console](https://www.volcengine.com/), create an account and get your API key.
+
+2. Type `/login` and select **VolcEngine** and enter the API key, or set the API key in your environment variable `VOLCENGINE_API_KEY`.
+
+```bash
+export VOLCENGINE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
 ### xAI
 
 1. Open [xAI Console](https://console.x.ai/), click **Create API key** to create a new API key and copy it.
@@ -165,6 +261,42 @@ export OPENROUTER_API_KEY=your-api-key
 
 ```bash
 export XAI_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Xiaomi Mimo
+
+1. Open [Xiaomi Mimo Platform](https://platform.xiaomimimo.com/), create an account and get your API key.
+
+2. Type `/login` and select **Xiaomi Mimo** and enter the API key, or set the API key in your environment variable `MIMO_API_KEY`.
+
+```bash
+export MIMO_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### ZenMux
+
+1. Open [ZenMux](https://zenmux.ai/), create an account and get your API key.
+
+2. Type `/login` and select **ZenMux** and enter the API key, or set the API key in your environment variable `ZENMUX_API_KEY`.
+
+```bash
+export ZENMUX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Zhipu AI
+
+1. Open [Zhipu AI](https://open.bigmodel.cn/) (or [Z.AI](https://api.z.ai/) for international), create an account and get your API key.
+
+2. Type `/login` and select **Zhipu AI** (or **Z.AI Coding Plan** / **Zhipu AI Coding Plan** for coding-specific plans) and enter the API key, or set the API key in your environment variable `ZHIPU_API_KEY`.
+
+```bash
+export ZHIPU_API_KEY=your-api-key
 ```
 
 3. Run `/model` to select the model you want to use.
@@ -194,3 +326,7 @@ Edit the `~/.neovate/config.json` file to add the provider.
   }
 }
 ```
+
+<Callout type="info">
+  Want more control over providers? You can create your own code agent using [plugins](/docs/plugins), which gives you full programmatic control over provider configuration, model aliases, and more through the `provider` and `modelAlias` hooks.
+</Callout>

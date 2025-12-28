@@ -1,6 +1,6 @@
 # 概述
 
-Neovate `['niːəʊveɪt]` Code 是一个增强开发体验的代码智能体。您可以使用它来生成代码、修复bug、代码审查、添加测试等等。您可以在交互模式或无头模式下运行它。
+Neovate `['niːəʊveɪt]` Code 是一个开源开放的 Code Agent，同时内置最新的 AI 编程最佳实践。你可以使用它来生成代码、修复 bug、代码审查、添加测试等，也可以在交互模式或 Headless 模式下运行它，还可以通过 SDK 的方式封装自己的 Code Agent。
 
 ```bash
 # 安装
@@ -22,12 +22,15 @@ neovate
 - 开放的 Claude Code
 - 易于扩展
 - 多客户端支持
+- 最佳实践
 
 Claude Code 是一个很棒的代码智能体，但它不是开源的，默认情况下也不能与其他模型一起使用。Neovate Code 从 Claude Code 中学到了很多，包括功能、配置等等。在此基础上，我们添加了对所有主流模型和提供商的支持。所以如果您两者都想要，这是一个很好的选择。
 
 Neovate Code 易于扩展。它有一个内置的插件系统和丰富的钩子。您可以快速创建自己的代码智能体，包含自己的模型、功能、工具和其他集成。蚂蚁集团和快手等公司已经在使用它来构建自己的代码智能体。
 
 Neovate Code 目前只有 CLI 客户端，但我们已经让架构足够灵活以支持多个客户端。因此很容易扩展以支持其他客户端，如 IDE 扩展、Web 应用、原生应用和远程智能体。我们正在努力开发这些。
+
+Neovate Code 紧跟社区 AI Coding 的最佳实践，并加入自己的理解。AI Coding 变化很快，最佳实践也变化很快。我们持续跟进 Spec Driven、Parallel Agent 等最新趋势。
 
 ## 交互模式
 
@@ -61,5 +64,12 @@ neovate -q --output-format stream-json "Review the changes"
 neovate -c
 
 # 交互式地从特定会话恢复
-neovate /resume
+neovate -r
+# 或
+neovate --resume
+
+# 创建新会话
+/clear
 ```
+
+按 `esc-esc` 可以 fork 会话，然后选择要从哪条消息开始分叉。

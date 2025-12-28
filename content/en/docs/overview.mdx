@@ -1,6 +1,6 @@
 # Overview
 
-Neovate `['niːəʊveɪt]` Code is a code agent to enhance your development. You can use it to generate code, fix bugs, review code, add tests, and more. You can run it in interactive mode or headless mode.
+Neovate `['niːəʊveɪt]` Code is an open-source Code Agent with built-in AI programming best practices. You can use it to generate code, fix bugs, review code, add tests, and more. You can run it in interactive mode or headless mode, or wrap your own Code Agent via SDK.
 
 ```bash
 # Install
@@ -22,12 +22,15 @@ There are so many code agents out there. Here are some features that make Neovat
 - Open Claude Code
 - Easy to extend
 - Multiple clients
+- Best Practices
 
 Claude Code is a great code agent, but it is not open source, and can not be used with other models by default. Neovate Code learns a lot from Claude Code, including features and configurations and others. And based on this, we added supports for all popular models and providers. So it's a good choice if you want both.
 
 Neovate Code is easy to extend. It has a built-in plugin system with much hooks. You can quickly create Your Own Code Agent with your own models, features, tools and other integrations. Companies like Ant Group and Kuaishou has already using it to build their own code agents.
 
 Neovate Code is currently only have the CLI client, but we have make the architecture flexible enough to support multiple clients. So it's easy to extend to support other clients like IDE Extension, Web App, Native App and Remote Agent. And we're working on these.
+
+Neovate Code follows the latest AI Coding best practices from the community, combined with our own insights. AI Coding is evolving rapidly, and so are the best practices. We keep up with trends like Spec Driven Development, Parallel Agent, and more.
 
 ## Interactive Mode
 
@@ -61,5 +64,12 @@ Sessions could be resumed from the last state.
 neovate -c
 
 # Resume from a specific session interactively
-neovate /resume
+neovate -r
+# or
+neovate --resume
+
+# Create a new session
+/clear
 ```
+
+Sessions could be forked by pressing `esc-esc`, then select a message to fork from.

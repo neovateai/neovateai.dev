@@ -16,28 +16,37 @@ export default {
   'overview': '',
   'installation': '',
   'quickstart': '',
+  'common-workflows': '',
+  'features': '',
   _2: {
-    title: <Separator>用户指南</Separator>,
-    type: 'separator'
-  },
-  'rules': '',
-  'headless': '',
-  'mcp': '',
-  _3: {
     title: <Separator>配置</Separator>,
     type: 'separator'
   },
+  'rules': '',
   'settings': '',
   'models': '',
   'providers': '',
+  _3: {
+    title: <Separator>功能</Separator>,
+    type: 'separator'
+  },
+  'interactive-mode': '',
+  'headless': '',
+  'slash-commands': '',
+  'subagents': '',
+  'skills': '',
+  'spec-driven': '',
+  'sdk': '',
+  'mcp': '',
+  'output-style': '',
+  'ai-commit': '',
+  'shell-command-generator': '',
+  'session-log-viewer': '',
   _4: {
     title: <Separator>参考</Separator>,
     type: 'separator'
   },
   'cli': '',
-  'interactive-mode': '',
-  'slash-commands': '',
-  'output-style': '',
   'plugins': '',
   _5: {
     title: <Separator>支持</Separator>,

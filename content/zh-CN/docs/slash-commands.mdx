@@ -8,17 +8,27 @@ import { Callout } from 'nextra/components';
 
 |命令|描述|
 |---|---|
+|`/add-dir [path]`|添加或管理额外的工作目录|
+|`/bug`|向 GitHub 报告 Bug|
 |`/clear`|开始新会话|
 |`/compact`|清除对话历史但在上下文中保留摘要|
+|`/context`|分析并显示 Token 使用情况|
 |`/exit`|退出应用程序|
 |`/help`|显示帮助|
 |`/init`|创建或改进 AGENTS.md 文件|
+|`/login [provider]`|为提供商配置 API 密钥|
+|`/logout`|移除提供商的 API 密钥|
 |`/mcp`|MCP 服务器管理|
-|`/model <model>`|选择模型|
-|`/output-style <output_style>`|选择输出样式|
-|`/resume <session_id>`|从特定会话恢复|
+|`/model [model]`|选择模型|
+|`/output-style [output_style]`|选择输出样式|
+|`/resume [session_id]`|从特定会话恢复|
 |`/review [pull_request_id]`|审查 GitHub 拉取请求或暂存的更改|
+|`/spec:brainstorm <idea>`|头脑风暴设计想法|
+|`/spec:execute-plan [plan_file]`|执行实施计划|
+|`/spec:save-design`|保存头脑风暴会话的设计文档|
+|`/spec:write-plan <feature>`|编写实施计划|
 |`/status`|显示状态|
+|`/terminal-setup`|设置 Shift+Enter 快捷键|
 
 ## 自定义斜杠命令
 
@@ -37,6 +47,10 @@ mkdir -p .neovate/commands
 echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
 ```
 
+<Callout type="info">
+  为了兼容性，`.claude/commands` 也支持作为项目级命令目录。
+</Callout>
+
 ### 全局范围
 
 位于 `~/.neovate/commands` 目录下。
@@ -45,6 +59,10 @@ echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
 mkdir -p ~/.neovate/commands
 echo "Explain the project dependencies" > ~/.neovate/commands/explain-dependencies.md
 ```
+
+<Callout type="info">
+  为了兼容性，`~/.claude/commands` 也支持作为全局命令目录。
+</Callout>
 
 ### 用法
 

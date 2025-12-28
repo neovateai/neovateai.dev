@@ -1,0 +1,85 @@
+# Shell Command Generator
+
+Convert natural language to shell commands using AI and optionally execute them.
+
+## Quick Start
+
+```bash
+neovate run "list all files in current directory"
+```
+
+This opens interactive mode where you can review the generated command and choose an action.
+
+For immediate execution:
+
+```bash
+neovate run --yes "create a backup of config.json"
+```
+
+## Features
+
+- **Natural language conversion** - Describe what you want in plain English, get the exact shell command
+- **Interactive action selector** - Execute, copy, edit, or regenerate before running
+- **Command editing** - Modify the generated command before execution
+- **Prompt editing** - Refine your description to regenerate a better command
+- **Auto-execution** - Skip confirmation with `--yes` flag
+
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `-m, --model <model>` | Specify model to use |
+| `--yes` | Execute the command without confirmation |
+| `-h, --help` | Show help |
+
+## Interactive Actions
+
+When a command is generated, you can choose from these actions:
+
+| Action | Description |
+|--------|-------------|
+| **Execute command** | Run the generated command immediately |
+| **Copy to clipboard** | Copy the command for use elsewhere |
+| **Edit command** | Modify the command before executing |
+| **Edit prompt & regenerate** | Refine your description and generate a new command |
+| **Cancel** | Exit without executing |
+
+Use arrow keys to navigate and Enter to select. Press Esc to cancel at any time.
+
+## Examples
+
+List files modified in the last 7 days:
+
+```bash
+neovate run "find all files modified in last 7 days"
+```
+
+Search for a pattern in code:
+
+```bash
+neovate run "search for TODO comments in all JavaScript files"
+```
+
+Execute without confirmation:
+
+```bash
+neovate run --yes "show disk usage"
+```
+
+Use a specific model:
+
+```bash
+neovate run -m claude-sonnet "compress all images in current directory"
+```
+
+## Configuration
+
+You can set a default model in your settings:
+
+```json
+{
+  "smallModel": "claude-haiku"
+}
+```
+
+The run command uses `smallModel` by default for faster responses. See [Settings](/docs/settings) for more configuration options.

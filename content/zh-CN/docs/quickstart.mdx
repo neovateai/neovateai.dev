@@ -1,6 +1,6 @@
 # 快速开始
 
-几分钟内开始使用 Neovate Code。
+几分钟内开始使用 Neovate Code。完成本指南后，您将了解如何使用 AI 辅助编程来完成常见的开发任务。
 
 > 该文档的视频版： https://www.bilibili.com/video/BV1ajnxzFE8d/ 。
 
@@ -10,7 +10,7 @@
 - 终端访问权限
 - 一个编程项目
 
-## 安装
+## 第一步：安装 Neovate Code
 
 通过 npm 全局安装：
 
@@ -24,7 +24,7 @@ npm i @neovate/code -g
 neovate --version
 ```
 
-## 初始设置
+## 第二步：初始设置
 
 导航到您的项目并启动 Neovate Code：
 
@@ -38,7 +38,7 @@ neovate
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/utPsQZCitP8AAAAASDAAAAgADhqBAQFr/original)
 
 1. 输入 `/login` 并选择您的 AI 提供商
-2. 输入您的 API 密钥
+2. 打开 URL 完成 OAuth 登录，或直接输入您的 API 密钥
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/oZqNRp3FwEAAAAAARvAAAAgADhqBAQFr/original)
 
@@ -46,39 +46,148 @@ neovate
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/meN2QalVfDMAAAAARtAAAAgADhqBAQFr/original)
 
-## 开始编程
+## 第三步：提出第一个问题
 
-您现在处于交互模式。尝试这些命令：
+您现在处于交互模式。首先了解您的代码库：
 
 ```bash
-> explain this project
-> create a testcase for @src/components/Button.tsx
-> what is the purpose of this project
+> what does this project do?
+```
+
+Neovate 会分析您的文件并提供摘要。尝试更具体的问题：
+
+```bash
+> what technologies does this project use?
+> where is the main entry point?
+> explain the folder structure
 > analyze the dependencies of this project
 ```
 
 ![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/REH1Qb-ZWn8AAAAARIAAAAgADhqBAQFr/original)
 
-## 审查和提交
+Neovate 会根据需要读取您的文件 - 您无需手动添加上下文。
 
-进行更改后，暂存它们并获得审查：
+## 第四步：进行第一次代码修改
+
+现在让 Neovate 进行一些实际的编程。尝试一个简单的任务：
+
+```bash
+> add a hello world function to the main file
+```
+
+Neovate 将会：
+
+1. 找到合适的文件
+2. 向您展示建议的更改
+3. 请求您的批准
+4. 进行编辑
+
+您还可以使用 `@` 引用特定文件：
+
+```bash
+> create a testcase for @src/components/Button.tsx
+> add input validation to @src/forms/LoginForm.tsx
+```
+
+Neovate 在修改文件之前始终会征求许可。您可以逐个批准更改，或为会话启用自动接受模式。
+
+## 第五步：使用 Git
+
+Neovate 让 Git 操作变得对话化：
+
+```bash
+> what files have I changed?
+> show me the diff
+> create a new branch called feature/login
+```
+
+提交前审查您的更改：
 
 ```bash
 git add .
 neovate /review
 ```
 
-使用 AI 辅助生成并提交：
+使用 AI 辅助生成提交信息并提交：
 
 ```bash
 neovate commit
 ```
 
+或者通过对话方式：
+
+```bash
+> commit my changes with a descriptive message
+> show me the last 5 commits
+```
+
+## 第六步：修复 Bug 或添加功能
+
+Neovate 擅长调试和功能实现。用自然语言描述您想要的内容：
+
+```bash
+> add input validation to the user registration form
+> implement dark mode toggle in the settings page
+```
+
+或修复现有问题：
+
+```bash
+> there's a bug where users can submit empty forms - fix it
+> the login page shows a blank screen after wrong credentials - debug it
+```
+
+Neovate 将会：
+
+- 定位相关代码
+- 理解上下文
+- 实现解决方案
+- 运行可用的测试
+
+## 第七步：其他常见工作流程
+
+**重构代码**
+
+```bash
+> refactor the authentication module to use async/await
+> extract the validation logic into a separate utility
+```
+
+**编写测试**
+
+```bash
+> write unit tests for the calculator functions
+> add integration tests for the API endpoints
+```
+
+**更新文档**
+
+```bash
+> update the README with installation instructions
+> add JSDoc comments to the exported functions
+```
+
+**代码审查**
+
+```bash
+> review my changes and suggest improvements
+> check for potential security issues
+```
+
+## 提示
+
+- 使用 `/logout` 切换账户或提供商
+- 使用 `/help` 查看所有可用的斜杠命令
+- 运行 `/init` 创建项目级 `AGENTS.md` 规则文件
+- 如果您在防火墙后，请设置 `HTTPS_PROXY` 环境变量
+- 请求要具体 - 不要说"修复这个 bug"，而是说"修复用户看到空白屏幕的登录 bug"
+- 先让 Neovate 探索 - 在进行更改之前，让它分析您的代码
+
 ## 下一步做什么？
 
-完成快速开始后，您可以了解更多以下主题：
+完成快速开始后，探索更多功能：
 
-- [CLI](./cli.mdx)
-- [设置](./settings.mdx)
-- [规则](./rules.mdx)
-- [模型](./models.mdx)
+- [CLI](./cli.mdx) - 所有命令和选项
+- [设置](./settings.mdx) - 为您的工作流程自定义 Neovate
+- [规则](./rules.mdx) - 配置项目级 AI 行为
+- [模型](./models.mdx) - 选择和切换 AI 模型

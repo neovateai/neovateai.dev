@@ -107,8 +107,10 @@ Modify the providers map.
   - providers: `ProvidersMap`
   - opts:
     - models: `ModelMap`
-    - defaultModelCreator: `(name: string, provider: Provider) => LanguageModelV1`
+    - defaultModelCreator: `(name: string, provider: Provider) => LanguageModelV2`
     - createOpenAI: `(options: any) => OpenAIProvider`
+    - createOpenAICompatible: `(options: any) => OpenAICompatibleProvider`
+    - createAnthropic: `(options: any) => AnthropicProvider`
 - return: `ProvidersMap`
 
 ### modelAlias

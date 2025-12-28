@@ -17,7 +17,10 @@ import { Callout } from 'nextra/components';
 | `neovate config` | 配置管理 | 查看 [设置](./settings) |
 | `neovate mcp` | MCP 服务器管理 | 查看 [MCP](./mcp) |
 | `neovate commit` | 提交更改 | `neovate commit` |
+| `neovate log [file]` | 以 HTML 格式查看会话日志 | `neovate log` |
+| `neovate run` | 运行命令 | `neovate run` |
 | `neovate update` | 更新 Neovate Code | `neovate update` |
+| `neovate workspace` | 管理工作区 | `neovate workspace` |
 
 ## 选项
 
@@ -25,6 +28,7 @@ import { Callout } from 'nextra/components';
 | --- | --- |
 | `--append-system-prompt <append_system_prompt>` | 追加系统提示 |
 | `--approval-mode <approval_mode>` | 指定批准模式，选项：`yolo`、`autoEdit`、`default` |
+| `--browser` | 启用浏览器集成 |
 | `-c, --continue` | 从上次会话恢复 |
 | `--cwd <cwd>` | 指定工作目录 |
 | `-h, --help` | 显示帮助 |
@@ -37,8 +41,92 @@ import { Callout } from 'nextra/components';
 | `--plugin <plugin>` | 指定插件 |
 | `-q, --quiet` | 静默模式，仅输出结果 |
 | `-r, --resume <resume>` | 指定恢复，格式：`session_id` |
+| `--small-model <small_model>` | 指定用于快速操作的小模型 |
 | `--system-prompt <system_prompt>` | 指定系统提示 |
+| `--tools <json>` | 工具配置（以工具名称为键、布尔值为值的 JSON 对象） |
 | `-v, --version` | 显示版本 |
+| `--vision-model <vision_model>` | 指定用于图像任务的视觉模型 |
+
+### neovate commit
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+| `-s, --stage` | 提交前暂存所有更改 |
+| `-c, --commit` | 自动提交更改 |
+| `-n, --no-verify` | 跳过 pre-commit 钩子 |
+| `-i, --interactive` | 交互模式（默认） |
+| `-m, --model <model>` | 指定要使用的模型 |
+| `--language <language>` | 设置提交消息的语言 |
+| `--copy` | 将提交消息复制到剪贴板 |
+| `--push` | 提交后推送更改 |
+| `--follow-style` | 遵循现有仓库的提交风格 |
+| `--checkout` | 根据提交消息创建并切换到新分支 |
+
+### neovate config
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+| `-g, --global` | 使用全局配置而不是项目配置 |
+
+子命令：
+- `get <key>` - 获取配置值
+- `set <key> <value>` - 设置配置值
+- `remove|rm <key> [values...]` - 删除配置值或从配置数组中删除项
+- `list|ls` - 列出所有配置值
+- `add <key> <value>` - 添加配置值
+
+### neovate mcp
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+| `-g, --global` | 使用全局配置而不是项目配置 |
+| `-e, --env <json>` | 以 JSON 字符串形式的环境变量 |
+| `--sse` | 对基于 URL 的服务器使用 SSE 传输 |
+
+子命令：
+- `get <name>` - 获取 MCP 服务器配置
+- `add <name> <command> [args...]` - 添加 MCP 服务器
+- `remove|rm <name>` - 删除 MCP 服务器
+- `list|ls` - 列出所有 MCP 服务器
+- `enable <name>` - 启用 MCP 服务器
+- `disable <name>` - 禁用 MCP 服务器
+
+### neovate run
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+| `-m, --model <model>` | 指定要使用的模型 |
+| `-y, --yes` | 无需确认直接执行命令 |
+
+### neovate update
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+
+### neovate workspace
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+
+子命令：
+- `create` - 创建新的工作区工作树
+- `list|ls` - 列出所有活动的工作区
+- `delete|rm <name>` - 删除工作区而不合并
+- `complete` - 完成工作区并合并更改（从根目录运行）
+
+Create 选项：
+- `--name <name>` - 自定义工作区名称
+- `-b, --branch <branch>` - 创建工作树的基础分支（默认：main）
+- `--skip-update` - 跳过从远程更新基础分支
+
+Delete 选项：
+- `-f, --force` - 即使有未提交的更改也删除
 
 ## 指定 MCP 服务器
 

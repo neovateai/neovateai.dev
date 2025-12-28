@@ -50,7 +50,7 @@ neovate config rm <key>
 
 ### autoCompact
 
-指定是否启用自动紧凑功能。
+指定是否启用自动紧凑功能。禁用后，对话历史会持续累积，可能超出上下文限制。
 
 - 类型：`boolean`
 - 默认：`true`
@@ -62,19 +62,58 @@ neovate config rm <key>
 - 类型：`boolean`
 - 默认：`true`
 
+### browser
+
+指定是否启用浏览器 MCP 集成。
+
+- 类型：`boolean`
+- 默认：`false`
+
 ### commit
 
 指定提交配置。
 
-- 类型：`CommitConfig`
+- 类型：`object`
 - 默认：`{ language: "en" }`
+
+可用选项：
+- `language`：`string` - 提交消息的语言
+- `systemPrompt`：`string` - 用于生成提交消息的自定义系统提示
+- `model`：`string` - 用于生成提交消息的模型（格式：`provider_id/model_id`）
+
+### desktop
+
+桌面应用配置。此设置只能全局设置。
+
+- 类型：`object`
+- 默认：`{ theme: "light", sendMessageWith: "enter" }`
+
+可用选项：
+- `theme`：`"light" | "dark" | "system"` - 桌面应用的颜色主题
+- `sendMessageWith`：`"enter" | "cmdEnter"` - 发送消息的按键组合
+- `terminalFont`：`string` - 终端的自定义字体
+- `terminalFontSize`：`number` - 终端的字体大小
+
+### extensions
+
+第三方自定义代理的扩展配置。允许任意嵌套配置，无需验证。
+
+- 类型：`Record<string, any>`
+- 默认：`{}`
+
+### httpProxy
+
+指定用于网络请求的 HTTP 代理。
+
+- 类型：`string`
+- 默认：null
 
 ### language
 
 使用的语言。
 
 - 类型：`string`
-- 默认：`"en"`
+- 默认：`"English"`
 
 ### mcpServers
 
@@ -83,12 +122,24 @@ neovate config rm <key>
 - 类型：`Record<string, McpServerConfig>`
 - 默认：`{}`
 
+每个服务器配置可以是以下之一：
+- **stdio**：`{ type: "stdio", command: string, args: string[], env?: Record<string, string>, disable?: boolean }`
+- **sse**：`{ type: "sse", url: string, headers?: Record<string, string>, disable?: boolean }`
+- **http**：`{ type: "http", url: string, headers?: Record<string, string>, disable?: boolean }`
+
 ### model
 
 使用的模型。格式：`provider_id/model_id`。查看 [模型](./models) 了解更多细节。
 
 - 类型：`string`
 - 默认：null
+
+### outputFormat
+
+CLI 响应的输出格式。
+
+- 类型：`"text" | "stream-json" | "json"`
+- 默认：`"text"`
 
 ### outputStyle
 
@@ -111,6 +162,41 @@ neovate config rm <key>
 - 类型：`string[]`
 - 默认：`[]`
 
+### provider
+
+自定义提供商配置。允许覆盖默认提供商设置。
+
+- 类型：`Record<string, ProviderConfig>`
+- 默认：`{}`
+
+每个提供商配置可以包含：
+- `id`：`string` - 提供商标识符
+- `name`：`string` - 提供商的显示名称
+- `env`：`string[]` - API 密钥的环境变量名
+- `apiEnv`：`string[]` - 自定义 API 基础 URL 的环境变量名
+- `api`：`string` - 默认 API 基础 URL
+- `doc`：`string` - 文档 URL
+- `models`：`Record<string, string | Omit<Model, 'id' | 'cost'>>` - 模型 ID 到模型名称的映射
+- `options`：`object` - 提供商选项
+  - `apiKey`：`string` - 提供商的 API 密钥
+  - `baseURL`：`string` - 提供商 API 的自定义基础 URL
+  - `headers`：`Record<string, string>` - 自定义请求头
+  - `httpProxy`：`string` - 此提供商的 HTTP 代理 URL
+
+### quiet
+
+指定是否抑制非必要输出。
+
+- 类型：`boolean`
+- 默认：`false`
+
+### smallModel
+
+用于轻量级任务的小模型。格式：`provider_id/model_id`。
+
+- 类型：`string`
+- 默认：使用与 `model` 相同的模型
+
 ### systemPrompt
 
 指定使用的系统提示。
@@ -118,9 +204,30 @@ neovate config rm <key>
 - 类型：`string`
 - 默认：null
 
+### temperature
+
+模型响应使用的温度参数。
+
+- 类型：`number`
+- 默认：null
+
 ### todo
 
 指定是否启用待办事项功能。
 
 - 类型：`boolean`
-- 默认：`false`
+- 默认：`true`
+
+### tools
+
+工具配置，用于启用/禁用特定工具。将工具名称设置为 `false` 以禁用它。
+
+- 类型：`Record<string, boolean>`
+- 默认：`{}`
+
+### visionModel
+
+用于图像相关任务的视觉模型。格式：`provider_id/model_id`。
+
+- 类型：`string`
+- 默认：使用与 `model` 相同的模型

@@ -10,34 +10,43 @@ export const Separator: FC<{ children: ReactNode }> = ({ children }) => {
 
 export default {
   _: {
-    title: <Separator>Overview</Separator>,
+    title: <Separator>Getting Started</Separator>,
     type: 'separator'
   },
   'overview': '',
   'installation': '',
   'quickstart': '',
+  'common-workflows': '',
+  'features': '',
   _2: {
-    title: <Separator>User Guide</Separator>,
-    type: 'separator'
-  },
-  'rules': '',
-  'headless': '',
-  'mcp': '',
-  _3: {
     title: <Separator>Configuration</Separator>,
     type: 'separator'
   },
+  'rules': '',
   'settings': '',
   'models': '',
   'providers': '',
+  _3: {
+    title: <Separator>Features</Separator>,
+    type: 'separator'
+  },
+  'interactive-mode': '',
+  'headless': '',
+  'slash-commands': '',
+  'subagents': '',
+  'skills': '',
+  'spec-driven': '',
+  'sdk': '',
+  'mcp': '',
+  'output-style': '',
+  'ai-commit': '',
+  'shell-command-generator': '',
+  'session-log-viewer': '',
   _4: {
     title: <Separator>Reference</Separator>,
     type: 'separator'
   },
   'cli': '',
-  'interactive-mode': '',
-  'slash-commands': '',
-  'output-style': '',
   'plugins': '',
   _5: {
     title: <Separator>Support</Separator>,

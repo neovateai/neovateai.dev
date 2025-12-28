@@ -1,0 +1,125 @@
+# SDK
+
+用于将 Neovate Code 集成到您应用程序中的编程接口。
+
+## 安装
+
+```bash
+npm install @neovate/code
+```
+
+## 快速开始
+
+### 单次提示
+
+用于简单的单轮交互：
+
+```typescript
+import { prompt } from '@neovate/code';
+
+const result = await prompt('Explain what this code does', {
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: '/path/to/project',
+});
+
+console.log(result.content);
+```
+
+### 流式会话
+
+用于实时消息流：
+
+```typescript
+import { createSession } from '@neovate/code';
+
+const session = await createSession({
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: process.cwd(),
+});
+
+await session.send('Refactor this function to use async/await');
+
+for await (const msg of session.receive()) {
+  if (msg.type === 'message') {
+    console.log(`[${msg.role}]`, msg);
+  } else if (msg.type === 'result') {
+    console.log('Done:', msg.content);
+  }
+}
+
+session.close();
+```
+
+### 恢复会话
+
+继续之前的对话：
+
+```typescript
+import { resumeSession } from '@neovate/code';
+
+const session = await resumeSession('session-id-here', {
+  model: 'anthropic/claude-sonnet-4-20250514',
+});
+
+await session.send('What were we discussing?');
+
+for await (const msg of session.receive()) {
+  // Handle messages...
+}
+
+session.close();
+```
+
+## API 参考
+
+### `prompt(message, options)`
+
+单次提示，完成后返回结果。
+
+| 参数 | 类型 | 描述 |
+|-----------|------|-------------|
+| `message` | `string` | 要发送的提示 |
+| `options.model` | `string` | 模型标识符（必需） |
+| `options.cwd` | `string` | 工作目录（可选） |
+
+返回值：`Promise<SDKResultMessage>`
+
+### `createSession(options)`
+
+创建新的流式会话。
+
+| 参数 | 类型 | 描述 |
+|-----------|------|-------------|
+| `options.model` | `string` | 模型标识符（必需） |
+| `options.cwd` | `string` | 工作目录（可选） |
+| `options.productName` | `string` | 产品名称（可选） |
+
+返回值：`Promise<SDKSession>`
+
+### `resumeSession(sessionId, options)`
+
+通过 ID 恢复现有会话。
+
+| 参数 | 类型 | 描述 |
+|-----------|------|-------------|
+| `sessionId` | `string` | 要恢复的会话 ID |
+| `options` | `SDKSessionOptions` | 与 createSession 相同 |
+
+返回值：`Promise<SDKSession>`
+
+### `SDKSession`
+
+| 方法 | 描述 |
+|--------|-------------|
+| `send(message)` | 发送消息（字符串或 SDKUserMessage） |
+| `receive()` | 产生 SDKMessage 对象的异步生成器 |
+| `close()` | 关闭会话 |
+| `sessionId` | 会话的唯一标识符 |
+
+## 消息类型
+
+| 类型 | 描述 |
+|------|-------------|
+| `system` | 会话初始化信息 |
+| `message` | 对话消息（用户/助手/工具） |
+| `result` | 带有成功/错误状态的最终结果 |

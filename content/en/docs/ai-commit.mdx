@@ -1,0 +1,86 @@
+# AI Commit
+
+Generate intelligent commit messages using AI based on your staged changes.
+
+## Quick Start
+
+```bash
+neovate commit
+```
+
+This opens interactive mode where you can review the AI-generated message and choose an action.
+
+For a one-liner workflow:
+
+```bash
+neovate commit -s -c --push
+```
+
+## Features
+
+- **AI-generated commit messages** - Analyzes your staged changes and generates meaningful commit messages
+- **Branch name suggestions** - Suggests descriptive branch names based on your changes
+- **Breaking change detection** - Identifies and flags breaking changes
+- **Interactive mode** - Review, edit, and choose actions before committing
+
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `-s, --stage` | Stage all changes before committing |
+| `-c, --commit` | Commit changes automatically |
+| `--push` | Push changes after commit |
+| `--copy` | Copy commit message to clipboard |
+| `--checkout` | Create and checkout new branch based on commit |
+| `-n, --no-verify` | Skip pre-commit hooks |
+| `-m, --model <model>` | Specify model to use |
+| `--language <lang>` | Set language for commit message |
+| `--follow-style` | Follow existing repository commit style |
+| `-i, --interactive` | Interactive mode (default) |
+
+## Examples
+
+Stage all changes and commit interactively:
+
+```bash
+neovate commit -s
+```
+
+Full pipeline - stage, commit, and push:
+
+```bash
+neovate commit -s -c --push
+```
+
+Create a new branch and commit:
+
+```bash
+neovate commit -s --checkout
+```
+
+Generate message in a specific language:
+
+```bash
+neovate commit --language Japanese
+```
+
+Skip pre-commit hooks when committing:
+
+```bash
+neovate commit -s -c -n
+```
+
+## Configuration
+
+You can set default options in your settings:
+
+```json
+{
+  "commit": {
+    "model": "claude-sonnet",
+    "language": "English"
+  }
+}
+```
+
+See [Settings](/docs/settings) for more configuration options.

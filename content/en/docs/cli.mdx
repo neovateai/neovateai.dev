@@ -17,14 +17,18 @@ Complete list of available commands and parameters.
 | `neovate config` | Configure management | Check out [Settings](./settings) |
 | `neovate mcp` | MCP servers management | Check out [MCP](./mcp) |
 | `neovate commit` | Commit the changes | `neovate commit` |
+| `neovate log [file]` | View session logs in HTML | `neovate log` |
+| `neovate run` | Run a command | `neovate run` |
 | `neovate update` | Update Neovate Code | `neovate update` |
+| `neovate workspace` | Manage workspaces | `neovate workspace` |
 
 ## Options
 
 | parameter | description |
 | --- | --- |
-| `--append-system-prompt <append_system_prompt>` | Append a system prompt |  |
+| `--append-system-prompt <append_system_prompt>` | Append a system prompt |
 | `--approval-mode <approval_mode>` | Specify an approval mode, Options: `yolo`, `autoEdit`, `default` |
+| `--browser` | Enable browser integration |
 | `-c, --continue` | Resume from the last session |
 | `--cwd <cwd>` | Specify a working directory |
 | `-h, --help` | Show the help |
@@ -37,8 +41,92 @@ Complete list of available commands and parameters.
 | `--plugin <plugin>` | Specify plugins |
 | `-q, --quiet` | Quiet mode, only output the result |
 | `-r, --resume <resume>` | Specify a resume, format: `session_id` |
+| `--small-model <small_model>` | Specify a small model for quick operations |
 | `--system-prompt <system_prompt>` | Specify a system prompt |
+| `--tools <json>` | Tools configuration (JSON object with tool names as keys and boolean values) |
 | `-v, --version` | Show the version |
+| `--vision-model <vision_model>` | Specify a vision model for image tasks |
+
+### neovate commit
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-s, --stage` | Stage all changes before committing |
+| `-c, --commit` | Commit changes automatically |
+| `-n, --no-verify` | Skip pre-commit hooks |
+| `-i, --interactive` | Interactive mode (default) |
+| `-m, --model <model>` | Specify model to use |
+| `--language <language>` | Set language for commit message |
+| `--copy` | Copy commit message to clipboard |
+| `--push` | Push changes after commit |
+| `--follow-style` | Follow existing repository commit style |
+| `--checkout` | Create and checkout new branch based on commit message |
+
+### neovate config
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Use global config instead of project config |
+
+Subcommands:
+- `get <key>` - Get a config value
+- `set <key> <value>` - Set a config value
+- `remove|rm <key> [values...]` - Remove a config value or items from a config array
+- `list|ls` - List all config values
+- `add <key> <value>` - Add a config value
+
+### neovate mcp
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Use global config instead of project config |
+| `-e, --env <json>` | Environment variables as JSON string |
+| `--sse` | Use SSE transport for URL-based servers |
+
+Subcommands:
+- `get <name>` - Get an MCP server configuration
+- `add <name> <command> [args...]` - Add an MCP server
+- `remove|rm <name>` - Remove an MCP server
+- `list|ls` - List all MCP servers
+- `enable <name>` - Enable an MCP server
+- `disable <name>` - Disable an MCP server
+
+### neovate run
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-m, --model <model>` | Specify model to use |
+| `-y, --yes` | Execute the command without confirmation |
+
+### neovate update
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+
+### neovate workspace
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+
+Subcommands:
+- `create` - Create a new workspace worktree
+- `list|ls` - List all active workspaces
+- `delete|rm <name>` - Delete a workspace without merging
+- `complete` - Complete workspace and merge changes (run from root)
+
+Create Options:
+- `--name <name>` - Custom workspace name
+- `-b, --branch <branch>` - Base branch to create worktree from (default: main)
+- `--skip-update` - Skip updating base branch from remote
+
+Delete Options:
+- `-f, --force` - Delete even with uncommitted changes
 
 ## Specify MCP servers
 

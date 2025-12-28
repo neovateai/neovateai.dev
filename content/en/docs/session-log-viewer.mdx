@@ -1,0 +1,55 @@
+# Session Log Viewer
+
+Browse and view session logs in an interactive HTML report.
+
+## Quick Start
+
+```bash
+neovate log
+```
+
+This opens an interactive session selector where you can choose a session to view.
+
+For a specific log file:
+
+```bash
+neovate log path/to/session.jsonl
+```
+
+## Features
+
+- **Interactive session browser** - Select from recent sessions with message counts and timestamps
+- **HTML report generation** - Creates styled, browsable HTML from session logs
+- **Message inspection** - View user messages, assistant responses, tool calls and results
+- **Request details** - See model, tools, request/response data for each assistant turn
+- **Cross-platform** - Opens in default browser on macOS, Windows, and Linux
+
+## Options
+
+| Argument | Description |
+|----------|-------------|
+| `[file]` | Path to a specific session.jsonl file (optional) |
+| `-h, --help` | Show help |
+
+## Examples
+
+Browse all sessions interactively:
+
+```bash
+neovate log
+```
+
+View a specific session file:
+
+```bash
+neovate log ~/.neovate/sessions/abc123/session.jsonl
+```
+
+## Output
+
+The generated HTML file is saved to `.log-outputs/` in your current directory and automatically opened in your default browser. The report shows:
+
+- Messages organized by conversation flow
+- Tool calls with their inputs
+- Tool results with success/error status
+- Request metadata including model and timestamp

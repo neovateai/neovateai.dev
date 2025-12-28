@@ -10,6 +10,30 @@ Neovate Code 支持多个提供商和模型。您可以使用自己的模型和�
   没有找到您的提供商？提交问题或拉取请求来添加它。
 </Callout>
 
+### AIHubMix
+
+1. 打开 [AIHubMix](https://aihubmix.com/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **AIHubMix** 然后输入 API 密钥，或在您的环境变量 `AIHUBMIX_API_KEY` 中设置 API 密钥。
+
+```bash
+export AIHUBMIX_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Antigravity
+
+<Callout>
+  基于 OAuth 认证，无需 API 密钥。
+</Callout>
+
+1. 输入 `/login` 并选择 **Antigravity**。
+
+2. 按照 OAuth 流程使用您的 Google 账户进行认证。
+
+3. 运行 `/model` 来选择您想使用的模型。
+
 ### Anthropic
 
 1. 打开 [Anthropic Platform Console](https://console.anthropic.com/settings/keys)，点击 **Create Key** 创建新的 API 密钥并复制它。
@@ -24,6 +48,18 @@ export ANTHROPIC_API_KEY=your-api-key
 
 ```bash
 export ANTHROPIC_API_BASE=https://your-base-url
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Cerebras
+
+1. 打开 [Cerebras](https://cerebras.ai/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **Cerebras** 然后输入 API 密钥，或在您的环境变量 `CEREBRAS_API_KEY` 中设置 API 密钥。
+
+```bash
+export CEREBRAS_API_KEY=your-api-key
 ```
 
 3. 运行 `/model` 来选择您想使用的模型。
@@ -43,6 +79,18 @@ export DEEPSEEK_API_KEY=your-api-key
 ```bash
 export DEEPSEEK_API_BASE=https://your-base-url
 ```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### GitHub Copilot
+
+<Callout>
+  基于 OAuth 认证，需要 GitHub Copilot 订阅。
+</Callout>
+
+1. 输入 `/login` 并选择 **GitHub Copilot**。
+
+2. 按照 OAuth 流程使用您的 GitHub 账户进行认证。
 
 3. 运行 `/model` 来选择您想使用的模型。
 
@@ -75,6 +123,46 @@ export GROQ_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
+### Hugging Face
+
+1. 打开 [Hugging Face](https://huggingface.co/settings/tokens)，创建一个具有推理权限的访问令牌。
+
+2. 输入 `/login` 并选择 **Hugging Face** 然后输入 API 密钥，或在您的环境变量 `HUGGINGFACE_API_KEY` 中设置 API 密钥。
+
+```bash
+export HUGGINGFACE_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### iFlow
+
+<Callout>
+  免费使用。
+</Callout>
+
+1. 打开 [iFlow](https://iflow.cn/)，注册，点击右上角头像，然后点击 **我的账户** 获取 API 密钥，复制它。
+
+2. 输入 `/login` 并选择 **iFlow** 然后输入 API 密钥，或在您的环境变量 `IFLOW_API_KEY` 中设置 API 密钥。
+
+```bash
+export IFLOW_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Minimax
+
+1. 打开 [Minimax 平台](https://platform.minimaxi.com/)（或中国区 [Minimax CN](https://platform.minimaxi.io/)），创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **Minimax**（或 **Minimax CN**）然后输入 API 密钥，或在您的环境变量 `MINIMAX_API_KEY` 中设置 API 密钥。
+
+```bash
+export MINIMAX_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
 ### ModelScope
 
 1. 打开 [ModelScope Console](https://console.modelscope.cn/)，点击 **Create API Key** 创建新的 API 密钥并复制它。
@@ -87,43 +175,14 @@ export MODELSCOPE_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
-
 ### Moonshot AI
 
-1. 打开 [Moonshot AI Console](https://platform.moonshot.ai/console)，点击 **Create API key** 创建新的 API 密钥并复制它。
+1. 打开 [Moonshot AI Console](https://platform.moonshot.ai/console)（或中国区 [Moonshot AI CN Console](https://platform.moonshot.cn/console)），点击 **Create API key** 创建新的 API 密钥并复制它。
 
-2. 输入 `/login` 并选择 **Moonshot AI** 然后输入 API 密钥，或在您的环境变量 `MOONSHOT_API_KEY` 中设置 API 密钥。
-
-```bash
-export MOONSHOT_API_KEY=your-api-key
-```
-
-3. 运行 `/model` 来选择您想使用的模型。
-
-### Moonshot AI CN
-
-1. 打开 [Moonshot AI CN Console](https://platform.moonshot.cn/console)，点击 **Create API key** 创建新的 API 密钥并复制它。
-
-2. 输入 `/login` 并选择 **Moonshot AI CN** 然后输入 API 密钥，或在您的环境变量 `MOONSHOT_API_KEY` 中设置 API 密钥。
+2. 输入 `/login` 并选择 **Moonshot AI**（或 **Moonshot AI CN**）然后输入 API 密钥，或在您的环境变量 `MOONSHOT_API_KEY` 中设置 API 密钥。
 
 ```bash
 export MOONSHOT_API_KEY=your-api-key
-```
-
-3. 运行 `/model` 来选择您想使用的模型。
-
-### IFlow
-
-<Callout>
-  免费使用。
-</Callout>
-
-1. 打开 [IFlow](https://iflow.cn/)，注册，点击右上角头像，然后点击 **我的账户** 获取 API 密钥，复制它。
-
-2. 输入 `/login` 并选择 **IFlow** 然后输入 API 密钥，或在您的环境变量 `IFLOW_API_KEY` 中设置 API 密钥。
-
-```bash
-export IFLOW_API_KEY=your-api-key
 ```
 
 3. 运行 `/model` 来选择您想使用的模型。
@@ -158,6 +217,42 @@ export OPENROUTER_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
+### Poe
+
+1. 打开 [Poe](https://poe.com/)，进入设置并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **Poe** 然后输入 API 密钥，或在您的环境变量 `POE_API_KEY` 中设置 API 密钥。
+
+```bash
+export POE_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### SiliconFlow
+
+1. 打开 [SiliconFlow](https://siliconflow.com/)（或中国区 [SiliconFlow CN](https://siliconflow.cn/)），创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **SiliconFlow**（或 **SiliconFlow CN**）然后输入 API 密钥，或在您的环境变量 `SILICONFLOW_API_KEY` 中设置 API 密钥。
+
+```bash
+export SILICONFLOW_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### VolcEngine
+
+1. 打开 [火山引擎控制台](https://www.volcengine.com/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **VolcEngine** 然后输入 API 密钥，或在您的环境变量 `VOLCENGINE_API_KEY` 中设置 API 密钥。
+
+```bash
+export VOLCENGINE_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
 ### xAI
 
 1. 打开 [xAI Console](https://console.x.ai/)，点击 **Create API key** 创建新的 API 密钥并复制它。
@@ -166,6 +261,42 @@ export OPENROUTER_API_KEY=your-api-key
 
 ```bash
 export XAI_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Xiaomi Mimo
+
+1. 打开 [小米 Mimo 平台](https://platform.xiaomimimo.com/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **Xiaomi Mimo** 然后输入 API 密钥，或在您的环境变量 `MIMO_API_KEY` 中设置 API 密钥。
+
+```bash
+export MIMO_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### ZenMux
+
+1. 打开 [ZenMux](https://zenmux.ai/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **ZenMux** 然后输入 API 密钥，或在您的环境变量 `ZENMUX_API_KEY` 中设置 API 密钥。
+
+```bash
+export ZENMUX_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### 智谱 AI
+
+1. 打开 [智谱 AI](https://open.bigmodel.cn/)（或国际版 [Z.AI](https://api.z.ai/)），创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **Zhipu AI**（或 **Z.AI Coding Plan** / **Zhipu AI Coding Plan** 用于代码专用套餐）然后输入 API 密钥，或在您的环境变量 `ZHIPU_API_KEY` 中设置 API 密钥。
+
+```bash
+export ZHIPU_API_KEY=your-api-key
 ```
 
 3. 运行 `/model` 来选择您想使用的模型。
@@ -195,3 +326,7 @@ export XAI_API_KEY=your-api-key
   }
 }
 ```
+
+<Callout type="info">
+  想要更多控制权？您可以使用[插件](/docs/plugins)创建自己的代码代理，通过 `provider` 和 `modelAlias` 钩子获得对提供商配置、模型别名等的完全编程控制。
+</Callout>

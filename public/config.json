@@ -3,32 +3,85 @@
   "ref": "Config",
   "type": "object",
   "properties": {
-    "model": {
-      "type": "string",
-      "description": "The AI model to use"
-    },
-    "planModel": {
-      "type": "string",
-      "description": "The AI model to use for planning (defaults to model if not specified)"
-    },
-    "language": {
-      "type": "string",
-      "description": "Language for responses",
-      "default": "English"
-    },
     "approvalMode": {
       "type": "string",
       "enum": ["default", "autoEdit", "yolo"],
       "description": "Approval mode for operations",
       "default": "default"
     },
-    "plugins": {
-      "type": "array",
-      "items": {
-        "type": "string"
+    "autoCompact": {
+      "type": "boolean",
+      "description": "Controls whether automatic conversation compression is enabled. When set to false, conversation history will accumulate and context limit will be exceeded.",
+      "default": true
+    },
+    "autoUpdate": {
+      "type": "boolean",
+      "description": "Enable automatic updates",
+      "default": true
+    },
+    "browser": {
+      "type": "boolean",
+      "description": "Enable browser MCP integration",
+      "default": false
+    },
+    "commit": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Language for commit messages"
+        },
+        "systemPrompt": {
+          "type": "string",
+          "description": "Custom system prompt for commit message generation"
+        },
+        "model": {
+          "type": "string",
+          "description": "Model to use for commit message generation (format: provider_id/model_id)"
+        }
       },
-      "description": "List of plugins to load",
-      "default": []
+      "additionalProperties": false,
+      "description": "Commit configuration"
+    },
+    "desktop": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark", "system"],
+          "description": "The color theme for the desktop app"
+        },
+        "sendMessageWith": {
+          "type": "string",
+          "enum": ["enter", "cmdEnter"],
+          "description": "The key combination to send messages"
+        },
+        "terminalFont": {
+          "type": "string",
+          "description": "Custom font for the terminal"
+        },
+        "terminalFontSize": {
+          "type": "number",
+          "description": "Font size for the terminal"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Desktop application configuration (global only)"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Extensions configuration for third-party custom agents",
+      "default": {}
+    },
+    "httpProxy": {
+      "type": "string",
+      "description": "HTTP proxy to use for network requests"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language for responses",
+      "default": "English"
     },
     "mcpServers": {
       "type": "object",
@@ -78,6 +131,39 @@
                 "type": "string",
                 "description": "URL for the SSE MCP server"
               },
+              "headers": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Custom headers for the MCP server"
+              },
+              "disable": {
+                "type": "boolean",
+                "description": "Whether to disable this MCP server"
+              }
+            },
+            "required": ["type", "url"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "http"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL for the HTTP MCP server"
+              },
+              "headers": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Custom headers for the MCP server"
+              },
               "disable": {
                 "type": "boolean",
                 "description": "Whether to disable this MCP server"
@@ -91,35 +177,9 @@
       "description": "MCP server configurations",
       "default": {}
     },
-    "systemPrompt": {
+    "model": {
       "type": "string",
-      "description": "Custom system prompt"
-    },
-    "todo": {
-      "type": "boolean",
-      "description": "Enable todo functionality",
-      "default": true
-    },
-    "autoCompact": {
-      "type": "boolean",
-      "description": "Controls whether automatic conversation compression is enabled. When set to false, conversation history will accumulate and context limit will be exceeded.",
-      "default": true
-    },
-    "commit": {
-      "type": "object",
-      "properties": {
-        "language": {
-          "type": "string",
-          "description": "Language for commit messages"
-        }
-      },
-      "required": ["language"],
-      "additionalProperties": false,
-      "description": "Commit configuration"
-    },
-    "outputStyle": {
-      "type": "string",
-      "description": "Output style configuration"
+      "description": "The AI model to use (format: provider_id/model_id)"
     },
     "outputFormat": {
       "type": "string",
@@ -127,10 +187,128 @@
       "description": "Output format",
       "default": "text"
     },
-    "autoUpdate": {
+    "outputStyle": {
+      "type": "string",
+      "description": "Output style configuration",
+      "default": "Default"
+    },
+    "planModel": {
+      "type": "string",
+      "description": "The AI model to use for planning (format: provider_id/model_id, defaults to model if not specified)"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of plugins to load",
+      "default": []
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Provider identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name for the provider"
+          },
+          "env": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Environment variable names for API key"
+          },
+          "apiEnv": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Environment variable names for custom API base URL"
+          },
+          "api": {
+            "type": "string",
+            "description": "Default API base URL"
+          },
+          "doc": {
+            "type": "string",
+            "description": "Documentation URL"
+          },
+          "models": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Map of model IDs to model names or model configurations"
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "apiKey": {
+                "type": "string",
+                "description": "API key for the provider"
+              },
+              "baseURL": {
+                "type": "string",
+                "description": "Custom base URL for the provider API"
+              },
+              "headers": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Custom headers"
+              },
+              "httpProxy": {
+                "type": "string",
+                "description": "HTTP proxy URL for this provider"
+              }
+            },
+            "additionalProperties": false,
+            "description": "Provider options"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Custom provider configurations",
+      "default": {}
+    },
+    "quiet": {
       "type": "boolean",
-      "description": "Enable automatic updates",
+      "description": "Suppress non-essential output",
+      "default": false
+    },
+    "smallModel": {
+      "type": "string",
+      "description": "The small model to use for lightweight tasks (format: provider_id/model_id, defaults to model if not specified)"
+    },
+    "systemPrompt": {
+      "type": "string",
+      "description": "Custom system prompt"
+    },
+    "temperature": {
+      "type": "number",
+      "description": "The temperature to use for model responses"
+    },
+    "todo": {
+      "type": "boolean",
+      "description": "Enable todo functionality",
       "default": true
+    },
+    "tools": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "description": "Tools configuration for enabling/disabling specific tools",
+      "default": {}
+    },
+    "visionModel": {
+      "type": "string",
+      "description": "The vision model to use for image-related tasks (format: provider_id/model_id, defaults to model if not specified)"
     }
   },
   "additionalProperties": false

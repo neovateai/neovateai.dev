@@ -8,17 +8,27 @@ Use slash commands to trigger specific actions and workflows in your AI conversa
 
 |Command|Description|
 |---|---|
+|`/add-dir [path]`|Add or manage additional working directories|
+|`/bug`|Report a bug to GitHub|
 |`/clear`|Start a new session|
 |`/compact`|Clear conversation history but keep a summary in context|
+|`/context`|Analyze and display token usage breakdown|
 |`/exit`|Exit the application|
 |`/help`|Show help|
 |`/init`|Create or improve the AGENTS.md file|
+|`/login [provider]`|Configure API key for a provider|
+|`/logout`|Remove API key for a provider|
 |`/mcp`|MCP servers management|
-|`/model <model>`|Select a model|
-|`/output-style <output_style>`|Select an output style|
-|`/resume <session_id>`|Resume from a specific session|
+|`/model [model]`|Select a model|
+|`/output-style [output_style]`|Select an output style|
+|`/resume [session_id]`|Resume from a specific session|
 |`/review [pull_request_id]`|Review a github pull request or staged changes|
+|`/spec:brainstorm <idea>`|Brainstorm design ideas|
+|`/spec:execute-plan [plan_file]`|Execute implementation plan|
+|`/spec:save-design`|Save design document from brainstorming session|
+|`/spec:write-plan <feature>`|Write implementation plan|
 |`/status`|Show status|
+|`/terminal-setup`|Setup Shift+Enter binding|
 
 ## Custom slash commands
 
@@ -37,6 +47,10 @@ mkdir -p .neovate/commands
 echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
 ```
 
+<Callout type="info">
+  For compatibility, `.claude/commands` is also supported as a project-level commands directory.
+</Callout>
+
 ### Global scope
 
 Located under the `~/.neovate/commands` directory.
@@ -45,6 +59,10 @@ Located under the `~/.neovate/commands` directory.
 mkdir -p ~/.neovate/commands
 echo "Explain the project dependencies" > ~/.neovate/commands/explain-dependencies.md
 ```
+
+<Callout type="info">
+  For compatibility, `~/.claude/commands` is also supported as a global commands directory.
+</Callout>
 
 ### Usage
 

@@ -26,7 +26,7 @@ export const Footer: FC<{
       links: [
         { label: dictionary.footer.documentation, href: `/${lang}/docs/overview/` },
         { label: dictionary.footer.blog, href: `/${lang}/blog/` },
-        { label: "Changelog", href: "https://github.com/neovateai/neovate-code/blob/master/CHANGELOG.md" },
+        { label: "Changelog", href: "https://github.com/neovateai/neovate-code/releases" },
       ],
     },
   ];

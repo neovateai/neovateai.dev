@@ -1,0 +1,86 @@
+# AI Commit
+
+基于暂存的更改，使用 AI 生成智能提交信息。
+
+## 快速开始
+
+```bash
+neovate commit
+```
+
+这将打开交互模式，你可以查看 AI 生成的信息并选择操作。
+
+一行命令完成完整工作流：
+
+```bash
+neovate commit -s -c --push
+```
+
+## 功能特性
+
+- **AI 生成提交信息** - 分析暂存的更改并生成有意义的提交信息
+- **分支名称建议** - 根据更改内容建议描述性的分支名称
+- **破坏性变更检测** - 识别并标记破坏性变更
+- **交互模式** - 在提交前查看、编辑和选择操作
+
+## 选项
+
+| 标志 | 描述 |
+|------|------|
+| `-s, --stage` | 提交前暂存所有更改 |
+| `-c, --commit` | 自动提交更改 |
+| `--push` | 提交后推送更改 |
+| `--copy` | 将提交信息复制到剪贴板 |
+| `--checkout` | 基于提交创建并切换到新分支 |
+| `-n, --no-verify` | 跳过 pre-commit 钩子 |
+| `-m, --model <model>` | 指定使用的模型 |
+| `--language <lang>` | 设置提交信息的语言 |
+| `--follow-style` | 遵循现有仓库的提交风格 |
+| `-i, --interactive` | 交互模式（默认） |
+
+## 示例
+
+暂存所有更改并交互式提交：
+
+```bash
+neovate commit -s
+```
+
+完整流程 - 暂存、提交和推送：
+
+```bash
+neovate commit -s -c --push
+```
+
+创建新分支并提交：
+
+```bash
+neovate commit -s --checkout
+```
+
+使用特定语言生成信息：
+
+```bash
+neovate commit --language Chinese
+```
+
+提交时跳过 pre-commit 钩子：
+
+```bash
+neovate commit -s -c -n
+```
+
+## 配置
+
+你可以在设置中配置默认选项：
+
+```json
+{
+  "commit": {
+    "model": "claude-sonnet",
+    "language": "Chinese"
+  }
+}
+```
+
+更多配置选项请参阅 [设置](/docs/settings)。

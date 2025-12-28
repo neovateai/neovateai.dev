@@ -1,0 +1,170 @@
+import { Callout } from 'nextra/components';
+
+# Spec Driven Development
+
+Spec Driven Development is a structured approach to transform rough ideas into fully-formed designs and executable implementation plans. It combines brainstorming, design documentation, and plan-based execution into a cohesive workflow.
+
+## Overview
+
+The spec-driven workflow consists of four phases:
+
+1. **Brainstorm** – Refine ideas through structured questioning
+2. **Save Design** – Document the design decisions
+3. **Write Plan** – Create detailed implementation steps
+4. **Execute Plan** – Implement in batches with checkpoints
+
+## Plan Mode vs Brainstorm Mode
+
+Neovate Code offers two complementary modes for thinking before coding:
+
+| Mode | Purpose | Toggle |
+|------|---------|--------|
+| **Plan Mode** | Break down tasks into steps before execution | Shift+Tab |
+| **Brainstorm Mode** | Explore ideas through Q&A dialogue | Shift+Tab (toggle twice) |
+
+Press `Shift+Tab` to cycle through: Normal → Plan Mode → Brainstorm Mode → Normal.
+
+### Plan Mode
+
+In Plan Mode, Neovate creates a structured plan before taking action. The response outlines what steps will be taken, allowing you to review and approve before execution.
+
+### Brainstorm Mode
+
+In Brainstorm Mode (indicated by 🧠), Neovate engages in collaborative design exploration:
+
+- Asks ONE question at a time to understand your requirements
+- Proposes 2-3 alternative approaches
+- Presents designs incrementally for validation
+- Never writes code during brainstorming
+
+## Slash Commands
+
+### /spec:brainstorm
+
+Transform a rough idea into a design through structured dialogue.
+
+```
+/spec:brainstorm add user authentication with OAuth
+```
+
+**The Process:**
+
+**Phase 1: Understanding**
+- Checks current project state
+- Asks clarifying questions one at a time
+- Gathers purpose, constraints, success criteria
+
+**Phase 2: Exploration**
+- Proposes 2-3 different approaches
+- Evaluates trade-offs and complexity
+- Asks which approach resonates
+
+**Phase 3: Design Presentation**
+- Presents design in 200-300 word sections
+- Covers architecture, components, data flow, error handling
+- Validates each section before proceeding
+
+<Callout type="info">
+  Brainstorm mode can go backward when needed. If new constraints emerge or the approach needs rethinking, it will revisit earlier phases.
+</Callout>
+
+### /spec:save-design
+
+After brainstorming, save the session as a design document.
+
+```
+/spec:save-design
+```
+
+Creates a structured document at `docs/designs/YYYY-MM-DD-<feature-name>.md` containing:
+
+- **Context** – Initial idea and motivation
+- **Discussion** – Key questions, trade-offs, alternatives explored
+- **Approach** – Final agreed direction
+- **Architecture** – Technical details and implementation notes
+
+### /spec:write-plan
+
+Create a comprehensive implementation plan from a design or idea.
+
+```
+/spec:write-plan implement OAuth authentication
+```
+
+Plans are saved to `docs/plans/YYYY-MM-DD-<feature-name>.md` and include:
+
+- **Header** – Goal, architecture, tech stack
+- **Bite-sized tasks** – Each step is 2-5 minutes of work
+- **Exact file paths** – Which files to create/modify
+- **Complete code** – Not just "add validation" but actual code
+- **Test commands** – Exact commands with expected output
+
+Example task structure:
+
+```markdown
+### Task 1: Create Auth Service
+
+**Files:**
+- Create: `src/services/auth.ts`
+- Test: `tests/services/auth.test.ts`
+
+**Step 1: Write the failing test**
+[code]
+
+**Step 2: Run test to verify it fails**
+Run: `npm test -- auth.test.ts`
+Expected: FAIL
+
+**Step 3: Write minimal implementation**
+[code]
+
+**Step 4: Run test to verify it passes**
+Run: `npm test -- auth.test.ts`
+Expected: PASS
+```
+
+### /spec:execute-plan
+
+Execute an implementation plan with batched checkpoints.
+
+```
+/spec:execute-plan docs/plans/2024-01-15-oauth.md
+```
+
+**Execution Process:**
+
+1. **Load and Review** – Read plan, identify concerns, create todo list
+2. **Execute Batch** – Complete first 3 tasks following steps exactly
+3. **Report** – Show what was implemented, verification output
+4. **Continue** – Apply feedback, execute next batch
+5. **Complete** – Announce when all tasks are done
+
+<Callout type="warning">
+  Execution stops immediately when hitting blockers. The agent asks for clarification rather than guessing.
+</Callout>
+
+## Workflow Example
+
+A typical spec-driven workflow:
+
+```bash
+# 1. Brainstorm the feature
+/spec:brainstorm add rate limiting to API endpoints
+
+# 2. After Q&A dialogue, save the design
+/spec:save-design
+
+# 3. Create implementation plan
+/spec:write-plan
+
+# 4. Execute the plan
+/spec:execute-plan docs/plans/2024-01-15-rate-limiting.md
+```
+
+## Best Practices
+
+- **Use brainstorm mode for unclear requirements** – Let the Q&A process reveal constraints
+- **Review plans before execution** – Plans should have all context an engineer needs
+- **Embrace iteration** – Go backward when needed, flexibility beats rigid progression
+- **Keep tasks atomic** – Each step should be 2-5 minutes of focused work
+- **Run verifications** – Don't skip the test steps in plans

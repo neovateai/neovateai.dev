@@ -20,12 +20,18 @@ neovate --cwd /path/to/your/project
 
 | Shortcut | Description |
 | --- | --- |
-| `Shift + Tab` | Switch to the plan mode |
+| `Shift + Tab` | Switch to the plan and brainstorm mode |
+| `Ctrl + T` | Switch thinking level |
 | `Up/Down Arrows` | Navigate the conversation history |
+| `Option + Up Arrow` | Edit queued message |
+| `Esc` twice | Fork session |
 | `/` | Start slash commands |
+| `Ctrl + C` | Clear current input |
 | `Ctrl + C` twice | Quit |
 | `Shift + Enter` or `Option + Enter` | Multi-line input |
 | `Ctrl + L` twice | Open the debug mode and open the log file |
+| `Ctrl + V` / `Cmd + V` | Paste image from clipboard |
+| `Ctrl + G` | Edit prompt in external editor |
 
 ## File references
 
@@ -48,6 +54,43 @@ Some tips about the conversation history:
 - Use `-c, --continue` to resume from the last session.
 - Use `Up/Down Arrows` to navigate the conversation history.
 - Use `/clear` to clear the conversation history and start a new session (Notice: original conversation session is kept).
+
+## Bash mode with `!` prefix
+
+Run bash commands directly without going through Neovate by prefixing your input with `!`:
+
+```bash
+! npm test
+! git status
+! ls -la
+```
+
+- Adds the command and its output to the conversation context
+- Shows real-time progress and output
+- Does not require Neovate to interpret or approve the command
+
+This is useful for quick shell operations while maintaining conversation context.
+
+## Reverse search with Ctrl+R
+
+Press `Ctrl+R` to interactively search through your command history:
+
+1. Press `Ctrl+R` to activate reverse history search
+2. Enter text to search for in previous commands
+3. Press `Ctrl+R` again to cycle through older matches
+4. Press `Tab` or `Enter` to accept the current match
+5. Press `Ctrl+C` to cancel and restore your original input
+
+## Multiline input
+
+| Shortcut | Description |
+| --- | --- |
+| `\` + `Enter` | Works in all terminals |
+| `Option + Enter` | Default on macOS |
+| `Shift + Enter` | After `/terminal-setup` |
+| `Ctrl + J` | Line feed character for multiline |
+
+Configure your preferred line break behavior in terminal settings. Run `/terminal-setup` to install Shift+Enter binding for iTerm2 and VS Code terminals.
 
 ## Multimodal input
 

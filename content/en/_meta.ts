@@ -15,6 +15,6 @@ export default {
   nextra_link: {
     type: 'page',
     title: 'Changelog',
-    href: 'https://github.com/neovateai/neovate-code/blob/master/CHANGELOG.md'
+    href: 'https://github.com/neovateai/neovate-code/releases'
   }
 }

@@ -1,0 +1,66 @@
+import { Callout } from 'nextra/components';
+
+# Skills
+
+Skills are **reusable capabilities** that your AI agent invokes on demand. They pack instructions, expertise, and tools into a lightweight package.
+
+**Key properties:**
+
+- **Model-invoked** – Neovate decides when to use them based on the task, not typed commands
+- **Composable** – can be chained together as part of larger workflows
+- **Token-efficient** – lightweight and focused
+
+## What is a Skill?
+
+A skill is a **directory** containing:
+
+- `SKILL.md` with YAML frontmatter and markdown instructions
+- Optional supporting files (scripts, schemas, checklists)
+
+Each skill defines what problem it solves, what inputs it expects, and what success looks like.
+
+## File Locations
+
+| Scope | Location | Purpose |
+|-------|----------|---------|
+| **Workspace** | `.neovate/skills/<skill-name>/` | Project skills shared with teammates; checked into git |
+| **Personal** | `~/.neovate/skills/<skill-name>/` | Private skills that follow you across projects |
+
+<Callout type="info">
+  For compatibility, `.claude/skills/` is also supported as an alias.
+</Callout>
+
+## Skill File Format
+
+Skills are defined in Markdown with YAML frontmatter:
+
+```md
+---
+name: summarize-diff
+description: Summarize the staged git diff in 3–5 bullets. Use when the user asks for a summary of pending changes.
+---
+
+# Summarize Diff
+
+## Instructions
+
+1. Run `git diff --staged`.
+2. Summarize the changes in 3–5 bullets, focusing on user-visible behavior.
+3. Call out any migrations, risky areas, or tests that should be run.
+```
+
+The `name` and `description` fields are required. Neovate uses the description to decide when to apply the skill.
+
+## Supporting Files
+
+Each skill folder can contain supporting utilities:
+
+- `SKILL.md` – the main skill specification
+
+## How Skills Differ from Other Config
+
+| Config | Purpose | When it runs |
+|--------|---------|--------------|
+| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant |
+| **Rules (AGENTS.md)** | Project-wide instructions | Loaded into every conversation |
+| **Slash Commands** | User-invoked macros | You type `/command` to run it |

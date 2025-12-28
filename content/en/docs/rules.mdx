@@ -4,6 +4,10 @@ import { Callout } from 'nextra/components';
 
 Neovate Code supports [AGENTS.md](https://agents.md/) file to provide custom instructions. You can use it to manage custom rules to guide AI behavior and ensure consistent code generation across your projects.
 
+<Callout type="info">
+  For compatibility, `CLAUDE.md` is also supported as an alias for `AGENTS.md`.
+</Callout>
+
 ## File Location
 
 Neovate Code supports both project and global scope. And both of them will work, they will be merged together to send to the LLMs.
@@ -18,7 +22,13 @@ You can also create a global AGENTS.md file in the `~/.neovate/AGENTS.md`. This 
 
 ## Set up project AGENTS.md
 
-You can use `/init` slash command to set up a project `AGENTS.md` file quickly. This will scan the project and generate the `AGENTS.md` file, ncluding dev commands, code architecture, patterns, technology stack, dependencies, etc. If the `AGENTS.md` file already exists, it will be updated.
+You can use `/init` slash command to set up a project `AGENTS.md` file quickly using **progressive disclosure principles**:
+
+- The root `AGENTS.md` stays minimal (\<60 lines) with only high-level guidance
+- Detailed information goes into separate `docs/agent/*.md` files (e.g., `development_commands.md`, `architecture.md`, `testing.md`, `conventions.md`)
+- Only creates additional docs where substantial content exists
+
+If the `AGENTS.md` file already exists, it will ask before replacing.
 
 ```bash
 /init
