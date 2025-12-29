@@ -19,6 +19,7 @@ Complete list of available commands and parameters.
 | `neovate commit` | Commit the changes | `neovate commit` |
 | `neovate log [file]` | View session logs in HTML | `neovate log` |
 | `neovate run` | Run a command | `neovate run` |
+| `neovate skill` | Manage skills | Check out [Skills](./skills) |
 | `neovate update` | Update Neovate Code | `neovate update` |
 | `neovate workspace` | Manage workspaces | `neovate workspace` |
 
@@ -101,6 +102,22 @@ Subcommands:
 | `-h, --help` | Show help |
 | `-m, --model <model>` | Specify model to use |
 | `-y, --yes` | Execute the command without confirmation |
+
+### neovate skill
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Install to global skills directory (~/.neovate/skills/) |
+| `--overwrite` | Overwrite existing skill with the same name |
+| `--name <name>` | Install with a custom local name |
+| `--target <dir>` | Target directory for skills |
+| `--json` | Output as JSON (list command only) |
+
+Subcommands:
+- `add <source>` - Install skills from a source (GitHub repo, subpath)
+- `list|ls` - List all available skills
+- `remove|rm <name>` - Remove an installed skill
 
 ### neovate update
 

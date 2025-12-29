@@ -19,6 +19,7 @@ import { Callout } from 'nextra/components';
 | `neovate commit` | 提交更改 | `neovate commit` |
 | `neovate log [file]` | 以 HTML 格式查看会话日志 | `neovate log` |
 | `neovate run` | 运行命令 | `neovate run` |
+| `neovate skill` | 管理技能 | 查看 [技能](./skills) |
 | `neovate update` | 更新 Neovate Code | `neovate update` |
 | `neovate workspace` | 管理工作区 | `neovate workspace` |
 
@@ -101,6 +102,22 @@ import { Callout } from 'nextra/components';
 | `-h, --help` | 显示帮助 |
 | `-m, --model <model>` | 指定要使用的模型 |
 | `-y, --yes` | 无需确认直接执行命令 |
+
+### neovate skill
+
+| 参数 | 描述 |
+| --- | --- |
+| `-h, --help` | 显示帮助 |
+| `-g, --global` | 安装到全局技能目录 (~/.neovate/skills/) |
+| `--overwrite` | 覆盖同名的现有技能 |
+| `--name <name>` | 使用自定义名称安装 |
+| `--target <dir>` | 技能的目标目录 |
+| `--json` | 以 JSON 格式输出（仅 list 命令） |
+
+子命令：
+- `add <source>` - 从源安装技能（GitHub 仓库、子路径）
+- `list|ls` - 列出所有可用的技能
+- `remove|rm <name>` - 删除已安装的技能
 
 ### neovate update
 

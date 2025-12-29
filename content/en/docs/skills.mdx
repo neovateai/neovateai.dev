@@ -64,3 +64,44 @@ Each skill folder can contain supporting utilities:
 | **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant |
 | **Rules (AGENTS.md)** | Project-wide instructions | Loaded into every conversation |
 | **Slash Commands** | User-invoked macros | You type `/command` to run it |
+
+## CLI Commands
+
+Manage skills via the command line:
+
+```bash
+# Install a skill from GitHub
+neovate skill add user/repo
+
+# Install from a subpath
+neovate skill add user/repo/path/to/skill
+
+# Install globally (available across all projects)
+neovate skill add -g user/repo
+
+# Install with a custom name
+neovate skill add --name my-skill user/repo
+
+# Overwrite an existing skill
+neovate skill add --overwrite user/repo
+
+# List all installed skills
+neovate skill list
+
+# List as JSON
+neovate skill list --json
+
+# Remove a skill
+neovate skill remove my-skill
+
+# Remove a global skill
+neovate skill remove -g my-skill
+```
+
+| Option | Description |
+|--------|-------------|
+| `-g, --global` | Install to/remove from global skills directory |
+| `--overwrite` | Overwrite existing skill with the same name |
+| `--name <name>` | Install with a custom local name |
+| `--target <dir>` | Custom target directory for skills |
+| `--json` | Output list as JSON |

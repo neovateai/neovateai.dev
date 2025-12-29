@@ -64,3 +64,44 @@ description: 用 3-5 个要点总结暂存的 git diff。当用户询问待提�
 | **技能** | 模型调用的专业知识 | 模型在相关时选择 |
 | **规则 (AGENTS.md)** | 项目级指令 | 加载到每次对话 |
 | **斜杠命令** | 用户调用的宏 | 输入 `/command` 运行 |
+
+## CLI 命令
+
+通过命令行管理技能：
+
+```bash
+# 从 GitHub 安装技能
+neovate skill add user/repo
+
+# 从子路径安装
+neovate skill add user/repo/path/to/skill
+
+# 全局安装（在所有项目中可用）
+neovate skill add -g user/repo
+
+# 使用自定义名称安装
+neovate skill add --name my-skill user/repo
+
+# 覆盖现有技能
+neovate skill add --overwrite user/repo
+
+# 列出所有已安装的技能
+neovate skill list
+
+# 以 JSON 格式列出
+neovate skill list --json
+
+# 删除技能
+neovate skill remove my-skill
+
+# 删除全局技能
+neovate skill remove -g my-skill
+```
+
+| 选项 | 描述 |
+|------|------|
+| `-g, --global` | 安装到/从全局技能目录删除 |
+| `--overwrite` | 覆盖同名的现有技能 |
+| `--name <name>` | 使用自定义名称安装 |
+| `--target <dir>` | 技能的自定义目标目录 |
+| `--json` | 以 JSON 格式输出列表 |
