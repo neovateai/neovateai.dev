@@ -48,9 +48,41 @@ neovate config rm <key>
 - 类型：`"autoEdit" | "yolo" | "default"`
 - 默认：`"default"`
 
+### agent
+
+为不同的代理类型(子代理)配置特定设置。每个代理类型可以有自己的模型和其他配置。
+
+- 类型：`Record<string, AgentConfig>`
+- 默认：`{}`
+
+每个代理配置可以包含：
+- `model`：`string` - 此代理类型使用的模型（格式：`provider_id/model_id`）
+
+示例：
+```json
+{
+  "agent": {
+    "explore": {
+      "model": "anthropic/claude-haiku-4-20250514"
+    }
+  }
+}
+```
+
+**模型解析优先级：**
+当执行代理时，模型按以下优先级顺序解析：
+1. 传递给任务工具的显式模型参数
+2. 在 `agent.{type}.model` 中配置的模型
+3. 代理定义中定义的模型
+4. 全局 `model` 设置（最终回退）
+
+**可用的代理类型：**
+- `Explore` - 专门用于探索代码库的快速代理
+- `GeneralPurpose` - 通用型用于研究复杂问题、搜索代码和执行多步骤任务
+
 ### autoCompact
 
-指定是否启用自动紧凑功能。禁用后，对话历史会持续累积，可能超出上下文限制。
+指定是否启用自动紧凑功能。禁用后,对话历史会持续累积,可能超出上下文限制。
 
 - 类型：`boolean`
 - 默认：`true`

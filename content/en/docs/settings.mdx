@@ -48,6 +48,38 @@ The approval mode to use.
 - Type: `"autoEdit" | "yolo" | "default"`
 - Default: `"default"`
 
+### agent
+
+Configure specific settings for different agent types (subagents). Each agent type can have its own model and other configurations.
+
+- Type: `Record<string, AgentConfig>`
+- Default: `{}`
+
+Each agent config can include:
+- `model`: `string` - Model to use for this agent type (format: `provider_id/model_id`)
+
+Example:
+```json
+{
+  "agent": {
+    "explore": {
+      "model": "anthropic/claude-haiku-4-20250514"
+    }
+  }
+}
+```
+
+**Model Resolution Priority:**
+When an agent is executed, the model is resolved in the following priority order:
+1. Model explicitly passed to the task tool
+2. Model configured in `agent.{type}.model`
+3. Model defined in the agent's definition
+4. Global `model` setting (fallback)
+
+**Available Agent Types:**
+- `Explore` - Fast agent specialized for exploring codebases
+- `GeneralPurpose` - General purpose agent for researching complex issues, searching code, and performing multi-step tasks
+
 ### autoCompact
 
 Specify whether to enable the auto compact feature. When disabled, conversation history will accumulate and context limit may be exceeded.
