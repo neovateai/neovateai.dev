@@ -187,6 +187,18 @@ export MODELSCOPE_API_KEY=your-api-key
 
 3. Run `/model` to select the model you want to use.
 
+### ModelWatch
+
+1. Open [ModelWatch](https://api.modelwatch.dev/), create an account and get your API key.
+
+2. Type `/login` and select **ModelWatch** and enter the API key, or set the API key in your environment variable `MODELWATCH_API_KEY`.
+
+```bash
+export MODELWATCH_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
 ### Moonshot AI
 
 1. Open [Moonshot AI Console](https://platform.moonshot.ai/console) (or [Moonshot AI CN Console](https://platform.moonshot.cn/console) for China), click **Create API key** to create a new API key and copy it.
@@ -335,17 +347,17 @@ Edit the `~/.neovate/config.json` file to add the provider.
 {
   "provider": {
     "your-provider": {
-      "apiKey": "your-api-key",
       "api": "https://your-base-url",
-      "doc": "https://your-doc", // optional
-      "env": ["YOUR_API_KEY"], // optional
-      "apiEnv": ["YOUR_API_BASE"], // optional
-      "name": "your-provider", // optional
+      "options": {
+        "apiKey": "your-api-key",
+      },
       "models": {
         // the value is the model id
         // the full list could be found in https://github.com/neovateai/neovate-code/blob/master/src/model.ts
         "foo": "claude-4-sonnet"
-      }
+      },
+      // optional, only add it when the provider use anthropic api
+      "createModelType": "anthropic"
     }
   }
 }

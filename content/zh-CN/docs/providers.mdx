@@ -187,6 +187,18 @@ export MODELSCOPE_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
+### ModelWatch
+
+1. 打开 [ModelWatch](https://api.modelwatch.dev/)，创建账户并获取您的 API 密钥。
+
+2. 输入 `/login` 并选择 **ModelWatch** 然后输入 API 密钥，或在您的环境变量 `MODELWATCH_API_KEY` 中设置 API 密钥。
+
+```bash
+export MODELWATCH_API_KEY=your-api-key
+```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
 ### Moonshot AI
 
 1. 打开 [Moonshot AI Console](https://platform.moonshot.ai/console)（或中国区 [Moonshot AI CN Console](https://platform.moonshot.cn/console)），点击 **Create API key** 创建新的 API 密钥并复制它。
@@ -335,17 +347,17 @@ export ZHIPU_API_KEY=your-api-key
 {
   "provider": {
     "your-provider": {
-      "apiKey": "your-api-key",
       "api": "https://your-base-url",
-      "doc": "https://your-doc", // 可选
-      "env": ["YOUR_API_KEY"], // 可选
-      "apiEnv": ["YOUR_API_BASE"], // 可选
-      "name": "your-provider", // 可选
+      "options": {
+        "apiKey": "your-api-key",
+      },
       "models": {
         // 值为模型 id
         // 完整列表可在 https://github.com/neovateai/neovate-code/blob/master/src/model.ts 找到
         "foo": "claude-4-sonnet"
-      }
+      },
+      // 可选，仅当提供商使用 Anthropic API 创建模型时添加
+      "createModelType": "anthropic"
     }
   }
 }
