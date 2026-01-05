@@ -36,7 +36,7 @@ async function parseMetaSections(): Promise<Section[]> {
       if (currentCategory && currentSlugs.length > 0) {
         sections.push({ category: currentCategory, slugs: currentSlugs });
       }
-      currentCategory = separatorMatch[1];
+      currentCategory = separatorMatch[1] ?? "";
       currentSlugs = [];
       continue;
     }

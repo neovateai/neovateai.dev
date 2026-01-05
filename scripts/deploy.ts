@@ -19,6 +19,8 @@ try {
   // Step 0: Build steps
   console.log("Cleaning .next directory...");
   await $`rm -rf .next`;
+  console.log("Generating llms.txt...");
+  await $`bun scripts/generate-llms-txt.ts`;
   console.log("Building...");
   await $`npm run build`;
   console.log("Build completed successfully.");
