@@ -42,7 +42,7 @@ async function parseMetaSections(): Promise<Section[]> {
     }
 
     const slugMatch = line.match(/'([a-z-]+)':\s*''/);
-    if (slugMatch) {
+    if (slugMatch?.[1]) {
       currentSlugs.push(slugMatch[1]);
     }
   }
@@ -78,7 +78,7 @@ Output:
 
 function extractTitle(content: string): string {
   const match = content.match(/^#\s+(.+)$/m);
-  return match ? match[1].trim() : "Untitled";
+  return match?.[1]?.trim() ?? "Untitled";
 }
 
 async function processDoc(slug: string): Promise<DocInfo> {
