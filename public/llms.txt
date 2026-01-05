@@ -1,0 +1,48 @@
+# Neovate Code Developer Documentation
+
+This file provides an overview of the Neovate Code documentation and developer resources.
+
+---
+
+## Getting Started
+
+- [Overview](https://neovateai.dev/en/docs/overview.md)
+- [Installation](https://neovateai.dev/en/docs/installation.md)
+- [Quick Start](https://neovateai.dev/en/docs/quickstart.md)
+- [Common Workflows](https://neovateai.dev/en/docs/common-workflows.md)
+- [Features](https://neovateai.dev/en/docs/features.md)
+
+## Configuration
+
+- [Rules](https://neovateai.dev/en/docs/rules.md)
+- [Settings](https://neovateai.dev/en/docs/settings.md)
+- [Models](https://neovateai.dev/en/docs/models.md)
+- [Providers](https://neovateai.dev/en/docs/providers.md)
+
+## Features
+
+- [Interactive Mode](https://neovateai.dev/en/docs/interactive-mode.md)
+- [Headless](https://neovateai.dev/en/docs/headless.md)
+- [Slash Commands](https://neovateai.dev/en/docs/slash-commands.md)
+- [Subagents](https://neovateai.dev/en/docs/subagents.md)
+- [Skills](https://neovateai.dev/en/docs/skills.md)
+- [Spec Driven Development](https://neovateai.dev/en/docs/spec-driven.md)
+- [SDK](https://neovateai.dev/en/docs/sdk.md)
+- [MCP](https://neovateai.dev/en/docs/mcp.md)
+- [Output Style](https://neovateai.dev/en/docs/output-style.md)
+- [AI Commit](https://neovateai.dev/en/docs/ai-commit.md)
+- [Shell Command Generator](https://neovateai.dev/en/docs/shell-command-generator.md)
+- [Session Log Viewer](https://neovateai.dev/en/docs/session-log-viewer.md)
+
+## Reference
+
+- [CLI](https://neovateai.dev/en/docs/cli.md)
+- [Plugins](https://neovateai.dev/en/docs/plugins.md)
+
+## Support
+
+- [Troubleshooting](https://neovateai.dev/en/docs/troubleshooting.md)
+
+## Resources
+
+- [Milestone](https://neovateai.dev/en/docs/milestone.md)

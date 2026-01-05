@@ -1,0 +1,3285 @@
+# Neovate Code Developer Documentation - Full Content
+
+This file provides comprehensive documentation with full rendered content.
+
+---
+
+# Overview
+URL: https://neovateai.dev/en/docs/overview.md
+
+# Overview
+
+Neovate `['niːəʊveɪt]` Code is an open-source Code Agent with built-in AI programming best practices. You can use it to generate code, fix bugs, review code, add tests, and more. You can run it in interactive mode or headless mode, or wrap your own Code Agent via SDK.
+
+```bash
+# Install
+npm i @neovate/code -g
+
+# Navigate to your project
+cd your-project
+
+# Run in interactive mode
+neovate
+```
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/e4-JQJpQLXoAAAAARNAAAAgADhqBAQFr/original)
+
+## Why Neovate Code?
+
+There are so many code agents out there. Here are some features that make Neovate Code different from other code agents:
+
+- Open Claude Code
+- Easy to extend
+- Multiple clients
+- Best Practices
+
+Claude Code is a great code agent, but it is not open source, and can not be used with other models by default. Neovate Code learns a lot from Claude Code, including features and configurations and others. And based on this, we added supports for all popular models and providers. So it's a good choice if you want both.
+
+Neovate Code is easy to extend. It has a built-in plugin system with much hooks. You can quickly create Your Own Code Agent with your own models, features, tools and other integrations. Companies like Ant Group and Kuaishou has already using it to build their own code agents.
+
+Neovate Code is currently only have the CLI client, but we have make the architecture flexible enough to support multiple clients. So it's easy to extend to support other clients like IDE Extension, Web App, Native App and Remote Agent. And we're working on these.
+
+Neovate Code follows the latest AI Coding best practices from the community, combined with our own insights. AI Coding is evolving rapidly, and so are the best practices. We keep up with trends like Spec Driven Development, Parallel Agent, and more.
+
+## Interactive Mode
+
+Start Neovate Code in headless mode by running `neovate` in your terminal. Describe what you want to do in the command line, review proposed changes and approve tools calls.
+
+```bash
+# Start in interactive mode
+neovate
+
+# With a initial prompt
+neovate "Create testcase for @src/components/Button.tsx"
+```
+
+## Headless Mode
+
+Headless mode is useful for automated workflows, CI/CD integration and scripts.
+
+```bash
+neovate -q "Review the changes"
+
+# Stream JSON output
+neovate -q --output-format stream-json "Review the changes"
+```
+
+## Sessions
+
+Sessions could be resumed from the last state.
+
+```bash
+# Resume from the last session
+neovate -c
+
+# Resume from a specific session interactively
+neovate -r
+# or
+neovate --resume
+
+# Create a new session
+/clear
+```
+
+Sessions could be forked by pressing `esc-esc`, then select a message to fork from.
+
+---
+# Installation
+URL: https://neovateai.dev/en/docs/installation.md
+
+import { Callout } from 'nextra/components';
+
+# Installation
+
+## Prerequisites
+
+- [Node.js 18 or newer](https://nodejs.org/en/download/)
+
+## Installation
+
+### macOS, Linux
+
+The easiest way to install Neovate Code is using the installation script.
+
+```bash
+curl -fsSL https://neovateai.dev/install.sh | bash
+```
+
+Or if you already have Node.js installed, you can install Neovate Code with npm.
+
+```bash
+npm i @neovate/code -g
+```
+
+<Callout type="warning">
+  Don't use `sudo` to install Neovate Code, it will cause some issues.
+</Callout>
+
+### Windows
+
+Follow these steps:
+
+1. Download and install [Node.js](https://nodejs.org/en/download/)
+2. Run `npm i @neovate/code -g` in your CMD or PowerShell
+3. Run `neovate`
+
+### Verify Installation
+
+After installation, you can verify the installation by running the following command:
+
+```bash
+neovate --version
+```
+
+## Updates
+
+Neovate Code will try to auto-update to ensure you always have the latest version.
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/0kLiT6LmhPAAAAAAgCAAAAgADhqBAQFr/original)
+
+If you want to disable auto-update, you can set the `autoUpdate` config to `false`.
+
+```bash
+neovate config set autoUpdate false -g
+```
+
+Also, you can manually update Neovate Code by running the following command:
+
+```bash
+neovate update
+```
+
+---
+# Quick Start
+URL: https://neovateai.dev/en/docs/quickstart.md
+
+# Quick Start
+
+Get started with Neovate Code in minutes. By the end of this guide, you'll understand how to use AI-powered coding assistance for common development tasks.
+
+## Prerequisites
+
+- [Node.js 18+](https://nodejs.org/en/download/)
+- Terminal access
+- A coding project
+
+## Step 1: Install Neovate Code
+
+Install globally via npm:
+
+```bash
+npm i @neovate/code -g
+```
+
+Verify installation:
+
+```bash
+neovate --version
+```
+
+## Step 2: Initial Setup
+
+Navigate to your project and start Neovate Code:
+
+```bash
+cd /path/to/your/project
+neovate
+```
+
+On first run, you'll be prompted to configure a provider:
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/utPsQZCitP8AAAAASDAAAAgADhqBAQFr/original)
+
+1. Type `/login` and select your AI provider
+2. Open the URL to complete OAuth login, or enter your API key directly
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/oZqNRp3FwEAAAAAARvAAAAgADhqBAQFr/original)
+
+3. Type `/model` to choose a model
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/meN2QalVfDMAAAAARtAAAAgADhqBAQFr/original)
+
+## Step 3: Ask Your First Question
+
+You're now in interactive mode. Start by understanding your codebase:
+
+```bash
+> what does this project do?
+```
+
+Neovate will analyze your files and provide a summary. Try more specific questions:
+
+```bash
+> what technologies does this project use?
+> where is the main entry point?
+> explain the folder structure
+> analyze the dependencies of this project
+```
+
+![](https://mdn.alipayobjects.com/huamei_h9478t/afts/img/REH1Qb-ZWn8AAAAARIAAAAgADhqBAQFr/original)
+
+Neovate reads your files as needed - you don't have to manually add context.
+
+## Step 4: Make Your First Code Change
+
+Now let's make Neovate do some actual coding. Try a simple task:
+
+```bash
+> add a hello world function to the main file
+```
+
+Neovate will:
+
+1. Find the appropriate file
+2. Show you the proposed changes
+3. Ask for your approval
+4. Make the edit
+
+You can also reference specific files using `@`:
+
+```bash
+> create a testcase for @src/components/Button.tsx
+> add input validation to @src/forms/LoginForm.tsx
+```
+
+Neovate always asks for permission before modifying files. You can approve individual changes or enable auto-accept mode for a session.
+
+## Step 5: Use Git with Neovate
+
+Neovate makes Git operations conversational:
+
+```bash
+> what files have I changed?
+> show me the diff
+> create a new branch called feature/login
+```
+
+Review your changes before committing:
+
+```bash
+git add .
+neovate /review
+```
+
+Generate a commit message and commit with AI assistance:
+
+```bash
+neovate commit
+```
+
+Or do it conversationally:
+
+```bash
+> commit my changes with a descriptive message
+> show me the last 5 commits
+```
+
+## Step 6: Fix a Bug or Add a Feature
+
+Neovate excels at debugging and feature implementation. Describe what you want in natural language:
+
+```bash
+> add input validation to the user registration form
+> implement dark mode toggle in the settings page
+```
+
+Or fix existing issues:
+
+```bash
+> there's a bug where users can submit empty forms - fix it
+> the login page shows a blank screen after wrong credentials - debug it
+```
+
+Neovate will:
+
+- Locate the relevant code
+- Understand the context
+- Implement a solution
+- Run tests if available
+
+## Step 7: Other Common Workflows
+
+**Refactor code**
+
+```bash
+> refactor the authentication module to use async/await
+> extract the validation logic into a separate utility
+```
+
+**Write tests**
+
+```bash
+> write unit tests for the calculator functions
+> add integration tests for the API endpoints
+```
+
+**Update documentation**
+
+```bash
+> update the README with installation instructions
+> add JSDoc comments to the exported functions
+```
+
+**Code review**
+
+```bash
+> review my changes and suggest improvements
+> check for potential security issues
+```
+
+## Tips
+
+- Use `/logout` to switch accounts or providers
+- Use `/help` to discover all available slash commands
+- Run `/init` to create a project-level `AGENTS.md` rules file
+- Set `HTTPS_PROXY` environment variable if you're behind a firewall
+- Be specific with your requests - instead of "fix the bug", try "fix the login bug where users see a blank screen"
+- Let Neovate explore first - ask it to analyze your code before making changes
+
+## What's Next?
+
+After you've completed the quickstart, explore more features:
+
+- [CLI](./cli.mdx) - All commands and options
+- [Settings](./settings.mdx) - Customize Neovate for your workflow
+- [Rules](./rules.mdx) - Configure project-level AI behavior
+- [Models](./models.mdx) - Choose and switch between AI models
+
+---
+# Common Workflows
+URL: https://neovateai.dev/en/docs/common-workflows.md
+
+# Common Workflows
+
+> Learn about common workflows with Neovate Code.
+
+Each task in this document includes clear instructions, example commands, and best practices to help you get the most from Neovate Code.
+
+## Understand new codebases
+
+### Get a quick codebase overview
+
+Suppose you've just joined a new project and need to understand its structure quickly.
+
+1. Navigate to the project root directory
+
+```bash
+cd /path/to/project
+```
+
+2. Start Neovate Code
+
+```bash
+neovate
+```
+
+3. Ask for a high-level overview
+
+```
+> give me an overview of this codebase
+```
+
+4. Dive deeper into specific components
+
+```
+> explain the main architecture patterns used here
+> what are the key data models?
+> how is authentication handled?
+```
+
+> **Tips:**
+> - Start with broad questions, then narrow down to specific areas
+> - Ask about coding conventions and patterns used in the project
+> - Request a glossary of project-specific terms
+
+### Find relevant code
+
+Suppose you need to locate code related to a specific feature or functionality.
+
+1. Ask Neovate to find relevant files
+
+```
+> find the files that handle user authentication
+```
+
+2. Get context on how components interact
+
+```
+> how do these authentication files work together?
+```
+
+3. Understand the execution flow
+
+```
+> trace the login process from front-end to database
+```
+
+> **Tips:**
+> - Be specific about what you're looking for
+> - Use domain language from the project
+
+---
+
+## Fix bugs efficiently
+
+Suppose you've encountered an error message and need to find and fix its source.
+
+1. Share the error with Neovate
+
+```
+> I'm seeing an error when I run npm test
+```
+
+2. Ask for fix recommendations
+
+```
+> suggest a few ways to fix the @ts-ignore in user.ts
+```
+
+3. Apply the fix
+
+```
+> update user.ts to add the null check you suggested
+```
+
+> **Tips:**
+> - Tell Neovate the command to reproduce the issue and get a stack trace
+> - Mention any steps to reproduce the error
+> - Let Neovate know if the error is intermittent or consistent
+
+---
+
+## Refactor code
+
+Suppose you need to update old code to use modern patterns and practices.
+
+1. Identify legacy code for refactoring
+
+```
+> find deprecated API usage in our codebase
+```
+
+2. Get refactoring recommendations
+
+```
+> suggest how to refactor utils.js to use modern JavaScript features
+```
+
+3. Apply the changes safely
+
+```
+> refactor utils.js to use ES2024 features while maintaining the same behavior
+```
+
+4. Verify the refactoring
+
+```
+> run tests for the refactored code
+```
+
+> **Tips:**
+> - Ask Neovate to explain the benefits of the modern approach
+> - Request that changes maintain backward compatibility when needed
+> - Do refactoring in small, testable increments
+
+---
+
+## Use Plan Mode for safe code analysis
+
+Plan Mode instructs Neovate to create a plan by analyzing the codebase with read-only operations, perfect for exploring codebases, planning complex changes, or reviewing code safely.
+
+### When to use Plan Mode
+
+- **Multi-step implementation**: When your feature requires making edits to many files
+- **Code exploration**: When you want to research the codebase thoroughly before changing anything
+- **Interactive development**: When you want to iterate on the direction with Neovate
+
+### How to use Plan Mode
+
+**Turn on Plan Mode during a session**
+
+You can switch into Plan Mode during a session using **Shift+Tab** to cycle through different modes.
+
+---
+
+## Work with tests
+
+Suppose you need to add tests for uncovered code.
+
+1. Identify untested code
+
+```
+> find functions in NotificationsService.swift that are not covered by tests
+```
+
+2. Generate test scaffolding
+
+```
+> add tests for the notification service
+```
+
+3. Add meaningful test cases
+
+```
+> add test cases for edge conditions in the notification service
+```
+
+4. Run and verify tests
+
+```
+> run the new tests and fix any failures
+```
+
+Neovate can generate tests that follow your project's existing patterns and conventions. When asking for tests, be specific about what behavior you want to verify. Neovate examines your existing test files to match the style, frameworks, and assertion patterns already in use.
+
+For comprehensive coverage, ask Neovate to identify edge cases you might have missed. Neovate can analyze your code paths and suggest tests for error conditions, boundary values, and unexpected inputs that are easy to overlook.
+
+---
+
+## Create pull requests
+
+Suppose you need to create a well-documented pull request for your changes.
+
+1. Summarize your changes
+
+```
+> summarize the changes I've made to the authentication module
+```
+
+2. Generate a pull request with Neovate
+
+```
+> create a pr
+```
+
+3. Review and refine
+
+```
+> enhance the PR description with more context about the security improvements
+```
+
+4. Add testing details
+
+```
+> add information about how these changes were tested
+```
+
+> **Tips:**
+> - Ask Neovate directly to make a PR for you
+> - Review Neovate's generated PR before submitting
+> - Ask Neovate to highlight potential risks or considerations
+
+---
+
+## Handle documentation
+
+Suppose you need to add or update documentation for your code.
+
+1. Identify undocumented code
+
+```
+> find functions without proper JSDoc comments in the auth module
+```
+
+2. Generate documentation
+
+```
+> add JSDoc comments to the undocumented functions in auth.js
+```
+
+3. Review and enhance
+
+```
+> improve the generated documentation with more context and examples
+```
+
+4. Verify documentation
+
+```
+> check if the documentation follows our project standards
+```
+
+> **Tips:**
+> - Specify the documentation style you want (JSDoc, docstrings, etc.)
+> - Ask for examples in the documentation
+> - Request documentation for public APIs, interfaces, and complex logic
+
+---
+
+## Work with images
+
+Suppose you need to work with images in your codebase, and you want Neovate's help analyzing image content.
+
+1. Add an image to the conversation
+
+You can use any of these methods:
+- Drag and drop an image into the Neovate Code window
+- Copy an image and paste it into the CLI with ctrl+v
+- Provide an image path: "Analyze this image: /path/to/your/image.png"
+
+2. Ask Neovate to analyze the image
+
+```
+> What does this image show?
+> Describe the UI elements in this screenshot
+> Are there any problematic elements in this diagram?
+```
+
+3. Use images for context
+
+```
+> Here's a screenshot of the error. What's causing it?
+> This is our current database schema. How should we modify it for the new feature?
+```
+
+4. Get code suggestions from visual content
+
+```
+> Generate CSS to match this design mockup
+> What HTML structure would recreate this component?
+```
+
+> **Tips:**
+> - Use images when text descriptions would be unclear or cumbersome
+> - Include screenshots of errors, UI designs, or diagrams for better context
+> - You can work with multiple images in a conversation
+> - Image analysis works with diagrams, screenshots, mockups, and more
+
+---
+
+## Reference files and directories
+
+Use @ to quickly include files or directories without waiting for Neovate to read them.
+
+1. Reference a single file
+
+```
+> Explain the logic in @src/utils/auth.js
+```
+
+This includes the full content of the file in the conversation.
+
+2. Reference a directory
+
+```
+> What's the structure of @src/components?
+```
+
+This provides a directory listing with file information.
+
+3. Reference MCP resources
+
+```
+> Show me the data from @github:repos/owner/repo/issues
+```
+
+This fetches data from connected MCP servers using the format @server:resource. See [MCP documentation](/docs/mcp) for details.
+
+> **Tips:**
+> - File paths can be relative or absolute
+> - @ file references add `AGENTS.md` in the file's directory and parent directories to context
+> - Directory references show file listings, not contents
+> - You can reference multiple files in a single message (e.g., "@file1.js and @file2.js")
+
+---
+
+## Resume previous conversations
+
+When starting Neovate Code, you can resume a previous session:
+
+- `neovate --continue` continues the most recent conversation in the current directory
+- `neovate --resume` opens a conversation picker or resumes by name
+
+From inside an active session, use `/resume` to switch to a different conversation.
+
+Sessions are stored per project directory. The `/resume` picker shows sessions from the same git repository, including worktrees.
+
+### Name your sessions
+
+Give sessions descriptive names to find them later. This is a best practice when working on multiple tasks or features.
+
+1. Name the current session
+
+Use `/rename` during a session to give it a memorable name:
+
+```
+> /rename auth-refactor
+```
+
+You can also rename any session from the picker: run `/resume`, navigate to a session, and press `R`.
+
+2. Resume by name later
+
+From the command line:
+
+```bash
+neovate --resume auth-refactor
+```
+
+Or from inside an active session:
+
+```
+> /resume auth-refactor
+```
+
+### Use the session picker
+
+The `/resume` command (or `neovate --resume` without arguments) opens an interactive session picker with these features:
+
+| Shortcut | Action |
+| :--- | :--- |
+| `↑` / `↓` | Navigate between sessions |
+| `→` / `←` | Expand or collapse grouped sessions |
+| `Enter` | Select and resume the highlighted session |
+| `P` | Preview the session content |
+| `R` | Rename the highlighted session |
+| `/` | Search to filter sessions |
+| `A` | Toggle between current directory and all projects |
+| `B` | Filter to sessions from your current git branch |
+| `Esc` | Exit the picker or search mode |
+
+> **Tips:**
+> - **Name sessions early**: Use `/rename` when starting work on a distinct task—it's much easier to find "payment-integration" than "explain this function" later
+> - Use `--continue` for quick access to your most recent conversation
+> - Use `--resume session-name` when you know which session you need
+> - Use `--resume` (without a name) when you need to browse and select
+> - For scripts, use `neovate --continue --print "prompt"` to resume in non-interactive mode
+> - Press `P` in the picker to preview a session before resuming it
+
+---
+
+## Create custom slash commands
+
+Neovate Code supports custom slash commands that you can create to quickly execute specific prompts or tasks.
+
+For more details, see the [Slash commands](/docs/slash-commands) reference page.
+
+### Create project-specific commands
+
+Suppose you want to create reusable slash commands for your project that all team members can use.
+
+1. Create a commands directory in your project
+
+```bash
+mkdir -p .neovate/commands
+```
+
+2. Create a Markdown file for each command
+
+```bash
+echo "Analyze the performance of this code and suggest three specific optimizations:" > .neovate/commands/optimize.md
+```
+
+3. Use your custom command in Neovate Code
+
+```
+> /optimize
+```
+
+> **Tips:**
+> - Command names are derived from the filename (e.g., `optimize.md` becomes `/optimize`)
+> - You can organize commands in subdirectories (e.g., `.neovate/commands/frontend/component.md` creates `/component` with "(project:frontend)" shown in the description)
+> - Project commands are available to everyone who clones the repository
+> - The Markdown file content becomes the prompt sent to Neovate when the command is invoked
+
+### Add command arguments with $ARGUMENTS
+
+Suppose you want to create flexible slash commands that can accept additional input from users.
+
+1. Create a command file with the $ARGUMENTS placeholder
+
+```bash
+echo 'Find and fix issue #$ARGUMENTS. Follow these steps:
+1. Understand the issue described in the ticket
+2. Locate the relevant code in our codebase
+3. Implement a solution that addresses the root cause
+4. Add appropriate tests
+5. Prepare a concise PR description' > .neovate/commands/fix-issue.md
+```
+
+2. Use the command with an issue number
+
+```
+> /fix-issue 123
+```
+
+This replaces $ARGUMENTS with "123" in the prompt.
+
+> **Tips:**
+> - The $ARGUMENTS placeholder is replaced with any text that follows the command
+> - You can position $ARGUMENTS anywhere in your command template
+> - Other useful applications: generating test cases for specific functions, creating documentation for components, reviewing code in particular files, or translating content to specified languages
+
+### Create personal slash commands
+
+Suppose you want to create personal slash commands that work across all your projects.
+
+1. Create a commands directory in your home folder
+
+```bash
+mkdir -p ~/.neovate/commands
+```
+
+2. Create a Markdown file for each command
+
+```bash
+echo "Review this code for security vulnerabilities, focusing on:" > ~/.neovate/commands/security-review.md
+```
+
+3. Use your personal custom command
+
+```
+> /security-review
+```
+
+> **Tips:**
+> - Personal commands show "(user)" in their description when listed with `/help`
+> - Personal commands are only available to you and not shared with your team
+> - Personal commands work across all your projects
+> - You can use these for consistent workflows across different codebases
+
+---
+
+## What's next?
+
+- [CLI Reference](/docs/cli) - All commands and options
+- [Settings](/docs/settings) - Customize Neovate for your workflow
+- [Slash Commands](/docs/slash-commands) - Create reusable prompt templates
+- [Subagents](/docs/subagents) - Spawn child agents for parallel tasks
+
+---
+# Features
+URL: https://neovateai.dev/en/docs/features.md
+
+---
+title: Features
+---
+
+# Features
+
+Neovate Code is a feature-rich AI coding agent. Here's what you can do with it.
+
+## Core
+
+- **12 Tools** - Built-in tools including askUserQuestion, bash, edit, fetch, glob, grep (ripgrep), ls, read, skill, task, todo, and write for comprehensive coding assistance.
+
+- **Multi Providers** - Works with Anthropic, OpenAI, Google Gemini, DeepSeek, Moonshot, GLM, Groq, XAI, OpenRouter, HuggingFace, MiniMax, Cerebras, SiliconFlow, VolcEngine, Poe, Copilot, iFlow AI, AIHubMix, ZenMux, Antigravity, or add your own. [Learn more →](/docs/providers)
+
+- **/model** - Switch between models mid-conversation without restarting. [Learn more →](/docs/models)
+
+- **Sessions** - Continue, resume, or fork conversations. Preserve context across sessions.
+
+- **Compaction** - Auto-summarize long conversations to stay within context limits.
+
+- **Bash Mode** - Prefix with `!` to run shell commands directly.
+
+- **Background Bash** - Run long-running commands in the background with `run_in_background=true`. Use `bash_output` to check output and `kill_bash` to terminate tasks.
+
+- **Images** - Paste or drag images into context for visual understanding.
+
+## Advanced
+
+- **AGENTS.md** - Project-specific instructions that guide the agent's behavior. [Learn more →](/docs/rules)
+
+- **Slash Commands** - Reusable prompt templates for common workflows. [Learn more →](/docs/slash-commands)
+
+- **21 Built-in Commands** - /clear, /context, /exit, /help, /init, /login, /logout, /mcp, /model, /output-style, /resume, /review, /terminal-setup, /bug, /compact, /status, /add-dir, /spec:brainstorm, /spec:save-design, /spec:write-plan, /spec:execute-plan.
+
+- **Skills** - On-demand instruction files for specialized tasks. [Learn more →](/docs/skills)
+
+- **Spec Driven** - Transform ideas into designs through brainstorming, planning, and execution. [Learn more →](/docs/spec-driven)
+
+- **Subagents** - Spawn child agents for parallel or delegated tasks. [Learn more →](/docs/subagents)
+
+- **Plugin System** - Hooks for lifecycle events, model resolution, tool formatting, and custom slash commands. [Learn more →](/docs/plugins)
+
+- **SDK** - Embed Neovate Code in your apps with full programmatic control. [Learn more →](/docs/headless)
+
+- **Output Style** - Customize response formatting. [Learn more →](/docs/output-style)
+
+- **MCP** - Model Context Protocol with stdio/SSE/HTTP transport and async initialization. [Learn more →](/docs/mcp)
+
+- **Memory Mode** - Prefix with `#` to persist information to AGENTS.md.
+
+- **AI Commit** - Intelligent git commit message generation. [Learn more →](/docs/ai-commit)
+
+- **Shell Command Generator** - Natural language to shell command conversion. [Learn more →](/docs/shell-command-generator)
+
+- **Session Log Viewer** - Browse and analyze session logs. [Learn more →](/docs/session-log-viewer)
+
+- **Neovate Code Desktop** - Native desktop application.
+
+- **API Key Rotation** - Round-robin multiple API keys for rate limit management.
+
+- **Git Worktree Workspace** - Isolated workspaces using git worktrees.
+
+- **Auto Upgrade** - Automatic version updates.
+
+- **API Proxy** - Route requests through custom proxy endpoints.
+
+- **Queued Messages** - Queue messages while agent is processing.
+
+- **Tool Approval System** - Review and approve tool calls before execution.
+
+## Input
+
+- **Paste Text** - Paste text directly into the chat.
+
+- **Multi-line Input** - Use Option/Alt/Shift + Enter for multiple lines.
+
+- **Smart Suggestions** - Press `@` or Tab to access file and context suggestions.
+
+- **History Search** - Press Ctrl+R for reverse search through command history.
+
+- **History Navigation** - Use Up/Down arrows to navigate previous messages.
+
+- **Thinking Toggle** - Press Ctrl+T to toggle thinking level.
+
+- **External Editor** - Press Ctrl+G to edit in your preferred external editor.
+
+---
+# Rules
+URL: https://neovateai.dev/en/docs/rules.md
+
+import { Callout } from 'nextra/components';
+
+# Rules
+
+Neovate Code supports [AGENTS.md](https://agents.md/) file to provide custom instructions. You can use it to manage custom rules to guide AI behavior and ensure consistent code generation across your projects.
+
+<Callout type="info">
+  For compatibility, `CLAUDE.md` is also supported as an alias for `AGENTS.md`.
+</Callout>
+
+## File Location
+
+Neovate Code supports both project and global scope. And both of them will work, they will be merged together to send to the LLMs.
+
+### Project scope
+
+Project scope `AGENTS.md` is located under your project root. This file will be used by the project and it's sub-directories.
+
+### Global scope
+
+You can also create a global AGENTS.md file in the `~/.neovate/AGENTS.md`. This file will be used by all projects.
+
+## Set up project AGENTS.md
+
+You can use `/init` slash command to set up a project `AGENTS.md` file quickly using **progressive disclosure principles**:
+
+- The root `AGENTS.md` stays minimal (\<60 lines) with only high-level guidance
+- Detailed information goes into separate `docs/agent/*.md` files (e.g., `development_commands.md`, `architecture.md`, `testing.md`, `conventions.md`)
+- Only creates additional docs where substantial content exists
+
+If the `AGENTS.md` file already exists, it will ask before replacing.
+
+```bash
+/init
+```
+
+<Callout type="info">
+  You should commit the `AGENTS.md` file of your project to the git repository.
+</Callout>
+
+---
+# Settings
+URL: https://neovateai.dev/en/docs/settings.md
+
+# Settings
+
+Configure Neovate Code settings using JSON file to customize behavior, preferences, and integration options.
+
+## File Location
+
+Neovate Code supports both project and global settings files.
+
+- **Project scope** settings file is located in the `.neovate/config.json` file and `.neovate/config.local.json` file, the `.local.json` file is useful for personal settings and should not be committed to the repository.
+- **Global scope** settings file is located in the `~/.neovate/config.json` file.
+
+## Schema
+
+The settings file has a schema that is defined in https://neovateai.dev/config.json . Based on the schema, your editor should be able to validate and auto-complete the settings file.
+
+## `neovate config`
+
+You can use `neovate config` to manage the settings file.
+
+```bash
+# List all settings
+neovate config ls
+
+# Get a setting
+neovate config get <key>
+
+# Set a setting
+neovate config set <key> <value>
+
+# Set a setting globally
+neovate config set <key> <value>
+
+# Add a setting
+neovate config add <key> <value>
+
+# Remove a setting
+neovate config rm <key>
+```
+
+By default, `neovate config` will use the project settings file. You can use `-g` to use the global settings file.
+
+## Available Settings
+
+### approvalMode
+
+The approval mode to use.
+
+- Type: `"autoEdit" | "yolo" | "default"`
+- Default: `"default"`
+
+### autoCompact
+
+Specify whether to enable the auto compact feature. When disabled, conversation history will accumulate and context limit may be exceeded.
+
+- Type: `boolean`
+- Default: `true`
+
+### autoUpdate
+
+Specify whether to enable automatic updates. Neovate Code will automatically download the latest version and update itself.
+
+- Type: `boolean`
+- Default: `true`
+
+### browser
+
+Specify whether to enable browser MCP integration.
+
+- Type: `boolean`
+- Default: `false`
+
+### commit
+
+Specify the commit configuration.
+
+- Type: `object`
+- Default: `{ language: "en" }`
+
+Available options:
+- `language`: `string` - The language for commit messages
+- `systemPrompt`: `string` - Custom system prompt for commit message generation
+- `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
+
+### desktop
+
+Desktop application configuration. This setting can only be set globally.
+
+- Type: `object`
+- Default: `{ theme: "light", sendMessageWith: "enter" }`
+
+Available options:
+- `theme`: `"light" | "dark" | "system"` - The color theme for the desktop app
+- `sendMessageWith`: `"enter" | "cmdEnter"` - The key combination to send messages
+- `terminalFont`: `string` - Custom font for the terminal
+- `terminalFontSize`: `number` - Font size for the terminal
+
+### extensions
+
+Extensions configuration for third-party custom agents. Allows arbitrary nested configuration without validation.
+
+- Type: `Record<string, any>`
+- Default: `{}`
+
+### httpProxy
+
+Specify the HTTP proxy to use for network requests.
+
+- Type: `string`
+- Default: null
+
+### language
+
+The language to use.
+
+- Type: `string`
+- Default: `"English"`
+
+### mcpServers
+
+The MCP servers to use. Checkout [MCP](./mcp) for more details.
+
+- Type: `Record<string, McpServerConfig>`
+- Default: `{}`
+
+Each server config can be one of:
+- **stdio**: `{ type: "stdio", command: string, args: string[], env?: Record<string, string>, disable?: boolean }`
+- **sse**: `{ type: "sse", url: string, headers?: Record<string, string>, disable?: boolean }`
+- **http**: `{ type: "http", url: string, headers?: Record<string, string>, disable?: boolean }`
+
+### model
+
+The model to use. Format: `provider_id/model_id`. Checkout [Models](./models) for more details.
+
+- Type: `string`
+- Default: null
+
+### outputFormat
+
+The output format for CLI responses.
+
+- Type: `"text" | "stream-json" | "json"`
+- Default: `"text"`
+
+### outputStyle
+
+The output style to use. Checkout [Output Style](./output-style) for more details.
+
+- Type: `string`
+- Default: `"Default"`
+
+### planModel
+
+The plan model to use. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`
+
+### plugins
+
+The plugins to use. Checkout [Plugins](./plugins) for more details.
+
+- Type: `string[]`
+- Default: `[]`
+
+### provider
+
+Custom provider configurations. Allows overriding default provider settings.
+
+- Type: `Record<string, ProviderConfig>`
+- Default: `{}`
+
+Each provider config can include:
+- `id`: `string` - Provider identifier
+- `name`: `string` - Display name for the provider
+- `env`: `string[]` - Environment variable names for API key
+- `apiEnv`: `string[]` - Environment variable names for custom API base URL
+- `api`: `string` - Default API base URL
+- `doc`: `string` - Documentation URL
+- `models`: `Record<string, string | Omit<Model, 'id' | 'cost'>>` - Map of model IDs to model names
+- `options`: `object` - Provider options
+  - `apiKey`: `string` - API key for the provider
+  - `baseURL`: `string` - Custom base URL for the provider API
+  - `headers`: `Record<string, string>` - Custom headers
+  - `httpProxy`: `string` - HTTP proxy URL for this provider
+
+### quiet
+
+Specify whether to suppress non-essential output.
+
+- Type: `boolean`
+- Default: `false`
+
+### smallModel
+
+The small model to use for lightweight tasks. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`
+
+### systemPrompt
+
+Specify the system prompt to use.
+
+- Type: `string`
+- Default: null
+
+### temperature
+
+The temperature to use for model responses.
+
+- Type: `number`
+- Default: null
+
+### todo
+
+Specify whether to enable the todo feature.
+
+- Type: `boolean`
+- Default: `true`
+
+### tools
+
+Tools configuration for enabling/disabling specific tools. Set a tool name to `false` to disable it.
+
+- Type: `Record<string, boolean>`
+- Default: `{}`
+
+### visionModel
+
+The vision model to use for image-related tasks. Format: `provider_id/model_id`.
+
+- Type: `string`
+- Default: use the same model as `model`
+
+---
+# Models
+URL: https://neovateai.dev/en/docs/models.md
+
+# Models
+
+## Providers
+
+Neovate Code supports most popular providers and models by default. And you can also add any OpenAI compatible provider. Check out the [Providers](./providers) page to learn more.
+
+## Select a model
+
+Once you have configured the providers, you can run `/model` to select a model. The selected model will be saved in the global settings in the `~/.neovate/config.json` file.
+
+```bash
+/model
+```
+
+Also, you can use `neovate config` to select a model.
+
+```bash
+# Set global model
+neovate config set model openai/gpt-4o -g
+
+# Set project model
+neovate config set model openai/gpt-4o
+
+# Get global model
+neovate config get model -g
+
+# Remove global model
+neovate config remove model -g
+```
+
+## Recommended models
+
+Here are so many models, and we can't test all of them. Here are some recommended models which have been tested and are working well.
+
+- Claude Sonnet 4.5 / Opus 4.5
+- GPT-5.1 / GPT-5.2
+- Gemini 3 Pro
+- GLM 4.7
+- MiniMax M2.1
+- Qwen3 Coder / Qwen3 Max
+- Grok 4.1 Fast
+
+## Specify a model temporarily
+
+You can specify a model temporarily by adding `-m, --model` to your command. The format is `provider_id/model_id`. It's priority is higher than the model configured in the settings.
+
+```bash
+neovate -m openai/gpt-4o "Create a testcase for @src/components/Button.tsx"
+```
+
+## Model Aliases
+
+Model aliases are shortcuts for models. You can use them to quickly select a model.
+
+```bash
+neovate -m opus
+```
+
+Here are some built-in aliases for convenience:
+
+| Alias | Model |
+| --- | --- |
+| `flash` | google/gemini-2.5-flash |
+| `gemini` | google/gemini-3-pro-preview |
+| `grok` | xai/grok-4-1-fast |
+| `sonnet` | anthropic/claude-sonnet-4-5-20250929 |
+| `haiku` | anthropic/claude-haiku-4-5 |
+| `opus` | anthropic/claude-opus-4-5 |
+
+---
+# Providers
+URL: https://neovateai.dev/en/docs/providers.md
+
+import { Callout } from 'nextra/components';
+
+# Providers
+
+Neovate Code supports multiple providers and models. You can use it with your own models and providers, or use the built-in models and providers.
+
+## Built-in providers
+
+<Callout type="info">
+  Didn't find your provider? Submit an issue or a pull request to add it.
+</Callout>
+
+### AIHubMix
+
+1. Open [AIHubMix](https://aihubmix.com/), create an account and get your API key.
+
+2. Type `/login` and select **AIHubMix** and enter the API key, or set the API key in your environment variable `AIHUBMIX_API_KEY`.
+
+```bash
+export AIHUBMIX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Antigravity
+
+<Callout>
+  OAuth-based authentication. No API key required.
+</Callout>
+
+1. Type `/login` and select **Antigravity**.
+
+2. Follow the OAuth flow to authenticate with your Google account.
+
+3. Run `/model` to select the model you want to use.
+
+### Anthropic
+
+1. Open [Anthropic Platform Console](https://console.anthropic.com/settings/keys), click **Create Key** to create a new API key and copy it.
+
+2. Type `/login` and select **Anthropic** and enter the API key, or set the API key in your environment variable `ANTHROPIC_API_KEY`.
+
+```bash
+export ANTHROPIC_API_KEY=your-api-key  
+```
+
+> If you want to use custom base URL, you can set the environment variable `ANTHROPIC_API_BASE`.
+
+```bash
+export ANTHROPIC_API_BASE=https://your-base-url
+```
+
+3. Run `/model` to select the model you want to use.
+
+### CanopyWave
+
+1. Open [CanopyWave](https://cloud.canopywave.io/), create an account and get your API key.
+
+2. Type `/login` and select **CanopyWave** and enter the API key, or set the API key in your environment variable `CANOPYWAVE_API_KEY`.
+
+```bash
+export CANOPYWAVE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Cerebras
+
+1. Open [Cerebras](https://cerebras.ai/), create an account and get your API key.
+
+2. Type `/login` and select **Cerebras** and enter the API key, or set the API key in your environment variable `CEREBRAS_API_KEY`.
+
+```bash
+export CEREBRAS_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### DeepSeek
+
+1. Open [DeepSeek Console](https://platform.deepseek.com/), click **Create new API key** to create a new API key and copy it.
+
+2. Type `/login` and select **DeepSeek** and enter the API key, or set the API key in your environment variable `DEEPSEEK_API_KEY`.
+
+```bash
+export DEEPSEEK_API_KEY=your-api-key  
+```
+
+> If you want to use custom base URL, you can set the environment variable `DEEPSEEK_API_BASE`.
+
+```bash
+export DEEPSEEK_API_BASE=https://your-base-url
+```
+
+3. Run `/model` to select the model you want to use.
+
+### GitHub Copilot
+
+<Callout>
+  OAuth-based authentication. Requires a GitHub Copilot subscription.
+</Callout>
+
+1. Type `/login` and select **GitHub Copilot**.
+
+2. Follow the OAuth flow to authenticate with your GitHub account.
+
+3. Run `/model` to select the model you want to use.
+
+### Google
+
+1. Open [Google AI Studio](https://aistudio.google.com/apikey), click **Create API key** to create a new API key and copy it.
+
+2. Type `/login` and select **Google** and enter the API key, or set the API key in your environment variable `GOOGLE_API_KEY`.
+
+```bash
+export GOOGLE_API_KEY=your-api-key  
+```
+
+> If you want to use custom base URL, you can set the environment variable `GOOGLE_GENERATIVE_AI_API_BASE`.
+
+```bash
+export GOOGLE_GENERATIVE_AI_API_BASE=https://your-base-url
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Groq
+
+1. Open [Groq Console](https://console.groq.com/), click **Create API Key** to create a new API key and copy it.
+
+2. Type `/login` and select **Groq** and enter the API key, or set the API key in your environment variable `GROQ_API_KEY`.
+```bash
+export GROQ_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Hugging Face
+
+1. Open [Hugging Face](https://huggingface.co/settings/tokens), create an access token with inference permissions.
+
+2. Type `/login` and select **Hugging Face** and enter the API key, or set the API key in your environment variable `HUGGINGFACE_API_KEY`.
+
+```bash
+export HUGGINGFACE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### iFlow
+
+<Callout>
+  It's free to use.
+</Callout>
+
+1. Open [iFlow](https://iflow.cn/), register, click the right top avatar, then click **我的账户** to get the API key, copy it.
+
+2. Type `/login` and select **iFlow** and enter the API key, or set the API key in your environment variable `IFLOW_API_KEY`.
+
+```bash
+export IFLOW_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Minimax
+
+1. Open [Minimax Platform](https://platform.minimaxi.com/) (or [Minimax CN](https://platform.minimaxi.io/) for China), create an account and get your API key.
+
+2. Type `/login` and select **Minimax** (or **Minimax CN**) and enter the API key, or set the API key in your environment variable `MINIMAX_API_KEY`.
+
+```bash
+export MINIMAX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### ModelScope
+
+1. Open [ModelScope Console](https://console.modelscope.cn/), click **Create API Key** to create a new API key and copy it.
+
+2. Type `/login` and select **ModelScope** and enter the API key, or set the API key in your environment variable `MODELSCOPE_API_KEY`.
+
+```bash
+export MODELSCOPE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### ModelWatch
+
+1. Open [ModelWatch](https://api.modelwatch.dev/), create an account and get your API key.
+
+2. Type `/login` and select **ModelWatch** and enter the API key, or set the API key in your environment variable `MODELWATCH_API_KEY`.
+
+```bash
+export MODELWATCH_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Moonshot AI
+
+1. Open [Moonshot AI Console](https://platform.moonshot.ai/console) (or [Moonshot AI CN Console](https://platform.moonshot.cn/console) for China), click **Create API key** to create a new API key and copy it.
+
+2. Type `/login` and select **Moonshot AI** (or **Moonshot AI CN**) and enter the API key, or set the API key in your environment variable `MOONSHOT_API_KEY`.
+
+```bash
+export MOONSHOT_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### NVIDIA
+
+1. Open [NVIDIA](https://build.nvidia.com/models), create an account and get your API key.
+
+2. Type `/login` and select **NVIDIA** and enter the API key, or set the API key in your environment variable `NVIDIA_API_KEY`.
+
+```bash
+export NVIDIA_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### OpenAI
+
+1. Open [OpenAI Platform Console](https://platform.openai.com/api-keys), click **Create new secret key** to create a new API key and copy it.
+
+2. Type `/login` and select **OpenAI** and enter the API key, or set the API key in your environment variable `OPENAI_API_KEY`.
+
+```bash
+export OPENAI_API_KEY=your-api-key  
+```
+
+> If you want to use custom base URL, you can set the environment variable `OPENAI_API_BASE`.
+
+```bash
+export OPENAI_API_BASE=https://your-base-url
+```
+
+3. Run `/model` to select the model you want to use.
+
+### OpenRouter
+
+1. Open [OpenRouter Dashboard](https://openrouter.ai/settings/keys), click **Create API key** to create a new API key and copy it.
+
+2. Type `/login` and select **OpenRouter** and enter the API key, or set the API key in your environment variable `OPENROUTER_API_KEY`.
+
+```bash
+export OPENROUTER_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Poe
+
+1. Open [Poe](https://poe.com/), go to settings and get your API key.
+
+2. Type `/login` and select **Poe** and enter the API key, or set the API key in your environment variable `POE_API_KEY`.
+
+```bash
+export POE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### SiliconFlow
+
+1. Open [SiliconFlow](https://siliconflow.com/) (or [SiliconFlow CN](https://siliconflow.cn/) for China), create an account and get your API key.
+
+2. Type `/login` and select **SiliconFlow** (or **SiliconFlow CN**) and enter the API key, or set the API key in your environment variable `SILICONFLOW_API_KEY`.
+
+```bash
+export SILICONFLOW_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### VolcEngine
+
+1. Open [VolcEngine Console](https://www.volcengine.com/), create an account and get your API key.
+
+2. Type `/login` and select **VolcEngine** and enter the API key, or set the API key in your environment variable `VOLCENGINE_API_KEY`.
+
+```bash
+export VOLCENGINE_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### xAI
+
+1. Open [xAI Console](https://console.x.ai/), click **Create API key** to create a new API key and copy it.
+
+2. Type `/login` and select **xAI** and enter the API key, or set the API key in your environment variable `XAI_API_KEY`.
+
+```bash
+export XAI_API_KEY=your-api-key  
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Xiaomi Mimo
+
+1. Open [Xiaomi Mimo Platform](https://platform.xiaomimimo.com/), create an account and get your API key.
+
+2. Type `/login` and select **Xiaomi Mimo** and enter the API key, or set the API key in your environment variable `MIMO_API_KEY`.
+
+```bash
+export MIMO_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### ZenMux
+
+1. Open [ZenMux](https://zenmux.ai/), create an account and get your API key.
+
+2. Type `/login` and select **ZenMux** and enter the API key, or set the API key in your environment variable `ZENMUX_API_KEY`.
+
+```bash
+export ZENMUX_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+### Zhipu AI
+
+1. Open [Zhipu AI](https://open.bigmodel.cn/) (or [Z.AI](https://api.z.ai/) for international), create an account and get your API key.
+
+2. Type `/login` and select **Zhipu AI** (or **Z.AI Coding Plan** / **Zhipu AI Coding Plan** for coding-specific plans) and enter the API key, or set the API key in your environment variable `ZHIPU_API_KEY`.
+
+```bash
+export ZHIPU_API_KEY=your-api-key
+```
+
+3. Run `/model` to select the model you want to use.
+
+## Custom providers
+
+You can add any OpenAI compatible provider that is not built-in.
+
+Edit the `~/.neovate/config.json` file to add the provider.
+
+```json
+{
+  "provider": {
+    "your-provider": {
+      "api": "https://your-base-url",
+      "options": {
+        "apiKey": "your-api-key",
+      },
+      "models": {
+        // the value is the model id
+        // the full list could be found in https://github.com/neovateai/neovate-code/blob/master/src/model.ts
+        "foo": "claude-4-sonnet"
+      },
+      // optional, only add it when the provider use anthropic api
+      "createModelType": "anthropic"
+    }
+  }
+}
+```
+
+<Callout type="info">
+  Want more control over providers? You can create your own code agent using [plugins](/docs/plugins), which gives you full programmatic control over provider configuration, model aliases, and more through the `provider` and `modelAlias` hooks.
+</Callout>
+
+---
+# Interactive Mode
+URL: https://neovateai.dev/en/docs/interactive-mode.md
+
+import { Callout } from 'nextra/components';
+
+# Interactive Mode
+
+Neovate Code supports both interactive mode and headless mode. And interactive mode is the default mode.
+
+Running `neovate` in the terminal will start the interactive mode for the current working directory.
+
+```bash
+neovate
+```
+
+Or you can start it with a specific working directory.
+
+```bash
+neovate --cwd /path/to/your/project
+```
+
+## Keyboard shortcuts
+
+| Shortcut | Description |
+| --- | --- |
+| `Shift + Tab` | Switch to the plan and brainstorm mode |
+| `Ctrl + T` | Switch thinking level |
+| `Up/Down Arrows` | Navigate the conversation history |
+| `Option + Up Arrow` | Edit queued message |
+| `Esc` twice | Fork session |
+| `/` | Start slash commands |
+| `Ctrl + C` | Clear current input |
+| `Ctrl + C` twice | Quit |
+| `Shift + Enter` or `Option + Enter` | Multi-line input |
+| `Ctrl + L` twice | Open the debug mode and open the log file |
+| `Ctrl + V` / `Cmd + V` | Paste image from clipboard |
+| `Ctrl + G` | Edit prompt in external editor |
+
+## File references
+
+You can use `@` to refer to the files and directories in the current working directory. It will do a fuzzy search and suggest the file or directory name of the best match. Then you can hit `Tab` or `Enter` to select.
+
+```bash
+neovate "version of @package.json"
+```
+
+<Callout type="info">
+  Refered files and directories using `@` will be added to the context. If you just want to refer to the file content, just hit `Tab` and it will also do the fuzzy search auto suggestion.
+</Callout>
+
+## Conversation history
+
+Some tips about the conversation history:
+
+- History is stored per working directory in the `~/.neovate/projects/<project_name>/` directory and named as `<session_id>.jsonl`.
+- Use `-r, --resume` to resume from a specific session.
+- Use `-c, --continue` to resume from the last session.
+- Use `Up/Down Arrows` to navigate the conversation history.
+- Use `/clear` to clear the conversation history and start a new session (Notice: original conversation session is kept).
+
+## Bash mode with `!` prefix
+
+Run bash commands directly without going through Neovate by prefixing your input with `!`:
+
+```bash
+! npm test
+! git status
+! ls -la
+```
+
+- Adds the command and its output to the conversation context
+- Shows real-time progress and output
+- Does not require Neovate to interpret or approve the command
+
+This is useful for quick shell operations while maintaining conversation context.
+
+## Reverse search with Ctrl+R
+
+Press `Ctrl+R` to interactively search through your command history:
+
+1. Press `Ctrl+R` to activate reverse history search
+2. Enter text to search for in previous commands
+3. Press `Ctrl+R` again to cycle through older matches
+4. Press `Tab` or `Enter` to accept the current match
+5. Press `Ctrl+C` to cancel and restore your original input
+
+## Multiline input
+
+| Shortcut | Description |
+| --- | --- |
+| `\` + `Enter` | Works in all terminals |
+| `Option + Enter` | Default on macOS |
+| `Shift + Enter` | After `/terminal-setup` |
+| `Ctrl + J` | Line feed character for multiline |
+
+Configure your preferred line break behavior in terminal settings. Run `/terminal-setup` to install Shift+Enter binding for iTerm2 and VS Code terminals.
+
+## Multimodal input
+
+You can add images to the conversation, such as screenshots, diagrams, etc.
+
+There are several ways to add:
+
+- Drag and drop images to the input area.
+- Copy and paste images to the input area.
+
+---
+# Headless
+URL: https://neovateai.dev/en/docs/headless.md
+
+# Headless
+
+Configure and use Neovate Code in headless mode for automated workflows, CI/CD integration and scripts.
+
+## Basic Usage
+
+```bash
+neovate -q "Review the changes"
+```
+
+## Options
+
+| parameter | description |
+| --- | --- |
+| `-q, --quiet` | Quiet mode, only output the result |
+| `--output-format <output_format>` | Specify an output format, Options: `stream-json`, `json`, `text`, must be used together with `--quiet` |
+
+Use `--output-format` combined with `--quiet` to use the headless mode for different purposes. Checkout [CLI](./cli) for more options.
+
+## Output Format
+
+### Text (Default)
+
+It will output the result in text format.
+
+```bash
+neovate -q "ping"
+# Output: pong
+```
+
+### Stream JSON
+
+It will output the result in stream JSON format. Each line is a JSON object representing the event during the command execution.
+
+```bash
+neovate -q --output-format stream-json  "ping"
+```
+
+### JSON
+
+It will output the result in a single JSON format when the command is completely finished.
+
+```bash
+neovate -q --output-format json "ping"
+```
+
+---
+# Slash Commands
+URL: https://neovateai.dev/en/docs/slash-commands.md
+
+import { Callout } from 'nextra/components';
+
+# Slash Commands
+
+Use slash commands to trigger specific actions and workflows in your AI conversations.
+
+## Built-in slash commands
+
+|Command|Description|
+|---|---|
+|`/add-dir [path]`|Add or manage additional working directories|
+|`/bug`|Report a bug to GitHub|
+|`/clear`|Start a new session|
+|`/compact`|Clear conversation history but keep a summary in context|
+|`/context`|Analyze and display token usage breakdown|
+|`/exit`|Exit the application|
+|`/help`|Show help|
+|`/init`|Create or improve the AGENTS.md file|
+|`/login [provider]`|Configure API key for a provider|
+|`/logout`|Remove API key for a provider|
+|`/mcp`|MCP servers management|
+|`/model [model]`|Select a model|
+|`/output-style [output_style]`|Select an output style|
+|`/resume [session_id]`|Resume from a specific session|
+|`/review [pull_request_id]`|Review a github pull request or staged changes|
+|`/spec:brainstorm <idea>`|Brainstorm design ideas|
+|`/spec:execute-plan [plan_file]`|Execute implementation plan|
+|`/spec:save-design`|Save design document from brainstorming session|
+|`/spec:write-plan <feature>`|Write implementation plan|
+|`/status`|Show status|
+|`/terminal-setup`|Setup Shift+Enter binding|
+
+## Custom slash commands
+
+<Callout type="info">
+  Custom slash commands can override the built-in slash commands. If you define a custom slash command with the same name as a built-in slash command, the custom slash command will be used instead.
+</Callout>
+
+If you write a prompt more than three times, you should consider adding a slash command for it. Customized slash commands have both project and global scope.
+
+### Project scope
+
+Located under the `.neovate/commands` directory.
+
+```bash
+mkdir -p .neovate/commands
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+```
+
+<Callout type="info">
+  For compatibility, `.claude/commands` is also supported as a project-level commands directory.
+</Callout>
+
+### Global scope
+
+Located under the `~/.neovate/commands` directory.
+
+```bash
+mkdir -p ~/.neovate/commands
+echo "Explain the project dependencies" > ~/.neovate/commands/explain-dependencies.md
+```
+
+<Callout type="info">
+  For compatibility, `~/.claude/commands` is also supported as a global commands directory.
+</Callout>
+
+### Usage
+
+```bash
+/<command> [arguments]
+```
+
+### Arguments
+
+The `$ARGUMENTS` string in your slash command file will be replaced with **all** the arguments passed to the command.
+
+e.g.
+
+```bash
+echo "Add test case for $ARGUMENTS" > .neovate/commands/add-testcase.md
+
+# Usage
+/add-testcase @src/Button.tsx
+# Actual prompt will be used
+Add test case for @src/Button.tsx
+```
+
+And if you want to replace individual arguments, you can use the `$1`, `$2`, `$3`, etc. Similarly as the bash script.
+
+```bash
+echo "Install dependency $1 with $2" > .neovate/commands/add-dependency.md
+
+# Usage
+/add-dependency react pnpm
+# Actual prompt will be used
+Install dependency react with pnpm
+```
+
+### Frontmatter
+
+Slash command files support frontmatter.
+
+|Key|Description|
+|---|---|
+|`name (optional)`|The name of the slash command|
+|`description (optional)`|The description of the slash command|
+|`model (optional)`|The model to use for the slash command|
+
+e.g.
+
+```bash
+---
+name: Add test case
+description: Add a test case for the given file
+model: openai/gpt-5
+---
+
+Add test case for $ARGUMENTS
+```
+
+---
+# Subagents
+URL: https://neovateai.dev/en/docs/subagents.md
+
+---
+title: Subagents
+---
+
+# Subagents
+
+🚧 Work in progress. This feature will be available in version 0.23.0.
+
+---
+# Skills
+URL: https://neovateai.dev/en/docs/skills.md
+
+import { Callout } from 'nextra/components';
+
+# Skills
+
+Skills are **reusable capabilities** that your AI agent invokes on demand. They pack instructions, expertise, and tools into a lightweight package.
+
+**Key properties:**
+
+- **Model-invoked** – Neovate decides when to use them based on the task, not typed commands
+- **Composable** – can be chained together as part of larger workflows
+- **Token-efficient** – lightweight and focused
+
+## What is a Skill?
+
+A skill is a **directory** containing:
+
+- `SKILL.md` with YAML frontmatter and markdown instructions
+- Optional supporting files (scripts, schemas, checklists)
+
+Each skill defines what problem it solves, what inputs it expects, and what success looks like.
+
+## File Locations
+
+| Scope | Location | Purpose |
+|-------|----------|---------|
+| **Workspace** | `.neovate/skills/<skill-name>/` | Project skills shared with teammates; checked into git |
+| **Personal** | `~/.neovate/skills/<skill-name>/` | Private skills that follow you across projects |
+
+<Callout type="info">
+  For compatibility, `.claude/skills/` is also supported as an alias.
+</Callout>
+
+## Skill File Format
+
+Skills are defined in Markdown with YAML frontmatter:
+
+```md
+---
+name: summarize-diff
+description: Summarize the staged git diff in 3–5 bullets. Use when the user asks for a summary of pending changes.
+---
+
+# Summarize Diff
+
+## Instructions
+
+1. Run `git diff --staged`.
+2. Summarize the changes in 3–5 bullets, focusing on user-visible behavior.
+3. Call out any migrations, risky areas, or tests that should be run.
+```
+
+The `name` and `description` fields are required. Neovate uses the description to decide when to apply the skill.
+
+## Supporting Files
+
+Each skill folder can contain supporting utilities:
+
+- `SKILL.md` – the main skill specification
+
+## How Skills Differ from Other Config
+
+| Config | Purpose | When it runs |
+|--------|---------|--------------|
+| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant |
+| **Rules (AGENTS.md)** | Project-wide instructions | Loaded into every conversation |
+| **Slash Commands** | User-invoked macros | You type `/command` to run it |
+
+## CLI Commands
+
+Manage skills via the command line:
+
+```bash
+# Install a skill from GitHub
+neovate skill add user/repo
+
+# Install from a subpath
+neovate skill add user/repo/path/to/skill
+
+# Install globally (available across all projects)
+neovate skill add -g user/repo
+
+# Install with a custom name
+neovate skill add --name my-skill user/repo
+
+# Overwrite an existing skill
+neovate skill add --overwrite user/repo
+
+# List all installed skills
+neovate skill list
+
+# List as JSON
+neovate skill list --json
+
+# Remove a skill
+neovate skill remove my-skill
+
+# Remove a global skill
+neovate skill remove -g my-skill
+```
+
+| Option | Description |
+|--------|-------------|
+| `-g, --global` | Install to/remove from global skills directory |
+| `--overwrite` | Overwrite existing skill with the same name |
+| `--name <name>` | Install with a custom local name |
+| `--target <dir>` | Custom target directory for skills |
+| `--json` | Output list as JSON |
+
+---
+# Spec Driven Development
+URL: https://neovateai.dev/en/docs/spec-driven.md
+
+import { Callout } from 'nextra/components';
+
+# Spec Driven Development
+
+Spec Driven Development is a structured approach to transform rough ideas into fully-formed designs and executable implementation plans. It combines brainstorming, design documentation, and plan-based execution into a cohesive workflow.
+
+## Overview
+
+The spec-driven workflow consists of four phases:
+
+1. **Brainstorm** – Refine ideas through structured questioning
+2. **Save Design** – Document the design decisions
+3. **Write Plan** – Create detailed implementation steps
+4. **Execute Plan** – Implement in batches with checkpoints
+
+## Plan Mode vs Brainstorm Mode
+
+Neovate Code offers two complementary modes for thinking before coding:
+
+| Mode | Purpose | Toggle |
+|------|---------|--------|
+| **Plan Mode** | Break down tasks into steps before execution | Shift+Tab |
+| **Brainstorm Mode** | Explore ideas through Q&A dialogue | Shift+Tab (toggle twice) |
+
+Press `Shift+Tab` to cycle through: Normal → Plan Mode → Brainstorm Mode → Normal.
+
+### Plan Mode
+
+In Plan Mode, Neovate creates a structured plan before taking action. The response outlines what steps will be taken, allowing you to review and approve before execution.
+
+### Brainstorm Mode
+
+In Brainstorm Mode (indicated by 🧠), Neovate engages in collaborative design exploration:
+
+- Asks ONE question at a time to understand your requirements
+- Proposes 2-3 alternative approaches
+- Presents designs incrementally for validation
+- Never writes code during brainstorming
+
+## Slash Commands
+
+### /spec:brainstorm
+
+Transform a rough idea into a design through structured dialogue.
+
+```
+/spec:brainstorm add user authentication with OAuth
+```
+
+**The Process:**
+
+**Phase 1: Understanding**
+- Checks current project state
+- Asks clarifying questions one at a time
+- Gathers purpose, constraints, success criteria
+
+**Phase 2: Exploration**
+- Proposes 2-3 different approaches
+- Evaluates trade-offs and complexity
+- Asks which approach resonates
+
+**Phase 3: Design Presentation**
+- Presents design in 200-300 word sections
+- Covers architecture, components, data flow, error handling
+- Validates each section before proceeding
+
+<Callout type="info">
+  Brainstorm mode can go backward when needed. If new constraints emerge or the approach needs rethinking, it will revisit earlier phases.
+</Callout>
+
+### /spec:save-design
+
+After brainstorming, save the session as a design document.
+
+```
+/spec:save-design
+```
+
+Creates a structured document at `docs/designs/YYYY-MM-DD-<feature-name>.md` containing:
+
+- **Context** – Initial idea and motivation
+- **Discussion** – Key questions, trade-offs, alternatives explored
+- **Approach** – Final agreed direction
+- **Architecture** – Technical details and implementation notes
+
+### /spec:write-plan
+
+Create a comprehensive implementation plan from a design or idea.
+
+```
+/spec:write-plan implement OAuth authentication
+```
+
+Plans are saved to `docs/plans/YYYY-MM-DD-<feature-name>.md` and include:
+
+- **Header** – Goal, architecture, tech stack
+- **Bite-sized tasks** – Each step is 2-5 minutes of work
+- **Exact file paths** – Which files to create/modify
+- **Complete code** – Not just "add validation" but actual code
+- **Test commands** – Exact commands with expected output
+
+Example task structure:
+
+```markdown
+### Task 1: Create Auth Service
+
+**Files:**
+- Create: `src/services/auth.ts`
+- Test: `tests/services/auth.test.ts`
+
+**Step 1: Write the failing test**
+[code]
+
+**Step 2: Run test to verify it fails**
+Run: `npm test -- auth.test.ts`
+Expected: FAIL
+
+**Step 3: Write minimal implementation**
+[code]
+
+**Step 4: Run test to verify it passes**
+Run: `npm test -- auth.test.ts`
+Expected: PASS
+```
+
+### /spec:execute-plan
+
+Execute an implementation plan with batched checkpoints.
+
+```
+/spec:execute-plan docs/plans/2024-01-15-oauth.md
+```
+
+**Execution Process:**
+
+1. **Load and Review** – Read plan, identify concerns, create todo list
+2. **Execute Batch** – Complete first 3 tasks following steps exactly
+3. **Report** – Show what was implemented, verification output
+4. **Continue** – Apply feedback, execute next batch
+5. **Complete** – Announce when all tasks are done
+
+<Callout type="warning">
+  Execution stops immediately when hitting blockers. The agent asks for clarification rather than guessing.
+</Callout>
+
+## Workflow Example
+
+A typical spec-driven workflow:
+
+```bash
+# 1. Brainstorm the feature
+/spec:brainstorm add rate limiting to API endpoints
+
+# 2. After Q&A dialogue, save the design
+/spec:save-design
+
+# 3. Create implementation plan
+/spec:write-plan
+
+# 4. Execute the plan
+/spec:execute-plan docs/plans/2024-01-15-rate-limiting.md
+```
+
+## Best Practices
+
+- **Use brainstorm mode for unclear requirements** – Let the Q&A process reveal constraints
+- **Review plans before execution** – Plans should have all context an engineer needs
+- **Embrace iteration** – Go backward when needed, flexibility beats rigid progression
+- **Keep tasks atomic** – Each step should be 2-5 minutes of focused work
+- **Run verifications** – Don't skip the test steps in plans
+
+---
+# SDK
+URL: https://neovateai.dev/en/docs/sdk.md
+
+# SDK
+
+Programmatic API for integrating Neovate Code into your applications.
+
+## Installation
+
+```bash
+npm install @neovate/code
+```
+
+## Quick Start
+
+### One-Shot Prompts
+
+For simple, single-turn interactions:
+
+```typescript
+import { prompt } from '@neovate/code';
+
+const result = await prompt('Explain what this code does', {
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: '/path/to/project',
+});
+
+console.log(result.content);
+```
+
+### Streaming Sessions
+
+For real-time message streaming:
+
+```typescript
+import { createSession } from '@neovate/code';
+
+const session = await createSession({
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: process.cwd(),
+});
+
+await session.send('Refactor this function to use async/await');
+
+for await (const msg of session.receive()) {
+  if (msg.type === 'message') {
+    console.log(`[${msg.role}]`, msg);
+  } else if (msg.type === 'result') {
+    console.log('Done:', msg.content);
+  }
+}
+
+session.close();
+```
+
+### Resume Sessions
+
+Continue a previous conversation:
+
+```typescript
+import { resumeSession } from '@neovate/code';
+
+const session = await resumeSession('session-id-here', {
+  model: 'anthropic/claude-sonnet-4-20250514',
+});
+
+await session.send('What were we discussing?');
+
+for await (const msg of session.receive()) {
+  // Handle messages...
+}
+
+session.close();
+```
+
+## API Reference
+
+### `prompt(message, options)`
+
+One-shot prompt that returns when complete.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `message` | `string` | The prompt to send |
+| `options.model` | `string` | Model identifier (required) |
+| `options.cwd` | `string` | Working directory (optional) |
+
+Returns: `Promise<SDKResultMessage>`
+
+### `createSession(options)`
+
+Creates a new streaming session.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `options.model` | `string` | Model identifier (required) |
+| `options.cwd` | `string` | Working directory (optional) |
+| `options.productName` | `string` | Product name (optional) |
+
+Returns: `Promise<SDKSession>`
+
+### `resumeSession(sessionId, options)`
+
+Resumes an existing session by ID.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `sessionId` | `string` | Session ID to resume |
+| `options` | `SDKSessionOptions` | Same as createSession |
+
+Returns: `Promise<SDKSession>`
+
+### `SDKSession`
+
+| Method | Description |
+|--------|-------------|
+| `send(message)` | Send a message (string or SDKUserMessage) |
+| `receive()` | AsyncGenerator yielding SDKMessage objects |
+| `close()` | Close the session |
+| `sessionId` | The session's unique identifier |
+
+## Message Types
+
+| Type | Description |
+|------|-------------|
+| `system` | Session initialization info |
+| `message` | Conversation message (user/assistant/tool) |
+| `result` | Final result with success/error status |
+
+---
+# MCP
+URL: https://neovateai.dev/en/docs/mcp.md
+
+# MCP
+
+You can use [MCP (Model Context Protocol)](https://modelcontextprotocol.io/introduction) servers to add external tools and connect data sources to Neovate Code.
+
+## Install MCP servers
+
+You can use `neovate mcp add` to install MCP servers. Neovate Code supports local stdio server, remote SSE server and remote HTTP server.
+
+### Local stdio server
+
+```bash
+neovate mcp add <name> -- <command> [args...]
+```
+
+e.g.
+
+```bash
+neovate mcp add myserver -- npx -y foo
+neovate mcp add myserver --env FOO=bar -- npx -y foo
+```
+
+Real world example:
+
+```bash
+neovate mcp add playwright -- npx -y @executeautomation/playwright-mcp-server
+```
+
+### Remote SSE server
+
+```bash
+neovate mcp add --transport sse <name> <url>
+```
+
+e.g.
+
+```bash
+neovate mcp add --transport sse myserver https://a.com/mcp
+neovate mcp add --transport sse myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+### Remote HTTP server
+
+```bash
+neovate mcp add --transport http <name> <url>
+```
+
+e.g.
+
+```bash
+neovate mcp add --transport http myserver https://a.com/mcp
+neovate mcp add --transport http myserver https://a.com/mcp --header "Authorization: Bearer 123"
+```
+
+Real world example:
+
+```bash
+neovate mcp add --transport http context7 https://mcp.context7.com/mcp
+```
+
+## Manage MCP servers
+
+### `neovate mcp` command
+
+You can use `neovate mcp` to manage the MCP servers.
+
+```bash
+# List all MCP servers
+neovate mcp ls
+
+# Get a MCP server
+neovate mcp get <name>
+
+# Remove a MCP server
+neovate mcp rm <name>
+
+# Enable a MCP server
+neovate mcp enable <name>
+
+# Disable a MCP server
+neovate mcp disable <name>
+```
+
+By default, all MCP servers operations are for the project scope. You can use `-g` to use the global scope.
+
+### `/mcp` slash command
+
+Beside these commands, you can also use `/mcp` slash command to manage the MCP servers.
+
+```bash
+/mcp
+```
+
+---
+# Output Style
+URL: https://neovateai.dev/en/docs/output-style.md
+
+# Output Style
+
+Output style is used to customize the system prompt. So Neovate Code can do things beyond the code generation.
+
+## Built-in output styles
+
+|Output Style|Description|
+|---|---|
+|`Default`|Default output style|
+|`Explanatory`|Explains its implementation choices and codebase patterns|
+|`Minimal`|Simple and concise for non-coding tasks|
+
+## Custom output styles
+
+You can create your own output styles in both project and global scope.
+
+### Project scope
+
+Located under the `.neovate/output-styles` directory.
+
+### Global scope
+
+Located under the `~/.neovate/output-styles` directory.
+
+### Frontmatter
+
+Output style files support frontmatter.
+
+|Key|Description|
+|---|---|
+|`name`|The name of the output style|
+|`description`|The description of the output style|
+|`isCodeRelated`|Whether the output style is code related|
+
+e.g.
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+isCodeRelated: false
+---
+
+You should add "miao~~~" after every sentence.
+```
+
+---
+# AI Commit
+URL: https://neovateai.dev/en/docs/ai-commit.md
+
+# AI Commit
+
+Generate intelligent commit messages using AI based on your staged changes.
+
+## Quick Start
+
+```bash
+neovate commit
+```
+
+This opens interactive mode where you can review the AI-generated message and choose an action.
+
+For a one-liner workflow:
+
+```bash
+neovate commit -s -c --push
+```
+
+## Features
+
+- **AI-generated commit messages** - Analyzes your staged changes and generates meaningful commit messages
+- **Branch name suggestions** - Suggests descriptive branch names based on your changes
+- **Breaking change detection** - Identifies and flags breaking changes
+- **Interactive mode** - Review, edit, and choose actions before committing
+
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `-s, --stage` | Stage all changes before committing |
+| `-c, --commit` | Commit changes automatically |
+| `--push` | Push changes after commit |
+| `--copy` | Copy commit message to clipboard |
+| `--checkout` | Create and checkout new branch based on commit |
+| `-n, --no-verify` | Skip pre-commit hooks |
+| `-m, --model <model>` | Specify model to use |
+| `--language <lang>` | Set language for commit message |
+| `--follow-style` | Follow existing repository commit style |
+| `-i, --interactive` | Interactive mode (default) |
+
+## Examples
+
+Stage all changes and commit interactively:
+
+```bash
+neovate commit -s
+```
+
+Full pipeline - stage, commit, and push:
+
+```bash
+neovate commit -s -c --push
+```
+
+Create a new branch and commit:
+
+```bash
+neovate commit -s --checkout
+```
+
+Generate message in a specific language:
+
+```bash
+neovate commit --language Japanese
+```
+
+Skip pre-commit hooks when committing:
+
+```bash
+neovate commit -s -c -n
+```
+
+## Configuration
+
+You can set default options in your settings:
+
+```json
+{
+  "commit": {
+    "model": "claude-sonnet",
+    "language": "English"
+  }
+}
+```
+
+See [Settings](/docs/settings) for more configuration options.
+
+---
+# Shell Command Generator
+URL: https://neovateai.dev/en/docs/shell-command-generator.md
+
+# Shell Command Generator
+
+Convert natural language to shell commands using AI and optionally execute them.
+
+## Quick Start
+
+```bash
+neovate run "list all files in current directory"
+```
+
+This opens interactive mode where you can review the generated command and choose an action.
+
+For immediate execution:
+
+```bash
+neovate run --yes "create a backup of config.json"
+```
+
+## Features
+
+- **Natural language conversion** - Describe what you want in plain English, get the exact shell command
+- **Interactive action selector** - Execute, copy, edit, or regenerate before running
+- **Command editing** - Modify the generated command before execution
+- **Prompt editing** - Refine your description to regenerate a better command
+- **Auto-execution** - Skip confirmation with `--yes` flag
+
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `-m, --model <model>` | Specify model to use |
+| `--yes` | Execute the command without confirmation |
+| `-h, --help` | Show help |
+
+## Interactive Actions
+
+When a command is generated, you can choose from these actions:
+
+| Action | Description |
+|--------|-------------|
+| **Execute command** | Run the generated command immediately |
+| **Copy to clipboard** | Copy the command for use elsewhere |
+| **Edit command** | Modify the command before executing |
+| **Edit prompt & regenerate** | Refine your description and generate a new command |
+| **Cancel** | Exit without executing |
+
+Use arrow keys to navigate and Enter to select. Press Esc to cancel at any time.
+
+## Examples
+
+List files modified in the last 7 days:
+
+```bash
+neovate run "find all files modified in last 7 days"
+```
+
+Search for a pattern in code:
+
+```bash
+neovate run "search for TODO comments in all JavaScript files"
+```
+
+Execute without confirmation:
+
+```bash
+neovate run --yes "show disk usage"
+```
+
+Use a specific model:
+
+```bash
+neovate run -m claude-sonnet "compress all images in current directory"
+```
+
+## Configuration
+
+You can set a default model in your settings:
+
+```json
+{
+  "smallModel": "claude-haiku"
+}
+```
+
+The run command uses `smallModel` by default for faster responses. See [Settings](/docs/settings) for more configuration options.
+
+---
+# Session Log Viewer
+URL: https://neovateai.dev/en/docs/session-log-viewer.md
+
+# Session Log Viewer
+
+Browse and view session logs in an interactive HTML report.
+
+## Quick Start
+
+```bash
+neovate log
+```
+
+This opens an interactive session selector where you can choose a session to view.
+
+For a specific log file:
+
+```bash
+neovate log path/to/session.jsonl
+```
+
+## Features
+
+- **Interactive session browser** - Select from recent sessions with message counts and timestamps
+- **HTML report generation** - Creates styled, browsable HTML from session logs
+- **Message inspection** - View user messages, assistant responses, tool calls and results
+- **Request details** - See model, tools, request/response data for each assistant turn
+- **Cross-platform** - Opens in default browser on macOS, Windows, and Linux
+
+## Options
+
+| Argument | Description |
+|----------|-------------|
+| `[file]` | Path to a specific session.jsonl file (optional) |
+| `-h, --help` | Show help |
+
+## Examples
+
+Browse all sessions interactively:
+
+```bash
+neovate log
+```
+
+View a specific session file:
+
+```bash
+neovate log ~/.neovate/sessions/abc123/session.jsonl
+```
+
+## Output
+
+The generated HTML file is saved to `.log-outputs/` in your current directory and automatically opened in your default browser. The report shows:
+
+- Messages organized by conversation flow
+- Tool calls with their inputs
+- Tool results with success/error status
+- Request metadata including model and timestamp
+
+---
+# CLI
+URL: https://neovateai.dev/en/docs/cli.md
+
+import { Callout } from 'nextra/components';
+
+# CLI
+
+Complete list of available commands and parameters.
+
+## Commands
+
+| command | description | usage |
+| --- | --- | --- |
+| `neovate` | Interactive mode | `neovate` |
+| `neovate "prompt"` | Interactive mode with initial prompt | `neovate "explain this project"` |
+| `neovate -q "prompt"` | Quiet mode, only output the result | `neovate -q "explain this project"` |
+| `cat file \| neovate -q "prompt"` | Process piped content | `cat file \| neovate -q "explain"` |
+| `neovate -c` | Resume from the last session | `neovate -c` |
+| `neovate -r <session_id>` | Resume from a specific session | `neovate -r foo123` |
+| `neovate config` | Configure management | Check out [Settings](./settings) |
+| `neovate mcp` | MCP servers management | Check out [MCP](./mcp) |
+| `neovate commit` | Commit the changes | `neovate commit` |
+| `neovate log [file]` | View session logs in HTML | `neovate log` |
+| `neovate run` | Run a command | `neovate run` |
+| `neovate skill` | Manage skills | Check out [Skills](./skills) |
+| `neovate update` | Update Neovate Code | `neovate update` |
+| `neovate workspace` | Manage workspaces | `neovate workspace` |
+
+## Options
+
+| parameter | description |
+| --- | --- |
+| `--append-system-prompt <append_system_prompt>` | Append a system prompt |
+| `--approval-mode <approval_mode>` | Specify an approval mode, Options: `yolo`, `autoEdit`, `default` |
+| `--browser` | Enable browser integration |
+| `-c, --continue` | Resume from the last session |
+| `--cwd <cwd>` | Specify a working directory |
+| `-h, --help` | Show the help |
+| `--language <language>` | Specify a language, Options: `en`, `zh` and others |
+| `-m, --model <model_id>` | Specify a model, format: `provider_id/model_id` |
+| `--mcp-config <mcp_config>` | Specify a MCP server configuration (JSON string with "mcpServers" object or file path) |
+| `--output-format <output_format>` | Specify an output format, Options: `stream-json`, `json`, `text`, must be used together with `--quiet` |
+| `--output-style <output_style>` | Specify an output style (name or path) |
+| `--plan-model <plan_model>` | Specify a plan model |
+| `--plugin <plugin>` | Specify plugins |
+| `-q, --quiet` | Quiet mode, only output the result |
+| `-r, --resume <resume>` | Specify a resume, format: `session_id` |
+| `--small-model <small_model>` | Specify a small model for quick operations |
+| `--system-prompt <system_prompt>` | Specify a system prompt |
+| `--tools <json>` | Tools configuration (JSON object with tool names as keys and boolean values) |
+| `-v, --version` | Show the version |
+| `--vision-model <vision_model>` | Specify a vision model for image tasks |
+
+### neovate commit
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-s, --stage` | Stage all changes before committing |
+| `-c, --commit` | Commit changes automatically |
+| `-n, --no-verify` | Skip pre-commit hooks |
+| `-i, --interactive` | Interactive mode (default) |
+| `-m, --model <model>` | Specify model to use |
+| `--language <language>` | Set language for commit message |
+| `--copy` | Copy commit message to clipboard |
+| `--push` | Push changes after commit |
+| `--follow-style` | Follow existing repository commit style |
+| `--checkout` | Create and checkout new branch based on commit message |
+
+### neovate config
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Use global config instead of project config |
+
+Subcommands:
+- `get <key>` - Get a config value
+- `set <key> <value>` - Set a config value
+- `remove|rm <key> [values...]` - Remove a config value or items from a config array
+- `list|ls` - List all config values
+- `add <key> <value>` - Add a config value
+
+### neovate mcp
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Use global config instead of project config |
+| `-e, --env <json>` | Environment variables as JSON string |
+| `--sse` | Use SSE transport for URL-based servers |
+
+Subcommands:
+- `get <name>` - Get an MCP server configuration
+- `add <name> <command> [args...]` - Add an MCP server
+- `remove|rm <name>` - Remove an MCP server
+- `list|ls` - List all MCP servers
+- `enable <name>` - Enable an MCP server
+- `disable <name>` - Disable an MCP server
+
+### neovate run
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-m, --model <model>` | Specify model to use |
+| `-y, --yes` | Execute the command without confirmation |
+
+### neovate skill
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-g, --global` | Install to global skills directory (~/.neovate/skills/) |
+| `--overwrite` | Overwrite existing skill with the same name |
+| `--name <name>` | Install with a custom local name |
+| `--target <dir>` | Target directory for skills |
+| `--json` | Output as JSON (list command only) |
+
+Subcommands:
+- `add <source>` - Install skills from a source (GitHub repo, subpath)
+- `list|ls` - List all available skills
+- `remove|rm <name>` - Remove an installed skill
+
+### neovate update
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+
+### neovate workspace
+
+| parameter | description |
+| --- | --- |
+| `-h, --help` | Show help |
+
+Subcommands:
+- `create` - Create a new workspace worktree
+- `list|ls` - List all active workspaces
+- `delete|rm <name>` - Delete a workspace without merging
+- `complete` - Complete workspace and merge changes (run from root)
+
+Create Options:
+- `--name <name>` - Custom workspace name
+- `-b, --branch <branch>` - Base branch to create worktree from (default: main)
+- `--skip-update` - Skip updating base branch from remote
+
+Delete Options:
+- `-f, --force` - Delete even with uncommitted changes
+
+## Specify MCP servers
+
+You can use `--mcp-config` to specify the MCP servers to use. This config supports both JSON string and file path.
+
+```bash
+# with JSON string
+neovate -q --output-format stream-json "hello" --mcp-config '{"mcpServers": {"my-mcp-server": {"type": "stdio", "command": "my-mcp-server", "args": ["--port", "8080"]}}}'
+
+# with file path
+neovate -q --output-format stream-json "hello" --mcp-config ~/.neovate/mcp-config.json
+```
+
+## Specify System Prompt
+
+System prompt can define agent's behavior and preferences. If you want to use a custom system prompt, there are some ways to do it.
+
+### With `--output-style`
+
+You can use `--output-style` to specify a custom output style. It supports both the name of built-in output styles and the path of the output style file.
+
+So you can create a Output Style Markdown file and then use it with `--output-style`.
+
+First, create `miao.md` file.
+
+```markdown
+---
+name: Miao
+description: Adds "miao~~~" after every sentence for a cute cat-like style
+---
+
+You are an interactive CLI tool that helps users with software engineering tasks, but with a cute cat-like personality.
+
+# Miao Style Active
+
+You should add "miao~~~" after every sentence. A sentence is typically defined as text ending with a period (.), exclamation mark (!), or question mark (?). Apply this consistently throughout your responses.
+
+Examples:
+- "I'll help you with that miao~~~"
+- "Let me check the file first miao~~~"
+- "The function works correctly miao~~~"
+
+Keep your technical accuracy and helpfulness while adding this cute touch to make interactions more fun and engaging.
+```
+
+And then you can use it with `--output-style`.
+
+```bash
+neovate -q --output-style "./miao.md" "hello"
+```
+
+---
+# Plugins
+URL: https://neovateai.dev/en/docs/plugins.md
+
+import { Callout } from 'nextra/components';
+
+# Plugins
+
+Extend Neovate Code functionality with plugins for enhanced development workflows. Plugins are a way to extend the functionality with plenty of hooks. You can create your own plugins to add your own features, tools, models, providers, system prompt, output style, slash commands and other integrations.
+
+## Create a plugin
+
+A plugin is a JavaScript Object that follows the `Plugin` interface.
+
+```ts
+import type { Plugin } from '@neovate/code';
+export default const plugin: Plugin = {
+  name: 'my-plugin',
+  context: () => {
+    // Add more context
+    return {
+      'Who am I': 'chencheng',
+    };
+  },
+  slashCommand() {
+    return [
+      {
+        type: "prompt",
+        name: "foo",
+        description: "foo",
+        getPromptForCommand: async () => {
+          return [
+            {
+              role: "user",
+              content: "print the version of @package.json",
+            },
+          ];
+        },
+      },
+    ];
+  },
+}
+```
+
+## Create your own Code Agent
+
+You can create your own Code Agent with your own models, features, tools and other integrations, using the plugin system.
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const plugin: Plugin = {};
+runNeovate({
+  productName: 'custom-code-agent',
+  version: '0.0.1',
+  plugins: [plugin],
+});
+```
+
+That's it. You can now use your own Code Agent.
+
+## Plugin hooks
+
+<Callout type="info">
+  You can use `this` to access the context instance in the plugin hooks.
+</Callout>
+
+Plugin hooks are the main way to extend the functionality of Neovate Code. There are many hooks available.
+
+### config
+
+Return a partial config to merge with the config. This hook is called when the config is initialized.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - config: `Config`
+    - argvConfig: `Record<string, any>`
+- return: `Partial<Config>`
+
+### destroy
+
+This hook is called when the context is destroyed.
+
+- type: `Parallel`
+- parameters:
+- return: `void`
+
+### slashCommand
+
+Return the slash commands to be registered.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `SlashCommand[]`
+
+### outputStyle
+
+Return the output styles to be registered.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `OutputStyle[]`
+
+### provider
+
+Modify the providers map.
+
+- type: `SeriesLast`
+- parameters:
+  - providers: `ProvidersMap`
+  - opts:
+    - models: `ModelMap`
+    - defaultModelCreator: `(name: string, provider: Provider) => LanguageModelV2`
+    - createOpenAI: `(options: any) => OpenAIProvider`
+    - createOpenAICompatible: `(options: any) => OpenAICompatibleProvider`
+    - createAnthropic: `(options: any) => AnthropicProvider`
+- return: `ProvidersMap`
+
+### modelAlias
+
+Modify the model aliases.
+
+- type: `SeriesLast`
+- parameters:
+  - modelAlias: `ModelAlias`
+- return: `ModelAlias`
+
+### initialized
+
+Initialize the plugin.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - cwd: `string`
+    - quiet: `boolean`
+- return: `void`
+
+### context
+
+Return the context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### env
+
+Return the environment context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### userPrompt
+
+Modify the user prompt.
+
+- type: `SeriesLast`
+- parameters:
+  - userPrompt: `string`
+  - opts:
+    - sessionId: `string`
+- return: `string`
+
+### systemPrompt
+
+Modify the system prompt.
+
+- type: `SeriesLast`
+- parameters:
+  - systemPrompt: `string`
+  - opts:
+    - isPlan: `boolean`
+    - sessionId: `string`
+- return: `string`
+
+### tool
+
+Return the extra tools to be used. This is useful for adding your own tools to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - isPlan: `boolean`
+    - sessionId: `string`
+- return: `Tool[]`
+
+### toolUse
+
+Modify the tool use.
+
+- type: `SeriesLast`
+- parameters:
+  - toolUse: `ToolUse`
+  - opts:
+    - sessionId: `string`
+- return: `ToolUse`
+
+### toolResult
+
+Modify the tool result.
+
+- type: `SeriesLast`
+- parameters:
+  - toolResult: `ToolResult`
+  - opts:
+    - toolUse: `ToolUse`
+    - approved: `boolean`
+    - sessionId: `string`
+- return: `ToolResult`
+
+### query
+
+Notify the plugin that a query has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - usage: `Usage`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
+### conversation
+
+Notify the plugin that a conversation has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - result: `LoopResult`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
+### telemetry
+
+Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - name: `string` - The name of the telemetry event
+    - payload: `Record<string, any>` - The telemetry data payload
+- return: `Promise<void> | void`
+
+### status
+
+Return the extra status to be displayed.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `Status`
+
+---
+# Troubleshooting
+URL: https://neovateai.dev/en/docs/troubleshooting.md
+
+import { Callout } from 'nextra/components';
+
+# Troubleshooting
+
+Common issues and solutions for Neovate Code, including debugging tips and support resources.
+
+## Logs
+
+Log files are located under the `~/.neovate/projects/<project_name>/` directory and named as `<session_id>.jsonl`.
+
+Request logs are stored in the `~/.neovate/projects/<project_name>/requests` directory.
+
+<Callout type="info">
+  When in the interactive mode, you can press `Ctrl+L` twice to open the log
+  file in your default editor.
+</Callout>
+
+## Getting Help
+
+If you have any questions or need help:
+
+1. Report an issue on [GitHub](https://github.com/neovateai/neovate-code/issues). Before creating an issue, please check if there is already an existing one.
+
+## Common Issues
+
+Here are some common issues and solutions.
+
+> TODO
+
+---
+# Milestone
+URL: https://neovateai.dev/en/docs/milestone.md
+
+# Milestone
+
+- 2025.11
+  - Spoke at SEE Conf
+- 2025.10
+  - Participated in QCon open source booth
+- 2025.9
+  - Spoke at 外滩大会
+  - Officially open-sourced on 9.24
+- 2025.8
+  - Neovate brand application approved
+- 2025.7
+  - Participated in internal "Frontend Engineering 3.0 Product Launch"
+- 2025.4
+  - Released first internal beta
+- 2025.3
+  - Project initiated
+
