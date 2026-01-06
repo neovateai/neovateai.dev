@@ -43,17 +43,22 @@ export default {
   'shell-command-generator': '',
   'session-log-viewer': '',
   _4: {
+    title: <Separator>Guides</Separator>,
+    type: 'separator'
+  },
+  'create-your-own-code-agent': '',
+  _5: {
     title: <Separator>Reference</Separator>,
     type: 'separator'
   },
   'cli': '',
   'plugins': '',
-  _5: {
+  _6: {
     title: <Separator>Support</Separator>,
     type: 'separator'
   },
   'troubleshooting': '',
-  _6: {
+  _7: {
     title: <Separator>Resources</Separator>,
     type: 'separator'
   },

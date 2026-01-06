@@ -43,17 +43,22 @@ export default {
   'shell-command-generator': '',
   'session-log-viewer': '',
   _4: {
+    title: <Separator>指南</Separator>,
+    type: 'separator'
+  },
+  'create-your-own-code-agent': '',
+  _5: {
     title: <Separator>参考</Separator>,
     type: 'separator'
   },
   'cli': '',
   'plugins': '',
-  _5: {
+  _6: {
     title: <Separator>支持</Separator>,
     type: 'separator'
   },
   'troubleshooting': '',
-  _6: {
+  _7: {
     title: <Separator>Resources</Separator>,
     type: 'separator'
   },

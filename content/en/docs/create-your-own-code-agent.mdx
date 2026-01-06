@@ -1,0 +1,324 @@
+import { Callout } from 'nextra/components';
+
+# Create Your Own Code Agent
+
+Build a custom code agent with your own branding, models, and configurations using Neovate's plugin system.
+
+## Why Build Your Own?
+
+- **Custom Models & Providers**: Use your own API endpoints, private models, or enterprise AI services
+- **Brand Identity**: Create a code agent with your company's name and branding
+- **Internal Compliance**: Enforce security policies, approval workflows, and audit requirements
+- **Domain-Specific Tools**: Add tools tailored to your team's workflows and infrastructure
+- **Custom Context**: Inject project-specific knowledge and coding standards automatically
+
+Companies like **Kuaishou** and **Ant Group** have built their own code agents using this approach to serve internal developers with customized AI coding assistance.
+
+## Quick Start
+
+Create your own code agent with just a few lines:
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const myPlugin: Plugin = {};
+
+runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [myPlugin],
+});
+```
+
+Run it:
+
+```bash
+npx tsx index.ts "Hello, world!"
+```
+
+## Full Example with Custom Provider
+
+Here's a complete example that configures a custom provider with your own API endpoints:
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const myPlugin: Plugin = {
+  config({ config, argvConfig }) {
+    return {
+      model: argvConfig.model || config.model || 'myProvider/claude-opus-4-5',
+      smallModel:
+        argvConfig.smallModel ||
+        config.smallModel ||
+        argvConfig.model ||
+        'myProvider/claude-haiku-4-5',
+    };
+  },
+  provider(memo, opts) {
+    return {
+      myProvider: {
+        id: 'myProvider',
+        env: [],
+        name: 'My Provider',
+        doc: 'https://example.com/docs',
+        models: {
+          'claude-opus-4-5': opts.models['claude-opus-4-5'],
+          'claude-haiku-4-5': opts.models['claude-haiku-4-5'],
+        },
+        createModel(name, _provider) {
+          return opts
+            .createAnthropic({
+              apiKey: process.env.MY_API_KEY || '',
+              baseURL: 'https://api.example.com/v1',
+            })
+            .chat(name);
+        },
+      },
+      ...memo,
+    };
+  },
+};
+
+runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [myPlugin],
+}).catch(console.error);
+```
+
+## Configuration Options
+
+### runNeovate Options
+
+| Option | Type | Description |
+|--------|------|-------------|
+| `productName` | `string` | Your agent's name (displayed in UI and logs) |
+| `productASCIIArt` | `string` | Optional ASCII art for terminal display |
+| `version` | `string` | Version string |
+| `plugins` | `Plugin[]` | Array of plugins to extend functionality |
+| `upgrade` | `UpgradeOptions` | Optional upgrade configuration |
+
+### Plugin Hooks
+
+Your plugin can use any of the [plugin hooks](/docs/plugins#plugin-hooks) to customize behavior:
+
+- **`config`**: Set default models and configuration
+- **`provider`**: Add custom model providers
+- **`systemPrompt`**: Customize the system prompt
+- **`tool`**: Add custom tools
+- **`slashCommand`**: Add custom slash commands
+- **`context`**: Add custom context to conversations
+
+## Use Cases
+
+### Enterprise Deployment
+
+Create a branded agent with your company's approved models and API endpoints:
+
+```ts
+const enterprisePlugin: Plugin = {
+  config({ config, argvConfig }) {
+    return {
+      model: 'enterprise/gpt-4',
+      approvalMode: 'autoEdit',
+    };
+  },
+  provider(memo, opts) {
+    return {
+      enterprise: {
+        id: 'enterprise',
+        env: ['ENTERPRISE_API_KEY'],
+        name: 'Enterprise AI',
+        doc: 'https://internal.docs/ai',
+        models: {
+          'gpt-4': opts.models['gpt-4'],
+        },
+        createModel(name, _provider) {
+          return opts
+            .createOpenAICompatible({
+              name: 'enterprise',
+              apiKey: process.env.ENTERPRISE_API_KEY || '',
+              baseURL: 'https://ai.enterprise.com/v1',
+            })
+            .chatModel(name);
+        },
+      },
+      ...memo,
+    };
+  },
+};
+```
+
+### Custom Tools
+
+Add domain-specific tools to your agent:
+
+```ts
+import { createTool } from '@neovate/code';
+import { z } from 'zod';
+
+const deployPlugin: Plugin = {
+  tool() {
+    return [
+      createTool({
+        name: 'deploy',
+        description: 'Deploy the application to staging or production',
+        parameters: z.object({
+          environment: z.enum(['staging', 'production']),
+        }),
+        execute: async ({ environment }) => {
+          // Your deployment logic here
+          return { success: true, environment };
+        },
+      }),
+    ];
+  },
+};
+```
+
+### Dynamic Context Based on User Prompt
+
+Inject relevant context dynamically based on what the user is asking about:
+
+```ts
+import * as fs from 'fs';
+import * as path from 'path';
+
+const dynamicContextPlugin: Plugin = {
+  context({ userPrompt }) {
+    const ctx: Record<string, string> = {};
+
+    // Prompt-based detection: inject API docs when user mentions "api"
+    if (userPrompt?.toLowerCase().includes('api')) {
+      ctx['API Guidelines'] = `
+        - Use RESTful conventions
+        - All endpoints require authentication
+        - Rate limit: 100 requests/minute
+      `;
+    }
+
+    // Project-aware: read relevant config when user mentions "config" or "settings"
+    if (userPrompt?.match(/config|settings|env/i)) {
+      const configPath = path.join(this.cwd, 'config.json');
+      if (fs.existsSync(configPath)) {
+        ctx['Project Config'] = fs.readFileSync(configPath, 'utf-8');
+      }
+    }
+
+    // Detect specific frameworks/libraries in prompt
+    if (userPrompt?.match(/react|component|hook/i)) {
+      ctx['React Conventions'] = `
+        - Use functional components with hooks
+        - Prefer composition over inheritance
+        - Keep components small and focused
+      `;
+    }
+
+    return ctx;
+  },
+};
+```
+
+### Fetching External Data
+
+Fetch documentation or data from external sources based on user's prompt:
+
+```ts
+const externalDataPlugin: Plugin = {
+  async context({ userPrompt }) {
+    const ctx: Record<string, string> = {};
+
+    // Fetch latest API schema when user asks about endpoints
+    if (userPrompt?.match(/endpoint|schema|swagger/i)) {
+      try {
+        const response = await fetch('https://api.example.com/openapi.json');
+        const schema = await response.json();
+        ctx['API Schema'] = JSON.stringify(schema.paths, null, 2);
+      } catch {
+        // Gracefully handle fetch failures
+      }
+    }
+
+    // Fetch team coding standards from internal wiki
+    if (userPrompt?.match(/standard|convention|style guide/i)) {
+      try {
+        const response = await fetch('https://wiki.internal/coding-standards.md');
+        ctx['Coding Standards'] = await response.text();
+      } catch {
+        // Gracefully handle fetch failures
+      }
+    }
+
+    return ctx;
+  },
+};
+```
+
+### Custom Slash Commands
+
+Add custom slash commands to streamline common workflows. There are three types of slash commands:
+
+```ts
+import { execSync } from 'child_process';
+import React from 'react';
+
+const slashCommandPlugin: Plugin = {
+  slashCommand() {
+    return [
+      // prompt: Returns prompts to send to the model
+      {
+        type: 'prompt',
+        name: 'review',
+        description: 'Review the current code for issues and improvements',
+        async getPromptForCommand() {
+          return [
+            {
+              role: 'user',
+              content: `Review the code in this project. Look for:
+- Potential bugs and edge cases
+- Performance issues
+- Security vulnerabilities
+Provide actionable suggestions for each issue found.`,
+            },
+          ];
+        },
+      },
+      // local: Executes logic and returns a string result
+      {
+        type: 'local',
+        name: 'test',
+        description: 'Run the test suite',
+        async call(args, context) {
+          try {
+            const output = execSync('npm test', {
+              cwd: context.cwd,
+              encoding: 'utf-8',
+            });
+            return `Tests passed:\n${output}`;
+          } catch (error: any) {
+            return `Tests failed:\n${error.stdout || error.message}`;
+          }
+        },
+      },
+      // local-jsx: Returns a React component for interactive UI
+      {
+        type: 'local-jsx',
+        name: 'status',
+        description: 'Show project status with interactive UI',
+        async call(onDone, context) {
+          const pkg = await import(context.cwd + '/package.json');
+          return React.createElement('div', null,
+            React.createElement('p', null, `Project: ${pkg.name}`),
+            React.createElement('p', null, `Version: ${pkg.version}`),
+            React.createElement('button', { onClick: () => onDone('Done') }, 'Close')
+          );
+        },
+      },
+    ];
+  },
+};
+```
+
+<Callout type="info">
+See the [Plugins](/docs/plugins) documentation for a complete list of available hooks and their usage.
+</Callout>

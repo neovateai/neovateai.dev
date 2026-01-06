@@ -1,0 +1,324 @@
+import { Callout } from 'nextra/components';
+
+# 创建你自己的代码智能体
+
+使用 Neovate 的插件系统构建自定义代码智能体，可以使用你自己的品牌、模型和配置。
+
+## 为什么要构建自己的？
+
+- **自定义模型和 Provider**：使用你自己的 API 端点、私有模型或企业 AI 服务
+- **品牌标识**：创建带有公司名称和品牌的代码智能体
+- **内部合规**：强制执行安全策略、审批流程和审计要求
+- **领域特定工具**：添加针对团队工作流和基础设施定制的工具
+- **自定义上下文**：自动注入项目特定的知识和编码规范
+
+**快手**和**蚂蚁集团**等公司已经基于这种方式构建了自己的代码智能体，为内部开发者提供定制化的 AI 编程辅助。
+
+## 快速开始
+
+只需几行代码即可创建你自己的代码智能体：
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const myPlugin: Plugin = {};
+
+runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [myPlugin],
+});
+```
+
+运行它：
+
+```bash
+npx tsx index.ts "Hello, world!"
+```
+
+## 完整示例：自定义 Provider
+
+以下是一个完整的示例，配置了自定义 provider 和 API 端点：
+
+```ts
+import { type Plugin, runNeovate } from '@neovate/code';
+
+const myPlugin: Plugin = {
+  config({ config, argvConfig }) {
+    return {
+      model: argvConfig.model || config.model || 'myProvider/claude-opus-4-5',
+      smallModel:
+        argvConfig.smallModel ||
+        config.smallModel ||
+        argvConfig.model ||
+        'myProvider/claude-haiku-4-5',
+    };
+  },
+  provider(memo, opts) {
+    return {
+      myProvider: {
+        id: 'myProvider',
+        env: [],
+        name: 'My Provider',
+        doc: 'https://example.com/docs',
+        models: {
+          'claude-opus-4-5': opts.models['claude-opus-4-5'],
+          'claude-haiku-4-5': opts.models['claude-haiku-4-5'],
+        },
+        createModel(name, _provider) {
+          return opts
+            .createAnthropic({
+              apiKey: process.env.MY_API_KEY || '',
+              baseURL: 'https://api.example.com/v1',
+            })
+            .chat(name);
+        },
+      },
+      ...memo,
+    };
+  },
+};
+
+runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [myPlugin],
+}).catch(console.error);
+```
+
+## 配置选项
+
+### runNeovate 选项
+
+| 选项 | 类型 | 说明 |
+|------|------|------|
+| `productName` | `string` | 智能体名称（显示在 UI 和日志中） |
+| `productASCIIArt` | `string` | 可选的 ASCII 艺术字，用于终端显示 |
+| `version` | `string` | 版本号 |
+| `plugins` | `Plugin[]` | 用于扩展功能的插件数组 |
+| `upgrade` | `UpgradeOptions` | 可选的升级配置 |
+
+### 插件钩子
+
+你的插件可以使用任何 [插件钩子](/docs/plugins#plugin-hooks) 来自定义行为：
+
+- **`config`**：设置默认模型和配置
+- **`provider`**：添加自定义模型 provider
+- **`systemPrompt`**：自定义系统提示词
+- **`tool`**：添加自定义工具
+- **`slashCommand`**：添加自定义斜杠命令
+- **`context`**：向对话添加自定义上下文
+
+## 使用场景
+
+### 企业部署
+
+创建一个使用公司批准的模型和 API 端点的品牌智能体：
+
+```ts
+const enterprisePlugin: Plugin = {
+  config({ config, argvConfig }) {
+    return {
+      model: 'enterprise/gpt-4',
+      approvalMode: 'autoEdit',
+    };
+  },
+  provider(memo, opts) {
+    return {
+      enterprise: {
+        id: 'enterprise',
+        env: ['ENTERPRISE_API_KEY'],
+        name: 'Enterprise AI',
+        doc: 'https://internal.docs/ai',
+        models: {
+          'gpt-4': opts.models['gpt-4'],
+        },
+        createModel(name, _provider) {
+          return opts
+            .createOpenAICompatible({
+              name: 'enterprise',
+              apiKey: process.env.ENTERPRISE_API_KEY || '',
+              baseURL: 'https://ai.enterprise.com/v1',
+            })
+            .chatModel(name);
+        },
+      },
+      ...memo,
+    };
+  },
+};
+```
+
+### 自定义工具
+
+为你的智能体添加特定领域的工具：
+
+```ts
+import { createTool } from '@neovate/code';
+import { z } from 'zod';
+
+const deployPlugin: Plugin = {
+  tool() {
+    return [
+      createTool({
+        name: 'deploy',
+        description: '将应用部署到测试或生产环境',
+        parameters: z.object({
+          environment: z.enum(['staging', 'production']),
+        }),
+        execute: async ({ environment }) => {
+          // 你的部署逻辑
+          return { success: true, environment };
+        },
+      }),
+    ];
+  },
+};
+```
+
+### 基于用户提示词的动态上下文
+
+根据用户的提问动态注入相关上下文：
+
+```ts
+import * as fs from 'fs';
+import * as path from 'path';
+
+const dynamicContextPlugin: Plugin = {
+  context({ userPrompt }) {
+    const ctx: Record<string, string> = {};
+
+    // 基于提示词检测：当用户提到 "api" 时注入 API 文档
+    if (userPrompt?.toLowerCase().includes('api')) {
+      ctx['API 规范'] = `
+        - 使用 RESTful 规范
+        - 所有端点需要认证
+        - 速率限制：100 请求/分钟
+      `;
+    }
+
+    // 项目感知：当用户提到 "配置" 或 "设置" 时读取相关配置
+    if (userPrompt?.match(/config|settings|配置|设置|env/i)) {
+      const configPath = path.join(this.cwd, 'config.json');
+      if (fs.existsSync(configPath)) {
+        ctx['项目配置'] = fs.readFileSync(configPath, 'utf-8');
+      }
+    }
+
+    // 检测提示词中的特定框架/库
+    if (userPrompt?.match(/react|组件|hook/i)) {
+      ctx['React 规范'] = `
+        - 使用函数组件配合 hooks
+        - 优先使用组合而非继承
+        - 保持组件小而专注
+      `;
+    }
+
+    return ctx;
+  },
+};
+```
+
+### 获取外部数据
+
+根据用户的提示词从外部源获取文档或数据：
+
+```ts
+const externalDataPlugin: Plugin = {
+  async context({ userPrompt }) {
+    const ctx: Record<string, string> = {};
+
+    // 当用户询问端点时获取最新的 API schema
+    if (userPrompt?.match(/endpoint|schema|swagger|端点/i)) {
+      try {
+        const response = await fetch('https://api.example.com/openapi.json');
+        const schema = await response.json();
+        ctx['API Schema'] = JSON.stringify(schema.paths, null, 2);
+      } catch {
+        // 优雅处理获取失败
+      }
+    }
+
+    // 从内部 wiki 获取团队编码规范
+    if (userPrompt?.match(/standard|convention|规范|风格指南/i)) {
+      try {
+        const response = await fetch('https://wiki.internal/coding-standards.md');
+        ctx['编码规范'] = await response.text();
+      } catch {
+        // 优雅处理获取失败
+      }
+    }
+
+    return ctx;
+  },
+};
+```
+
+### 自定义斜杠命令
+
+添加自定义斜杠命令来简化常见工作流。斜杠命令有三种类型：
+
+```ts
+import { execSync } from 'child_process';
+import React from 'react';
+
+const slashCommandPlugin: Plugin = {
+  slashCommand() {
+    return [
+      // prompt: 返回发送给模型的提示词
+      {
+        type: 'prompt',
+        name: 'review',
+        description: '审查当前代码的问题和改进建议',
+        async getPromptForCommand() {
+          return [
+            {
+              role: 'user',
+              content: `审查这个项目的代码，检查：
+- 潜在的 bug 和边界情况
+- 性能问题
+- 安全漏洞
+为发现的每个问题提供可操作的建议。`,
+            },
+          ];
+        },
+      },
+      // local: 执行逻辑并返回字符串结果
+      {
+        type: 'local',
+        name: 'test',
+        description: '运行测试套件',
+        async call(args, context) {
+          try {
+            const output = execSync('npm test', {
+              cwd: context.cwd,
+              encoding: 'utf-8',
+            });
+            return `测试通过:\n${output}`;
+          } catch (error: any) {
+            return `测试失败:\n${error.stdout || error.message}`;
+          }
+        },
+      },
+      // local-jsx: 返回 React 组件用于交互式 UI
+      {
+        type: 'local-jsx',
+        name: 'status',
+        description: '显示项目状态的交互式 UI',
+        async call(onDone, context) {
+          const pkg = await import(context.cwd + '/package.json');
+          return React.createElement('div', null,
+            React.createElement('p', null, `项目: ${pkg.name}`),
+            React.createElement('p', null, `版本: ${pkg.version}`),
+            React.createElement('button', { onClick: () => onDone('完成') }, '关闭')
+          );
+        },
+      },
+    ];
+  },
+};
+```
+
+<Callout type="info">
+查看 [插件](/docs/plugins) 文档了解所有可用钩子及其用法。
+</Callout>
