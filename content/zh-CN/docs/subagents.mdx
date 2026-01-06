@@ -1,7 +1,84 @@
+import { Callout } from 'nextra/components';
+
+# 子代理 (Subagents)
+
+子代理是能够处理复杂多步骤任务的**自主代理**。它们在一个循环中运行，使用工具并做出决策，直到完成分配的任务或失败。
+
+**关键特性：**
+
+- **自主性** – 无需用户干预即可规划并执行多个步骤
+- **专业化** – 每个代理可以拥有特定的工具、权限和系统提示词
+- **隔离性** – 它们在独立的上下文中运行，保持主对话的整洁
+
+## 内置子代理
+
+Neovate 附带两个强大的内置代理：
+
+- **Explore (探索)** – 专注于探索代码库。它可以快速查找文件、搜索代码并回答有关项目结构的问题。
+- **GeneralPurpose (通用)** – 一个多功能代理，用于研究复杂问题或执行路径不明确的多步骤任务。
+
+## 创建自定义子代理
+
+您可以创建自己的子代理来自动化特定工作流。子代理通过带有 YAML frontmatter 的 Markdown 文件定义。
+
+### 文件位置
+
+| 范围 | 位置 | 用途 |
+|-------|----------|---------|
+| **项目** | `.neovate/agents/<agent-name>.md` | 与团队共享的项目特定代理 |
+| **个人** | `~/.neovate/agents/<agent-name>.md` | 跨项目可用的私有代理 |
+
+<Callout type="info">
+  为了兼容性，也支持 `.claude/agents/` 目录。
+</Callout>
+
+### 代理文件格式
+
+在代理目录之一中创建一个 markdown 文件（例如 `code-reviewer.md`）：
+
+```md
 ---
-title: 子代理
+name: code-reviewer
+description: Review code changes for security and style issues. Use when the user asks for a code review.
+tools: read, glob, grep
+model: claude-3-5-sonnet-20241022
 ---
 
-# 子代理
+You are an expert code reviewer.
+Your goal is to review the code changes and provide feedback.
 
-🚧 正在开发中。此功能将在 0.23.0 版本中提供。
+Follow these steps:
+1. Read the changed files.
+2. Analyze for security vulnerabilities.
+3. Check for code style violations.
+4. Provide a summary of your findings.
+```
+
+**Frontmatter 字段：**
+
+- `name` (必填): 代理的唯一标识符（用于 `subagent_type`）。
+- `description` (必填): 何时使用此代理。Neovate 使用它来决定何时启动代理。
+- `tools` (可选): 此代理可以使用的工具列表（逗号分隔，例如 `read, write, bash`）。
+- `disallowedTools` (可选): 此代理**不能**使用的工具列表（逗号分隔）。
+- `model` (可选): 要使用的模型（例如 `claude-3-5-sonnet-20241022`）。默认为 `inherit`（使用主代理的模型）。
+- `forkContext` (可选): 是否允许子代理访问主对话历史记录。默认为 `false`。
+- `color` (可选): UI 中代理输出的颜色。
+
+Markdown 文件的正文将成为代理的 **系统提示词 (System Prompt)**。
+
+## 使用子代理
+
+当您的请求匹配其描述时，Neovate 会自动推荐使用子代理。
+
+您也可以明确要求 Neovate 使用特定代理：
+
+> "Use the code-reviewer agent to check my changes."
+
+## 与 Skills 的比较
+
+| 特性 | Skills | 子代理 (Subagents) |
+|---------|--------|-----------|
+| **本质** | 单一能力/工具 | 自主代理循环 |
+| **复杂性** | 简单的原子操作 | 复杂的多步骤工作流 |
+| **状态** | 无状态 | 维护自己的对话历史 |
+| **工具** | 可以使用其他工具 | 可以使用受限的工具集 |
