@@ -29,7 +29,7 @@ try {
   
   // Step 1: Create zip archive
   console.log("Creating zip archive...");
-  await $`zip -r ${ZIP_NAME} .next public package.json pnpm-lock.yaml`;
+  await $`zip -r ${ZIP_NAME} .next public content package.json pnpm-lock.yaml`;
   console.log("Zip archive created successfully.");
 
   // Step 2: Ensure remote directory exists and transfer to remote server
