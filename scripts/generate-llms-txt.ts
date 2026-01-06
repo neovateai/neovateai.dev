@@ -13,6 +13,11 @@ interface DocInfo {
   content: string;
 }
 
+interface Header {
+  level: number; // 2-6
+  text: string;
+}
+
 interface Section {
   category: string;
   slugs: string[];
@@ -65,7 +70,7 @@ function showHelp(): void {
   console.log(`
 Usage: bun scripts/generate-llms-txt.ts [options]
 
-Generate llms.txt and llms-full.txt from MDX docs for LLM consumption.
+Generate llms.txt, llms-full.txt and llms-map.txt from MDX docs for LLM consumption.
 
 Options:
   -h, --help    Show this help message
@@ -73,12 +78,34 @@ Options:
 Output:
   public/llms.txt       - List of docs with links
   public/llms-full.txt  - Full content of all docs
+  public/llms-map.txt   - Structured map with nested headers
 `);
 }
 
 function extractTitle(content: string): string {
   const match = content.match(/^#\s+(.+)$/m);
   return match?.[1]?.trim() ?? "Untitled";
+}
+
+function extractHeaders(content: string): Header[] {
+  const headers: Header[] = [];
+
+  // Remove code blocks to avoid matching headers inside them
+  const contentWithoutCodeBlocks = content.replace(/```[\s\S]*?```/g, "");
+
+  // Match headers of level 2-6
+  const headerRegex = /^(#{2,6})\s+(.+)$/gm;
+  let match: RegExpExecArray | null;
+
+  while ((match = headerRegex.exec(contentWithoutCodeBlocks)) !== null) {
+    const level = match[1]?.length ?? 2;
+    const text = match[2]?.trim() ?? "";
+    if (text) {
+      headers.push({ level, text });
+    }
+  }
+
+  return headers;
 }
 
 async function processDoc(slug: string): Promise<DocInfo> {
@@ -134,6 +161,42 @@ async function generateLlmsFullTxt(sections: Section[]): Promise<string> {
   return LLMS_FULL_HEADER + content + "\n";
 }
 
+const LLMS_MAP_HEADER = `# Neovate Code Developer Documentation - Map
+
+This file provides a structured map of documentation with nested headers.
+
+---
+
+`;
+
+async function generateLlmsMapTxt(sections: Section[]): Promise<string> {
+  const parts: string[] = [];
+
+  for (const section of sections) {
+    const docs = await Promise.all(section.slugs.map(processDoc));
+    const docParts: string[] = [];
+
+    for (const doc of docs) {
+      const headers = extractHeaders(doc.content);
+      const headerLines = headers.map((header) => {
+        const indent = "  ".repeat(header.level - 2);
+        return `${indent}* ${header.text}`;
+      });
+
+      const docSection =
+        headerLines.length > 0
+          ? `### [${doc.title}](${doc.url})\n\n${headerLines.join("\n")}`
+          : `### [${doc.title}](${doc.url})`;
+
+      docParts.push(docSection);
+    }
+
+    parts.push(`## ${section.category}\n\n${docParts.join("\n\n")}`);
+  }
+
+  return LLMS_MAP_HEADER + parts.join("\n\n") + "\n";
+}
+
 async function main(): Promise<void> {
   const args = parseArgs();
   if (args.help) {
@@ -146,12 +209,15 @@ async function main(): Promise<void> {
 
   const llmsTxt = await generateLlmsTxt(sections);
   const llmsFullTxt = await generateLlmsFullTxt(sections);
+  const llmsMapTxt = await generateLlmsMapTxt(sections);
 
   await Bun.write(`${OUTPUT_DIR}/llms.txt`, llmsTxt);
   await Bun.write(`${OUTPUT_DIR}/llms-full.txt`, llmsFullTxt);
+  await Bun.write(`${OUTPUT_DIR}/llms-map.txt`, llmsMapTxt);
 
   console.log(`Generated ${OUTPUT_DIR}/llms.txt (${totalDocs} docs)`);
   console.log(`Generated ${OUTPUT_DIR}/llms-full.txt`);
+  console.log(`Generated ${OUTPUT_DIR}/llms-map.txt`);
 }
 
 main().catch((err) => {

@@ -1,0 +1,326 @@
+# Neovate Code Developer Documentation - Map
+
+This file provides a structured map of documentation with nested headers.
+
+---
+
+## Getting Started
+
+### [Overview](https://neovateai.dev/en/docs/overview.md)
+
+* Why Neovate Code?
+* Interactive Mode
+* Headless Mode
+* Sessions
+
+### [Installation](https://neovateai.dev/en/docs/installation.md)
+
+* Prerequisites
+* Installation
+  * macOS, Linux
+  * Windows
+  * Verify Installation
+* Updates
+
+### [Quick Start](https://neovateai.dev/en/docs/quickstart.md)
+
+* Prerequisites
+* Step 1: Install Neovate Code
+* Step 2: Initial Setup
+* Step 3: Ask Your First Question
+* Step 4: Make Your First Code Change
+* Step 5: Use Git with Neovate
+* Step 6: Fix a Bug or Add a Feature
+* Step 7: Other Common Workflows
+* Tips
+* What's Next?
+
+### [Common Workflows](https://neovateai.dev/en/docs/common-workflows.md)
+
+* Understand new codebases
+  * Get a quick codebase overview
+  * Find relevant code
+* Fix bugs efficiently
+* Refactor code
+* Use Plan Mode for safe code analysis
+  * When to use Plan Mode
+  * How to use Plan Mode
+* Work with tests
+* Create pull requests
+* Handle documentation
+* Work with images
+* Reference files and directories
+* Resume previous conversations
+  * Name your sessions
+  * Use the session picker
+* Create custom slash commands
+  * Create project-specific commands
+  * Add command arguments with $ARGUMENTS
+  * Create personal slash commands
+* What's next?
+
+### [Features](https://neovateai.dev/en/docs/features.md)
+
+* Core
+* Advanced
+* Input
+
+## Configuration
+
+### [Rules](https://neovateai.dev/en/docs/rules.md)
+
+* File Location
+  * Project scope
+  * Global scope
+* Set up project AGENTS.md
+
+### [Settings](https://neovateai.dev/en/docs/settings.md)
+
+* File Location
+* Schema
+* `neovate config`
+* Available Settings
+  * approvalMode
+  * autoCompact
+  * autoUpdate
+  * browser
+  * commit
+  * desktop
+  * extensions
+  * httpProxy
+  * language
+  * mcpServers
+  * model
+  * outputFormat
+  * outputStyle
+  * planModel
+  * plugins
+  * provider
+  * quiet
+  * smallModel
+  * systemPrompt
+  * temperature
+  * todo
+  * tools
+  * visionModel
+
+### [Models](https://neovateai.dev/en/docs/models.md)
+
+* Providers
+* Select a model
+* Recommended models
+* Specify a model temporarily
+* Model Aliases
+
+### [Providers](https://neovateai.dev/en/docs/providers.md)
+
+* Built-in providers
+  * AIHubMix
+  * Antigravity
+  * Anthropic
+  * CanopyWave
+  * Cerebras
+  * DeepSeek
+  * GitHub Copilot
+  * Google
+  * Groq
+  * Hugging Face
+  * iFlow
+  * Minimax
+  * ModelScope
+  * ModelWatch
+  * Moonshot AI
+  * NVIDIA
+  * OpenAI
+  * OpenRouter
+  * Poe
+  * SiliconFlow
+  * VolcEngine
+  * xAI
+  * Xiaomi Mimo
+  * ZenMux
+  * Zhipu AI
+* Custom providers
+
+## Features
+
+### [Interactive Mode](https://neovateai.dev/en/docs/interactive-mode.md)
+
+* Keyboard shortcuts
+* File references
+* Conversation history
+* Bash mode with `!` prefix
+* Reverse search with Ctrl+R
+* Multiline input
+* Multimodal input
+
+### [Headless](https://neovateai.dev/en/docs/headless.md)
+
+* Basic Usage
+* Options
+* Output Format
+  * Text (Default)
+  * Stream JSON
+  * JSON
+
+### [Slash Commands](https://neovateai.dev/en/docs/slash-commands.md)
+
+* Built-in slash commands
+* Custom slash commands
+  * Project scope
+  * Global scope
+  * Usage
+  * Arguments
+  * Frontmatter
+
+### [Subagents](https://neovateai.dev/en/docs/subagents.md)
+
+### [Skills](https://neovateai.dev/en/docs/skills.md)
+
+* What is a Skill?
+* File Locations
+* Skill File Format
+* Supporting Files
+* How Skills Differ from Other Config
+* CLI Commands
+
+### [Spec Driven Development](https://neovateai.dev/en/docs/spec-driven.md)
+
+* Overview
+* Plan Mode vs Brainstorm Mode
+  * Plan Mode
+  * Brainstorm Mode
+* Slash Commands
+  * /spec:brainstorm
+  * /spec:save-design
+  * /spec:write-plan
+  * /spec:execute-plan
+* Workflow Example
+* Best Practices
+
+### [SDK](https://neovateai.dev/en/docs/sdk.md)
+
+* Installation
+* Quick Start
+  * One-Shot Prompts
+  * Streaming Sessions
+  * Resume Sessions
+* API Reference
+  * `prompt(message, options)`
+  * `createSession(options)`
+  * `resumeSession(sessionId, options)`
+  * `SDKSession`
+* Message Types
+
+### [MCP](https://neovateai.dev/en/docs/mcp.md)
+
+* Install MCP servers
+  * Local stdio server
+  * Remote SSE server
+  * Remote HTTP server
+* Manage MCP servers
+  * `neovate mcp` command
+  * `/mcp` slash command
+
+### [Output Style](https://neovateai.dev/en/docs/output-style.md)
+
+* Built-in output styles
+* Custom output styles
+  * Project scope
+  * Global scope
+  * Frontmatter
+
+### [AI Commit](https://neovateai.dev/en/docs/ai-commit.md)
+
+* Quick Start
+* Features
+* Options
+* Examples
+* Configuration
+
+### [Shell Command Generator](https://neovateai.dev/en/docs/shell-command-generator.md)
+
+* Quick Start
+* Features
+* Options
+* Interactive Actions
+* Examples
+* Configuration
+
+### [Session Log Viewer](https://neovateai.dev/en/docs/session-log-viewer.md)
+
+* Quick Start
+* Features
+* Options
+* Examples
+* Output
+
+## Guides
+
+### [Create Your Own Code Agent](https://neovateai.dev/en/docs/create-your-own-code-agent.md)
+
+* Why Build Your Own?
+* Quick Start
+* Full Example with Custom Provider
+* Configuration Options
+  * runNeovate Options
+  * Plugin Hooks
+* Use Cases
+  * Enterprise Deployment
+  * Custom Tools
+  * Dynamic Context Based on User Prompt
+  * Fetching External Data
+  * Custom Slash Commands
+
+## Reference
+
+### [CLI](https://neovateai.dev/en/docs/cli.md)
+
+* Commands
+* Options
+  * neovate commit
+  * neovate config
+  * neovate mcp
+  * neovate run
+  * neovate skill
+  * neovate update
+  * neovate workspace
+* Specify MCP servers
+* Specify System Prompt
+  * With `--output-style`
+
+### [Plugins](https://neovateai.dev/en/docs/plugins.md)
+
+* Create a plugin
+* Create your own Code Agent
+* Plugin hooks
+  * config
+  * destroy
+  * slashCommand
+  * outputStyle
+  * provider
+  * modelAlias
+  * initialized
+  * context
+  * env
+  * userPrompt
+  * systemPrompt
+  * tool
+  * toolUse
+  * toolResult
+  * query
+  * conversation
+  * telemetry
+  * status
+
+## Support
+
+### [Troubleshooting](https://neovateai.dev/en/docs/troubleshooting.md)
+
+* Logs
+* Getting Help
+* Common Issues
+
+## Resources
+
+### [Milestone](https://neovateai.dev/en/docs/milestone.md)

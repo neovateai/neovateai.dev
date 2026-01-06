@@ -34,6 +34,10 @@ This file provides an overview of the Neovate Code documentation and developer r
 - [Shell Command Generator](https://neovateai.dev/en/docs/shell-command-generator.md)
 - [Session Log Viewer](https://neovateai.dev/en/docs/session-log-viewer.md)
 
+## Guides
+
+- [Create Your Own Code Agent](https://neovateai.dev/en/docs/create-your-own-code-agent.md)
+
 ## Reference
 
 - [CLI](https://neovateai.dev/en/docs/cli.md)
