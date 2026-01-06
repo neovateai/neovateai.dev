@@ -81,6 +81,7 @@ This file provides a structured map of documentation with nested headers.
 * `neovate config`
 * Available Settings
   * approvalMode
+  * agent
   * autoCompact
   * autoUpdate
   * browser
