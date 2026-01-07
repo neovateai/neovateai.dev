@@ -63,6 +63,33 @@ runNeovate({
 
 插件钩子是扩展 Neovate Code 功能的主要方式。有许多可用的钩子。
 
+### agent
+
+返回要注册的子代理定义。插件子代理可被全局或项目级代理覆盖。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`PluginAgentDefinition[]`
+
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  agent() {
+    return [
+      {
+        name: 'my-agent',
+        description: 'A custom agent for specific tasks',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: 'You are a specialized agent...',
+        isEnabled: (context) => context.config.someFeatureEnabled,
+      },
+    ];
+  },
+};
+```
+
+`isEnabled` 属性可以是布尔值或函数 `(context: Context) => boolean`。当 `isEnabled` 返回 `false` 时，子代理将对系统隐藏。
+
 ### config
 
 返回一个部分配置以与配置合并。此钩子在配置初始化时被调用。
@@ -74,6 +101,31 @@ runNeovate({
     - argvConfig：`Record<string, any>`
 - 返回：`Partial<Config>`
 
+### context
+
+返回要添加到对话中的上下文。
+
+- 类型：`SeriesMerge`
+- 参数：
+  - opts：
+    - userPrompt：`string | null`
+    - sessionId：`string`
+- 返回：`Record<string, string>`
+
+### conversation
+
+通知插件已进行了对话。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - userPrompt：`string | null`
+    - result：`LoopResult`
+    - startTime：`Date`
+    - endTime：`Date`
+    - sessionId：`string`
+- 返回：`void`
+
 ### destroy
 
 此钩子在上下文被销毁时被调用。
@@ -82,13 +134,36 @@ runNeovate({
 - 参数：
 - 返回：`void`
 
-### slashCommand
+### env
 
-返回要注册的斜杠命令。
+返回要添加到对话中的环境上下文。
 
 - 类型：`SeriesMerge`
 - 参数：
-- 返回：`SlashCommand[]`
+  - opts：
+    - userPrompt：`string | null`
+    - sessionId：`string`
+- 返回：`Record<string, string>`
+
+### initialized
+
+初始化插件。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - cwd：`string`
+    - quiet：`boolean`
+- 返回：`void`
+
+### modelAlias
+
+修改模型别名。
+
+- 类型：`SeriesLast`
+- 参数：
+  - modelAlias：`ModelAlias`
+- 返回：`ModelAlias`
 
 ### outputStyle
 
@@ -113,58 +188,53 @@ runNeovate({
     - createAnthropic：`(options: any) => AnthropicProvider`
 - 返回：`ProvidersMap`
 
-### modelAlias
+### query
 
-修改模型别名。
-
-- 类型：`SeriesLast`
-- 参数：
-  - modelAlias：`ModelAlias`
-- 返回：`ModelAlias`
-
-### initialized
-
-初始化插件。
+通知插件已进行了查询。
 
 - 类型：`Series`
 - 参数：
   - opts：
-    - cwd：`string`
-    - quiet：`boolean`
+    - usage：`Usage`
+    - startTime：`Date`
+    - endTime：`Date`
+    - sessionId：`string`
 - 返回：`void`
 
-### context
+### skill
 
-返回要添加到对话中的上下文。
-
-- 类型：`SeriesMerge`
-- 参数：
-  - opts：
-    - userPrompt：`string | null`
-    - sessionId：`string`
-- 返回：`Record<string, string>`
-
-### env
-
-返回要添加到对话中的环境上下文。
+返回要注册为技能的 `SKILL.md` 文件路径。插件技能具有最低优先级，可被文件系统中的技能覆盖。
 
 - 类型：`SeriesMerge`
 - 参数：
-  - opts：
-    - userPrompt：`string | null`
-    - sessionId：`string`
-- 返回：`Record<string, string>`
+- 返回：`string[]`（`SKILL.md` 文件的绝对路径）
 
-### userPrompt
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  skill() {
+    return [
+      path.join(__dirname, 'skills/my-skill/SKILL.md'),
+    ];
+  },
+};
+```
 
-修改用户提示。
+### slashCommand
 
-- 类型：`SeriesLast`
+返回要注册的斜杠命令。
+
+- 类型：`SeriesMerge`
 - 参数：
-  - userPrompt：`string`
-  - opts：
-    - sessionId：`string`
-- 返回：`string`
+- 返回：`SlashCommand[]`
+
+### status
+
+返回要显示的额外状态。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`Status`
 
 ### systemPrompt
 
@@ -178,6 +248,17 @@ runNeovate({
     - sessionId：`string`
 - 返回：`string`
 
+### telemetry
+
+用于收集使用情况分析的遥测钩子。当需要报告遥测事件时调用此钩子。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - name：`string` - 遥测事件的名称
+    - payload：`Record<string, any>` - 遥测数据载荷
+- 返回：`Promise<void> | void`
+
 ### tool
 
 返回要使用的额外工具。这对于向对话中添加您自己的工具很有用。
@@ -188,17 +269,6 @@ runNeovate({
     - isPlan：`boolean`
     - sessionId：`string`
 - 返回：`Tool[]`
-
-### toolUse
-
-修改工具使用。
-
-- 类型：`SeriesLast`
-- 参数：
-  - toolUse：`ToolUse`
-  - opts：
-    - sessionId：`string`
-- 返回：`ToolUse`
 
 ### toolResult
 
@@ -213,48 +283,24 @@ runNeovate({
     - sessionId：`string`
 - 返回：`ToolResult`
 
-### query
+### toolUse
 
-通知插件已进行了查询。
+修改工具使用。
 
-- 类型：`Series`
+- 类型：`SeriesLast`
 - 参数：
+  - toolUse：`ToolUse`
   - opts：
-    - usage：`Usage`
-    - startTime：`Date`
-    - endTime：`Date`
     - sessionId：`string`
-- 返回：`void`
+- 返回：`ToolUse`
 
-### conversation
+### userPrompt
 
-通知插件已进行了对话。
+修改用户提示。
 
-- 类型：`Series`
+- 类型：`SeriesLast`
 - 参数：
+  - userPrompt：`string`
   - opts：
-    - userPrompt：`string | null`
-    - result：`LoopResult`
-    - startTime：`Date`
-    - endTime：`Date`
     - sessionId：`string`
-- 返回：`void`
-
-### telemetry
-
-用于收集使用情况分析的遥测钩子。当需要报告遥测事件时调用此钩子。
-
-- 类型：`Series`
-- 参数：
-  - opts：
-    - name：`string` - 遥测事件的名称
-    - payload：`Record<string, any>` - 遥测数据载荷
-- 返回：`Promise<void> | void`
-
-### status
-
-返回要显示的额外状态。
-
-- 类型：`SeriesMerge`
-- 参数：
-- 返回：`Status`
+- 返回：`string`

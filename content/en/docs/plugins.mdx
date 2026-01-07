@@ -63,6 +63,33 @@ That's it. You can now use your own Code Agent.
 
 Plugin hooks are the main way to extend the functionality of Neovate Code. There are many hooks available.
 
+### agent
+
+Return subagent definitions to be registered. Plugin subagents can be overridden by global or project-level agents.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `PluginAgentDefinition[]`
+
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  agent() {
+    return [
+      {
+        name: 'my-agent',
+        description: 'A custom agent for specific tasks',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: 'You are a specialized agent...',
+        isEnabled: (context) => context.config.someFeatureEnabled,
+      },
+    ];
+  },
+};
+```
+
+The `isEnabled` property can be a boolean or a function `(context: Context) => boolean`. When `isEnabled` returns `false`, the subagent is hidden from the system.
+
 ### config
 
 Return a partial config to merge with the config. This hook is called when the config is initialized.
@@ -74,6 +101,31 @@ Return a partial config to merge with the config. This hook is called when the c
     - argvConfig: `Record<string, any>`
 - return: `Partial<Config>`
 
+### context
+
+Return the context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### conversation
+
+Notify the plugin that a conversation has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - result: `LoopResult`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
 ### destroy
 
 This hook is called when the context is destroyed.
@@ -82,13 +134,36 @@ This hook is called when the context is destroyed.
 - parameters:
 - return: `void`
 
-### slashCommand
+### env
 
-Return the slash commands to be registered.
+Return the environment context to be added to the conversation.
 
 - type: `SeriesMerge`
 - parameters:
-- return: `SlashCommand[]`
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### initialized
+
+Initialize the plugin.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - cwd: `string`
+    - quiet: `boolean`
+- return: `void`
+
+### modelAlias
+
+Modify the model aliases.
+
+- type: `SeriesLast`
+- parameters:
+  - modelAlias: `ModelAlias`
+- return: `ModelAlias`
 
 ### outputStyle
 
@@ -113,58 +188,53 @@ Modify the providers map.
     - createAnthropic: `(options: any) => AnthropicProvider`
 - return: `ProvidersMap`
 
-### modelAlias
+### query
 
-Modify the model aliases.
-
-- type: `SeriesLast`
-- parameters:
-  - modelAlias: `ModelAlias`
-- return: `ModelAlias`
-
-### initialized
-
-Initialize the plugin.
+Notify the plugin that a query has been made.
 
 - type: `Series`
 - parameters:
   - opts:
-    - cwd: `string`
-    - quiet: `boolean`
+    - usage: `Usage`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
 - return: `void`
 
-### context
+### skill
 
-Return the context to be added to the conversation.
-
-- type: `SeriesMerge`
-- parameters:
-  - opts:
-    - userPrompt: `string | null`
-    - sessionId: `string`
-- return: `Record<string, string>`
-
-### env
-
-Return the environment context to be added to the conversation.
+Return paths to `SKILL.md` files to be registered as skills. Plugin skills have the lowest priority and can be overridden by filesystem-based skills.
 
 - type: `SeriesMerge`
 - parameters:
-  - opts:
-    - userPrompt: `string | null`
-    - sessionId: `string`
-- return: `Record<string, string>`
+- return: `string[]` (absolute paths to `SKILL.md` files)
 
-### userPrompt
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  skill() {
+    return [
+      path.join(__dirname, 'skills/my-skill/SKILL.md'),
+    ];
+  },
+};
+```
 
-Modify the user prompt.
+### slashCommand
 
-- type: `SeriesLast`
+Return the slash commands to be registered.
+
+- type: `SeriesMerge`
 - parameters:
-  - userPrompt: `string`
-  - opts:
-    - sessionId: `string`
-- return: `string`
+- return: `SlashCommand[]`
+
+### status
+
+Return the extra status to be displayed.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `Status`
 
 ### systemPrompt
 
@@ -178,6 +248,17 @@ Modify the system prompt.
     - sessionId: `string`
 - return: `string`
 
+### telemetry
+
+Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - name: `string` - The name of the telemetry event
+    - payload: `Record<string, any>` - The telemetry data payload
+- return: `Promise<void> | void`
+
 ### tool
 
 Return the extra tools to be used. This is useful for adding your own tools to the conversation.
@@ -188,17 +269,6 @@ Return the extra tools to be used. This is useful for adding your own tools to t
     - isPlan: `boolean`
     - sessionId: `string`
 - return: `Tool[]`
-
-### toolUse
-
-Modify the tool use.
-
-- type: `SeriesLast`
-- parameters:
-  - toolUse: `ToolUse`
-  - opts:
-    - sessionId: `string`
-- return: `ToolUse`
 
 ### toolResult
 
@@ -213,48 +283,24 @@ Modify the tool result.
     - sessionId: `string`
 - return: `ToolResult`
 
-### query
+### toolUse
 
-Notify the plugin that a query has been made.
+Modify the tool use.
 
-- type: `Series`
+- type: `SeriesLast`
 - parameters:
+  - toolUse: `ToolUse`
   - opts:
-    - usage: `Usage`
-    - startTime: `Date`
-    - endTime: `Date`
     - sessionId: `string`
-- return: `void`
+- return: `ToolUse`
 
-### conversation
+### userPrompt
 
-Notify the plugin that a conversation has been made.
+Modify the user prompt.
 
-- type: `Series`
+- type: `SeriesLast`
 - parameters:
+  - userPrompt: `string`
   - opts:
-    - userPrompt: `string | null`
-    - result: `LoopResult`
-    - startTime: `Date`
-    - endTime: `Date`
     - sessionId: `string`
-- return: `void`
-
-### telemetry
-
-Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
-
-- type: `Series`
-- parameters:
-  - opts:
-    - name: `string` - The name of the telemetry event
-    - payload: `Record<string, any>` - The telemetry data payload
-- return: `Promise<void> | void`
-
-### status
-
-Return the extra status to be displayed.
-
-- type: `SeriesMerge`
-- parameters:
-- return: `Status`
+- return: `string`

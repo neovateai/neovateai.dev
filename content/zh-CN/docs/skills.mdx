@@ -23,12 +23,23 @@ import { Callout } from 'nextra/components';
 
 | 作用域 | 位置 | 用途 |
 |-------|------|------|
+| **插件** | 通过 `skill` 钩子由插件提供 | 与 npm 包捆绑的技能 |
 | **工作区** | `.neovate/skills/<skill-name>/` | 与团队成员共享的项目技能；提交到 git |
 | **个人** | `~/.neovate/skills/<skill-name>/` | 跨项目使用的私人技能 |
 
 <Callout type="info">
   为了兼容性，也支持 `.claude/skills/` 作为别名。
 </Callout>
+
+### 加载优先级
+
+技能按以下顺序加载，后面的来源会覆盖前面的：
+
+1. **插件** – 由插件提供的技能（最低优先级）
+2. **全局 (~/.claude/)** – 旧版全局技能
+3. **全局 (~/.neovate/)** – 个人全局技能
+4. **项目 (.claude/)** – 旧版项目技能
+5. **项目 (.neovate/)** – 项目特定技能（最高优先级）
 
 ## 技能文件格式
 

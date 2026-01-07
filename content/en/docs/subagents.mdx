@@ -20,18 +20,28 @@ Neovate comes with three powerful built-in agents:
 
 ## Creating Custom Subagents
 
-You can create your own subagents to automate specific workflows. A subagent is defined by a Markdown file with YAML frontmatter.
+You can create your own subagents to automate specific workflows. Subagents can be defined via Markdown files or through plugins.
 
 ### File Locations
 
 | Scope | Location | Purpose |
 |-------|----------|---------|
+| **Plugin** | Provided by plugins via the `agent` hook | Subagents bundled with npm packages |
 | **Project** | `.neovate/agents/<agent-name>.md` | Project-specific agents shared with the team |
 | **Personal** | `~/.neovate/agents/<agent-name>.md` | Private agents available across all your projects |
 
 <Callout type="info">
   For compatibility, `.claude/agents/` is also supported.
 </Callout>
+
+### Loading Priority
+
+Subagents are loaded in the following order, with later sources overriding earlier ones:
+
+1. **Builtin** – Built-in agents (Explore, GeneralPurpose, etc.)
+2. **Plugin** – Agents provided by plugins
+3. **Global** – Personal agents in `~/.neovate/agents/`
+4. **Project** – Project-specific agents in `.neovate/agents/` (highest priority)
 
 ### Agent File Format
 

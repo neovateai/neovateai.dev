@@ -319,6 +319,45 @@ Provide actionable suggestions for each issue found.`,
 };
 ```
 
+### Bundled Skills
+
+Bundle reusable skills with your code agent. Skills are capabilities the model invokes on demand:
+
+```ts
+import * as path from 'path';
+
+const skillPlugin: Plugin = {
+  skill() {
+    return [
+      path.join(__dirname, 'skills/code-review/SKILL.md'),
+    ];
+  },
+};
+```
+
+Plugin skills have the lowest priority and can be overridden by project-level skills. See [Skills](/docs/skills) for the SKILL.md format.
+
+### Bundled Subagents
+
+Add autonomous agents for complex, multi-step tasks:
+
+```ts
+const agentPlugin: Plugin = {
+  agent() {
+    return [
+      {
+        name: 'security-scanner',
+        description: 'Scan code for security vulnerabilities. Use when reviewing security.',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: 'You are a security expert. Analyze code for vulnerabilities...',
+      },
+    ];
+  },
+};
+```
+
+Plugin subagents can be overridden by global or project-level agents. See [Subagents](/docs/subagents) for more details.
+
 <Callout type="info">
 See the [Plugins](/docs/plugins) documentation for a complete list of available hooks and their usage.
 </Callout>

@@ -319,6 +319,45 @@ const slashCommandPlugin: Plugin = {
 };
 ```
 
+### 内置技能
+
+为你的代码智能体捆绑可复用的技能。技能是模型按需调用的能力：
+
+```ts
+import * as path from 'path';
+
+const skillPlugin: Plugin = {
+  skill() {
+    return [
+      path.join(__dirname, 'skills/code-review/SKILL.md'),
+    ];
+  },
+};
+```
+
+插件技能具有最低优先级，可被项目级技能覆盖。参见 [技能](/docs/skills) 了解 SKILL.md 格式。
+
+### 内置子代理
+
+添加用于复杂多步骤任务的自主代理：
+
+```ts
+const agentPlugin: Plugin = {
+  agent() {
+    return [
+      {
+        name: 'security-scanner',
+        description: '扫描代码中的安全漏洞。在安全审查时使用。',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: '你是一位安全专家。分析代码中的漏洞...',
+      },
+    ];
+  },
+};
+```
+
+插件子代理可被全局或项目级代理覆盖。参见 [子代理](/docs/subagents) 了解更多详情。
+
 <Callout type="info">
 查看 [插件](/docs/plugins) 文档了解所有可用钩子及其用法。
 </Callout>

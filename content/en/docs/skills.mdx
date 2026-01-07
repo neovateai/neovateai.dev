@@ -23,12 +23,23 @@ Each skill defines what problem it solves, what inputs it expects, and what succ
 
 | Scope | Location | Purpose |
 |-------|----------|---------|
+| **Plugin** | Provided by plugins via the `skill` hook | Skills bundled with npm packages |
 | **Workspace** | `.neovate/skills/<skill-name>/` | Project skills shared with teammates; checked into git |
 | **Personal** | `~/.neovate/skills/<skill-name>/` | Private skills that follow you across projects |
 
 <Callout type="info">
   For compatibility, `.claude/skills/` is also supported as an alias.
 </Callout>
+
+### Loading Priority
+
+Skills are loaded in the following order, with later sources overriding earlier ones:
+
+1. **Plugin** – Skills provided by plugins (lowest priority)
+2. **Global (~/.claude/)** – Legacy global skills
+3. **Global (~/.neovate/)** – Personal global skills
+4. **Project (.claude/)** – Legacy project skills
+5. **Project (.neovate/)** – Project-specific skills (highest priority)
 
 ## Skill File Format
 
