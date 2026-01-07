@@ -29,6 +29,7 @@ neovate run --yes "备份 config.json"
 | 参数 | 描述 |
 |------|------|
 | `-m, --model <model>` | 指定使用的模型 |
+| `-q, --quiet` | 仅输出生成的命令（无 UI，适用于脚本） |
 | `--yes` | 无需确认直接执行命令 |
 | `-h, --help` | 显示帮助 |
 
@@ -83,3 +84,23 @@ neovate run -m claude-sonnet "压缩当前目录下的所有图片"
 ```
 
 run 命令默认使用 `smallModel` 以获得更快的响应。更多配置选项请参阅[设置](/docs/settings)。
+
+## 静默模式
+
+使用 `-q` 或 `--quiet` 进行非交互式使用，适合脚本和管道操作：
+
+```bash
+neovate run -q "列出所有文件"
+```
+
+将输出传递给其他命令：
+
+```bash
+neovate run -q "查找大于100MB的文件" | sh
+neovate run -q "列出 git 分支" | pbcopy
+```
+
+行为：
+- 仅将生成的命令输出到 stdout（无交互式 UI）
+- 成功时退出代码为 0，错误时为 1
+- 需要提供提示词（缺少时会报错）

@@ -29,6 +29,7 @@ neovate run --yes "create a backup of config.json"
 | Flag | Description |
 |------|-------------|
 | `-m, --model <model>` | Specify model to use |
+| `-q, --quiet` | Output only the generated command (no UI, for scripting) |
 | `--yes` | Execute the command without confirmation |
 | `-h, --help` | Show help |
 
@@ -83,3 +84,23 @@ You can set a default model in your settings:
 ```
 
 The run command uses `smallModel` by default for faster responses. See [Settings](/docs/settings) for more configuration options.
+
+## Quiet Mode
+
+Use `-q` or `--quiet` for non-interactive usage, ideal for scripting and piping:
+
+```bash
+neovate run -q "list all files"
+```
+
+Pipe the output to other commands:
+
+```bash
+neovate run -q "find large files over 100MB" | sh
+neovate run -q "list git branches" | pbcopy
+```
+
+Behavior:
+- Outputs only the generated command to stdout (no interactive UI)
+- Exits with code 0 on success, code 1 on error
+- Requires a prompt (errors if missing)
