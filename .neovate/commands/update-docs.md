@@ -11,5 +11,6 @@ Based on the changes:
 1. Identify what documentation needs to be updated
 2. Update both English (content/en/) and Chinese (content/zh-CN/) documentation
 3. Keep documentation consistent across both languages
+4. Run `bun scripts/generate-llms-txt.ts` to regenerate LLM files
 
 Don't implement or fix directly, tell me what changes are needed and ask questions if unclear.

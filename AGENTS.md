@@ -23,6 +23,7 @@ npm run dev                 # Start dev server (Turbopack)
 npm run types:check         # TypeScript type checking
 npm run build               # Production build
 npm run deploy              # Deploy to remote server (requires Bun)
+bun scripts/generate-llms-txt.ts  # Regenerate LLM files after docs changes
 ```
 
 ## Progressive Disclosure
