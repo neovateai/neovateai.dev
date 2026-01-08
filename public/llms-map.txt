@@ -176,10 +176,19 @@ This file provides a structured map of documentation with nested headers.
 
 ### [Subagents](https://neovateai.dev/en/docs/subagents.md)
 
+* Built-in Subagents
+* Creating Custom Subagents
+  * File Locations
+  * Loading Priority
+  * Agent File Format
+* Using Subagents
+* Comparison with Skills
+
 ### [Skills](https://neovateai.dev/en/docs/skills.md)
 
 * What is a Skill?
 * File Locations
+  * Loading Priority
 * Skill File Format
 * Supporting Files
 * How Skills Differ from Other Config
@@ -247,6 +256,7 @@ This file provides a structured map of documentation with nested headers.
 * Interactive Actions
 * Examples
 * Configuration
+* Quiet Mode
 
 ### [Session Log Viewer](https://neovateai.dev/en/docs/session-log-viewer.md)
 
@@ -272,6 +282,8 @@ This file provides a structured map of documentation with nested headers.
   * Dynamic Context Based on User Prompt
   * Fetching External Data
   * Custom Slash Commands
+  * Bundled Skills
+  * Bundled Subagents
 
 ## Reference
 
@@ -295,24 +307,26 @@ This file provides a structured map of documentation with nested headers.
 * Create a plugin
 * Create your own Code Agent
 * Plugin hooks
+  * agent
   * config
+  * context
+  * conversation
   * destroy
-  * slashCommand
+  * env
+  * initialized
+  * modelAlias
   * outputStyle
   * provider
-  * modelAlias
-  * initialized
-  * context
-  * env
-  * userPrompt
-  * systemPrompt
-  * tool
-  * toolUse
-  * toolResult
   * query
-  * conversation
-  * telemetry
+  * skill
+  * slashCommand
   * status
+  * systemPrompt
+  * telemetry
+  * tool
+  * toolResult
+  * toolUse
+  * userPrompt
 
 ## Support
 

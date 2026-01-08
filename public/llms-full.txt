@@ -1874,6 +1874,7 @@ Use slash commands to trigger specific actions and workflows in your AI conversa
 |`/compact`|Clear conversation history but keep a summary in context|
 |`/context`|Analyze and display token usage breakdown|
 |`/exit`|Exit the application|
+|`/export`|Export current session to Markdown file|
 |`/help`|Show help|
 |`/init`|Create or improve the AGENTS.md file|
 |`/login [provider]`|Configure API key for a provider|
@@ -1982,13 +1983,101 @@ Add test case for $ARGUMENTS
 # Subagents
 URL: https://neovateai.dev/en/docs/subagents.md
 
----
-title: Subagents
----
+import { Callout } from 'nextra/components';
 
 # Subagents
 
-🚧 Work in progress. This feature will be available in version 0.23.0.
+Subagents are **autonomous agents** that can handle complex, multi-step tasks. They run in a loop, using tools and making decisions until they complete their assigned task or fail.
+
+**Key properties:**
+
+- **Autonomous** – They plan and execute multiple steps without user intervention
+- **Specialized** – Each agent can have specific tools, permissions, and system prompts
+- **Isolated** – They run in a separate context, keeping your main conversation clean
+
+## Built-in Subagents
+
+Neovate comes with three powerful built-in agents:
+
+- **Explore** – Specialized in exploring codebases. It can quickly find files, search code, and answer questions about the project structure.
+- **GeneralPurpose** – A versatile agent for researching complex questions or executing multi-step tasks where the path isn't clear from the start.
+- **neovate-code-guide** – A helper agent for answering questions about Neovate Code itself - its features, configuration, MCP servers, settings, and how to use it effectively.
+
+## Creating Custom Subagents
+
+You can create your own subagents to automate specific workflows. Subagents can be defined via Markdown files or through plugins.
+
+### File Locations
+
+| Scope | Location | Purpose |
+|-------|----------|---------|
+| **Plugin** | Provided by plugins via the `agent` hook | Subagents bundled with npm packages |
+| **Project** | `.neovate/agents/<agent-name>.md` | Project-specific agents shared with the team |
+| **Personal** | `~/.neovate/agents/<agent-name>.md` | Private agents available across all your projects |
+
+<Callout type="info">
+  For compatibility, `.claude/agents/` is also supported.
+</Callout>
+
+### Loading Priority
+
+Subagents are loaded in the following order, with later sources overriding earlier ones:
+
+1. **Builtin** – Built-in agents (Explore, GeneralPurpose, etc.)
+2. **Plugin** – Agents provided by plugins
+3. **Global** – Personal agents in `~/.neovate/agents/`
+4. **Project** – Project-specific agents in `.neovate/agents/` (highest priority)
+
+### Agent File Format
+
+Create a markdown file (e.g., `code-reviewer.md`) in one of the agent directories:
+
+```md
+---
+name: code-reviewer
+description: Review code changes for security and style issues. Use when the user asks for a code review.
+tools: read, glob, grep
+model: claude-3-5-sonnet-20241022
+---
+
+You are an expert code reviewer.
+Your goal is to review the code changes and provide feedback.
+
+Follow these steps:
+1. Read the changed files.
+2. Analyze for security vulnerabilities.
+3. Check for code style violations.
+4. Provide a summary of your findings.
+```
+
+**Frontmatter Fields:**
+
+- `name` (required): The unique identifier for the agent (used in `subagent_type`).
+- `description` (required): When this agent should be used. Neovate uses this to decide when to launch it.
+- `tools` (optional): Comma-separated list of tools this agent can use (e.g., `read, write, bash`).
+- `disallowedTools` (optional): Comma-separated list of tools this agent CANNOT use.
+- `model` (optional): The model to use (e.g., `claude-3-5-sonnet-20241022`). Defaults to `inherit` (uses the main agent's model).
+- `forkContext` (optional): Whether to give the subagent access to the main conversation history. Default is `false`.
+- `color` (optional): Color for the agent's output in the UI.
+
+The body of the markdown file becomes the **System Prompt** for the agent.
+
+## Using Subagents
+
+Neovate will automatically recommend using a subagent when your request matches its description.
+
+You can also explicitly ask Neovate to use a specific agent:
+
+> "Use the code-reviewer agent to check my changes."
+
+## Comparison with Skills
+
+| Feature | Skills | Subagents |
+|---------|--------|-----------|
+| **Nature** | Single capability/tool | Autonomous agent loop |
+| **Complexity** | Simple, atomic actions | Complex, multi-step workflows |
+| **State** | Stateless | Maintains its own conversation history |
+| **Tools** | Can use other tools | Can use a restricted set of tools |
 
 ---
 # Skills
@@ -2019,12 +2108,23 @@ Each skill defines what problem it solves, what inputs it expects, and what succ
 
 | Scope | Location | Purpose |
 |-------|----------|---------|
+| **Plugin** | Provided by plugins via the `skill` hook | Skills bundled with npm packages |
 | **Workspace** | `.neovate/skills/<skill-name>/` | Project skills shared with teammates; checked into git |
 | **Personal** | `~/.neovate/skills/<skill-name>/` | Private skills that follow you across projects |
 
 <Callout type="info">
   For compatibility, `.claude/skills/` is also supported as an alias.
 </Callout>
+
+### Loading Priority
+
+Skills are loaded in the following order, with later sources overriding earlier ones:
+
+1. **Plugin** – Skills provided by plugins (lowest priority)
+2. **Global (~/.claude/)** – Legacy global skills
+3. **Global (~/.neovate/)** – Personal global skills
+4. **Project (.claude/)** – Legacy project skills
+5. **Project (.neovate/)** – Project-specific skills (highest priority)
 
 ## Skill File Format
 
@@ -2679,6 +2779,7 @@ neovate run --yes "create a backup of config.json"
 | Flag | Description |
 |------|-------------|
 | `-m, --model <model>` | Specify model to use |
+| `-q, --quiet` | Output only the generated command (no UI, for scripting) |
 | `--yes` | Execute the command without confirmation |
 | `-h, --help` | Show help |
 
@@ -2733,6 +2834,26 @@ You can set a default model in your settings:
 ```
 
 The run command uses `smallModel` by default for faster responses. See [Settings](/docs/settings) for more configuration options.
+
+## Quiet Mode
+
+Use `-q` or `--quiet` for non-interactive usage, ideal for scripting and piping:
+
+```bash
+neovate run -q "list all files"
+```
+
+Pipe the output to other commands:
+
+```bash
+neovate run -q "find large files over 100MB" | sh
+neovate run -q "list git branches" | pbcopy
+```
+
+Behavior:
+- Outputs only the generated command to stdout (no interactive UI)
+- Exits with code 0 on success, code 1 on error
+- Requires a prompt (errors if missing)
 
 ---
 # Session Log Viewer
@@ -3119,6 +3240,45 @@ Provide actionable suggestions for each issue found.`,
 };
 ```
 
+### Bundled Skills
+
+Bundle reusable skills with your code agent. Skills are capabilities the model invokes on demand:
+
+```ts
+import * as path from 'path';
+
+const skillPlugin: Plugin = {
+  skill() {
+    return [
+      path.join(__dirname, 'skills/code-review/SKILL.md'),
+    ];
+  },
+};
+```
+
+Plugin skills have the lowest priority and can be overridden by project-level skills. See [Skills](/docs/skills) for the SKILL.md format.
+
+### Bundled Subagents
+
+Add autonomous agents for complex, multi-step tasks:
+
+```ts
+const agentPlugin: Plugin = {
+  agent() {
+    return [
+      {
+        name: 'security-scanner',
+        description: 'Scan code for security vulnerabilities. Use when reviewing security.',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: 'You are a security expert. Analyze code for vulnerabilities...',
+      },
+    ];
+  },
+};
+```
+
+Plugin subagents can be overridden by global or project-level agents. See [Subagents](/docs/subagents) for more details.
+
 <Callout type="info">
 See the [Plugins](/docs/plugins) documentation for a complete list of available hooks and their usage.
 </Callout>
@@ -3230,6 +3390,7 @@ Subcommands:
 | --- | --- |
 | `-h, --help` | Show help |
 | `-m, --model <model>` | Specify model to use |
+| `-q, --quiet` | Output only the generated command (no UI, for scripting) |
 | `-y, --yes` | Execute the command without confirmation |
 
 ### neovate skill
@@ -3393,6 +3554,33 @@ That's it. You can now use your own Code Agent.
 
 Plugin hooks are the main way to extend the functionality of Neovate Code. There are many hooks available.
 
+### agent
+
+Return subagent definitions to be registered. Plugin subagents can be overridden by global or project-level agents.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `PluginAgentDefinition[]`
+
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  agent() {
+    return [
+      {
+        name: 'my-agent',
+        description: 'A custom agent for specific tasks',
+        tools: ['read', 'glob', 'grep'],
+        systemPrompt: 'You are a specialized agent...',
+        isEnabled: (context) => context.config.someFeatureEnabled,
+      },
+    ];
+  },
+};
+```
+
+The `isEnabled` property can be a boolean or a function `(context: Context) => boolean`. When `isEnabled` returns `false`, the subagent is hidden from the system.
+
 ### config
 
 Return a partial config to merge with the config. This hook is called when the config is initialized.
@@ -3404,6 +3592,31 @@ Return a partial config to merge with the config. This hook is called when the c
     - argvConfig: `Record<string, any>`
 - return: `Partial<Config>`
 
+### context
+
+Return the context to be added to the conversation.
+
+- type: `SeriesMerge`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### conversation
+
+Notify the plugin that a conversation has been made.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - userPrompt: `string | null`
+    - result: `LoopResult`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
+- return: `void`
+
 ### destroy
 
 This hook is called when the context is destroyed.
@@ -3412,13 +3625,36 @@ This hook is called when the context is destroyed.
 - parameters:
 - return: `void`
 
-### slashCommand
+### env
 
-Return the slash commands to be registered.
+Return the environment context to be added to the conversation.
 
 - type: `SeriesMerge`
 - parameters:
-- return: `SlashCommand[]`
+  - opts:
+    - userPrompt: `string | null`
+    - sessionId: `string`
+- return: `Record<string, string>`
+
+### initialized
+
+Initialize the plugin.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - cwd: `string`
+    - quiet: `boolean`
+- return: `void`
+
+### modelAlias
+
+Modify the model aliases.
+
+- type: `SeriesLast`
+- parameters:
+  - modelAlias: `ModelAlias`
+- return: `ModelAlias`
 
 ### outputStyle
 
@@ -3443,58 +3679,53 @@ Modify the providers map.
     - createAnthropic: `(options: any) => AnthropicProvider`
 - return: `ProvidersMap`
 
-### modelAlias
+### query
 
-Modify the model aliases.
-
-- type: `SeriesLast`
-- parameters:
-  - modelAlias: `ModelAlias`
-- return: `ModelAlias`
-
-### initialized
-
-Initialize the plugin.
+Notify the plugin that a query has been made.
 
 - type: `Series`
 - parameters:
   - opts:
-    - cwd: `string`
-    - quiet: `boolean`
+    - usage: `Usage`
+    - startTime: `Date`
+    - endTime: `Date`
+    - sessionId: `string`
 - return: `void`
 
-### context
+### skill
 
-Return the context to be added to the conversation.
-
-- type: `SeriesMerge`
-- parameters:
-  - opts:
-    - userPrompt: `string | null`
-    - sessionId: `string`
-- return: `Record<string, string>`
-
-### env
-
-Return the environment context to be added to the conversation.
+Return paths to `SKILL.md` files to be registered as skills. Plugin skills have the lowest priority and can be overridden by filesystem-based skills.
 
 - type: `SeriesMerge`
 - parameters:
-  - opts:
-    - userPrompt: `string | null`
-    - sessionId: `string`
-- return: `Record<string, string>`
+- return: `string[]` (absolute paths to `SKILL.md` files)
 
-### userPrompt
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  skill() {
+    return [
+      path.join(__dirname, 'skills/my-skill/SKILL.md'),
+    ];
+  },
+};
+```
 
-Modify the user prompt.
+### slashCommand
 
-- type: `SeriesLast`
+Return the slash commands to be registered.
+
+- type: `SeriesMerge`
 - parameters:
-  - userPrompt: `string`
-  - opts:
-    - sessionId: `string`
-- return: `string`
+- return: `SlashCommand[]`
+
+### status
+
+Return the extra status to be displayed.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `Status`
 
 ### systemPrompt
 
@@ -3508,6 +3739,17 @@ Modify the system prompt.
     - sessionId: `string`
 - return: `string`
 
+### telemetry
+
+Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - name: `string` - The name of the telemetry event
+    - payload: `Record<string, any>` - The telemetry data payload
+- return: `Promise<void> | void`
+
 ### tool
 
 Return the extra tools to be used. This is useful for adding your own tools to the conversation.
@@ -3518,17 +3760,6 @@ Return the extra tools to be used. This is useful for adding your own tools to t
     - isPlan: `boolean`
     - sessionId: `string`
 - return: `Tool[]`
-
-### toolUse
-
-Modify the tool use.
-
-- type: `SeriesLast`
-- parameters:
-  - toolUse: `ToolUse`
-  - opts:
-    - sessionId: `string`
-- return: `ToolUse`
 
 ### toolResult
 
@@ -3543,51 +3774,27 @@ Modify the tool result.
     - sessionId: `string`
 - return: `ToolResult`
 
-### query
+### toolUse
 
-Notify the plugin that a query has been made.
+Modify the tool use.
 
-- type: `Series`
+- type: `SeriesLast`
 - parameters:
+  - toolUse: `ToolUse`
   - opts:
-    - usage: `Usage`
-    - startTime: `Date`
-    - endTime: `Date`
     - sessionId: `string`
-- return: `void`
+- return: `ToolUse`
 
-### conversation
+### userPrompt
 
-Notify the plugin that a conversation has been made.
+Modify the user prompt.
 
-- type: `Series`
+- type: `SeriesLast`
 - parameters:
+  - userPrompt: `string`
   - opts:
-    - userPrompt: `string | null`
-    - result: `LoopResult`
-    - startTime: `Date`
-    - endTime: `Date`
     - sessionId: `string`
-- return: `void`
-
-### telemetry
-
-Telemetry hook for collecting usage analytics. This hook is called when telemetry events need to be reported.
-
-- type: `Series`
-- parameters:
-  - opts:
-    - name: `string` - The name of the telemetry event
-    - payload: `Record<string, any>` - The telemetry data payload
-- return: `Promise<void> | void`
-
-### status
-
-Return the extra status to be displayed.
-
-- type: `SeriesMerge`
-- parameters:
-- return: `Status`
+- return: `string`
 
 ---
 # Troubleshooting
