@@ -58,3 +58,6 @@ config/
 public/_pagefind/
 
 deploy.zip
+
+# TypeScript
+tsconfig.tsbuildinfo
