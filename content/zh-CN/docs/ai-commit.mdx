@@ -36,6 +36,7 @@ neovate commit -s -c --push
 | `-m, --model <model>` | 指定使用的模型 |
 | `--language <lang>` | 设置提交信息的语言 |
 | `--follow-style` | 遵循现有仓库的提交风格 |
+| `--system-prompt <prompt>` | 用于生成提交消息的自定义系统提示 |
 | `-i, --interactive` | 交互模式（默认） |
 
 ## 示例
@@ -70,6 +71,12 @@ neovate commit --language Chinese
 neovate commit -s -c -n
 ```
 
+使用自定义系统提示生成提交消息：
+
+```bash
+neovate commit --system-prompt "使用中文生成符合 conventional commits 规范的提交消息"
+```
+
 ## 配置
 
 你可以在设置中配置默认选项：
@@ -78,7 +85,8 @@ neovate commit -s -c -n
 {
   "commit": {
     "model": "claude-sonnet",
-    "language": "Chinese"
+    "language": "Chinese",
+    "systemPrompt": "始终使用 conventional commit 格式并指定具体的 scope"
   }
 }
 ```

@@ -110,7 +110,7 @@ neovate config rm <key>
 
 可用选项：
 - `language`：`string` - 提交消息的语言
-- `systemPrompt`：`string` - 用于生成提交消息的自定义系统提示
+- `systemPrompt`：`string` - 用于生成提交消息的自定义系统提示。自定义提示会**追加**到默认提示后面（而非替换），让你可以在保留基础功能的同时添加自定义规则。
 - `model`：`string` - 用于生成提交消息的模型（格式：`provider_id/model_id`）
 
 ### desktop

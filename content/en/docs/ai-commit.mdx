@@ -36,6 +36,7 @@ neovate commit -s -c --push
 | `-m, --model <model>` | Specify model to use |
 | `--language <lang>` | Set language for commit message |
 | `--follow-style` | Follow existing repository commit style |
+| `--system-prompt <prompt>` | Custom system prompt for commit message generation |
 | `-i, --interactive` | Interactive mode (default) |
 
 ## Examples
@@ -70,6 +71,12 @@ Skip pre-commit hooks when committing:
 neovate commit -s -c -n
 ```
 
+Use a custom system prompt for commit generation:
+
+```bash
+neovate commit --system-prompt "Generate commit messages in Chinese following conventional commits"
+```
+
 ## Configuration
 
 You can set default options in your settings:
@@ -78,7 +85,8 @@ You can set default options in your settings:
 {
   "commit": {
     "model": "claude-sonnet",
-    "language": "English"
+    "language": "English",
+    "systemPrompt": "Always use conventional commit format with specific scopes"
   }
 }
 ```

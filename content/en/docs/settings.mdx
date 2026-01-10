@@ -110,7 +110,7 @@ Specify the commit configuration.
 
 Available options:
 - `language`: `string` - The language for commit messages
-- `systemPrompt`: `string` - Custom system prompt for commit message generation
+- `systemPrompt`: `string` - Custom system prompt for commit message generation. The custom prompt is **appended** to the default prompt (not replacing it), allowing you to add rules while keeping base functionality.
 - `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
 
 ### desktop

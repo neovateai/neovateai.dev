@@ -875,7 +875,7 @@ Neovate Code is a feature-rich AI coding agent. Here's what you can do with it.
 
 - **Background Bash** - Run long-running commands in the background with `run_in_background=true`. Use `bash_output` to check output and `kill_bash` to terminate tasks.
 
-- **Images** - Paste or drag images into context for visual understanding.
+- **Images** - Paste images directly into the CLI with Ctrl+V on macOS, or drag images into the terminal. Images attach as [Image #N] and get sent with your messages. A proper visual workflow without leaving the terminal.
 
 ## Advanced
 
@@ -1097,7 +1097,7 @@ Specify the commit configuration.
 
 Available options:
 - `language`: `string` - The language for commit messages
-- `systemPrompt`: `string` - Custom system prompt for commit message generation
+- `systemPrompt`: `string` - Custom system prompt for commit message generation. The custom prompt is **appended** to the default prompt (not replacing it), allowing you to add rules while keeping base functionality.
 - `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
 
 ### desktop
@@ -2695,6 +2695,7 @@ neovate commit -s -c --push
 | `-m, --model <model>` | Specify model to use |
 | `--language <lang>` | Set language for commit message |
 | `--follow-style` | Follow existing repository commit style |
+| `--system-prompt <prompt>` | Custom system prompt for commit message generation |
 | `-i, --interactive` | Interactive mode (default) |
 
 ## Examples
@@ -2729,6 +2730,12 @@ Skip pre-commit hooks when committing:
 neovate commit -s -c -n
 ```
 
+Use a custom system prompt for commit generation:
+
+```bash
+neovate commit --system-prompt "Generate commit messages in Chinese following conventional commits"
+```
+
 ## Configuration
 
 You can set default options in your settings:
@@ -2737,7 +2744,8 @@ You can set default options in your settings:
 {
   "commit": {
     "model": "claude-sonnet",
-    "language": "English"
+    "language": "English",
+    "systemPrompt": "Always use conventional commit format with specific scopes"
   }
 }
 ```
