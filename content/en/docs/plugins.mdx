@@ -236,6 +236,39 @@ Return the extra status to be displayed.
 - parameters:
 - return: `Status`
 
+### stop
+
+Triggers when the main agent finishes responding. Used for observing completion events, collecting analytics, and performing post-completion actions.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - sessionId: `string`
+    - result: `LoopResult`
+    - usage: `Usage`
+    - turnsCount: `number`
+    - toolCallsCount: `number`
+    - duration: `number`
+    - model: `string`
+- return: `Promise<void> | void`
+
+### subagentStop
+
+Triggers when a subagent completes its task. Used for observing subagent completion events and collecting analytics.
+
+- type: `Series`
+- parameters:
+  - opts:
+    - parentSessionId: `string`
+    - agentId: `string`
+    - agentType: `string`
+    - result: `AgentExecutionResult`
+    - usage: `{ inputTokens: number; outputTokens: number }`
+    - totalToolCalls: `number`
+    - totalDuration: `number`
+    - model: `string`
+- return: `Promise<void> | void`
+
 ### systemPrompt
 
 Modify the system prompt.

@@ -321,6 +321,8 @@ This file provides a structured map of documentation with nested headers.
   * skill
   * slashCommand
   * status
+  * stop
+  * subagentStop
   * systemPrompt
   * telemetry
   * tool

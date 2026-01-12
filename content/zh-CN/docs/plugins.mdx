@@ -236,6 +236,39 @@ const plugin: Plugin = {
 - 参数：
 - 返回：`Status`
 
+### stop
+
+当主代理完成响应时触发。用于观察完成事件、收集分析数据和执行完成后操作。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - sessionId：`string`
+    - result：`LoopResult`
+    - usage：`Usage`
+    - turnsCount：`number`
+    - toolCallsCount：`number`
+    - duration：`number`
+    - model：`string`
+- 返回：`Promise<void> | void`
+
+### subagentStop
+
+当子代理完成其任务时触发。用于观察子代理完成事件和收集分析数据。
+
+- 类型：`Series`
+- 参数：
+  - opts：
+    - parentSessionId：`string`
+    - agentId：`string`
+    - agentType：`string`
+    - result：`AgentExecutionResult`
+    - usage：`{ inputTokens: number; outputTokens: number }`
+    - totalToolCalls：`number`
+    - totalDuration：`number`
+    - model：`string`
+- 返回：`Promise<void> | void`
+
 ### systemPrompt
 
 修改系统提示。
