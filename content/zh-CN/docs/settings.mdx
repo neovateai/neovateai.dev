@@ -166,6 +166,41 @@ neovate config rm <key>
 - 类型：`string`
 - 默认：null
 
+### notification
+
+指定会话完成时的通知行为。
+
+- 类型：`boolean | string`
+- 默认：`false`
+
+可用选项：
+- `false` - 禁用通知
+- `true` - 启用默认声音（"Funk"）
+- 声音名称字符串 - 播放指定的声音（例如 "Glass"、"Ping"）
+- URL 字符串（以 `http://` 或 `https://` 开头）- 向该 URL 发送 HTTP GET 请求
+
+**平台支持：**
+- **macOS**：完整的声音支持，使用 `/System/Library/Sounds/` 中的系统声音
+- **Linux/Windows**：回退到终端响铃
+
+**可用的 macOS 声音：** Basso、Blow、Bottle、Frog、Funk、Glass、Hero、Morse、Ping、Pop、Purr、Sosumi、Submarine、Tink
+
+**Webhook URL 模板变量：**
+
+使用 URL 时，可以使用 `{{varName}}` 语法的模板变量：
+
+| 变量 | 描述 |
+|----------|-------------|
+| `cwd` | 项目根目录 |
+| `name` | 项目目录名称（cwd 的基本名称） |
+
+示例：
+```json
+{ "notification": true }
+{ "notification": "Glass" }
+{ "notification": "https://example.com/webhook?project={{name}}" }
+```
+
 ### outputFormat
 
 CLI 响应的输出格式。

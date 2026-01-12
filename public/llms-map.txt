@@ -92,6 +92,7 @@ This file provides a structured map of documentation with nested headers.
   * language
   * mcpServers
   * model
+  * notification
   * outputFormat
   * outputStyle
   * planModel

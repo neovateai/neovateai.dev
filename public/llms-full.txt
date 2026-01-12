@@ -1153,6 +1153,41 @@ The model to use. Format: `provider_id/model_id`. Checkout [Models](./models) fo
 - Type: `string`
 - Default: null
 
+### notification
+
+Specify notification behavior when a session completes.
+
+- Type: `boolean | string`
+- Default: `false`
+
+Available options:
+- `false` - Disable notifications
+- `true` - Enable with default sound ("Funk")
+- A sound name string - Play the specified sound (e.g., "Glass", "Ping")
+- A URL string (starting with `http://` or `https://`) - Fire an HTTP GET request to the URL
+
+**Platform Support:**
+- **macOS**: Full sound support using system sounds from `/System/Library/Sounds/`
+- **Linux/Windows**: Falls back to terminal bell
+
+**Available macOS sounds:** Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse, Ping, Pop, Purr, Sosumi, Submarine, Tink
+
+**Webhook URL Template Variables:**
+
+When using a URL, you can use template variables with `{{varName}}` syntax:
+
+| Variable | Description |
+|----------|-------------|
+| `cwd` | Project root directory |
+| `name` | Project directory name (basename of cwd) |
+
+Example:
+```json
+{ "notification": true }
+{ "notification": "Glass" }
+{ "notification": "https://example.com/webhook?project={{name}}" }
+```
+
 ### outputFormat
 
 The output format for CLI responses.
