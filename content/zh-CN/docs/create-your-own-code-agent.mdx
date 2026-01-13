@@ -104,6 +104,32 @@ runNeovate({
 | `plugins` | `Plugin[]` | 用于扩展功能的插件数组 |
 | `upgrade` | `UpgradeOptions` | 可选的升级配置 |
 
+**返回值：** `Promise<{ shutdown?: () => Promise<void> }>`
+
+当运行 server 命令时，返回的对象包含一个 `shutdown` 函数用于优雅终止。
+
+### 服务器生命周期
+
+在测试或嵌入场景中以编程方式控制服务器：
+
+```ts
+import { runNeovate, parseArgs } from '@neovate/code';
+
+const argv = await parseArgs(['server', '--port', '3000']);
+
+const { shutdown } = await runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [],
+  argv,
+});
+
+// 稍后，优雅地关闭服务器
+if (shutdown) {
+  await shutdown();
+}
+```
+
 ### 插件钩子
 
 你的插件可以使用任何 [插件钩子](/docs/plugins#plugin-hooks) 来自定义行为：

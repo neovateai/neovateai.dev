@@ -3068,6 +3068,32 @@ runNeovate({
 | `plugins` | `Plugin[]` | Array of plugins to extend functionality |
 | `upgrade` | `UpgradeOptions` | Optional upgrade configuration |
 
+**Returns:** `Promise<{ shutdown?: () => Promise<void> }>`
+
+When running the server command, the returned object contains a `shutdown` function for graceful termination.
+
+### Server Lifecycle
+
+Control the server programmatically for testing or embedding scenarios:
+
+```ts
+import { runNeovate, parseArgs } from '@neovate/code';
+
+const argv = await parseArgs(['server', '--port', '3000']);
+
+const { shutdown } = await runNeovate({
+  productName: 'MyCodeAgent',
+  version: '0.1.0',
+  plugins: [],
+  argv,
+});
+
+// Later, gracefully shutdown the server
+if (shutdown) {
+  await shutdown();
+}
+```
+
 ### Plugin Hooks
 
 Your plugin can use any of the [plugin hooks](/docs/plugins#plugin-hooks) to customize behavior:

@@ -276,6 +276,7 @@ This file provides a structured map of documentation with nested headers.
 * Full Example with Custom Provider
 * Configuration Options
   * runNeovate Options
+  * Server Lifecycle
   * Plugin Hooks
 * Use Cases
   * Enterprise Deployment
