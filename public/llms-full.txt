@@ -3699,6 +3699,27 @@ Modify the model aliases.
   - modelAlias: `ModelAlias`
 - return: `ModelAlias`
 
+### nodeBridgeHandler
+
+Return handlers to extend the NodeBridge functionality. This allows plugins to add new handler methods or override/wrap existing handlers.
+
+- type: `SeriesMerge`
+- parameters:
+- return: `NodeBridgeHandlers`
+
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  nodeBridgeHandler() {
+    return {
+      'myPlugin.customHandler': async (input, context) => {
+        return { success: true };
+      },
+    };
+  },
+};
+```
+
 ### outputStyle
 
 Return the output styles to be registered.

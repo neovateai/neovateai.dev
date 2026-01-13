@@ -316,6 +316,7 @@ This file provides a structured map of documentation with nested headers.
   * env
   * initialized
   * modelAlias
+  * nodeBridgeHandler
   * outputStyle
   * provider
   * query

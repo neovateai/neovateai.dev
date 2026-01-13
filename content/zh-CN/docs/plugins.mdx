@@ -165,6 +165,27 @@ const plugin: Plugin = {
   - modelAlias：`ModelAlias`
 - 返回：`ModelAlias`
 
+### nodeBridgeHandler
+
+返回用于扩展 NodeBridge 功能的处理器。这允许插件添加新的处理器方法或覆盖/包装现有处理器。
+
+- 类型：`SeriesMerge`
+- 参数：
+- 返回：`NodeBridgeHandlers`
+
+```ts
+const plugin: Plugin = {
+  name: 'my-plugin',
+  nodeBridgeHandler() {
+    return {
+      'myPlugin.customHandler': async (input, context) => {
+        return { success: true };
+      },
+    };
+  },
+};
+```
+
 ### outputStyle
 
 返回要注册的输出样式。
