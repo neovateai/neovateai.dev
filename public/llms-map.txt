@@ -306,7 +306,6 @@ This file provides a structured map of documentation with nested headers.
 ### [Plugins](https://neovateai.dev/en/docs/plugins.md)
 
 * Create a plugin
-* Create your own Code Agent
 * Plugin hooks
   * agent
   * config

@@ -2983,14 +2983,16 @@ Companies like **Kuaishou** and **Ant Group** have built their own code agents u
 Create your own code agent with just a few lines:
 
 ```ts
-import { type Plugin, runNeovate } from '@neovate/code';
+import { type Plugin, runNeovate, parseArgs } from '@neovate/code';
 
 const myPlugin: Plugin = {};
+const argv = await parseArgs(process.argv.slice(2));
 
 runNeovate({
   productName: 'MyCodeAgent',
   version: '0.1.0',
   plugins: [myPlugin],
+  argv,
 });
 ```
 
@@ -3005,7 +3007,7 @@ npx tsx index.ts "Hello, world!"
 Here's a complete example that configures a custom provider with your own API endpoints:
 
 ```ts
-import { type Plugin, runNeovate } from '@neovate/code';
+import { type Plugin, runNeovate, parseArgs } from '@neovate/code';
 
 const myPlugin: Plugin = {
   config({ config, argvConfig }) {
@@ -3043,10 +3045,13 @@ const myPlugin: Plugin = {
   },
 };
 
+const argv = await parseArgs(process.argv.slice(2));
+
 runNeovate({
   productName: 'MyCodeAgent',
   version: '0.1.0',
   plugins: [myPlugin],
+  argv,
 }).catch(console.error);
 ```
 
@@ -3056,6 +3061,7 @@ runNeovate({
 
 | Option | Type | Description |
 |--------|------|-------------|
+| `argv` | `Argv` | Parsed command-line arguments (required) |
 | `productName` | `string` | Your agent's name (displayed in UI and logs) |
 | `productASCIIArt` | `string` | Optional ASCII art for terminal display |
 | `version` | `string` | Version string |
@@ -3571,23 +3577,6 @@ export default const plugin: Plugin = {
   },
 }
 ```
-
-## Create your own Code Agent
-
-You can create your own Code Agent with your own models, features, tools and other integrations, using the plugin system.
-
-```ts
-import { type Plugin, runNeovate } from '@neovate/code';
-
-const plugin: Plugin = {};
-runNeovate({
-  productName: 'custom-code-agent',
-  version: '0.0.1',
-  plugins: [plugin],
-});
-```
-
-That's it. You can now use your own Code Agent.
 
 ## Plugin hooks
 

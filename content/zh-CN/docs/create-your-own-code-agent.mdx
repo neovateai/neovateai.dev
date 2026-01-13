@@ -19,14 +19,16 @@ import { Callout } from 'nextra/components';
 只需几行代码即可创建你自己的代码智能体：
 
 ```ts
-import { type Plugin, runNeovate } from '@neovate/code';
+import { type Plugin, runNeovate, parseArgs } from '@neovate/code';
 
 const myPlugin: Plugin = {};
+const argv = await parseArgs(process.argv.slice(2));
 
 runNeovate({
   productName: 'MyCodeAgent',
   version: '0.1.0',
   plugins: [myPlugin],
+  argv,
 });
 ```
 
@@ -41,7 +43,7 @@ npx tsx index.ts "Hello, world!"
 以下是一个完整的示例，配置了自定义 provider 和 API 端点：
 
 ```ts
-import { type Plugin, runNeovate } from '@neovate/code';
+import { type Plugin, runNeovate, parseArgs } from '@neovate/code';
 
 const myPlugin: Plugin = {
   config({ config, argvConfig }) {
@@ -79,10 +81,13 @@ const myPlugin: Plugin = {
   },
 };
 
+const argv = await parseArgs(process.argv.slice(2));
+
 runNeovate({
   productName: 'MyCodeAgent',
   version: '0.1.0',
   plugins: [myPlugin],
+  argv,
 }).catch(console.error);
 ```
 
@@ -92,6 +97,7 @@ runNeovate({
 
 | 选项 | 类型 | 说明 |
 |------|------|------|
+| `argv` | `Argv` | 解析后的命令行参数（必需） |
 | `productName` | `string` | 智能体名称（显示在 UI 和日志中） |
 | `productASCIIArt` | `string` | 可选的 ASCII 艺术字，用于终端显示 |
 | `version` | `string` | 版本号 |

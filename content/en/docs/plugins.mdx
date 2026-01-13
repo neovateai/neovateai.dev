@@ -38,23 +38,6 @@ export default const plugin: Plugin = {
 }
 ```
 
-## Create your own Code Agent
-
-You can create your own Code Agent with your own models, features, tools and other integrations, using the plugin system.
-
-```ts
-import { type Plugin, runNeovate } from '@neovate/code';
-
-const plugin: Plugin = {};
-runNeovate({
-  productName: 'custom-code-agent',
-  version: '0.0.1',
-  plugins: [plugin],
-});
-```
-
-That's it. You can now use your own Code Agent.
-
 ## Plugin hooks
 
 <Callout type="info">
