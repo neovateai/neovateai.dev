@@ -41,7 +41,7 @@ export default {
   footer: {
     logoAlt: 'Neovate 标志',
     description: '建立前端智能协同研发新范式，Neovate 集成先进的大型语言模型 (LLM) 来提速开发工作流。',
-    copyright: '© 2025 Neovate. 保留所有权利。',
+    copyright: '© {{year}} Neovate. 保留所有权利。',
     products: '产品',
     resources: '资源',
     company: '公司',

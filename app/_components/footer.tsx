@@ -55,7 +55,7 @@ export const Footer: FC<{
               {dictionary.footer.description}
             </p>
             <p className="text-xs leading-5 text-gray-500">
-              {dictionary.footer.copyright}
+              {dictionary.footer.copyright.replace('{{year}}', String(new Date().getFullYear()))}
             </p>
           </div>
 

@@ -39,7 +39,7 @@ export default {
   footer: {
     logoAlt: 'Neovate Logo',
     description: 'Building a new paradigm for intelligent collaborative frontend development, Neovate integrates advanced Large Language Models (LLM) to accelerate development workflows.',
-    copyright: '© 2025 Neovate. All rights reserved.',
+    copyright: '© {{year}} Neovate. All rights reserved.',
     products: 'Products',
     resources: 'Resources',
     company: 'Company',

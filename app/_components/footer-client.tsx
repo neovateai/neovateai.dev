@@ -63,7 +63,7 @@ export const FooterClient: FC<{
             <p className="mb-8 max-w-xs text-sm leading-6 text-gray-400">
               {dictionary.footer.description}
             </p>
-            <p className="text-xs leading-5 text-gray-500">{dictionary.footer.copyright}</p>
+            <p className="text-xs leading-5 text-gray-500">{dictionary.footer.copyright.replace('{{year}}', String(new Date().getFullYear()))}</p>
           </div>
 
           {/* Right side: Footer Grid */}
