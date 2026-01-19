@@ -363,6 +363,30 @@ export ZHIPU_API_KEY=your-api-key
 }
 ```
 
+对于非内置模型，您可以使用对象来定义模型：
+
+```json
+{
+  "provider": {
+    "your-provider": {
+      "api": "https://your-base-url",
+      "options": {
+        "apiKey": "your-api-key",
+      },
+      "models": {
+        "Qwen/Qwen3-8B": {
+          "name": "Qwen3 8B",
+          "limit": {
+            "context": 131000,
+            "output": 131000
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 <Callout type="info">
   想要更多控制权？您可以使用[插件](/docs/plugins)创建自己的代码代理，通过 `provider` 和 `modelAlias` 钩子获得对提供商配置、模型别名等的完全编程控制。
 </Callout>

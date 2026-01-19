@@ -363,6 +363,30 @@ Edit the `~/.neovate/config.json` file to add the provider.
 }
 ```
 
+For non-builtin models, you can use an object to define the model:
+
+```json
+{
+  "provider": {
+    "your-provider": {
+      "api": "https://your-base-url",
+      "options": {
+        "apiKey": "your-api-key",
+      },
+      "models": {
+        "Qwen/Qwen3-8B": {
+          "name": "Qwen3 8B",
+          "limit": {
+            "context": 131000,
+            "output": 131000
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 <Callout type="info">
   Want more control over providers? You can create your own code agent using [plugins](/docs/plugins), which gives you full programmatic control over provider configuration, model aliases, and more through the `provider` and `modelAlias` hooks.
 </Callout>
