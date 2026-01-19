@@ -99,6 +99,7 @@ This file provides a structured map of documentation with nested headers.
   * plugins
   * provider
   * quiet
+  * skills
   * smallModel
   * systemPrompt
   * temperature
@@ -192,8 +193,10 @@ This file provides a structured map of documentation with nested headers.
   * Loading Priority
 * Skill File Format
 * Supporting Files
+* Skills as Slash Commands
 * How Skills Differ from Other Config
 * CLI Commands
+* Configuration
 
 ### [Spec Driven Development](https://neovateai.dev/en/docs/spec-driven.md)
 
@@ -222,6 +225,7 @@ This file provides a structured map of documentation with nested headers.
   * `resumeSession(sessionId, options)`
   * `SDKSession`
 * Message Types
+* Custom Providers
 
 ### [MCP](https://neovateai.dev/en/docs/mcp.md)
 

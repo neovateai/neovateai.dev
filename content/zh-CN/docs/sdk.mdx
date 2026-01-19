@@ -81,6 +81,7 @@ session.close();
 | `message` | `string` | 要发送的提示 |
 | `options.model` | `string` | 模型标识符（必需） |
 | `options.cwd` | `string` | 工作目录（可选） |
+| `options.providers` | `Record<string, ProviderConfig>` | 自定义提供商配置，用于添加或覆盖内置提供商（可选） |
 
 返回值：`Promise<SDKResultMessage>`
 
@@ -93,6 +94,7 @@ session.close();
 | `options.model` | `string` | 模型标识符（必需） |
 | `options.cwd` | `string` | 工作目录（可选） |
 | `options.productName` | `string` | 产品名称（可选） |
+| `options.providers` | `Record<string, ProviderConfig>` | 自定义提供商配置，用于添加或覆盖内置提供商（可选） |
 
 返回值：`Promise<SDKSession>`
 
@@ -123,3 +125,44 @@ session.close();
 | `system` | 会话初始化信息 |
 | `message` | 对话消息（用户/助手/工具） |
 | `result` | 带有成功/错误状态的最终结果 |
+
+## 自定义提供商
+
+您可以使用 `providers` 选项以编程方式配置自定义 API 提供商。这允许您添加新的提供商或覆盖内置提供商配置。
+
+```typescript
+import { prompt, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'my-provider': {
+    api: 'https://my-api-endpoint.com',
+    options: { apiKey: 'my-api-key' },
+    models: { 'my-model': 'claude-4-sonnet' },
+  },
+};
+
+const result = await prompt('Hello', {
+  model: 'my-provider/my-model',
+  providers,
+});
+```
+
+`providers` 选项同样适用于 `createSession()` 和 `resumeSession()`：
+
+```typescript
+import { createSession, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'custom-openai': {
+    api: 'https://custom-openai-endpoint.com/v1',
+    options: { apiKey: process.env.CUSTOM_API_KEY },
+    models: { 'gpt-4': 'gpt-4' },
+  },
+};
+
+const session = await createSession({
+  model: 'custom-openai/gpt-4',
+  cwd: process.cwd(),
+  providers,
+});
+```

@@ -1244,6 +1244,25 @@ Specify whether to suppress non-essential output.
 - Type: `boolean`
 - Default: `false`
 
+### skills
+
+Specify extra SKILL.md files or directories to load.
+
+- Type: `string[]`
+- Default: `[]`
+
+Each entry can be either a path to a `SKILL.md` file or a directory containing one.
+
+Example:
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
 ### smallModel
 
 The small model to use for lightweight tasks. Format: `provider_id/model_id`.
@@ -1932,6 +1951,10 @@ Use slash commands to trigger specific actions and workflows in your AI conversa
   Custom slash commands can override the built-in slash commands. If you define a custom slash command with the same name as a built-in slash command, the custom slash command will be used instead.
 </Callout>
 
+<Callout type="info">
+  Skills are also registered as slash commands automatically. See [Skills](./skills#skills-as-slash-commands) for more details.
+</Callout>
+
 If you write a prompt more than three times, you should consider adding a slash command for it. Customized slash commands have both project and global scope.
 
 ### Project scope
@@ -2156,10 +2179,11 @@ Each skill defines what problem it solves, what inputs it expects, and what succ
 Skills are loaded in the following order, with later sources overriding earlier ones:
 
 1. **Plugin** – Skills provided by plugins (lowest priority)
-2. **Global (~/.claude/)** – Legacy global skills
-3. **Global (~/.neovate/)** – Personal global skills
-4. **Project (.claude/)** – Legacy project skills
-5. **Project (.neovate/)** – Project-specific skills (highest priority)
+2. **Config** – Skills specified via the `skills` config option
+3. **Global (~/.claude/)** – Legacy global skills
+4. **Global (~/.neovate/)** – Personal global skills
+5. **Project (.claude/)** – Legacy project skills
+6. **Project (.neovate/)** – Project-specific skills (highest priority)
 
 ## Skill File Format
 
@@ -2188,11 +2212,20 @@ Each skill folder can contain supporting utilities:
 
 - `SKILL.md` – the main skill specification
 
+## Skills as Slash Commands
+
+Skills can also be invoked directly as slash commands. When a skill is loaded, it automatically registers as a slash command using its name (e.g., a skill named `frontend-design` becomes `/frontend-design`).
+
+**Key points:**
+- Skills only register as commands when no existing command shares the same name
+- The command description shows "(global skill)" or "(project skill)" to indicate the source
+- Skills support parameter placeholders: `$1`, `$2`, `$3`, etc. for individual arguments, or `$ARGUMENTS` for all arguments
+
 ## How Skills Differ from Other Config
 
 | Config | Purpose | When it runs |
 |--------|---------|--------------|
-| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant |
+| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant, or user types `/skill-name` |
 | **Rules (AGENTS.md)** | Project-wide instructions | Loaded into every conversation |
 | **Slash Commands** | User-invoked macros | You type `/command` to run it |
 
@@ -2207,8 +2240,14 @@ neovate skill add user/repo
 # Install from a subpath
 neovate skill add user/repo/path/to/skill
 
+# Interactively select which skills to install
+neovate skill add -i user/repo
+
 # Install globally (available across all projects)
 neovate skill add -g user/repo
+
+# Install to Claude skills directory
+neovate skill add --claude user/repo
 
 # Install with a custom name
 neovate skill add --name my-skill user/repo
@@ -2232,10 +2271,27 @@ neovate skill remove -g my-skill
 | Option | Description |
 |--------|-------------|
 | `-g, --global` | Install to/remove from global skills directory |
+| `-i, --interactive` | Interactively select which skills to install |
+| `--claude` | Install to Claude skills directory (.claude/skills) |
 | `--overwrite` | Overwrite existing skill with the same name |
 | `--name <name>` | Install with a custom local name |
 | `--target <dir>` | Custom target directory for skills |
 | `--json` | Output list as JSON |
+
+## Configuration
+
+You can specify additional skill paths in your config file:
+
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
+Each entry can be either a path to a `SKILL.md` file or a directory containing one. See [Settings](./settings) for more details.
 
 ---
 # Spec Driven Development
@@ -2499,6 +2555,7 @@ One-shot prompt that returns when complete.
 | `message` | `string` | The prompt to send |
 | `options.model` | `string` | Model identifier (required) |
 | `options.cwd` | `string` | Working directory (optional) |
+| `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
 
 Returns: `Promise<SDKResultMessage>`
 
@@ -2511,6 +2568,7 @@ Creates a new streaming session.
 | `options.model` | `string` | Model identifier (required) |
 | `options.cwd` | `string` | Working directory (optional) |
 | `options.productName` | `string` | Product name (optional) |
+| `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
 
 Returns: `Promise<SDKSession>`
 
@@ -2541,6 +2599,47 @@ Returns: `Promise<SDKSession>`
 | `system` | Session initialization info |
 | `message` | Conversation message (user/assistant/tool) |
 | `result` | Final result with success/error status |
+
+## Custom Providers
+
+You can configure custom API providers programmatically using the `providers` option. This allows you to add new providers or override built-in provider configurations.
+
+```typescript
+import { prompt, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'my-provider': {
+    api: 'https://my-api-endpoint.com',
+    options: { apiKey: 'my-api-key' },
+    models: { 'my-model': 'claude-4-sonnet' },
+  },
+};
+
+const result = await prompt('Hello', {
+  model: 'my-provider/my-model',
+  providers,
+});
+```
+
+The same `providers` option works with `createSession()` and `resumeSession()`:
+
+```typescript
+import { createSession, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'custom-openai': {
+    api: 'https://custom-openai-endpoint.com/v1',
+    options: { apiKey: process.env.CUSTOM_API_KEY },
+    models: { 'gpt-4': 'gpt-4' },
+  },
+};
+
+const session = await createSession({
+  model: 'custom-openai/gpt-4',
+  cwd: process.cwd(),
+  providers,
+});
+```
 
 ---
 # MCP

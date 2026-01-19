@@ -81,6 +81,7 @@ One-shot prompt that returns when complete.
 | `message` | `string` | The prompt to send |
 | `options.model` | `string` | Model identifier (required) |
 | `options.cwd` | `string` | Working directory (optional) |
+| `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
 
 Returns: `Promise<SDKResultMessage>`
 
@@ -93,6 +94,7 @@ Creates a new streaming session.
 | `options.model` | `string` | Model identifier (required) |
 | `options.cwd` | `string` | Working directory (optional) |
 | `options.productName` | `string` | Product name (optional) |
+| `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
 
 Returns: `Promise<SDKSession>`
 
@@ -123,3 +125,44 @@ Returns: `Promise<SDKSession>`
 | `system` | Session initialization info |
 | `message` | Conversation message (user/assistant/tool) |
 | `result` | Final result with success/error status |
+
+## Custom Providers
+
+You can configure custom API providers programmatically using the `providers` option. This allows you to add new providers or override built-in provider configurations.
+
+```typescript
+import { prompt, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'my-provider': {
+    api: 'https://my-api-endpoint.com',
+    options: { apiKey: 'my-api-key' },
+    models: { 'my-model': 'claude-4-sonnet' },
+  },
+};
+
+const result = await prompt('Hello', {
+  model: 'my-provider/my-model',
+  providers,
+});
+```
+
+The same `providers` option works with `createSession()` and `resumeSession()`:
+
+```typescript
+import { createSession, ProviderConfig } from '@neovate/code';
+
+const providers: Record<string, ProviderConfig> = {
+  'custom-openai': {
+    api: 'https://custom-openai-endpoint.com/v1',
+    options: { apiKey: process.env.CUSTOM_API_KEY },
+    models: { 'gpt-4': 'gpt-4' },
+  },
+};
+
+const session = await createSession({
+  model: 'custom-openai/gpt-4',
+  cwd: process.cwd(),
+  providers,
+});
+```

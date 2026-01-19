@@ -257,6 +257,25 @@ Specify whether to suppress non-essential output.
 - Type: `boolean`
 - Default: `false`
 
+### skills
+
+Specify extra SKILL.md files or directories to load.
+
+- Type: `string[]`
+- Default: `[]`
+
+Each entry can be either a path to a `SKILL.md` file or a directory containing one.
+
+Example:
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
 ### smallModel
 
 The small model to use for lightweight tasks. Format: `provider_id/model_id`.

@@ -257,6 +257,25 @@ CLI 响应的输出格式。
 - 类型：`boolean`
 - 默认：`false`
 
+### skills
+
+指定要加载的额外 SKILL.md 文件或目录。
+
+- 类型：`string[]`
+- 默认：`[]`
+
+每个条目可以是 `SKILL.md` 文件的路径或包含该文件的目录。
+
+示例：
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
 ### smallModel
 
 用于轻量级任务的小模型。格式：`provider_id/model_id`。

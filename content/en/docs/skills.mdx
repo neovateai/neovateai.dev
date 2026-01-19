@@ -36,10 +36,11 @@ Each skill defines what problem it solves, what inputs it expects, and what succ
 Skills are loaded in the following order, with later sources overriding earlier ones:
 
 1. **Plugin** – Skills provided by plugins (lowest priority)
-2. **Global (~/.claude/)** – Legacy global skills
-3. **Global (~/.neovate/)** – Personal global skills
-4. **Project (.claude/)** – Legacy project skills
-5. **Project (.neovate/)** – Project-specific skills (highest priority)
+2. **Config** – Skills specified via the `skills` config option
+3. **Global (~/.claude/)** – Legacy global skills
+4. **Global (~/.neovate/)** – Personal global skills
+5. **Project (.claude/)** – Legacy project skills
+6. **Project (.neovate/)** – Project-specific skills (highest priority)
 
 ## Skill File Format
 
@@ -68,11 +69,20 @@ Each skill folder can contain supporting utilities:
 
 - `SKILL.md` – the main skill specification
 
+## Skills as Slash Commands
+
+Skills can also be invoked directly as slash commands. When a skill is loaded, it automatically registers as a slash command using its name (e.g., a skill named `frontend-design` becomes `/frontend-design`).
+
+**Key points:**
+- Skills only register as commands when no existing command shares the same name
+- The command description shows "(global skill)" or "(project skill)" to indicate the source
+- Skills support parameter placeholders: `$1`, `$2`, `$3`, etc. for individual arguments, or `$ARGUMENTS` for all arguments
+
 ## How Skills Differ from Other Config
 
 | Config | Purpose | When it runs |
 |--------|---------|--------------|
-| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant |
+| **Skills** | Specialized knowledge invoked by the model | Model chooses when relevant, or user types `/skill-name` |
 | **Rules (AGENTS.md)** | Project-wide instructions | Loaded into every conversation |
 | **Slash Commands** | User-invoked macros | You type `/command` to run it |
 
@@ -87,8 +97,14 @@ neovate skill add user/repo
 # Install from a subpath
 neovate skill add user/repo/path/to/skill
 
+# Interactively select which skills to install
+neovate skill add -i user/repo
+
 # Install globally (available across all projects)
 neovate skill add -g user/repo
+
+# Install to Claude skills directory
+neovate skill add --claude user/repo
 
 # Install with a custom name
 neovate skill add --name my-skill user/repo
@@ -112,7 +128,24 @@ neovate skill remove -g my-skill
 | Option | Description |
 |--------|-------------|
 | `-g, --global` | Install to/remove from global skills directory |
+| `-i, --interactive` | Interactively select which skills to install |
+| `--claude` | Install to Claude skills directory (.claude/skills) |
 | `--overwrite` | Overwrite existing skill with the same name |
 | `--name <name>` | Install with a custom local name |
 | `--target <dir>` | Custom target directory for skills |
 | `--json` | Output list as JSON |
+
+## Configuration
+
+You can specify additional skill paths in your config file:
+
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
+Each entry can be either a path to a `SKILL.md` file or a directory containing one. See [Settings](./settings) for more details.

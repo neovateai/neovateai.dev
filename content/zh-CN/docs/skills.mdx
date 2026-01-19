@@ -36,10 +36,11 @@ import { Callout } from 'nextra/components';
 技能按以下顺序加载，后面的来源会覆盖前面的：
 
 1. **插件** – 由插件提供的技能（最低优先级）
-2. **全局 (~/.claude/)** – 旧版全局技能
-3. **全局 (~/.neovate/)** – 个人全局技能
-4. **项目 (.claude/)** – 旧版项目技能
-5. **项目 (.neovate/)** – 项目特定技能（最高优先级）
+2. **配置** – 通过 `skills` 配置选项指定的技能
+3. **全局 (~/.claude/)** – 旧版全局技能
+4. **全局 (~/.neovate/)** – 个人全局技能
+5. **项目 (.claude/)** – 旧版项目技能
+6. **项目 (.neovate/)** – 项目特定技能（最高优先级）
 
 ## 技能文件格式
 
@@ -68,11 +69,20 @@ description: 用 3-5 个要点总结暂存的 git diff。当用户询问待提�
 
 - `SKILL.md` – 主要技能规范
 
+## 技能作为斜杠命令
+
+技能也可以直接作为斜杠命令调用。当技能被加载时，它会自动使用其名称注册为斜杠命令（例如，名为 `frontend-design` 的技能变成 `/frontend-design`）。
+
+**要点：**
+- 技能仅在没有同名命令时才注册为命令
+- 命令描述会显示"(global skill)"或"(project skill)"以指示来源
+- 技能支持参数占位符：`$1`、`$2`、`$3` 等用于单个参数，或 `$ARGUMENTS` 用于所有参数
+
 ## 技能与其他配置的区别
 
 | 配置 | 用途 | 何时运行 |
 |-----|------|---------|
-| **技能** | 模型调用的专业知识 | 模型在相关时选择 |
+| **技能** | 模型调用的专业知识 | 模型在相关时选择，或用户输入 `/skill-name` |
 | **规则 (AGENTS.md)** | 项目级指令 | 加载到每次对话 |
 | **斜杠命令** | 用户调用的宏 | 输入 `/command` 运行 |
 
@@ -87,8 +97,14 @@ neovate skill add user/repo
 # 从子路径安装
 neovate skill add user/repo/path/to/skill
 
+# 交互式选择要安装的技能
+neovate skill add -i user/repo
+
 # 全局安装（在所有项目中可用）
 neovate skill add -g user/repo
+
+# 安装到 Claude 技能目录
+neovate skill add --claude user/repo
 
 # 使用自定义名称安装
 neovate skill add --name my-skill user/repo
@@ -112,7 +128,24 @@ neovate skill remove -g my-skill
 | 选项 | 描述 |
 |------|------|
 | `-g, --global` | 安装到/从全局技能目录删除 |
+| `-i, --interactive` | 交互式选择要安装的技能 |
+| `--claude` | 安装到 Claude 技能目录 (.claude/skills) |
 | `--overwrite` | 覆盖同名的现有技能 |
 | `--name <name>` | 使用自定义名称安装 |
 | `--target <dir>` | 技能的自定义目标目录 |
 | `--json` | 以 JSON 格式输出列表 |
+
+## 配置
+
+您可以在配置文件中指定额外的技能路径：
+
+```json
+{
+  "skills": [
+    "/path/to/custom/SKILL.md",
+    "/path/to/skills/directory"
+  ]
+}
+```
+
+每个条目可以是 `SKILL.md` 文件的路径或包含该文件的目录。详情请参阅[设置](./settings)。
