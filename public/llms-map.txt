@@ -86,7 +86,6 @@ This file provides a structured map of documentation with nested headers.
   * autoUpdate
   * browser
   * commit
-  * desktop
   * extensions
   * httpProxy
   * language
@@ -226,6 +225,7 @@ This file provides a structured map of documentation with nested headers.
   * `SDKSession`
 * Message Types
 * Custom Providers
+* Custom Skills
 
 ### [MCP](https://neovateai.dev/en/docs/mcp.md)
 

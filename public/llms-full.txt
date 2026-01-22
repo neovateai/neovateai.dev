@@ -1100,19 +1100,6 @@ Available options:
 - `systemPrompt`: `string` - Custom system prompt for commit message generation. The custom prompt is **appended** to the default prompt (not replacing it), allowing you to add rules while keeping base functionality.
 - `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
 
-### desktop
-
-Desktop application configuration. This setting can only be set globally.
-
-- Type: `object`
-- Default: `{ theme: "light", sendMessageWith: "enter" }`
-
-Available options:
-- `theme`: `"light" | "dark" | "system"` - The color theme for the desktop app
-- `sendMessageWith`: `"enter" | "cmdEnter"` - The key combination to send messages
-- `terminalFont`: `string` - Custom font for the terminal
-- `terminalFontSize`: `number` - Font size for the terminal
-
 ### extensions
 
 Extensions configuration for third-party custom agents. Allows arbitrary nested configuration without validation.
@@ -1742,6 +1729,30 @@ Edit the `~/.neovate/config.json` file to add the provider.
       },
       // optional, only add it when the provider use anthropic api
       "createModelType": "anthropic"
+    }
+  }
+}
+```
+
+For non-builtin models, you can use an object to define the model:
+
+```json
+{
+  "provider": {
+    "your-provider": {
+      "api": "https://your-base-url",
+      "options": {
+        "apiKey": "your-api-key",
+      },
+      "models": {
+        "Qwen/Qwen3-8B": {
+          "name": "Qwen3 8B",
+          "limit": {
+            "context": 131000,
+            "output": 131000
+          }
+        }
+      }
     }
   }
 }
@@ -2556,6 +2567,7 @@ One-shot prompt that returns when complete.
 | `options.model` | `string` | Model identifier (required) |
 | `options.cwd` | `string` | Working directory (optional) |
 | `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
+| `options.skills` | `string[]` | Extra SKILL.md file paths for user-defined skills. Accepts absolute paths to SKILL.md files or directories (optional) |
 
 Returns: `Promise<SDKResultMessage>`
 
@@ -2569,6 +2581,7 @@ Creates a new streaming session.
 | `options.cwd` | `string` | Working directory (optional) |
 | `options.productName` | `string` | Product name (optional) |
 | `options.providers` | `Record<string, ProviderConfig>` | Custom provider configurations to add or override built-in providers (optional) |
+| `options.skills` | `string[]` | Extra SKILL.md file paths for user-defined skills. Accepts absolute paths to SKILL.md files or directories (optional) |
 
 Returns: `Promise<SDKSession>`
 
@@ -2640,6 +2653,25 @@ const session = await createSession({
   providers,
 });
 ```
+
+## Custom Skills
+
+You can specify additional skill paths programmatically using the `skills` option. This allows you to load user-defined skills without relying on file-based configuration or plugins.
+
+```typescript
+import { createSession } from '@neovate/code';
+
+const session = await createSession({
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: process.cwd(),
+  skills: [
+    '/path/to/custom/SKILL.md',
+    '/path/to/skills/directory'
+  ],
+});
+```
+
+Each entry can be either an absolute path to a `SKILL.md` file or a directory containing one. The system auto-detects the input type. See [Skills](./skills) for more details on skill format and usage.
 
 ---
 # MCP

@@ -43,31 +43,6 @@
       "additionalProperties": false,
       "description": "Commit configuration"
     },
-    "desktop": {
-      "type": "object",
-      "properties": {
-        "theme": {
-          "type": "string",
-          "enum": ["light", "dark", "system"],
-          "description": "The color theme for the desktop app"
-        },
-        "sendMessageWith": {
-          "type": "string",
-          "enum": ["enter", "cmdEnter"],
-          "description": "The key combination to send messages"
-        },
-        "terminalFont": {
-          "type": "string",
-          "description": "Custom font for the terminal"
-        },
-        "terminalFontSize": {
-          "type": "number",
-          "description": "Font size for the terminal"
-        }
-      },
-      "additionalProperties": false,
-      "description": "Desktop application configuration (global only)"
-    },
     "extensions": {
       "type": "object",
       "additionalProperties": true,

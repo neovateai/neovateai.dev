@@ -113,19 +113,6 @@ Available options:
 - `systemPrompt`: `string` - Custom system prompt for commit message generation. The custom prompt is **appended** to the default prompt (not replacing it), allowing you to add rules while keeping base functionality.
 - `model`: `string` - Model to use for commit message generation (format: `provider_id/model_id`)
 
-### desktop
-
-Desktop application configuration. This setting can only be set globally.
-
-- Type: `object`
-- Default: `{ theme: "light", sendMessageWith: "enter" }`
-
-Available options:
-- `theme`: `"light" | "dark" | "system"` - The color theme for the desktop app
-- `sendMessageWith`: `"enter" | "cmdEnter"` - The key combination to send messages
-- `terminalFont`: `string` - Custom font for the terminal
-- `terminalFontSize`: `number` - Font size for the terminal
-
 ### extensions
 
 Extensions configuration for third-party custom agents. Allows arbitrary nested configuration without validation.

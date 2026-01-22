@@ -82,6 +82,7 @@ session.close();
 | `options.model` | `string` | 模型标识符（必需） |
 | `options.cwd` | `string` | 工作目录（可选） |
 | `options.providers` | `Record<string, ProviderConfig>` | 自定义提供商配置，用于添加或覆盖内置提供商（可选） |
+| `options.skills` | `string[]` | 用户自定义技能的额外 SKILL.md 文件路径。接受 SKILL.md 文件或目录的绝对路径（可选） |
 
 返回值：`Promise<SDKResultMessage>`
 
@@ -95,6 +96,7 @@ session.close();
 | `options.cwd` | `string` | 工作目录（可选） |
 | `options.productName` | `string` | 产品名称（可选） |
 | `options.providers` | `Record<string, ProviderConfig>` | 自定义提供商配置，用于添加或覆盖内置提供商（可选） |
+| `options.skills` | `string[]` | 用户自定义技能的额外 SKILL.md 文件路径。接受 SKILL.md 文件或目录的绝对路径（可选） |
 
 返回值：`Promise<SDKSession>`
 
@@ -166,3 +168,22 @@ const session = await createSession({
   providers,
 });
 ```
+
+## 自定义技能
+
+您可以使用 `skills` 选项以编程方式指定额外的技能路径。这允许您加载用户自定义的技能，而无需依赖基于文件的配置或插件。
+
+```typescript
+import { createSession } from '@neovate/code';
+
+const session = await createSession({
+  model: 'anthropic/claude-sonnet-4-20250514',
+  cwd: process.cwd(),
+  skills: [
+    '/path/to/custom/SKILL.md',
+    '/path/to/skills/directory'
+  ],
+});
+```
+
+每个条目可以是 `SKILL.md` 文件的绝对路径或包含该文件的目录。系统会自动检测输入类型。详情请参阅[技能](./skills)了解技能格式和用法。
