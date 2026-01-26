@@ -1727,8 +1727,8 @@ Edit the `~/.neovate/config.json` file to add the provider.
         // the full list could be found in https://github.com/neovateai/neovate-code/blob/master/src/model.ts
         "foo": "claude-4-sonnet"
       },
-      // optional, only add it when the provider use anthropic api
-      "createModelType": "anthropic"
+      // optional, specify the API format. Options: "anthropic", "openai", "responses"
+      "apiFormat": "anthropic"
     }
   }
 }
