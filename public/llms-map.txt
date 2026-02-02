@@ -118,9 +118,9 @@ This file provides a structured map of documentation with nested headers.
 
 * Built-in providers
   * AIHubMix
-  * Antigravity
   * Anthropic
   * CanopyWave
+  * Codex
   * Cerebras
   * DeepSeek
   * GitHub Copilot
@@ -136,6 +136,7 @@ This file provides a structured map of documentation with nested headers.
   * OpenAI
   * OpenRouter
   * Poe
+  * Qwen
   * SiliconFlow
   * VolcEngine
   * xAI

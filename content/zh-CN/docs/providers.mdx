@@ -22,18 +22,6 @@ export AIHUBMIX_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
-### Antigravity
-
-<Callout>
-  基于 OAuth 认证，无需 API 密钥。
-</Callout>
-
-1. 输入 `/login` 并选择 **Antigravity**。
-
-2. 按照 OAuth 流程使用您的 Google 账户进行认证。
-
-3. 运行 `/model` 来选择您想使用的模型。
-
 ### Anthropic
 
 1. 打开 [Anthropic Platform Console](https://console.anthropic.com/settings/keys)，点击 **Create Key** 创建新的 API 密钥并复制它。
@@ -61,6 +49,18 @@ export ANTHROPIC_API_BASE=https://your-base-url
 ```bash
 export CANOPYWAVE_API_KEY=your-api-key
 ```
+
+3. 运行 `/model` 来选择您想使用的模型。
+
+### Codex
+
+<Callout>
+  基于 OAuth 认证，无需 API 密钥。
+</Callout>
+
+1. 输入 `/login` 并选择 **Codex**。
+
+2. 按照 OAuth 流程使用您的 OpenAI 账户进行认证。
 
 3. 运行 `/model` 来选择您想使用的模型。
 
@@ -265,6 +265,18 @@ export POE_API_KEY=your-api-key
 
 3. 运行 `/model` 来选择您想使用的模型。
 
+### Qwen
+
+<Callout>
+  基于 OAuth 认证，无需 API 密钥。
+</Callout>
+
+1. 输入 `/login` 并选择 **Qwen**。
+
+2. 按照 OAuth 流程使用您的 Qwen/阿里云账户进行认证。
+
+3. 运行 `/model` 来选择您想使用的模型。
+
 ### SiliconFlow
 
 1. 打开 [SiliconFlow](https://siliconflow.com/)（或中国区 [SiliconFlow CN](https://siliconflow.cn/)），创建账户并获取您的 API 密钥。
@@ -352,12 +364,11 @@ export ZHIPU_API_KEY=your-api-key
         "apiKey": "your-api-key",
       },
       "models": {
-        // 值为模型 id
-        // 完整列表可在 https://github.com/neovateai/neovate-code/blob/master/src/model.ts 找到
-        "foo": "claude-4-sonnet"
+        // 完整列表可在 https://github.com/neovateai/neovate-code/blob/master/src/provider/modelMap.ts 找到
+        "claude-4-sonnet": {}
       },
-      // 可选，指定 API 格式。选项: "anthropic", "openai", "responses"
-      "apiFormat": "anthropic"
+      // 可选，指定 API 格式。选项: "anthropic", "openai", "responses"。默认: "openai"
+      "apiFormat": "openai"
     }
   }
 }

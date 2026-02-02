@@ -22,18 +22,6 @@ export AIHUBMIX_API_KEY=your-api-key
 
 3. Run `/model` to select the model you want to use.
 
-### Antigravity
-
-<Callout>
-  OAuth-based authentication. No API key required.
-</Callout>
-
-1. Type `/login` and select **Antigravity**.
-
-2. Follow the OAuth flow to authenticate with your Google account.
-
-3. Run `/model` to select the model you want to use.
-
 ### Anthropic
 
 1. Open [Anthropic Platform Console](https://console.anthropic.com/settings/keys), click **Create Key** to create a new API key and copy it.
@@ -61,6 +49,18 @@ export ANTHROPIC_API_BASE=https://your-base-url
 ```bash
 export CANOPYWAVE_API_KEY=your-api-key
 ```
+
+3. Run `/model` to select the model you want to use.
+
+### Codex
+
+<Callout>
+  OAuth-based authentication. No API key required.
+</Callout>
+
+1. Type `/login` and select **Codex**.
+
+2. Follow the OAuth flow to authenticate with your OpenAI account.
 
 3. Run `/model` to select the model you want to use.
 
@@ -265,6 +265,18 @@ export POE_API_KEY=your-api-key
 
 3. Run `/model` to select the model you want to use.
 
+### Qwen
+
+<Callout>
+  OAuth-based authentication. No API key required.
+</Callout>
+
+1. Type `/login` and select **Qwen**.
+
+2. Follow the OAuth flow to authenticate with your Qwen/Alibaba Cloud account.
+
+3. Run `/model` to select the model you want to use.
+
 ### SiliconFlow
 
 1. Open [SiliconFlow](https://siliconflow.com/) (or [SiliconFlow CN](https://siliconflow.cn/) for China), create an account and get your API key.
@@ -352,12 +364,11 @@ Edit the `~/.neovate/config.json` file to add the provider.
         "apiKey": "your-api-key",
       },
       "models": {
-        // the value is the model id
-        // the full list could be found in https://github.com/neovateai/neovate-code/blob/master/src/model.ts
-        "foo": "claude-4-sonnet"
+        // the full list could be found in https://github.com/neovateai/neovate-code/blob/master/src/provider/modelMap.ts
+        "claude-4-sonnet": {}
       },
-      // optional, specify the API format. Options: "anthropic", "openai", "responses"
-      "apiFormat": "anthropic"
+      // optional, specify the API format. Options: "anthropic", "openai", "responses". Default: "openai"
+      "apiFormat": "openai"
     }
   }
 }
