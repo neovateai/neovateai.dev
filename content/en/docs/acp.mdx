@@ -1,0 +1,54 @@
+# ACP
+
+ACP (Agent Client Protocol) provides direct editor integration for Neovate Code. Unlike traditional server-based approaches, ACP runs in-process with zero network overhead.
+
+## Performance
+
+| Metric | Traditional | ACP |
+| --- | --- | --- |
+| Startup | 500ms | 50ms (10x faster) |
+| Latency | 5-10ms | <1ms (5-10x faster) |
+| Memory | 200MB | 100MB (50% less) |
+
+## Zed Integration
+
+Add the following to your Zed settings:
+
+```json
+{
+  "agent_servers": {
+    "Neovate": {
+      "type": "custom",
+      "command": "neovate",
+      "args": ["acp"],
+      "cwd": "/path/to/project"
+    }
+  }
+}
+```
+
+## Debug Logging
+
+Enable debug logs for troubleshooting:
+
+```bash
+DEBUG=neovate:acp* neovate acp
+```
+
+## Supported Features
+
+- Streaming output
+- Tool calls
+- Permission approvals
+- Plan updates
+- Diff viewing
+- Slash commands
+
+## Limitations
+
+Due to protocol constraints, the following features are not available in ACP mode:
+
+- File system operations
+- Terminal operations
+- Session persistence
+- Interactive plan selection

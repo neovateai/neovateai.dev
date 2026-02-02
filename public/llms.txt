@@ -29,6 +29,7 @@ This file provides an overview of the Neovate Code documentation and developer r
 - [Spec Driven Development](https://neovateai.dev/en/docs/spec-driven.md)
 - [SDK](https://neovateai.dev/en/docs/sdk.md)
 - [MCP](https://neovateai.dev/en/docs/mcp.md)
+- [ACP](https://neovateai.dev/en/docs/acp.md)
 - [Output Style](https://neovateai.dev/en/docs/output-style.md)
 - [AI Commit](https://neovateai.dev/en/docs/ai-commit.md)
 - [Shell Command Generator](https://neovateai.dev/en/docs/shell-command-generator.md)

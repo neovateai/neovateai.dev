@@ -38,6 +38,7 @@ export default {
   'spec-driven': '',
   'sdk': '',
   'mcp': '',
+  'acp': '',
   'output-style': '',
   'ai-commit': '',
   'shell-command-generator': '',

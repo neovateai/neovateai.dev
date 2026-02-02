@@ -237,6 +237,14 @@ This file provides a structured map of documentation with nested headers.
   * `neovate mcp` command
   * `/mcp` slash command
 
+### [ACP](https://neovateai.dev/en/docs/acp.md)
+
+* Performance
+* Zed Integration
+* Debug Logging
+* Supported Features
+* Limitations
+
 ### [Output Style](https://neovateai.dev/en/docs/output-style.md)
 
 * Built-in output styles
