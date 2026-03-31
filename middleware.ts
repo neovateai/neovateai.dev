@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { middleware as nextraMiddleware } from 'nextra/locales'
+import { proxy as nextraProxy } from 'nextra/locales'
+
+const PUBLIC_FILE = /\.[^/]+$/
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -20,8 +22,13 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Skip locale redirects for static files in /public
+  if (PUBLIC_FILE.test(pathname)) {
+    return NextResponse.next()
+  }
+
   // Pass through to Nextra's locale middleware
-  return nextraMiddleware(request)
+  return nextraProxy(request)
 }
 
 export const config = {
