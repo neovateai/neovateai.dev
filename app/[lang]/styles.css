@@ -9,8 +9,8 @@
 /* body {
   background: #000;
 } */
-
-.dark body {
+.dark body,
+.dark .nextra-sidebar-footer {
   background: #000;
 }
 
